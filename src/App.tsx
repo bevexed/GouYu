@@ -1,10 +1,10 @@
-import React, { Suspense } from "react";
-import { HashRouter, Route, Switch } from "react-router-dom";
-import { Provider } from "react-redux";
-import store from "./redux/store";
-import { AppRoutes } from "./router";
-import "./App.less";
-import 'lib-flexible'
+import React, { Suspense } from 'react';
+import { HashRouter, Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+import { AppRoutes } from './router';
+import './App.less';
+import 'lib-flexible';
 
 const App: React.FC = () => {
   return (
