@@ -1,0 +1,60 @@
+@import "../../App";
+
+.login {
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    span {
+      margin-right: 28px;
+      ._font(56px);
+    }
+
+    .logo {
+      width: 400px;
+      height: 400px;
+    }
+
+  }
+
+
+  section {
+    width: 554px;
+    margin: 0 auto;
+
+    label {
+      display: block;
+      height: 28px + 44px;
+      border-bottom: 2px solid #EDEDED;
+
+      &:last-child {
+        display: flex;
+        align-items: flex-start;
+        margin-top: 82px;
+      }
+
+      input {
+        width: 100%;
+        height: 44px;
+
+        &::placeholder {
+          font-size: 32px;
+          font-weight: 400;
+          color: rgba(153, 153, 153, 1);
+        }
+      }
+
+      .code-btn {
+        padding: 10px 12px;
+        flex-shrink: 0;
+        font-size: 24px;
+        font-weight: 400;
+        color: rgba(33, 163, 205, 1);
+        border-radius: 8px;
+        border: 2px solid rgba(33, 163, 205, 1);
+      }
+
+    }
+  }
+}
