@@ -1,0 +1,112 @@
+@import '../../App.less';
+
+.complete-information {
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    span {
+      margin-right: 28px;
+      ._font(56px);
+    }
+
+    .logo {
+      width: 400px;
+      height: 400px;
+    }
+  }
+
+  section {
+    position: relative;
+    width: 554px;
+    margin: 0 auto;
+
+    label {
+      display: flex;
+      align-items: center;
+      height: 28px + 44px;
+      border-bottom: 2px solid #ededed;
+
+      span {
+        flex-shrink: 0;
+        font-size: 32px;
+        font-weight: 400;
+        color: rgba(38, 45, 44, 1);
+      }
+
+      &:first-child {
+        position: relative;
+
+        span {
+          flex-grow: 1;
+        }
+
+        input {
+          width: 160px;
+          margin-right: 40px;
+
+          &::placeholder {
+            text-align: right;
+          }
+        }
+
+        &::after {
+          position: absolute;
+          width: 36px;
+          height: 36px;
+          right: 0;
+          content: '';
+          background-size: 100%;
+          background-position: center;
+          background-image: url("../../static/image/ico_more_h@2x.png");
+        }
+
+        justify-content: space-between;
+      }
+
+      &:last-child {
+        span {
+          margin-right: 36px;
+        }
+
+        margin-top: 82px;
+      }
+
+      input {
+        height: 44px;
+
+        &::placeholder {
+          font-size: 32px;
+          font-weight: 400;
+          color: rgba(153, 153, 153, 1);
+        }
+      }
+
+      .code-btn {
+        text-align: center;
+        min-width: 74px;
+        padding: 10px 12px;
+        flex-shrink: 0;
+        font-size: 24px;
+        font-weight: 400;
+        color: rgba(33, 163, 205, 1);
+        border-radius: 8px;
+        border: 2px solid rgba(33, 163, 205, 1);
+      }
+    }
+  }
+
+  .login-btn {
+    width: 594px;
+    height: 140px;
+    background-image: url('../../static/image/bg_btn@2x.png');
+    background-size: 100% 100%;
+    line-height: 105px;
+    font-size: 36px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 1);
+    text-align: center;
+    margin: 85px auto 0;
+  }
+}

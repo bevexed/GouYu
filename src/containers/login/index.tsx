@@ -2,7 +2,7 @@ import React, { ChangeEvent, Component } from 'react';
 import { connect } from 'react-redux';
 import { MyImage } from '../../components/my-image';
 import { LoginPic } from '../../config/image';
-import './login.less';
+import './index.less';
 import { Toast } from 'antd-mobile';
 
 interface InputLabel {

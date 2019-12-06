@@ -16,6 +16,11 @@ const AppRoutes: RouteType[] = [
     component: lazy(() => import('../containers/login')),
     exact: true,
   },
+  {
+    path: '/complete-information',
+    component: lazy(() => import('../containers/complete-information')),
+    exact: true
+  }
 ];
 
 export const MapRouters: React.FC = () => {

@@ -4,3 +4,7 @@ export const LoginPic = {
   wxBtn: require('../static/image/pic_wechat_h@2x.png'),
   agreeBtn: require('../static/image/btn_sellect_h@2x.png')
 };
+
+export const completeInformationPic = {
+  more: require('../static/image/ico_more_h@2x.png')
+};
