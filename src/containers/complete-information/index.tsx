@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { MyImage } from '../../components/my-image';
 import { LoginPic } from '../../config/image';
 import { Picker } from 'antd-mobile';
+import { addressList } from '../../static/location/location';
+import arrayTreeFilter from 'array-tree-filter';
 import './index.less';
-import { addressList } from "../../static/location/location";
 
 interface InputLabel {
   city: string;
@@ -13,7 +14,6 @@ interface InputLabel {
 
 class Index extends Component {
   state = {
-    city: '杭州',
     code: '',
     pickerValue: [],
   };
@@ -28,11 +28,24 @@ class Index extends Component {
     } as Pick<InputLabel, typeof name>);
   };
 
+  getSel() {
+    const value = this.state.pickerValue;
+    if (!value) {
+      return { city: '杭州市' };
+    }
+    const treeChildren = arrayTreeFilter(
+      addressList,
+      (c, level) => c.value === value[level],
+    );
+    const [province, city] = treeChildren.map(v => v.label);
+    return { province, city };
+  }
+
   onSure = () => {
   };
 
   render() {
-    const { city, code } = this.state;
+    const { code } = this.state;
 
     return (
       <div className="complete-information">
@@ -49,15 +62,14 @@ class Index extends Component {
             value={ this.state.pickerValue }
             onChange={ v => this.setState({ pickerValue: v }) }
             onOk={ v => this.setState({ pickerValue: v }) }
-            cols={ 2 }
-          >
+            cols={ 2 }>
             <label htmlFor="phone">
               <span>所在城市</span>
               <input
                 id="phone"
                 type="tel"
                 disabled
-                placeholder={ city }
+                placeholder={ this.getSel().city || '杭州市' }
                 maxLength={ 11 }
               />
             </label>
