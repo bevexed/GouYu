@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { MyImage } from '../../components/my-image';
 import { LoginPic } from '../../config/image';
 import './login.less';
-import { Toast } from "antd-mobile";
+import { Toast } from 'antd-mobile';
 
 interface InputLabel {
   phone: number | string;
@@ -23,7 +23,10 @@ class Login extends Component<{}, State> {
     time: 60,
   };
 
-  onHandleChange = (e: ChangeEvent<HTMLInputElement>, name: keyof InputLabel) => {
+  onHandleChange = (
+    e: ChangeEvent<HTMLInputElement>,
+    name: keyof InputLabel,
+  ) => {
     const value = e.target.value;
     this.setState({
       [name]: value,
@@ -33,7 +36,7 @@ class Login extends Component<{}, State> {
   getCode = () => {
     let { time } = this.state;
     if (time < 60) {
-      return Toast.show(time + 's后重发')
+      return Toast.show(time + 's后重发');
     }
     const sendSuccess = () => {
       let timer = setInterval(() => {
@@ -50,13 +53,13 @@ class Login extends Component<{}, State> {
     sendSuccess();
     const sendFail = () => {
     };
-    sendFail()
+    sendFail();
   };
 
   onLogin = () => {
-    Toast.show('短信验证码错误')
-    setTimeout(() => Toast.success('登录成功'), 1000)
-  }
+    Toast.show('短信验证码错误');
+    setTimeout(() => Toast.success('登录成功'), 1000);
+  };
 
   render() {
     const { phone, code, codeString } = this.state;
@@ -93,7 +96,9 @@ class Login extends Component<{}, State> {
           </label>
         </section>
 
-        <div className="login-btn" onTouchEnd={ this.onLogin }>登录</div>
+        <div className="login-btn" onTouchEnd={ this.onLogin }>
+          登录
+        </div>
 
         <div className="wx-btn">
           <MyImage src={ LoginPic.wxBtn }/>
