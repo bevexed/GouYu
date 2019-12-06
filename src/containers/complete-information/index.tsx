@@ -1,7 +1,7 @@
 import React, { ChangeEvent, Component } from 'react';
 import { connect } from 'react-redux';
 import { MyImage } from '../../components/my-image';
-import { LoginPic } from '../../config/image';
+import { iconPic, LoginPic } from '../../config/image';
 import { Picker } from 'antd-mobile';
 import { addressList } from '../../static/location/location';
 import arrayTreeFilter from 'array-tree-filter';
@@ -49,6 +49,9 @@ class Index extends Component {
 
     return (
       <div className="complete-information">
+
+        <MyImage src={ iconPic.backBlack } className={ 'black-back' }/>
+
         <header>
           <span>完善信息</span>
           <MyImage src={ LoginPic.logo } className="logo"/>
