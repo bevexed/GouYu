@@ -1,4 +1,4 @@
-@import "../../App";
+@import '../../App';
 
 .login {
   header {
@@ -15,9 +15,7 @@
       width: 400px;
       height: 400px;
     }
-
   }
-
 
   section {
     width: 554px;
@@ -26,7 +24,7 @@
     label {
       display: block;
       height: 28px + 44px;
-      border-bottom: 2px solid #EDEDED;
+      border-bottom: 2px solid #ededed;
 
       &:last-child {
         display: flex;
@@ -46,6 +44,8 @@
       }
 
       .code-btn {
+        text-align: center;
+        min-width: 74px;
         padding: 10px 12px;
         flex-shrink: 0;
         font-size: 24px;
@@ -54,7 +54,54 @@
         border-radius: 8px;
         border: 2px solid rgba(33, 163, 205, 1);
       }
+    }
+  }
 
+  .login-btn {
+    width: 594px;
+    height: 140px;
+    background-image: url('../../static/image/bg_btn@2x.png');
+    background-size: 100% 100%;
+    line-height: 105px;
+    font-size: 36px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 1);
+    text-align: center;
+    margin: 85px auto 0;
+  }
+
+  .wx-btn {
+    width: 124px;
+    height: 124px;
+    margin: 66px auto;
+  }
+
+  footer {
+    position: fixed;
+    bottom: 52px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 400px;
+
+    img {
+      width: 28px;
+      height: 28px;
+    }
+
+    span {
+      font-size: 26px;
+      font-weight: 400;
+      color: rgba(116, 121, 120, 1);
+    }
+
+    a {
+      font-size: 26px;
+      font-weight: 400;
+      color: rgba(33, 163, 205, 1);
     }
   }
 }

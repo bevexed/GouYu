@@ -5,6 +5,8 @@ import store from './redux/store';
 import { AppRoutes } from './router';
 import './App.less';
 import 'lib-flexible';
+import 'reset-css';
+
 
 const App: React.FC = () => {
   return (
