@@ -11,4 +11,5 @@ export const completeInformationPic = {
 
 export const iconPic = {
   backBlack: require('../static/image/back-black.png'),
+  search: require('../static/image/nav_ico_search_h@2x.png')
 };

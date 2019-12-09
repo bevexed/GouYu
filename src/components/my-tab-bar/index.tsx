@@ -1,9 +1,22 @@
 import React, { FC } from 'react';
 import { TabBar } from 'antd-mobile';
+import './index.less';
+import HomePic_N from './images/tab_ico_home_n@2x.png';
+import HomePic_S from './images/tab_ico_home_s@2x.png';
+import CommunityPic_N from './images/tab_ico_community_n@2x.png';
+import CommunityPic_S from './images/tab_ico_community_s@2x.png';
+import MallPic_N from './images/tab_ico_mall_n@2x.png';
+import MallPic_S from './images/tab_ico_mall_s@2x.png';
+import MinePic_N from './images/tab_ico_mine_n@2x.png';
+import MinePic_S from './images/tab_ico_mine_s@2x.png';
+import Remand_N from './images/tab_ico_remand_n@2x.png';
+import Remand_S from './images/tab_ico_remand_s@2x.png';
+import { useHistory } from 'react-router';
 
 const Item = TabBar.Item;
 
-interface Props {
+interface Prop {
+
 }
 
 const tabBarItem = [
@@ -11,40 +24,60 @@ const tabBarItem = [
     onPress: () => {
     },
     selected: false,
-    icon: (
-      <div
-        style={ {
-          width: '22px',
-          height: '22px',
-          background:
-            'url(https://zos.alipayobjects.com/rmsportal/sifuoDUQdAFKAVcFGROC.svg) center center /  21px 21px no-repeat',
-        } }
-      />
-    ),
+    icon: <img className="my-tab-bar-pic" src={ CommunityPic_N } alt={ '' }/>,
     selectedIcon: (
-      <div
-        style={ {
-          width: '22px',
-          height: '22px',
-          background:
-            'url(https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg) center center /  21px 21px no-repeat',
-        } }
-      />
+      <img className="my-tab-bar-pic" src={ CommunityPic_S } alt={ '' }/>
     ),
-    title: '123',
+    title: '社区',
+  },
+  {
+    onPress: () => {
+    },
+    selected: false,
+    icon: <img className="my-tab-bar-pic" src={ MallPic_N } alt={ '' }/>,
+    selectedIcon: <img className="my-tab-bar-pic" src={ MallPic_S } alt={ '' }/>,
+    title: '商城',
+  },
+  {
+    onPress: () => {
+    },
+    selected: false,
+    icon: <img className="my-tab-bar-pic" src={ HomePic_N } alt={ '' }/>,
+    selectedIcon: <img className="my-tab-bar-pic" src={ HomePic_S } alt={ '' }/>,
+    title: '康养',
+  },
+  {
+    onPress: () => {
+    },
+    selected: false,
+    icon: <img className="my-tab-bar-pic" src={ Remand_N } alt={ '' }/>,
+    selectedIcon: <img className="my-tab-bar-pic" src={ Remand_S } alt={ '' }/>,
+    title: '提醒',
+  },
+  {
+    onPress: () => {
+    },
+    selected: false,
+    icon: <img className="my-tab-bar-pic" src={ MinePic_N } alt={ '' }/>,
+    selectedIcon: <img className="my-tab-bar-pic" src={ MinePic_S } alt={ '' }/>,
+    title: '我的',
   },
 ];
 
-export const MyTabBar: FC<Props> = (props: Props) => {
+
+export const MyTabBar: FC<Prop> = (prop: Prop) => {
+  console.log(useHistory());
   return (
-    <TabBar
-      tabBarPosition={ 'bottom' }
-      tintColor={ '#21A3CD' }
-      unselectedTintColor={ '#BBBDBD' }
-      hidden={ false }>
-      { tabBarItem.map((item, key) => (
-        <Item { ...item } key={ key }/>
-      )) }
-    </TabBar>
+    <div className="my-tab-bar">
+      <TabBar
+        tabBarPosition={ 'bottom' }
+        tintColor={ '#21A3CD' }
+        unselectedTintColor={ '#BBBDBD' }
+        hidden={ false }>
+        { tabBarItem.map((item, key) => (
+          <Item { ...item } key={ key }/>
+        )) }
+      </TabBar>
+    </div>
   );
 };
