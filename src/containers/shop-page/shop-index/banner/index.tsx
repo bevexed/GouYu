@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Carousel } from 'antd-mobile';
+import './index.less'
 
 type Props = {};
 const Banner: FC<Props> = (props: Props) => {
