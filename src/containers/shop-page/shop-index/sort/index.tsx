@@ -17,10 +17,14 @@ const Item: FC<GridProps> = (dataItem: GridProps) => (
 );
 
 const Sort: FC<Props> = (props: Props) => {
-  const gridData: GridProps[] = Array.from(new Array(10)).map(() => ({
-    icon: 'https://gw.alipayobjects.com/zos/rmsportal/WXoqXTHrSnRcUwEaQgXJ.png',
-    label: '环球美食',
-  }));
+  const requireContext = (require as any).context("./image", true, /^\.\/.*\.png$/);
+  const images = requireContext.keys().map(requireContext);
+  const gridData: GridProps[] = Array.from(new Array(10)).map(
+    (item, index) => ({
+      icon: images[index],
+      label: '环球美食',
+    }),
+  );
   return (
     <Grid
       data={ gridData }

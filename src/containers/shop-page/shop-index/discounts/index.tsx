@@ -1,14 +1,16 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Carousel } from 'antd-mobile';
-import './index.less'
+import './index.less';
 
 type Props = {};
-const Banner: FC<Props> = (props: Props) => {
+const Discounts: FC<Props> = (props: Props) => {
   const [state, setState] = useState([
     'AiyWuByWklrrUDlFignR',
     'TekJlZRVCjLFexlOCuWn',
     'IJOtIlfsYdTyaDTRVrLI',
   ]);
+
+  const [slideIndex, setSlideIndex] = useState(0);
 
   useEffect(
     () =>
@@ -20,7 +22,6 @@ const Banner: FC<Props> = (props: Props) => {
     [],
   );
 
-
   return (
     <Carousel
       autoplay={ true }
@@ -28,24 +29,22 @@ const Banner: FC<Props> = (props: Props) => {
       cellSpacing={ 10 }
       slideWidth={ 1 }
       dotStyle={ {
-        backgroundColor: 'transparent',
-        border: '1px solid #fff',
-        width: '5px',
-        height: '5px',
+        background: 'rgba(206,215,227,1)',
+        width: '18px',
+        height: '2px',
       } }
       dotActiveStyle={ {
-        backgroundColor: '#fff',
-        border: '1px solid #fff',
-        width: '5px',
-        height: '5px',
+        backgroundColor: 'rgba(56,85,120,1)',
+        width: '18px',
+        height: '2px',
       } }
       beforeChange={ (from, to) => console.log(`slide from ${ from } to ${ to }`) }
-      afterChange={ index => console.log('slide to', index) }>
+      afterChange={ index => setSlideIndex(index) }>
       { state.map((val, key) => (
-        <div className={ 'carousel-item' } key={ key }>
+        <div className={ 'discounts-item' } key={ key }>
           <a href="http://www.alipay.com">
             <img
-              src={ `https://zos.alipayobjects.com/rmsportal/${ val }.png` }
+              src={ require('./image/pic_banner@2x.png') }
               alt=""
               onLoad={ () => {
                 // fire window resize event to change height
@@ -59,4 +58,4 @@ const Banner: FC<Props> = (props: Props) => {
   );
 };
 
-export default Banner;
+export default Discounts;

@@ -4,6 +4,7 @@ import { iconPic } from '../../../config/image';
 import './index.less';
 import Banner from './banner';
 import Sort from './sort'
+import Discounts from './discounts';
 
 
 type Props = {};
@@ -24,6 +25,11 @@ export default class ShopIndex extends Component<Props, State> {
           <WhiteSpace size={ 'lg' }/>
 
           <Sort/>
+
+          <WhiteSpace size={ 'md' }/>
+
+
+          <Discounts/>
         </WingBlank>
       </div>
     );
