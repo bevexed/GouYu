@@ -6,6 +6,7 @@ import { Picker } from 'antd-mobile';
 import { addressList } from '../../static/location/location';
 import arrayTreeFilter from 'array-tree-filter';
 import './index.less';
+import { MyButton } from '../../components/my-button';
 
 interface InputLabel {
   city: string;
@@ -49,7 +50,6 @@ class Index extends Component {
 
     return (
       <div className="complete-information">
-
         <MyImage src={ iconPic.backBlack } className={ 'black-back' }/>
 
         <header>
@@ -90,9 +90,9 @@ class Index extends Component {
           </label>
         </section>
 
-        <div className="login-btn" onTouchEnd={ this.onSure }>
+        <MyButton width={ 297 } onTouchEnd={ this.onSure }>
           登录
-        </div>
+        </MyButton>
       </div>
     );
   }

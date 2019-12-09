@@ -4,6 +4,7 @@ import { MyImage } from '../../components/my-image';
 import { LoginPic } from '../../config/image';
 import './index.less';
 import { Toast } from 'antd-mobile';
+import { MyButton } from '../../components/my-button';
 
 interface InputLabel {
   phone: number | string;
@@ -96,9 +97,9 @@ class Login extends Component<{}, State> {
           </label>
         </section>
 
-        <div className="login-btn" onTouchEnd={ this.onLogin }>
+        <MyButton width={ 297 } onTouchEnd={ this.onLogin }>
           登录
-        </div>
+        </MyButton>
 
         <div className="wx-btn">
           <MyImage src={ LoginPic.wxBtn }/>

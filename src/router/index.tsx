@@ -19,8 +19,18 @@ const AppRoutes: RouteType[] = [
   {
     path: '/complete-information',
     component: lazy(() => import('../containers/complete-information')),
-    exact: true
-  }
+    exact: true,
+  },
+  {
+    path: '/bind-phone',
+    component: lazy(() => import('../containers/bind-phone')),
+    exact: true,
+  },
+  {
+    path: '/',
+    component: lazy(() => import('../containers/bind-phone')),
+    exact: true,
+  },
 ];
 
 export const MapRouters: React.FC = () => {
