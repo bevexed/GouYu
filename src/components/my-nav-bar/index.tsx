@@ -6,7 +6,6 @@ import { iconPic } from '../../config/image';
 import { useHistory } from 'react-router';
 
 interface Prop {
-  title: string;
   children?: string | HTMLElement;
 }
 

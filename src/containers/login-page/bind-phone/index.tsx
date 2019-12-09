@@ -1,9 +1,9 @@
 import React, { ChangeEvent, Component } from 'react';
 import { connect } from 'react-redux';
-import { MyNavBar } from '../../components/my-nav-bar';
+import { MyNavBar } from '../../../components/my-nav-bar';
 import { Toast, WingBlank } from 'antd-mobile';
 import './index.less';
-import { MyButton } from '../../components/my-button';
+import { MyButton } from '../../../components/my-button';
 
 interface InputLabel {
   phone: number | string;
@@ -15,7 +15,7 @@ interface State extends InputLabel {
   time: number;
 }
 
-class BindPhone extends Component {
+class BindPhone extends Component<{}, State> {
   state = {
     phone: '',
     code: '',
@@ -63,7 +63,7 @@ class BindPhone extends Component {
 
     return (
       <div className="bind-phone">
-        <MyNavBar title={ '123' }>绑定手机号</MyNavBar>
+        <MyNavBar>绑定手机号</MyNavBar>
 
         <WingBlank>
           <section>
@@ -89,8 +89,8 @@ class BindPhone extends Component {
                   type="tel"
                   placeholder={ '请输入短信验证码' }
                   maxLength={ 6 }
-                  value={ code }
-                  onChange={ e => this.onHandleChange(e, 'code') }
+                  value={ phone }
+                  onChange={ e => this.onHandleChange(e, 'phone') }
                 />
               </label>
             </div>
@@ -104,6 +104,7 @@ class BindPhone extends Component {
 }
 
 function mapStateToProps(state: any) {
+  console.log(state);
   return {};
 }
 

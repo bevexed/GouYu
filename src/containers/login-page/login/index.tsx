@@ -1,10 +1,11 @@
 import React, { ChangeEvent, Component } from 'react';
 import { connect } from 'react-redux';
-import { MyImage } from '../../components/my-image';
-import { LoginPic } from '../../config/image';
+import { MyImage } from '../../../components/my-image';
+import { LoginPic } from '../../../config/image';
 import './index.less';
 import { Toast } from 'antd-mobile';
-import { MyButton } from '../../components/my-button';
+import { MyButton } from '../../../components/my-button';
+import { Link } from 'react-router-dom';
 
 interface InputLabel {
   phone: number | string;
@@ -108,7 +109,7 @@ class Login extends Component<{}, State> {
         <footer>
           <MyImage src={ LoginPic.agreeBtn }/>
           <span>已阅读并同意</span>
-          <a href="#login">《用户服务协议》</a>
+          <Link to={ './user-agreement' }>《用户服务协议》</Link>
         </footer>
       </div>
     );

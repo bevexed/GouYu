@@ -1,12 +1,12 @@
 import React, { ChangeEvent, Component } from 'react';
 import { connect } from 'react-redux';
-import { MyImage } from '../../components/my-image';
-import { iconPic, LoginPic } from '../../config/image';
+import { MyImage } from '../../../components/my-image';
+import { iconPic, LoginPic } from '../../../config/image';
 import { Picker } from 'antd-mobile';
-import { addressList } from '../../static/location/location';
+import { addressList } from '../../../static/location/location';
 import arrayTreeFilter from 'array-tree-filter';
 import './index.less';
-import { MyButton } from '../../components/my-button';
+import { MyButton } from '../../../components/my-button';
 
 interface InputLabel {
   city: string;

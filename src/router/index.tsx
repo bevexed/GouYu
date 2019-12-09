@@ -1,5 +1,6 @@
 import React, { lazy, LazyExoticComponent, Suspense } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
+import { LoginPage } from './login-page';
 
 export interface RouteType {
   path: string;
@@ -11,24 +12,10 @@ export interface RouteType {
 }
 
 const AppRoutes: RouteType[] = [
-  {
-    path: '/login',
-    component: lazy(() => import('../containers/login')),
-    exact: true,
-  },
-  {
-    path: '/complete-information',
-    component: lazy(() => import('../containers/complete-information')),
-    exact: true,
-  },
-  {
-    path: '/bind-phone',
-    component: lazy(() => import('../containers/bind-phone')),
-    exact: true,
-  },
+  ...LoginPage,
   {
     path: '/',
-    component: lazy(() => import('../containers/bind-phone')),
+    component: lazy(() => import('../containers/login-page/login')),
     exact: true,
   },
 ];
