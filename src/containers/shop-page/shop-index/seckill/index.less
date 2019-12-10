@@ -38,7 +38,6 @@
     background: white;
   }
 
-
   .first {
     position: absolute;
     left: 0;
@@ -64,5 +63,92 @@
 
 .am-tabs-default-bar-tab {
   height: 40px;
-  background: linear-gradient(white, white 20%, #F8F9FA 16%, #F8F9FA);
+  background: linear-gradient(white, white 20%, #f8f9fa 16%, #f8f9fa);
+}
+
+.tab-content {
+  padding: 28px 30px;
+
+  header {
+    padding: 0;
+    text-align: center;
+
+    img {
+      width: 690px;
+      height: 344px;
+      border-radius: 20px;
+    }
+  }
+
+  h1 {
+    font-size: 30px;
+    font-weight: 500;
+    color: rgba(38, 45, 44, 1);
+  }
+
+  p {
+    font-size: 26px;
+    font-weight: 400;
+    color: rgba(116, 121, 120, 1);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 0 20px 0;
+  }
+
+  .price {
+    display: flex;
+    align-items: baseline;
+    letter-spacing: -0.05em;
+
+    .ori {
+      font-size: 26px;
+      font-weight: 400;
+      color: rgba(187, 189, 189, 1);
+      margin-right: 8px;
+    }
+
+    .del {
+      font-size: 32px;
+      font-weight: 500;
+      color: rgba(233, 43, 44, 1);
+      margin-right: 15px;
+    }
+
+    .vip {
+      font-size: 32px;
+      font-weight: 500;
+      color: rgba(38, 45, 44, 1);
+    }
+
+    img {
+      width: 28px;
+    }
+
+    .sold {
+      flex: 1;
+      text-align: right;
+      font-size: 24px;
+      font-weight: 400;
+      color: rgba(116, 121, 120, 1);
+    }
+  }
+
+  footer {
+    display: flex;
+    align-items: center;
+    margin: 16px 0;
+
+    & > * {
+      margin-right: 24px;
+    }
+
+    :nth-last-child(2) {
+      margin-right: auto;
+    }
+
+    :last-child {
+      margin: 0;
+    }
+  }
 }

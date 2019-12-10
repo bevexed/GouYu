@@ -8,5 +8,6 @@ export const LoginPic = {
 export const iconPic = {
   more: require('../static/image/ico_more_h@2x.png'),
   backBlack: require('../static/image/back-black.png'),
-  search: require('../static/image/nav_ico_search_h@2x.png')
+  search: require('../static/image/nav_ico_search_h@2x.png'),
+  vip: require('../static/image/ico-vip.png')
 };

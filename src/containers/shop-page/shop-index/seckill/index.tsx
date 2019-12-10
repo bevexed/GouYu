@@ -2,6 +2,8 @@ import React, { FC, ReactNode, useState } from 'react';
 import './index.less';
 import { iconPic } from '../../../../config/image';
 import { Tabs, WingBlank } from 'antd-mobile';
+import MyTag from '../../../../components/my-tag';
+import { MyBuyButton } from '../../../../components/my-button';
 
 enum State {
   '已开抢',
@@ -30,7 +32,6 @@ const tabs = _tabs.map(({ title, state }, index) => ({
   state,
   index,
 }));
-
 
 type Props = {};
 const Seckill: FC<Props> = (props: Props) => {
@@ -71,15 +72,31 @@ const RenderTab: FC<TabProps> = (tab: TabProps) => {
 
 const RenderContent: FC<TabProps> = (tab: TabProps) => {
   return (
-    <div
-      style={ {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '150px',
-        backgroundColor: '#fff',
-      } }>
-      <p>Content of { tab.title }</p>
+    <div className={ 'tab-content' }>
+      <header>
+        <img
+          src="https://hbimg.huabanimg.com/64e30dd609efc8159a76966f968de5a0f95daff012103-5dIdZS_fw658"
+          alt=""
+        />
+      </header>
+      <h1>清苷朝鲜蓟枳椇子植物饮料</h1>
+      <p>
+        护肝养胃，活力十足，清苷朝鲜蓟枳椇子植物饮料，植物护肝养胃，活力十足，清苷朝鲜蓟枳椇子植物饮料，植物…
+      </p>
+      <section className={ 'price' }>
+        <span className="ori">￥49</span>
+        <span className="del">￥39</span>
+        <img src={ iconPic.vip } alt=""/> <span className="vip">￥29</span>
+        <span className="sold">已售563件</span>
+      </section>
+      <footer>
+        <MyTag>VIP省 ￥5.99</MyTag>
+        <MyTag>VIP省 ￥5.99</MyTag>
+        <MyBuyButton state={ 'red' } onTouchEnd={ () => {
+        } }>
+          已结束
+        </MyBuyButton>
+      </footer>
     </div>
   );
 };

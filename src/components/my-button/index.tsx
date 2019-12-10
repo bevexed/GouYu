@@ -21,3 +21,16 @@ export const MyButton: FC<Prop> = (prop: Prop) => {
     </div>
   );
 };
+
+interface MyBuyButtonProps extends Prop {
+  state: 'red' | 'gray'
+}
+
+export const MyBuyButton: FC<MyBuyButtonProps> = (props: MyBuyButtonProps) => {
+  return <div
+    className={ 'my-buy-button' }
+    style={ {
+      backgroundColor: props.state
+    } }
+  >{ props.children }</div>;
+};

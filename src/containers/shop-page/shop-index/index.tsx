@@ -38,6 +38,8 @@ export default class ShopIndex extends Component<Props, State> {
         <Seckill/>
 
         <MyTabBar/>
+
+        <MyWhiteBlank height={ 100 }/>
       </div>
     );
   }

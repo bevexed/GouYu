@@ -5,18 +5,18 @@ import './index.less';
 type Props = {};
 const Discounts: FC<Props> = (props: Props) => {
   const [state, setState] = useState([
-    'AiyWuByWklrrUDlFignR',
-    'TekJlZRVCjLFexlOCuWn',
-    'IJOtIlfsYdTyaDTRVrLI',
+    '1',
+    '3',
+    '2',
   ]);
 
 
   useEffect(
     () =>
       setState([
-        'AiyWuByWklrrUDlFignR',
-        'TekJlZRVCjLFexlOCuWn',
-        'IJOtIlfsYdTyaDTRVrLI',
+        '1',
+        '2',
+        '3',
       ]),
     [],
   );
@@ -39,8 +39,9 @@ const Discounts: FC<Props> = (props: Props) => {
         height: '2px',
         borderRadius: 0,
       } }
-      beforeChange={ (from, to) => console.log(`slide from ${ from } to ${ to }`) }
-      afterChange={ index => console.log(index) }>
+      // beforeChange={ (from, to) => console.log(`slide from ${ from } to ${ to }`) }
+      // afterChange={ index => console.log(index) }
+    >
       { state.map((val, key) => (
         <div className={ 'discounts-item' } key={ key }>
           <a href="http://www.alipay.com">
