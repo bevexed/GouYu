@@ -3,9 +3,11 @@ import { WhiteSpace, WingBlank } from 'antd-mobile';
 import { iconPic } from '../../../config/image';
 import './index.less';
 import Banner from './banner';
-import Sort from './sort'
+import Sort from './sort';
 import Discounts from './discounts';
-
+import MyWhiteBlank from '../../../components/my-white-blank';
+import { MyTabBar } from '../../../components/my-tab-bar';
+import Seckill from './seckill';
 
 type Props = {};
 type State = {};
@@ -28,9 +30,14 @@ export default class ShopIndex extends Component<Props, State> {
 
           <WhiteSpace size={ 'md' }/>
 
-
           <Discounts/>
         </WingBlank>
+
+        <MyWhiteBlank backgroundColor={ '#F8F9FA' }/>
+
+        <Seckill/>
+
+        <MyTabBar/>
       </div>
     );
   }

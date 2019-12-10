@@ -5,17 +5,18 @@ import './index.less'
 type Props = {};
 const Banner: FC<Props> = (props: Props) => {
   const [state, setState] = useState([
-    'AiyWuByWklrrUDlFignR',
-    'TekJlZRVCjLFexlOCuWn',
-    'IJOtIlfsYdTyaDTRVrLI',
+    'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3246630332,3044294395&fm=26&gp=0.jpg',
+    'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3246630332,3044294395&fm=26&gp=0.jpg',
+    'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3246630332,3044294395&fm=26&gp=0.jpg',
+
   ]);
 
   useEffect(
     () =>
       setState([
-        'AiyWuByWklrrUDlFignR',
-        'TekJlZRVCjLFexlOCuWn',
-        'IJOtIlfsYdTyaDTRVrLI',
+        'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3246630332,3044294395&fm=26&gp=0.jpg',
+        'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3246630332,3044294395&fm=26&gp=0.jpg',
+        'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3246630332,3044294395&fm=26&gp=0.jpg',
       ]),
     [],
   );
@@ -45,7 +46,7 @@ const Banner: FC<Props> = (props: Props) => {
         <div className={ 'carousel-item' } key={ key }>
           <a href="http://www.alipay.com">
             <img
-              src={ `https://zos.alipayobjects.com/rmsportal/${ val }.png` }
+              src={ val }
               alt=""
               onLoad={ () => {
                 // fire window resize event to change height

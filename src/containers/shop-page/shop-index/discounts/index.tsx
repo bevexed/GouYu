@@ -10,7 +10,6 @@ const Discounts: FC<Props> = (props: Props) => {
     'IJOtIlfsYdTyaDTRVrLI',
   ]);
 
-  const [slideIndex, setSlideIndex] = useState(0);
 
   useEffect(
     () =>
@@ -32,14 +31,16 @@ const Discounts: FC<Props> = (props: Props) => {
         background: 'rgba(206,215,227,1)',
         width: '18px',
         height: '2px',
+        borderRadius: 0,
       } }
       dotActiveStyle={ {
         backgroundColor: 'rgba(56,85,120,1)',
         width: '18px',
         height: '2px',
+        borderRadius: 0,
       } }
       beforeChange={ (from, to) => console.log(`slide from ${ from } to ${ to }`) }
-      afterChange={ index => setSlideIndex(index) }>
+      afterChange={ index => console.log(index) }>
       { state.map((val, key) => (
         <div className={ 'discounts-item' } key={ key }>
           <a href="http://www.alipay.com">

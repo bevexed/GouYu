@@ -1,0 +1,68 @@
+.seckill {
+  background: white;
+
+  header {
+    padding: 24px 0;
+    display: flex;
+    align-items: center;
+
+    span {
+      font-size: 28px;
+      font-weight: 500;
+      color: rgba(38, 45, 44, 1);
+      flex-grow: 1;
+    }
+
+    p {
+      font-size: 26px;
+      font-weight: 400;
+      color: rgba(116, 121, 120, 1);
+    }
+
+    img {
+      width: 28px;
+    }
+  }
+}
+
+.tab-item {
+  position: relative;
+  top: 10px;
+  height: 104px;
+  width: 136px;
+  text-align: center;
+
+  &.active {
+    box-shadow: 0px -8px 16px 0px rgba(214, 214, 214, 0.36);
+    border-radius: 16px 16px 0 0;
+    background: white;
+  }
+
+
+  .first {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -4px;
+    font-size: 32px;
+    font-weight: 500;
+  }
+
+  .second {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
+    font-size: 22px;
+    font-weight: 400;
+  }
+}
+
+.am-tabs * {
+  box-sizing: content-box !important;
+}
+
+.am-tabs-default-bar-tab {
+  height: 40px;
+  background: linear-gradient(white, white 20%, #F8F9FA 16%, #F8F9FA);
+}
