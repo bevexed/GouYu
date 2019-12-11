@@ -91,11 +91,9 @@ const RenderContent: FC<TabProps> = (tab: TabProps) => {
       </section>
       <footer>
         <MyTag>VIP省 ￥5.99</MyTag>
-        <MyTag>VIP省 ￥5.99</MyTag>
-        <MyBuyButton state={ 'red' } onTouchEnd={ () => {
-        } }>
-          已结束
-        </MyBuyButton>
+        <MyTag>分享赚 ￥5.99</MyTag>
+        <MyBuyButton state={ 'soldOut' } onTouchEnd={ () => {
+        } }/>
       </footer>
     </div>
   );

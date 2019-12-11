@@ -22,15 +22,21 @@ export const MyButton: FC<Prop> = (prop: Prop) => {
   );
 };
 
-interface MyBuyButtonProps extends Prop {
-  state: 'red' | 'gray'
+interface MyBuyButtonProps extends Partial<Prop> {
+  // 卖光 | 买
+  state: 'soldOut' | 'buy';
 }
 
 export const MyBuyButton: FC<MyBuyButtonProps> = (props: MyBuyButtonProps) => {
-  return <div
-    className={ 'my-buy-button' }
-    style={ {
-      backgroundColor: props.state
-    } }
-  >{ props.children }</div>;
+  const backgroundColor = props.state === 'soldOut' ? '#ccc' : '#E92B2C';
+  const content = props.state === 'soldOut' ? '已结束' : '购买';
+  return (
+    <div
+      className={ 'my-buy-button' }
+      style={ {
+        backgroundColor,
+      } }>
+      { content }
+    </div>
+  );
 };
