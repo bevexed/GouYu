@@ -24,7 +24,7 @@ export const MyButton: FC<Prop> = (prop: Prop) => {
 
 interface MyBuyButtonProps extends Partial<Prop> {
   // 卖光 | 买
-  state: 'soldOut' | 'buy' | 'free';
+  state: 'soldOut' | 'buy' | 'free' | 'buyToVip';
 }
 
 export const MyBuyButton: FC<MyBuyButtonProps> = (props: MyBuyButtonProps) => {
@@ -42,11 +42,14 @@ export const MyBuyButton: FC<MyBuyButtonProps> = (props: MyBuyButtonProps) => {
       backgroundColor = '#E92B2C';
       content = '免费领取';
       break;
+    case "buyToVip":
+      backgroundColor = '#E92B2C';
+      content = '购买成为VIP'
   }
 
   return (
     <div
-      className={ 'my-buy-button' }
+      className='my-buy-button'
       style={ {
         backgroundColor,
       } }>

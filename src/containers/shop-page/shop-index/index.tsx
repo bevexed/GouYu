@@ -8,11 +8,11 @@ import Discounts from './discounts';
 import MyWhiteBlank from '../../../components/my-white-blank';
 import { MyTabBar } from '../../../components/my-tab-bar';
 import Seckill from '../components/seckill';
-import { GoodList } from './good-list';
+import { GoodList } from '../components/good-list';
 import VipGoodList from './vip-good-list';
 import GuessYouLikeList from './guess-you-like';
 import FloatButton from './float-button';
-import MyMore from '../components/MyMore';
+import MyMore from '../components/my-more';
 
 type Props = {};
 type State = {};

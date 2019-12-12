@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import './index.less';
 import { MyNavBar } from '../../../components/my-nav-bar';
 import Seckill from '../components/seckill';
-import { GoodList } from '../shop-index/good-list';
+import { GoodList } from '../components/good-list';
 
 type Props = {};
 const SecondKillPage: FC<Props> = (props: Props) => {
