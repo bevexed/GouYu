@@ -16,14 +16,11 @@ import { useHistory } from 'react-router';
 const Item = TabBar.Item;
 
 interface Prop {
-
 }
 
 const tabBarItem = [
   {
-    onPress: () => {
-    },
-    selected: false,
+    pathname: '/',
     icon: <img className="my-tab-bar-pic" src={ CommunityPic_N } alt={ '' }/>,
     selectedIcon: (
       <img className="my-tab-bar-pic" src={ CommunityPic_S } alt={ '' }/>
@@ -31,42 +28,35 @@ const tabBarItem = [
     title: '社区',
   },
   {
-    onPress: () => {
-    },
-    selected: false,
+    pathname: '/shop',
     icon: <img className="my-tab-bar-pic" src={ MallPic_N } alt={ '' }/>,
     selectedIcon: <img className="my-tab-bar-pic" src={ MallPic_S } alt={ '' }/>,
     title: '商城',
   },
   {
-    onPress: () => {
-    },
-    selected: false,
+    pathname: '/',
     icon: <img className="my-tab-bar-pic" src={ HomePic_N } alt={ '' }/>,
     selectedIcon: <img className="my-tab-bar-pic" src={ HomePic_S } alt={ '' }/>,
     title: '康养',
   },
   {
-    onPress: () => {
-    },
-    selected: false,
+    pathname: '/',
     icon: <img className="my-tab-bar-pic" src={ Remand_N } alt={ '' }/>,
     selectedIcon: <img className="my-tab-bar-pic" src={ Remand_S } alt={ '' }/>,
     title: '提醒',
   },
   {
-    onPress: () => {
-    },
-    selected: false,
+    pathname: '/',
     icon: <img className="my-tab-bar-pic" src={ MinePic_N } alt={ '' }/>,
     selectedIcon: <img className="my-tab-bar-pic" src={ MinePic_S } alt={ '' }/>,
     title: '我的',
   },
 ];
 
-
 export const MyTabBar: FC<Prop> = (prop: Prop) => {
-  console.log(useHistory());
+  const { location, push } = useHistory();
+  const { pathname } = location;
+
   return (
     <div className="my-tab-bar">
       <TabBar
@@ -75,7 +65,12 @@ export const MyTabBar: FC<Prop> = (prop: Prop) => {
         unselectedTintColor={ '#BBBDBD' }
         hidden={ false }>
         { tabBarItem.map((item, key) => (
-          <Item { ...item } key={ key }/>
+          <Item
+            { ...item }
+            onPress={ () => push(item.pathname) }
+            selected={ pathname === item.pathname }
+            key={ key }
+          />
         )) }
       </TabBar>
     </div>

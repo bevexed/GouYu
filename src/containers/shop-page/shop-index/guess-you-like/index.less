@@ -1,0 +1,102 @@
+.guess-you-like {
+  .title {
+    font-size: 28px;
+    font-weight: 500;
+    color: rgba(38, 45, 44, 1);
+    padding: 24px 0;
+    text-align: center;
+  }
+
+  .list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    > * {
+      margin-bottom: 18px;
+    }
+  }
+}
+
+.guess-you-like-item {
+  width: 336px;
+
+  .bottom {
+    border-radius: 0 0 16px 16px;
+    border: 2px solid rgba(237, 237, 237, 1);
+    padding: 0 16px 12px;
+  }
+
+  &-img {
+    flex-shrink: 0;
+    width: 336px;
+    height: 336px;
+    background: rgba(216, 216, 216, 1);
+    border-radius: 16px 16px 0 0;
+  }
+
+  &-title {
+    font-size: 28px;
+    font-weight: 400;
+    color: rgba(38, 45, 44, 1);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 12px 0;
+  }
+
+  &-dis {
+    font-size: 26px;
+    font-weight: 400;
+    color: rgba(116, 121, 120, 1);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-height: 1.5;
+  }
+
+  &-price {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+  }
+
+  &-real {
+    font-size: 32px;
+    font-weight: 500;
+    color: rgba(233, 43, 44, 1);
+  }
+
+  &-ori {
+    font-size: 26px;
+    font-weight: 400;
+    color: rgba(187, 189, 189, 1);
+    text-decoration: line-through;
+  }
+
+  .tags {
+    margin: 10px 0;
+
+    > * {
+      margin-right: 22px;
+    }
+
+    :last-child {
+      margin: 0;
+    }
+  }
+
+  .vip-price {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+
+    .sold-out {
+      font-size: 20px;
+      font-weight: 400;
+      color: rgba(116, 121, 120, 1);
+    }
+  }
+}
