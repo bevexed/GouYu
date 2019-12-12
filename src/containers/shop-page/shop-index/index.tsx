@@ -7,11 +7,12 @@ import Sort from './sort';
 import Discounts from './discounts';
 import MyWhiteBlank from '../../../components/my-white-blank';
 import { MyTabBar } from '../../../components/my-tab-bar';
-import Seckill from './seckill';
+import Seckill from '../components/seckill';
 import { GoodList } from './good-list';
 import VipGoodList from './vip-good-list';
 import GuessYouLikeList from './guess-you-like';
-import FloatButton from "./float-button";
+import FloatButton from './float-button';
+import MyMore from '../components/MyMore';
 
 type Props = {};
 type State = {};
@@ -39,7 +40,18 @@ export default class ShopIndex extends Component<Props, State> {
 
         <MyWhiteBlank backgroundColor={ '#F8F9FA' }/>
 
-        <Seckill/>
+        <MyMore path={ '/shop/second-kill-page' } children={ '限时秒杀' }/>
+        <Seckill
+          tabs={ [
+            { title: '08:00', state: 0 },
+            { title: '10:00', state: 1 },
+            { title: '12:00', state: 1 },
+            { title: '14:00', state: 1 },
+            { title: '16:00', state: 1 },
+            { title: '18:00', state: 1 },
+            { title: '20:00', state: 1 },
+          ] }
+        />
 
         <MyWhiteBlank backgroundColor={ '#F8F9FA' }/>
 

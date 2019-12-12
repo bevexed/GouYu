@@ -1,7 +1,7 @@
 import React, { FC, ReactNode, useState } from 'react';
 import './index.less';
 import { iconPic } from '../../../../config/image';
-import { Tabs, WingBlank } from 'antd-mobile';
+import { Tabs } from 'antd-mobile';
 import MyTag from '../../../../components/my-tag';
 import { MyBuyButton } from '../../../../components/my-button';
 
@@ -17,36 +17,24 @@ type TabProps = {
   page?: number;
 };
 
-const _tabs = [
-  { title: '08:00', state: 0 },
-  { title: '10:00', state: 1 },
-  { title: '12:00', state: 1 },
-  { title: '14:00', state: 1 },
-  { title: '16:00', state: 1 },
-  { title: '18:00', state: 1 },
-  { title: '20:00', state: 1 },
-];
-
-const tabs = _tabs.map(({ title, state }, index) => ({
-  title,
-  state,
-  index,
-}));
-
-type Props = {};
-const Seckill: FC<Props> = (props: Props) => {
+type SeckillProps = {
+  tabs: { title: string; state: number }[];
+  contentShow?: boolean;
+};
+const Seckill: FC<SeckillProps> = ({
+                                     tabs,
+                                     contentShow = true,
+                                   }: SeckillProps) => {
   const [page, setPage] = useState(0);
+  const _tabs = tabs.map(({ title, state }, index) => ({
+    title,
+    state,
+    index,
+  }));
   return (
     <div className="seckill">
-      <WingBlank>
-        <header>
-          <span>限时秒杀</span>
-          <p>更多</p>
-          <img src={ iconPic.more } alt=""/>
-        </header>
-      </WingBlank>
       <Tabs
-        tabs={ tabs as any }
+        tabs={ _tabs as any }
         initialPage={ page }
         page={ page }
         onChange={ (tab, index) => setPage(index) }
@@ -55,7 +43,7 @@ const Seckill: FC<Props> = (props: Props) => {
         tabBarInactiveTextColor={ '#747978' }
         tabBarUnderlineStyle={ { display: 'none' } }
         renderTab={ (props: any) => <RenderTab { ...props } page={ page }/> }>
-        { RenderContent }
+        { contentShow && RenderContent }
       </Tabs>
     </div>
   );

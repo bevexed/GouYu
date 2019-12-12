@@ -13,18 +13,20 @@ export const MyNavBar: FC<Prop> = (prop: Prop) => {
   console.log(useHistory());
   const { length, goBack } = useHistory();
   return (
-    <NavBar
-      mode={ 'light' }
-      icon={
-        length && (
-          <MyImage
-            className={ 'nav-bar-ico' }
-            src={ iconPic.backBlack }
-            onTouchEnd={ () => goBack() }
-          />
-        )
-      }>
-      <span className="nav-bar-title">{ prop.children }</span>
-    </NavBar>
+    <div className='my-nav-bar'>
+      <NavBar
+        mode={ 'light' }
+        icon={
+          length && (
+            <MyImage
+              className='nav-bar-ico'
+              src={ iconPic.backBlack }
+              onTouchEnd={ () => goBack() }
+            />
+          )
+        }>
+        <span className="nav-bar-title">{ prop.children }</span>
+      </NavBar>
+    </div>
   );
 };
