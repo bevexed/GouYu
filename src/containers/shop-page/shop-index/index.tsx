@@ -8,6 +8,7 @@ import Discounts from './discounts';
 import MyWhiteBlank from '../../../components/my-white-blank';
 import { MyTabBar } from '../../../components/my-tab-bar';
 import Seckill from './seckill';
+import { GoodList } from './good-list';
 
 type Props = {};
 type State = {};
@@ -39,11 +40,25 @@ export default class ShopIndex extends Component<Props, State> {
 
         <MyWhiteBlank backgroundColor={ '#F8F9FA' }/>
 
+        <GoodList
+          goodList={ [
+            {
+              img:
+                'https://g-search3.alicdn.com/img/bao/uploaded/i4/i2/668693/O1CN01wDbsyy2E5RYoR2ULs_!!668693.jpg_180x180.jpg_.webp',
+              title:
+                '护肝养胃，活力十足，清苷朝鲜蓟枳椇子植物饮料，植物草本配护肝养胃，活力十足，清苷朝鲜蓟枳椇子植物饮料，植物草本配',
+            }, {
+              img:
+                'https://g-search3.alicdn.com/img/bao/uploaded/i4/i2/668693/O1CN01wDbsyy2E5RYoR2ULs_!!668693.jpg_180x180.jpg_.webp',
+              title:
+                '护肝养胃，活力十足，清苷朝鲜蓟枳椇子植物饮料，植物草本配护肝养胃，活力十足，清苷朝鲜蓟枳椇子植物饮料，植物草本配',
+            },
+          ] }
+        />
+
         <MyTabBar/>
 
         <MyWhiteBlank height={ 100 }/>
-
-
       </div>
     );
   }

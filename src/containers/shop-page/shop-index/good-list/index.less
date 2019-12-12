@@ -1,0 +1,93 @@
+.good-item {
+  display: flex;
+  padding: 28px 30px;
+
+  .good-img {
+    width: 228px;
+    height: 228px;
+    flex-shrink: 1;
+    margin-right: 20px;
+  }
+
+  .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .title {
+    font-size: 28px;
+    font-weight: 400;
+    color: rgba(38, 45, 44, 1);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /*截取2行*/
+    -webkit-box-orient: vertical;
+    line-height: 1.5;
+  }
+
+  .price {
+    margin: 14px 0;
+    display: flex;
+
+    > * {
+      margin-right: 24px;
+    }
+
+    :nth-last-child(2) {
+      margin-right: auto;
+    }
+
+    :last-child {
+      margin: 0;
+    }
+
+    .ori {
+      font-size: 26px;
+      font-weight: 400;
+      color: rgba(187, 189, 189, 1);
+      text-decoration: line-through;
+    }
+
+  }
+
+  .sold-out {
+    font-size: 24px;
+    font-weight: 400;
+    color: rgba(116, 121, 120, 1);
+  }
+
+  footer {
+    display: flex;
+    align-items: center;
+
+    .del {
+      font-size: 32px;
+      font-weight: 500;
+      color: rgba(233, 43, 44, 1);
+      margin-right: 15px;
+    }
+
+    .vip {
+      font-size: 32px;
+      font-weight: 500;
+      color: rgba(38, 45, 44, 1);
+    }
+
+    img {
+      width: 28px;
+      height: 28px;
+    }
+
+    :nth-last-child(2) {
+      margin-right: auto;
+    }
+
+    :last-child {
+      margin: 0;
+    }
+  }
+
+
+}
