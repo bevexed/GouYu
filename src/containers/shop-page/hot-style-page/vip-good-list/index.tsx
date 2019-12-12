@@ -12,7 +12,7 @@ const VipGood: FC<VipGoodProps> = (props: VipGoodProps) => {
   return (
     <>
       <WingBlank>
-        <div className="vip-good">
+        <div className="_vip-good">
           <img
             className="good-img"
             src="https://g-search1.alicdn.com/img/bao/uploaded/i4/i1/877603842/O1CN01dabYkw1eFgGAkhJxP_!!877603842-0-pixelsss.jpg_180x180.jpg_.webp"

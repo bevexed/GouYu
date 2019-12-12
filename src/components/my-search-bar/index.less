@@ -1,0 +1,61 @@
+.my-search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 24px 30px;
+  background: white;
+
+  * {
+    transition: all .3s ease-in-out;
+  }
+
+  img {
+    width: 44px;
+    height: 44px;
+    margin-right: 20px;
+  }
+
+  .input-wrap {
+    display: flex;
+    align-items: center;
+    width: 620px;
+    height: 72px;
+    background: rgba(243, 244, 245, 1);
+    border-radius: 37px;
+
+    &.active {
+      width: 534px;
+    }
+
+    img {
+      width: 32px;
+      height: 32px;
+      margin: 0 14px 0 28px;
+    }
+
+    input {
+      width: 83%;
+      font-size: 28px;
+
+      ::placeholder {
+        font-weight: 400;
+        color: rgba(153, 153, 153, 1);
+      }
+    }
+  }
+
+  .cancel {
+    position: absolute;
+    font-size: 28px;
+    font-weight: 400;
+    color: rgba(116, 121, 120, 1);
+    right: -80px;
+    opacity: 0;
+
+    &.active {
+      right: 40px;
+      opacity: 1;
+    }
+  }
+}

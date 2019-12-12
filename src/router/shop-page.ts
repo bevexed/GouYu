@@ -15,5 +15,9 @@ export const ShopPage: RouteType[] = [
     path: '/shop/hot-style-page',
     component: lazy(() => import('../containers/shop-page/hot-style-page')),
     exact: true,
+  }, {
+    path: '/shop/catalogue-page',
+    component: lazy(() => import('../containers/shop-page/catalogue-page')),
+    exact: true,
   },
 ];

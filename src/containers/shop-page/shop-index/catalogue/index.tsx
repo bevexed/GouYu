@@ -12,12 +12,16 @@ type GridProps = {
   onTouchStart?: TouchEventHandler;
 };
 
-const Item: FC<GridProps> = (dataItem: GridProps) => (
-  <div className="grid-item" onTouchStart={ dataItem.onTouchStart }>
-    <img src={ dataItem.icon } alt=""/>
-    <p>{ dataItem.label }</p>
-  </div>
-);
+const Item: FC<GridProps> = (dataItem: GridProps) => {
+  const { push } = useHistory();
+
+  return (
+    <div className="grid-item" onTouchStart={ () => push(dataItem.path) }>
+      <img src={ dataItem.icon } alt=""/>
+      <p>{ dataItem.label }</p>
+    </div>
+  );
+};
 
 interface GridsProps {
   gridData?: GridProps[];
@@ -72,7 +76,7 @@ let gridData: GridProps[] = [
   {
     icon: '',
     label: '更多分类',
-    path: '/shop/hot-style-page',
+    path: '/shop/catalogue-page',
   },
 ];
 const requireContext = (require as any).context(
@@ -87,19 +91,16 @@ gridData = gridData.map((item, index) => ({
   path: item.path,
 }));
 
-const Sort: FC<GridsProps> = (props: GridsProps) => {
-  const { push } = useHistory();
+const Catalogue: FC<GridsProps> = (props: GridsProps) => {
   return (
     <Grid
       data={ gridData }
       square={ true }
       columnNum={ 5 }
       hasLine={ false }
-      renderItem={ (dataItem: any) => (
-        <Item { ...dataItem } onTouchStart={ () => push(dataItem.path) }/>
-      ) }
+      renderItem={ (dataItem: any) => <Item { ...dataItem } /> }
     />
   );
 };
 
-export default Sort;
+export default Catalogue;

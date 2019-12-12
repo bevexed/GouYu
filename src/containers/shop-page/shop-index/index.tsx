@@ -3,7 +3,7 @@ import { WhiteSpace, WingBlank } from 'antd-mobile';
 import { iconPic } from '../../../config/image';
 import './index.less';
 import Banner from './banner';
-import Sort from './sort';
+import Catalogue from './catalogue';
 import Discounts from './discounts';
 import MyWhiteBlank from '../../../components/my-white-blank';
 import { MyTabBar } from '../../../components/my-tab-bar';
@@ -31,7 +31,7 @@ export default class ShopIndex extends Component<Props, State> {
 
           <WhiteSpace size={ 'lg' }/>
 
-          <Sort/>
+          <Catalogue/>
 
           <WhiteSpace size={ 'md' }/>
 
