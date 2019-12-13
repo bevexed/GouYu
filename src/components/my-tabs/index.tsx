@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import './index.less';
 
 let gridData = [
@@ -104,20 +104,54 @@ let gridData = [
   },
 ];
 
-
 type TabsProps = {};
 export const LeftTabs: FC<TabsProps> = (props: TabsProps) => {
+  const [currentTab, setCurrentTab] = useState(0);
   return (
     <div className="left-tabs">
       <div className="tabs">
         { gridData.map((item, index) => (
-          <div className="tab" key={ index }>{ item.label }</div>
+          <div
+            className={ ['tab', currentTab === index && 'active'].join(' ') }
+            onTouchStart={ () => setCurrentTab(index) }
+            key={ index }>
+            { item.label }
+          </div>
         )) }
       </div>
 
-      <div className="content">
-        { new Array(10000).fill(1).map((item, index) => (
-          <div className="tab">123</div>
+      <div className="contents">
+        <img
+          className={ 'top-img' }
+          src="https://img.alicdn.com/tfs/TB1N45jX.H1gK0jSZSyXXXtlpXa-966-644.jpg_490x490q100.jpg_.webp"
+          alt=""
+        />
+        { new Array(gridData.length).fill(1).map((item, index) => (
+          <div className="content" key={ index }>
+            { <ContentItem/> }
+          </div>
+        )) }
+      </div>
+    </div>
+  );
+};
+
+type ContentItem = {};
+
+const ContentItem: FC<ContentItem> = (props: ContentItem) => {
+  return (
+    <div className="content-item">
+      <div className="title">为你推荐</div>
+
+      <div className="catalogue-list">
+        { new Array(6).fill(1).map((item, key) => (
+          <div className="catalogue-item" key={ key }>
+            <img
+              src="http://img.alicdn.com/bao/uploaded/i1/2627785630/O1CN01LYCCKv1rSaQ6eGS1B_!!2627785630.jpg_400x400Q50s50.jpg_.webp"
+              alt=""
+            />
+            <div className="label">精选好物</div>
+          </div>
         )) }
       </div>
     </div>

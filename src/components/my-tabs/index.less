@@ -6,6 +6,7 @@
     width: 190px;
     height: calc(100vh - 120px);
     overflow-y: auto;
+    background: white;
 
     .tab {
       width: 100%;
@@ -15,13 +16,85 @@
       color: rgba(116, 121, 120, 1);
       text-align: center;
       line-height: 96px;
+
+      &.active {
+        position: relative;
+        background: #f8f9fa;
+        font-size: 30px;
+        font-weight: 500;
+        color: rgba(38, 45, 44, 1);
+
+        &:before {
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+          content: '';
+          width: 6px;
+          height: 26px;
+          background: linear-gradient(313deg, rgba(15, 228, 204, 1) 0%, rgba(43, 125, 206, 1) 100%);
+        }
+      }
     }
   }
 
-  .content {
+  .contents {
+    margin: 24px 30px 30px 24px;
     flex: 1;
     height: calc(100vh - 120px);
     overflow-y: auto;
-    background: red;
+
+    img.top-img {
+      width: 506px;
+      height: 230px;
+    }
+  }
+
+  .content-item {
+    .title {
+      margin: 24px 0;
+      font-size: 28px;
+      font-weight: 400;
+      color: rgba(38, 45, 44, 1);
+    }
+
+    .catalogue-list {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      background: rgba(255, 255, 255, 1);
+      border-radius: 20px;
+      padding: 24px;
+      box-sizing: border-box;
+
+      .catalogue-item {
+        margin-bottom: 40px;
+        margin-right: 84px;
+
+        &:nth-child(3n) {
+          margin: 0;
+        }
+
+        &:last-child,
+        &:nth-last-child(3),
+        &:nth-last-child(2) {
+          margin-bottom: 0;
+        }
+
+        img {
+          width: 96px;
+          height: 96px;
+          border-radius: 50%;
+        }
+
+        .label {
+          font-size: 24px;
+          font-weight: 400;
+          color: rgba(116, 121, 120, 1);
+          margin-top: 16px;
+        }
+      }
+    }
   }
 }
