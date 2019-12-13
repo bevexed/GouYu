@@ -52,7 +52,6 @@ const GuessYouLikeList: FC<GuessYouLikeListProps> = (
   return (
     <div className="guess-you-like">
       <WingBlank>
-        <div className="title">猜你喜欢</div>
         <section className='list'>
 
           { props.guessYouLikeList.map((item, index) => (

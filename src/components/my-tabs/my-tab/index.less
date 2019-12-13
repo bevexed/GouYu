@@ -1,0 +1,49 @@
+.content-item {
+  width: 506px;
+
+  .title {
+    margin: 24px 0;
+    font-size: 28px;
+    font-weight: 400;
+    color: rgba(38, 45, 44, 1);
+  }
+
+  .catalogue-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 20px;
+    padding: 24px;
+    box-sizing: border-box;
+
+    .catalogue-item {
+      margin-bottom: 40px;
+      margin-right: 84px;
+
+      &:nth-child(3n) {
+        margin: 0;
+      }
+
+      &:last-child,
+      &:nth-last-child(3),
+      &:nth-last-child(2) {
+        margin-bottom: 0;
+      }
+
+      img {
+        width: 96px;
+        height: 96px;
+        border-radius: 50%;
+      }
+
+      .label {
+        font-size: 24px;
+        font-weight: 400;
+        color: rgba(116, 121, 120, 1);
+        margin-top: 16px;
+      }
+    }
+  }
+}
+

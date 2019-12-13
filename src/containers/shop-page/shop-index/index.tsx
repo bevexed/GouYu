@@ -74,6 +74,9 @@ export default class ShopIndex extends Component<Props, State> {
 
         <VipGoodList vipGoodList={ [1, 2] }/>
 
+        <div className="title">猜你喜欢</div>
+
+
         <GuessYouLikeList guessYouLikeList={ [1, 2, 3, 4] }/>
 
         <FloatButton/>

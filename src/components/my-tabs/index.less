@@ -33,14 +33,16 @@
           content: '';
           width: 6px;
           height: 26px;
-          background: linear-gradient(313deg, rgba(15, 228, 204, 1) 0%, rgba(43, 125, 206, 1) 100%);
+          background: linear-gradient(313deg,
+          rgba(15, 228, 204, 1) 0%,
+          rgba(43, 125, 206, 1) 100%);
         }
       }
     }
   }
 
   .contents {
-    margin: 24px 30px 30px 24px;
+    margin: 24px 0 30px 24px;
     flex: 1;
     height: calc(100vh - 120px);
     overflow-y: auto;
@@ -50,51 +52,58 @@
       height: 230px;
     }
   }
+}
 
-  .content-item {
-    .title {
-      margin: 24px 0;
-      font-size: 28px;
-      font-weight: 400;
-      color: rgba(38, 45, 44, 1);
+.good-state-bar-wrap {
+  background: white;
+  box-shadow: 8px 16px 24px 0 rgba(159, 187, 186, 0.18);
+
+  .good-state-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    font-size: 28px;
+    font-weight: 500;
+    color: rgba(38, 45, 44, 1);
+    padding: 36px 0 44px;
+  }
+
+  .state-bar-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-size: 28px;
+    font-weight: 400;
+    color: rgba(116, 121, 120, 1);
+
+    &:nth-last-child(2) {
+      width: 100px;
     }
 
-    .catalogue-list {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      background: rgba(255, 255, 255, 1);
-      border-radius: 20px;
-      padding: 24px;
-      box-sizing: border-box;
+    &.active {
+      color: rgba(38, 45, 44, 1);
+      font-weight: 500;
+    }
 
-      .catalogue-item {
-        margin-bottom: 40px;
-        margin-right: 84px;
+    .btn-triangle {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      left: 0;
+      right: 0;
+      bottom: -28px;
+      margin: auto;
+    }
 
-        &:nth-child(3n) {
-          margin: 0;
-        }
+    .btn-arrange {
+      width: 44px;
+      height: 44px;
+    }
 
-        &:last-child,
-        &:nth-last-child(3),
-        &:nth-last-child(2) {
-          margin-bottom: 0;
-        }
-
-        img {
-          width: 96px;
-          height: 96px;
-          border-radius: 50%;
-        }
-
-        .label {
-          font-size: 24px;
-          font-weight: 400;
-          color: rgba(116, 121, 120, 1);
-          margin-top: 16px;
-        }
-      }
+    .sort {
+      width: 36px;
+      height: 36px;
     }
   }
 }
