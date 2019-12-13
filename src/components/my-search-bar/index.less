@@ -5,6 +5,7 @@
   justify-content: flex-start;
   padding: 24px 30px;
   background: white;
+  overflow: hidden;
 
   * {
     transition: all .3s ease-in-out;
@@ -17,6 +18,7 @@
   }
 
   .input-wrap {
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     width: 620px;
@@ -46,16 +48,16 @@
   }
 
   .cancel {
-    position: absolute;
     font-size: 28px;
     font-weight: 400;
     color: rgba(116, 121, 120, 1);
-    right: -80px;
     opacity: 0;
+    transform: translateX(150px);
 
     &.active {
-      right: 40px;
       opacity: 1;
+      transform: translateX(20px);
+
     }
   }
 }

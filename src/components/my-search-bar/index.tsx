@@ -22,7 +22,7 @@ const MySearchBar: FC<MySearchBarProps> = (props: MySearchBarProps) => {
       </div>
       <span className={ ['cancel', focusState && 'active'].join(' ') }>
           取消
-        </span>
+      </span>
     </div>
   );
 };
