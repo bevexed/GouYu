@@ -8,6 +8,7 @@ import { GoodList } from '../../shop-page/catalogue-detail-page/catalogue-good-l
 import { useParams } from 'react-router';
 import { SearchTabBar } from './search-tab-bar';
 import ShopItem from './shop-item';
+import NoResult from "./no-result";
 
 type SearchResultProps = {};
 const SearchResultPage: FC<SearchResultProps> = (props: SearchResultProps) => {
@@ -57,8 +58,9 @@ const SearchResultPage: FC<SearchResultProps> = (props: SearchResultProps) => {
               <ShopItem key={ key }/>
             )) }
         </WingBlank>
-
       }
+
+      <NoResult/>
     </div>
   );
 };
