@@ -10,5 +10,6 @@ export const iconPic = {
   backBlack: require('../static/image/back-black.png'),
   search: require('../static/image/nav_ico_search_h@2x.png'),
   vip: require('../static/image/ico-vip.png'),
-  share: require('../static/image/share.png')
+  share: require('../static/image/share.png'),
+  close: require('../static/image/close.png'),
 };

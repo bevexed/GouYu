@@ -2,8 +2,8 @@ import React, { FC, TouchEventHandler } from 'react';
 import './index.less';
 
 interface Prop {
-  onTouchEnd: TouchEventHandler;
   children: string | HTMLElement;
+  onTouchEnd?: TouchEventHandler;
   height?: number;
   width?: number;
 }
@@ -58,8 +58,20 @@ export const MyBuyButton: FC<MyBuyButtonProps> = (props: MyBuyButtonProps) => {
   );
 };
 
-export const GoToShopButton: FC<{}> = props => {
-  return <div className="go-to-shop-button">
-    进店
-  </div>;
+export const GoToShopButton: FC<Partial<Prop>> = props => {
+  return <div className="go-to-shop-button">进店</div>;
+};
+
+interface LotteryButtonProps extends Prop {
+  className?: string;
+}
+
+export const LotteryButton: FC<LotteryButtonProps> = props => {
+  return (
+    <div
+      className={ ['_lottery-button', props.className].join(' ') }
+      onTouchEnd={ props.onTouchEnd }>
+      { props.children }
+    </div>
+  );
 };
