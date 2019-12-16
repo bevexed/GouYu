@@ -3,6 +3,7 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
 import { LoginPage } from './login-page';
 import { ShopPage } from "./shop-page";
 import { SearchPage } from "./search-page";
+import { PrizePage } from "./prize-page";
 
 export interface RouteType {
   path: string;
@@ -17,6 +18,7 @@ const AppRoutes: RouteType[] = [
   ...LoginPage,
   ...ShopPage,
   ...SearchPage,
+  ...PrizePage,
   {
     path: '/',
     component: lazy(() => import('../containers/login-page/login')),

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import { NavBar } from 'antd-mobile';
 import './index.less';
 import { MyImage } from '../my-image';
@@ -7,6 +7,7 @@ import { useHistory } from 'react-router';
 
 interface Prop {
   children?: string | HTMLElement;
+  rightContent?: ReactNode
 }
 
 export const MyNavBar: FC<Prop> = (prop: Prop) => {
@@ -16,6 +17,7 @@ export const MyNavBar: FC<Prop> = (prop: Prop) => {
     <div className='my-nav-bar'>
       <NavBar
         mode={ 'light' }
+        rightContent={ prop.rightContent }
         icon={
           length && (
             <MyImage
