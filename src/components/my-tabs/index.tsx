@@ -164,7 +164,7 @@ export const GoodStateBar: FC<GoodStateBar> = props => {
   const [sortState, setSortState] = useState(SortState.up);
   const changePrinceSort = () => {
     if (stateBar === '价格') {
-      setSortState(sortState === SortState.up ? SortState.down : SortState.up);
+     return setSortState(sortState === SortState.up ? SortState.down : SortState.up);
     }
     setStateBar('价格');
     setSortState(SortState.up);

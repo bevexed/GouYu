@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { History } from 'history';
 import { WhiteSpace, WingBlank } from 'antd-mobile';
 import { iconPic } from '../../../config/image';
 import './index.less';
@@ -14,17 +15,24 @@ import GuessYouLikeList from './guess-you-like';
 import FloatButton from './float-button';
 import MyMore from '../components/my-more';
 
-type Props = {};
+interface Props {
+  history: History;
+}
 type State = {};
 
 export default class ShopIndex extends Component<Props, State> {
   render() {
+    const { push } = this.props.history;
     return (
       <div className="shop-index">
         <WingBlank>
           <div className="search">
             <img src={ iconPic.search } alt=""/>
-            <input type="text" placeholder={ '居家必备瑜伽垫' }/>
+            <input
+              type="text"
+              placeholder={ '居家必备瑜伽垫' }
+              onFocus={ () => push('/shop/search-page') }
+            />
           </div>
 
           <Banner/>
@@ -75,7 +83,6 @@ export default class ShopIndex extends Component<Props, State> {
         <VipGoodList vipGoodList={ [1, 2] }/>
 
         <div className="title">猜你喜欢</div>
-
 
         <GuessYouLikeList guessYouLikeList={ [1, 2, 3, 4] }/>
 
