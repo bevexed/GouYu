@@ -42,18 +42,24 @@ export const MyBuyButton: FC<MyBuyButtonProps> = (props: MyBuyButtonProps) => {
       backgroundColor = '#E92B2C';
       content = '免费领取';
       break;
-    case "buyToVip":
+    case 'buyToVip':
       backgroundColor = '#E92B2C';
-      content = '购买成为VIP'
+      content = '购买成为VIP';
   }
 
   return (
     <div
-      className='my-buy-button'
+      className="my-buy-button"
       style={ {
         backgroundColor,
       } }>
       { content }
     </div>
   );
+};
+
+export const GoToShopButton: FC<{}> = props => {
+  return <div className="go-to-shop-button">
+    进店
+  </div>;
 };

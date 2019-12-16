@@ -8,7 +8,7 @@ export const SearchPage: RouteType[] = [
     exact: true,
   }, {
     path: '/search-result/:search',
-    component: lazy(() => import('../containers/search-page/search-result')),
+    component: lazy(() => import('../containers/search-page/search-result-page')),
     exact: true,
   },
 ];
