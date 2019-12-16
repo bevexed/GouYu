@@ -2,6 +2,7 @@ import React, { lazy, LazyExoticComponent, Suspense } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import { LoginPage } from './login-page';
 import { ShopPage } from "./shop-page";
+import { SearchPage } from "./search-page";
 
 export interface RouteType {
   path: string;
@@ -15,6 +16,7 @@ export interface RouteType {
 const AppRoutes: RouteType[] = [
   ...LoginPage,
   ...ShopPage,
+  ...SearchPage,
   {
     path: '/',
     component: lazy(() => import('../containers/login-page/login')),

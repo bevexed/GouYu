@@ -31,7 +31,7 @@ export default class ShopIndex extends Component<Props, State> {
             <input
               type="text"
               placeholder={ '居家必备瑜伽垫' }
-              onFocus={ () => push('/shop/search-page') }
+              onFocus={ () => push('/search-page') }
             />
           </div>
 
