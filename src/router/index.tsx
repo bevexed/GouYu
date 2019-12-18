@@ -21,7 +21,7 @@ const AppRoutes: RouteType[] = [
   ...PrizePage,
   {
     path: '/',
-    component: lazy(() => import('../containers/login-page/login')),
+    component: lazy(() => import('../containers/login-page/login-page')),
     exact: true,
   },
 ];
