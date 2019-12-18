@@ -1,22 +1,15 @@
-import React, { FC, TouchEventHandler } from 'react';
+import React, { FC, ReactNode, TouchEventHandler } from 'react';
 import './index.less';
 
 interface Prop {
-  children: string | HTMLElement;
+  children: string | ReactNode;
+  className?: string;
   onTouchEnd?: TouchEventHandler;
-  height?: number;
-  width?: number;
 }
 
 export const MyButton: FC<Prop> = (prop: Prop) => {
   return (
-    <div
-      className="my-btn"
-      style={ {
-        height: prop.height + 'px',
-        width: prop.width + 'px',
-      } }
-      onTouchEnd={ prop.onTouchEnd }>
+    <div className={ `my-btn ${ prop.className }` } onTouchEnd={ prop.onTouchEnd }>
       { prop.children }
     </div>
   );
@@ -63,14 +56,11 @@ export const GoToShopButton: FC<Partial<Prop>> = props => {
 };
 
 interface LotteryButtonProps extends Prop {
-  className?: string;
 }
 
 export const LotteryButton: FC<LotteryButtonProps> = props => {
   return (
-    <div
-      className={ ['_lottery-button', props.className].join(' ') }
-      onTouchEnd={ props.onTouchEnd }>
+    <div className={ `my-btn ${ props.className }` } onTouchEnd={ props.onTouchEnd }>
       { props.children }
     </div>
   );

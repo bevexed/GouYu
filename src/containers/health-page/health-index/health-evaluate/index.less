@@ -1,0 +1,71 @@
+.health-evaluate {
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 20px 24px 0 rgba(159, 187, 186, .18);
+  padding: 15Px;
+
+  .left {
+    width: 50%;
+
+    .title {
+      font-size: 38px;
+      font-weight: 500;
+      color: rgba(38, 45, 44, 1);
+      margin-top: 32px;
+    }
+
+    .tags {
+      display: flex;
+      justify-content: space-between;
+      margin: 16px 0 24px;
+    }
+
+    footer {
+      display: flex;
+      align-items: center;
+
+      .yellow {
+        font-size: 22px;
+        font-weight: 500;
+        color: rgba(255, 195, 39, 1);
+      }
+
+      .gray {
+        font-size: 22px;
+        font-weight: 400;
+        color: rgba(116, 121, 120, 1);
+        margin-left: 1em;
+      }
+
+      .more {
+        width: 22px;
+        height: 22px;
+      }
+    }
+  }
+
+  .right {
+    margin-top: -60px;
+
+    &-pic {
+      width: 277px;
+      height: 254px;
+    }
+
+    .test-btn {
+      display: flex;
+      justify-content: center;
+      width: 300px;
+      height: 80px;
+      border-radius: 20px;
+      margin-top: -40px;
+
+      span {
+        font-size: 24px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 1);
+        margin-top: -20px;
+      }
+    }
+  }
+}

@@ -90,7 +90,7 @@ class Index extends Component {
           </label>
         </section>
 
-        <MyButton width={ 297 } onTouchEnd={ this.onSure }>
+        <MyButton className={ 'login' } onTouchEnd={ this.onSure }>
           登录
         </MyButton>
       </div>

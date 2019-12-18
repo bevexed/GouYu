@@ -98,7 +98,7 @@ class Login extends Component<{}, State> {
           </label>
         </section>
 
-        <MyButton width={ 297 } onTouchEnd={ this.onLogin }>
+        <MyButton className={ 'login' } onTouchEnd={ this.onLogin }>
           登录
         </MyButton>
 

@@ -34,7 +34,7 @@ const tabBarItem = [
     title: '商城',
   },
   {
-    pathname: '/',
+    pathname: '/health',
     icon: <img className="my-tab-bar-pic" src={ HomePic_N } alt={ '' }/>,
     selectedIcon: <img className="my-tab-bar-pic" src={ HomePic_S } alt={ '' }/>,
     title: '康养',

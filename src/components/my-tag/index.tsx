@@ -19,3 +19,11 @@ export const MyBorderTag: FC<Props> = (props: Props) => {
 export const MyGrayTag: FC<Props> = (props: Props) => {
   return <div className='my-gray-tag' onTouchStart={ props.onTouchStart }>{ props.children }</div>;
 };
+
+export const MySmallGrayTag: FC<Props> = (props: Props) => {
+  return <div className='my-small-gray-tag' onTouchStart={ props.onTouchStart }>{ props.children }</div>;
+};
+
+export const MyBlueTag: FC<Props> = (props: Props) => {
+  return <div className='my-blue-tag' onTouchStart={ props.onTouchStart }>{ props.children }</div>;
+};

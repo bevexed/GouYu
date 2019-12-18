@@ -8,19 +8,19 @@ export const LoginPage: RouteType[] = [
     exact: true,
   },
   {
-    path: '/complete-information',
+    path: '/login/complete-information',
     component: lazy(() =>
       import('../containers/login-page/complete-information-page'),
     ),
     exact: true,
   },
   {
-    path: '/bind-phone',
+    path: '/login/bind-phone',
     component: lazy(() => import('../containers/login-page/bind-phone-page')),
     exact: true,
   },
   {
-    path: '/user-agreement',
+    path: '/login/user-agreement',
     component: lazy(() => import('../containers/login-page/user-agreement-page')),
     exact: true,
   }

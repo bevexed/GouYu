@@ -12,4 +12,5 @@ export const iconPic = {
   vip: require('../static/image/ico-vip.png'),
   share: require('../static/image/share.png'),
   close: require('../static/image/close.png'),
+  triangle: require('../static/image/ico_point_d@2x.png')
 };
