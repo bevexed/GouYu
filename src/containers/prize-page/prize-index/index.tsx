@@ -9,12 +9,14 @@ import MyPopUp from '../../../components/my-pop-up';
 import PrizeExplain from './prize-explain';
 import PrizeHistory from './prize-history';
 import PrizeWinning from './prize-winning';
+import NoPrize from "./no-prize";
 
 type PrizeIndexProps = {};
 const PrizeIndex: FC<PrizeIndexProps> = (props: PrizeIndexProps) => {
   const [PrizeExplainState, setPrizeExplainState] = useState(false);
   const [PrizeHistoryState, setPrizeHistoryState] = useState(false);
   const [PrizeWinningState, setPrizeWinningState] = useState(true);
+  const [NoPrizeState, setNoPrizeState] = useState(true);
   return (
     <div
       className="prize-index"
@@ -49,6 +51,12 @@ const PrizeIndex: FC<PrizeIndexProps> = (props: PrizeIndexProps) => {
         popUpShow={ PrizeWinningState }
         setPopUpShow={ setPrizeWinningState }>
         <PrizeWinning/>
+      </MyPopUp>
+
+      <MyPopUp
+        popUpShow={ NoPrizeState }
+        setPopUpShow={ setNoPrizeState }>
+        <NoPrize/>
       </MyPopUp>
     </div>
   );
