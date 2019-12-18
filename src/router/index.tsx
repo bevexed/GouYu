@@ -4,6 +4,7 @@ import { LoginPage } from './login-page';
 import { ShopPage } from "./shop-page";
 import { SearchPage } from "./search-page";
 import { PrizePage } from "./prize-page";
+import { HealthPage } from "./health-page";
 
 export interface RouteType {
   path: string;
@@ -19,6 +20,7 @@ const AppRoutes: RouteType[] = [
   ...ShopPage,
   ...SearchPage,
   ...PrizePage,
+  ...HealthPage,
   {
     path: '/',
     component: lazy(() => import('../containers/login-page/login-page')),
