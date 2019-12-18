@@ -2,20 +2,31 @@
   margin-top: 146+80px;
 
   .history-icon {
+    position: relative;
+    z-index: 9;
     width: 246px;
     height: 246px;
   }
 
   .content-box {
     width: 590px;
-    background: linear-gradient(320deg, rgba(99, 31, 235, 1) 0%, rgba(127, 77, 253, 1) 100%);
+    background: linear-gradient(320deg,
+    rgba(99, 31, 235, 1) 0%,
+    rgba(127, 77, 253, 1) 100%);
     border-radius: 16px;
     margin: -120px auto;
-    padding: 96px 30px 60px;
+    padding: 96px 30px 20px;
     font-size: 28px;
     font-weight: 400;
     color: rgba(255, 255, 255, 1);
     box-sizing: border-box;
+    overflow-y: hidden;
+
+    ul {
+      max-height: 490px;
+      overflow-y: scroll;
+      margin: 0 0 60px;
+    }
 
     li {
       display: flex;

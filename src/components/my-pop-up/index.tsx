@@ -4,14 +4,14 @@ import { MyImage } from '../my-image';
 import { iconPic } from '../../config/image';
 
 type PopUpProps = { popUpShow: boolean; setPopUpShow: Function, children: ReactNode };
-const PopUp: FC<PopUpProps> = (props: PopUpProps) => {
+const MyPopUp: FC<PopUpProps> = (props: PopUpProps) => {
   return props.popUpShow ? (
     <div className="my-pop-up">
       <div className={ 'wrap' }>
         { props.children }
         <MyImage
           src={ iconPic.close }
-          className={ 'close' }
+          className='close'
           onTouchEnd={ () => {
             props.setPopUpShow(false);
           } }
@@ -21,4 +21,4 @@ const PopUp: FC<PopUpProps> = (props: PopUpProps) => {
   ) : null;
 };
 
-export default PopUp;
+export default MyPopUp;

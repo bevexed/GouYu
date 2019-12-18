@@ -5,14 +5,16 @@ import BgLottery from './image/bg_lottery@2x.png';
 import LotteryButton from './image/btn@2x.png';
 import { MyImage } from '../../../components/my-image';
 import { iconPic } from '../../../config/image';
-import PopUp from '../../../components/my-pop-up';
-import PrizeExplain from "./prize-explain";
-import PrizeHistory from "./prize-history";
+import MyPopUp from '../../../components/my-pop-up';
+import PrizeExplain from './prize-explain';
+import PrizeHistory from './prize-history';
+import PrizeWinning from './prize-winning';
 
 type PrizeIndexProps = {};
 const PrizeIndex: FC<PrizeIndexProps> = (props: PrizeIndexProps) => {
   const [PrizeExplainState, setPrizeExplainState] = useState(false);
   const [PrizeHistoryState, setPrizeHistoryState] = useState(false);
+  const [PrizeWinningState, setPrizeWinningState] = useState(true);
   return (
     <div
       className="prize-index"
@@ -21,7 +23,9 @@ const PrizeIndex: FC<PrizeIndexProps> = (props: PrizeIndexProps) => {
         rightContent={ <MyImage className="ico-share" src={ iconPic.share }/> }>
         幸运大抽奖
       </MyNavBar>
-      <div className={ 'show-prize-history-button' } onTouchEnd={ () => setPrizeHistoryState(true) }>
+      <div
+        className={ 'show-prize-history-button' }
+        onTouchEnd={ () => setPrizeHistoryState(true) }>
         中奖记录 >
       </div>
       <MyImage
@@ -29,15 +33,23 @@ const PrizeIndex: FC<PrizeIndexProps> = (props: PrizeIndexProps) => {
         onTouchEnd={ () => setPrizeExplainState(true) }
         className="lottery-button"
       />
-      <PopUp popUpShow={ PrizeExplainState } setPopUpShow={ setPrizeExplainState }>
+      <MyPopUp
+        popUpShow={ PrizeExplainState }
+        setPopUpShow={ setPrizeExplainState }>
         <PrizeExplain/>
-      </PopUp>
+      </MyPopUp>
 
-      <PopUp popUpShow={ PrizeHistoryState } setPopUpShow={ setPrizeHistoryState }>
+      <MyPopUp
+        popUpShow={ PrizeHistoryState }
+        setPopUpShow={ setPrizeHistoryState }>
         <PrizeHistory/>
-      </PopUp>
+      </MyPopUp>
 
-
+      <MyPopUp
+        popUpShow={ PrizeWinningState }
+        setPopUpShow={ setPrizeWinningState }>
+        <PrizeWinning/>
+      </MyPopUp>
     </div>
   );
 };
