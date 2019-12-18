@@ -10,6 +10,7 @@ import HealthEvaluate from './health-evaluate';
 import Discounts from '../../shop-page/shop-index/discounts';
 import MyWhiteBlank from "../../../components/my-white-blank";
 import MyMore from "../../shop-page/components/my-more";
+import StarShowBanner from "./star-show-banner";
 
 type HealthIndexProps = {};
 const HealthIndex: FC<HealthIndexProps> = (props: HealthIndexProps) => {
@@ -39,7 +40,7 @@ const HealthIndex: FC<HealthIndexProps> = (props: HealthIndexProps) => {
 
       <MyMore path={ '/shop/second-kill-page' } children={ '健康达人SHOW' } rightContent={ '去围观' }/>
 
-
+      <StarShowBanner bannerList={ [1, 3, 4] }/>
       <MyTabBar/>
     </div>
   );
