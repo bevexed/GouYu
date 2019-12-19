@@ -1,8 +1,9 @@
 import React, { FC, ReactNode } from 'react';
 import './index.less';
-import { iconPic } from '../../../../config/image';
+import { iconPic } from '../../config/image';
 import { WingBlank } from 'antd-mobile';
 import { useHistory } from 'react-router';
+import MyTitle from "../my-title";
 
 type MyMoreProps = {
   children: string | ReactNode;
@@ -15,7 +16,7 @@ const MyMore: FC<MyMoreProps> = (props: MyMoreProps) => {
     <div className="my-more">
       <WingBlank>
         <header>
-          <span>{ props.children }</span>
+          <MyTitle>{ props.children }</MyTitle>
           <p onTouchStart={ () => push(props.path) }>
             { props.rightContent || '更多' }
           </p>

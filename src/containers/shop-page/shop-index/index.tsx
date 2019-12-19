@@ -13,7 +13,7 @@ import { GoodList } from '../components/good-list';
 import VipGoodList from './vip-good-list';
 import GuessYouLikeList from './guess-you-like';
 import FloatButton from './float-button';
-import MyMore from '../components/my-more';
+import MyMore from '../../../components/my-more';
 
 interface Props {
   history: History;

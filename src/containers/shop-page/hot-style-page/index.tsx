@@ -3,7 +3,7 @@ import './index.less';
 import { MyNavBar } from '../../../components/my-nav-bar';
 import { WhiteSpace, WingBlank } from 'antd-mobile';
 import Banner from './banner';
-import MyMore from '../components/my-more';
+import MyMore from '../../../components/my-more';
 import VipGoodList from './vip-good-list';
 
 type Props = {};

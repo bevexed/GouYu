@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import './index.less';
-import { WingBlank } from 'antd-mobile';
+import { WhiteSpace, WingBlank } from 'antd-mobile';
 import Swiper from 'swiper';
 import 'swiper/css/swiper.min.css';
 
@@ -13,6 +13,7 @@ const StarShowBanner: FC<Props> = (props: Props) => {
       direction: 'horizontal', // 垂直切换选项
       freeMode: true,
       slidesPerView: 2.3,
+      height: 376
     });
   });
   return (
@@ -34,6 +35,7 @@ const StarShowBanner: FC<Props> = (props: Props) => {
           )) }
         </div>
       </div>
+      <WhiteSpace size={ "lg" }/>
     </WingBlank>
   );
 };

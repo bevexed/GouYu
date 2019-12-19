@@ -12,6 +12,7 @@ import MinePic_S from './images/tab_ico_mine_s@2x.png';
 import Remand_N from './images/tab_ico_remand_n@2x.png';
 import Remand_S from './images/tab_ico_remand_s@2x.png';
 import { useHistory } from 'react-router';
+import MyWhiteBlank from "../my-white-blank";
 
 const Item = TabBar.Item;
 
@@ -58,21 +59,25 @@ export const MyTabBar: FC<Prop> = (prop: Prop) => {
   const { pathname } = location;
 
   return (
-    <div className="my-tab-bar">
-      <TabBar
-        tabBarPosition={ 'bottom' }
-        tintColor={ '#21A3CD' }
-        unselectedTintColor={ '#BBBDBD' }
-        hidden={ false }>
-        { tabBarItem.map((item, key) => (
-          <Item
-            { ...item }
-            onPress={ () => push(item.pathname) }
-            selected={ pathname === item.pathname }
-            key={ key }
-          />
-        )) }
-      </TabBar>
+    <div className={ 'my-tab-bar-wrap' }>
+      <div className="my-tab-bar">
+        <TabBar
+          tabBarPosition={ 'bottom' }
+          tintColor={ '#21A3CD' }
+          unselectedTintColor={ '#BBBDBD' }
+          hidden={ false }>
+          { tabBarItem.map((item, key) => (
+            <Item
+              { ...item }
+              onPress={ () => push(item.pathname) }
+              selected={ pathname === item.pathname }
+              key={ key }
+            />
+          )) }
+        </TabBar>
+      </div>
+      <MyWhiteBlank height={ 150 }/>
     </div>
+
   );
 };
