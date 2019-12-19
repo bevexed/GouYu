@@ -7,6 +7,7 @@ import { WhiteSpace, WingBlank } from 'antd-mobile';
 import HealthHeader from './health-header';
 import HealthBar from './health-bar';
 import HealthEvaluate from './health-evaluate';
+import HealthEvaluated from './health-evaluated';
 import Discounts from '../../shop-page/shop-index/discounts';
 import MyWhiteBlank from '../../../components/my-white-blank';
 import MyMore from '../../../components/my-more';
@@ -26,6 +27,8 @@ const HealthIndex: FC<HealthIndexProps> = (props: HealthIndexProps) => {
       </WingBlank>
 
       <HealthEvaluate/>
+
+      <HealthEvaluated/>
 
       <WingBlank>
         <WhiteSpace size={ 'lg' }/>

@@ -14,10 +14,11 @@ const Banner: FC<BannerProps> = (props: BannerProps) => {
           autoplay={ true }
           infinite
           dots={ false }
-          beforeChange={ (from, to) =>
-            console.log(`slide from ${ from } to ${ to }`)
+          beforeChange={ (from, to) => {
           }
-          afterChange={ index => console.log('slide to', index) }>
+          }
+          afterChange={ index => {
+          } }>
           { [1, 23, 4].map((val, key) => (
             <img
               key={ key }

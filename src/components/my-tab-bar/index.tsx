@@ -76,7 +76,7 @@ export const MyTabBar: FC<Prop> = (prop: Prop) => {
           )) }
         </TabBar>
       </div>
-      <MyWhiteBlank height={ 150 }/>
+      <MyWhiteBlank height={ 120 }/>
     </div>
 
   );
