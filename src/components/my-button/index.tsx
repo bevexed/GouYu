@@ -69,7 +69,7 @@ export const LotteryButton: FC<LotteryButtonProps> = props => {
 export const MyGradientButton: FC<Prop> = props => {
   return (
     <div className={ `my-gradient-button ${ props.className }` } onTouchEnd={ props.onTouchEnd }>
-      { props.children }
+      <span>{ props.children }</span>
     </div>
   );
 };

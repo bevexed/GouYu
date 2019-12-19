@@ -16,7 +16,7 @@ import Banner from './banner';
 import MyTitle from '../../../components/my-title';
 import { MyButton } from '../../../components/my-button';
 import HealthGoal from "./health-goal";
-import HealthTask from "./heal-task";
+import HealthTask from "./health-task";
 
 type HealthIndexProps = {};
 const HealthIndex: FC<HealthIndexProps> = (props: HealthIndexProps) => {

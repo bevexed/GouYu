@@ -3,15 +3,22 @@ import './index.less';
 import { MyImage } from '../my-image';
 import { iconPic } from '../../config/image';
 
-type PopUpProps = { popUpShow: boolean; setPopUpShow: Function, children: ReactNode };
+type PopUpProps = {
+  popUpShow: boolean;
+  setPopUpShow: Function;
+  children: ReactNode;
+};
 const MyPopUp: FC<PopUpProps> = (props: PopUpProps) => {
   return props.popUpShow ? (
-    <div className="my-pop-up">
+    <div
+      className="my-pop-up"
+      onTouchStart={ e => e.stopPropagation() }
+      onTouchMove={ e => e.stopPropagation() }>
       <div className={ 'wrap' }>
         { props.children }
         <MyImage
           src={ iconPic.close }
-          className='close'
+          className="close"
           onTouchEnd={ () => {
             props.setPopUpShow(false);
           } }
