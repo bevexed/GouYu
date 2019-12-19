@@ -15,6 +15,8 @@ import StarShowBanner from './star-show-banner';
 import Banner from './banner';
 import MyTitle from '../../../components/my-title';
 import { MyButton } from '../../../components/my-button';
+import HealthGoal from "./health-goal";
+import HealthTask from "./heal-task";
 
 type HealthIndexProps = {};
 const HealthIndex: FC<HealthIndexProps> = (props: HealthIndexProps) => {
@@ -28,7 +30,14 @@ const HealthIndex: FC<HealthIndexProps> = (props: HealthIndexProps) => {
 
       <HealthEvaluate/>
 
-      <HealthEvaluated/>
+      <>
+        <HealthEvaluated/>
+        <MyWhiteBlank backgroundColor={ '#F8F9FA' }/>
+        <HealthGoal/>
+        <MyWhiteBlank backgroundColor={ '#F8F9FA' }/>
+        <HealthTask/>
+        <MyWhiteBlank backgroundColor={ '#F8F9FA' }/>
+      </>
 
       <WingBlank>
         <WhiteSpace size={ 'lg' }/>

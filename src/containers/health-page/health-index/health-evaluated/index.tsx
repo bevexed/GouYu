@@ -1,7 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import './index.less';
 import { MyBlueTag } from '../../../../components/my-tag';
-import { WingBlank } from 'antd-mobile';
 import PieCanvas from "../pie-canvas";
 
 type HealthEvaluatedProps = {};
@@ -12,7 +11,7 @@ const HealthEvaluated: FC<HealthEvaluatedProps> = (
 
   });
   return (
-    <WingBlank className={ 'health-evaluated' }>
+    <div className='health-evaluated'>
       <div className="left">
         <MyBlueTag>早上好，范局态度</MyBlueTag>
         <MyBlueTag>
@@ -25,8 +24,14 @@ const HealthEvaluated: FC<HealthEvaluatedProps> = (
       </div>
       <div className="right">
         <PieCanvas/>
+        <p className="pie-title">
+          任务完成度
+        </p>
+        <p className="come-on">
+          继续加油 >
+        </p>
       </div>
-    </WingBlank>
+    </div>
   );
 };
 
