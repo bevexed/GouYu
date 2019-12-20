@@ -1,0 +1,41 @@
+.health-sport-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.health-sport-item {
+  margin: 40px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 136px;
+  height: 136px;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 2px 24px 0 rgba(177, 192, 191, 0.3);
+  border-radius: 50%;
+
+  &:nth-last-child(2) {
+    margin-left: 120px;
+  }
+
+  &:last-child {
+    margin-right: 120px;
+  }
+
+  &-img {
+    width: 64px;
+    height: 64px;
+    margin-top: 10px;
+  }
+
+  .label {
+    font-size: 24px;
+    font-weight: 400;
+    color: rgba(116, 121, 120, 1);
+    margin-bottom: 10px;
+  }
+}

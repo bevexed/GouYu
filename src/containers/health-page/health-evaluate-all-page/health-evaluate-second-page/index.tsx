@@ -21,7 +21,16 @@ type Props = {};
 const HealthEvaluateSecondPage: FC<Props> = (props: Props) => {
   const { push } = useHistory();
   return (
-    <div className="health-evaluate-second-page">
+    <div
+      className="health-evaluate-second-page"
+      onTouchStart={ e => {
+        e.stopPropagation();
+        e.preventDefault();
+      } }
+      onTouchMove={ e => {
+        e.stopPropagation();
+        e.preventDefault();
+      } }>
       <WingBlank>
         <MyNavBar/>
 
@@ -53,13 +62,12 @@ const HealthEvaluateSecondPage: FC<Props> = (props: Props) => {
       <WhiteSpace size={ 'xl' }/>
       <WhiteSpace size={ 'xl' }/>
 
-
       <WingBlank>
         <WingBlank>
           <DietSelect dietList={ dietList }/>
 
           <MyGradientButton
-            onTouchEnd={ () => push('/health/health-evaluate-second-page') }
+            onTouchEnd={ () => push('/health/health-evaluate-third-page') }
             className={ 'next' }>
             下一步
           </MyGradientButton>
