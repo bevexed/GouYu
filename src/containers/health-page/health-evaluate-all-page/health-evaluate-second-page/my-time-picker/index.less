@@ -1,0 +1,38 @@
+.my-time-picker {
+  display: flex;
+  align-items: center;
+  height: 240px;
+  overflow: hidden;
+
+  > * {
+    width: 60px;
+  }
+
+  .prefixCls {
+    background: white;
+  }
+
+  .am-picker-col-indicator {
+    &:after, &:before {
+      background: transparent !important;
+    }
+  }
+
+  .am-picker-col-item-selected {
+    text-align: center;
+    font-size: 60px/2 !important;
+    font-family: DINAlternate-Bold, DINAlternate, serif;
+    font-weight: bold;
+  }
+
+  .am-picker-col-item-selected.mr {
+    margin-left: 14px;
+  }
+
+  .am-picker-col-item {
+    font-size: 44px/2;
+    font-family: DINAlternate-Bold, DINAlternate, serif;
+    font-weight: bold;
+    color: rgba(38, 45, 44, 1);
+  }
+}

@@ -20,16 +20,15 @@ const LabelWithRuler: FC<LabelWithRulerProps> = (
 interface Label {
   imgUrl: string;
   label: string;
-  unit: string;
+  unit?: string;
 }
 
-export const Label: FC<Label> = props => (
+export const MyLabel: FC<Label> = props => (
   <div className="_label">
     <MyImage src={ props.imgUrl } className={ '_label-icon' }/>
     <p className={ '_label-name' }>{ props.label }
       <span className='_label-unit'>{ props.unit }</span>
     </p>
-
   </div>
 );
 
