@@ -1,15 +1,11 @@
 import React, { FC, ReactNode } from 'react';
-import './index.less'
+import './index.less';
 
 type MyTitleProps = {
-  children: string | ReactNode
+  children: string | ReactNode;
 };
 const MyTitle: FC<MyTitleProps> = (props: MyTitleProps) => {
-  return (
-    <div className={ '_my-title' }>
-      { props.children }
-    </div>
-  );
+  return <div className="_my-title">{ props.children }</div>;
 };
 
-export default MyTitle
+export default MyTitle;
