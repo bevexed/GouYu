@@ -11,6 +11,23 @@ import IconSport from './image/ico_sport_h@2x.png';
 import IconLife from './image/ico_life_h@2x.png';
 import HealthSportList from './health-sport-list';
 import HealthLifeHabit from "./health-life-habit";
+import HardIcon from "./health-life-habit/image/ico_harddrink@2x.png";
+import DrinkIcon from "./health-life-habit/image/ico_drink_h@2x.png";
+
+const list = [
+  {
+    label: '烟酒不沾',
+    imgUrl: HardIcon,
+  },
+  {
+    label: '适量饮酒',
+    imgUrl: DrinkIcon,
+  },
+  {
+    label: '烟酒不离',
+    imgUrl: HardIcon,
+  },
+];
 
 
 type Props = {};
@@ -36,14 +53,14 @@ const HealthEvaluateSecondPage: FC<Props> = (props: Props) => {
           <WhiteSpace size={ 'xl' }/>
 
           <MyHealthLabel imgUrl={ IconLife } label={ '生活习惯' }/>
-          <HealthLifeHabit/>
+          <HealthLifeHabit list={ list }/>
         </WingBlank>
       </WingBlank>
 
       <WingBlank>
         <WingBlank>
           <MyGradientButton
-            onTouchEnd={ () => push('/health/health-evaluate-second-page') }
+            onTouchEnd={ () => push('/health/health-evaluate-last-page') }
             className={ 'next' }>
             下一步
           </MyGradientButton>
