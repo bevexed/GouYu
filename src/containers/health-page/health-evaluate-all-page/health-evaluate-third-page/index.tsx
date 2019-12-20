@@ -17,7 +17,7 @@ type Props = {};
 const HealthEvaluateSecondPage: FC<Props> = (props: Props) => {
   const { push } = useHistory();
   return (
-    <div className="health-evaluate-second-page">
+    <div className="health-evaluate-third-page">
       <WingBlank>
         <MyNavBar/>
 

@@ -18,6 +18,11 @@
   box-shadow: 0 2px 24px 0 rgba(177, 192, 191, 0.3);
   border-radius: 50%;
 
+  &.active {
+    box-shadow: 0 2px 24px 0 rgba(44, 193, 203, 0.68);
+    background: linear-gradient(313deg, rgba(15, 228, 204, 1) 0%, rgba(43, 125, 206, 1) 100%);
+  }
+
   &:nth-last-child(2) {
     margin-left: 120px;
   }
@@ -30,6 +35,10 @@
     width: 64px;
     height: 64px;
     margin-top: 10px;
+
+    &.active {
+      filter: brightness(200%);
+    }
   }
 
   .label {
