@@ -5,11 +5,13 @@ import { MyImage } from '../../../../components/my-image';
 import { iconPic } from '../../../../config/image';
 import RightPic from './image/right.gif';
 import { MyButton } from '../../../../components/my-button';
+import { useHistory } from "react-router";
 
 type HealthEvaluateProps = {};
 const HealthEvaluate: FC<HealthEvaluateProps> = (
   props: HealthEvaluateProps,
 ) => {
+  const { push } = useHistory();
   return (
     <div className="health-evaluate">
       <div className="left">
@@ -31,7 +33,7 @@ const HealthEvaluate: FC<HealthEvaluateProps> = (
       </div>
       <div className="right">
         <MyImage src={ RightPic } className="right-pic"/>
-        <MyButton className={ 'test-btn' }>
+        <MyButton className={ 'test-btn' } onTouchEnd={ () => push('/health/health-evaluate-first-page') }>
           <span>开始健康评估</span>
         </MyButton>
       </div>

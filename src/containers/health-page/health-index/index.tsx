@@ -15,8 +15,9 @@ import StarShowBanner from './star-show-banner';
 import Banner from './banner';
 import MyTitle from '../../../components/my-title';
 import { MyButton } from '../../../components/my-button';
-import HealthGoal from "./health-goal";
-import HealthTask from "./health-task";
+import HealthGoal from './health-goal';
+import HealthTask from './health-task';
+import MyLittleGoal from './my-little-goal';
 
 type HealthIndexProps = {};
 const HealthIndex: FC<HealthIndexProps> = (props: HealthIndexProps) => {
@@ -34,6 +35,7 @@ const HealthIndex: FC<HealthIndexProps> = (props: HealthIndexProps) => {
         <HealthEvaluated/>
         <MyWhiteBlank backgroundColor={ '#F8F9FA' }/>
         <HealthGoal/>
+        <MyLittleGoal/>
         <MyWhiteBlank backgroundColor={ '#F8F9FA' }/>
         <HealthTask/>
         <MyWhiteBlank backgroundColor={ '#F8F9FA' }/>
@@ -44,12 +46,6 @@ const HealthIndex: FC<HealthIndexProps> = (props: HealthIndexProps) => {
         <Discounts/>
       </WingBlank>
       <MyWhiteBlank backgroundColor={ '#F8F9FA' }/>
-
-      <MyPopUp
-        popUpShow={ HealthCouponsState }
-        setPopUpShow={ setHealthCouponsState }>
-        <HealthCoupons/>
-      </MyPopUp>
 
       <MyMore
         path={ '/shop/second-kill-page' }
@@ -67,6 +63,12 @@ const HealthIndex: FC<HealthIndexProps> = (props: HealthIndexProps) => {
       <MyButton className={ 'open-health-btn' }>开启我的健康之旅</MyButton>
 
       <MyTabBar/>
+
+      <MyPopUp
+        popUpShow={ HealthCouponsState }
+        setPopUpShow={ setHealthCouponsState }>
+        <HealthCoupons/>
+      </MyPopUp>
     </div>
   );
 };

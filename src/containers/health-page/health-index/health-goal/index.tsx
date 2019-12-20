@@ -7,7 +7,7 @@ import MyPopUp from '../../../../components/my-pop-up';
 
 type HealthGoalProps = {};
 const HealthGoal: FC<HealthGoalProps> = (props: HealthGoalProps) => {
-  const [goalPop, goalPopState] = useState(true);
+  const [goalPop, goalPopState] = useState(false);
   return (
     <>
       <div className="health-goal">
@@ -15,9 +15,12 @@ const HealthGoal: FC<HealthGoalProps> = (props: HealthGoalProps) => {
           <MyTitle>定个小目标</MyTitle>
           <MyGradientButton>提交</MyGradientButton>
         </Flex>
-        <div className="false-input">写下你的小目标，按计划完成</div>
+        <div onTouchEnd={ () => goalPopState(true) } className="false-input">
+          写下你的小目标，按计划完成
+        </div>
       </div>
-      <MyPopUp popUpShow={ goalPop } setPopUpShow={ () => goalPopState(true) }>
+
+      <MyPopUp popUpShow={ goalPop } setPopUpShow={ () => goalPopState(false) }>
         <div className="health-goal-pop">
           <MyTitle>定个小目标</MyTitle>
           <textarea
