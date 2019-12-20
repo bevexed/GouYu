@@ -9,14 +9,24 @@
   box-shadow: 0 2px 24px 0 rgba(177, 192, 191, 0.3);
   border-radius: 16px;
 
+  &.active {
+    background: linear-gradient(313deg,
+    rgba(15, 228, 204, 1) 0%,
+    rgba(43, 125, 206, 1) 100%);
+    box-shadow: 0 2px 24px 0 rgba(44, 193, 203, 0.68);
+  }
+
   &-icon {
     width: 64px;
     height: 64px;
+
+    &.active {
+      filter: brightness(200%);
+    }
   }
 
   &-label {
     font-size: 24px;
-    font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
     color: rgba(116, 121, 120, 1);
   }

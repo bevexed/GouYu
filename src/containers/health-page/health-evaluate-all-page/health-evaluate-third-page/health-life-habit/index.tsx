@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import './index.less';
 import HardIcon from './image/ico_harddrink@2x.png';
 import DrinkIcon from './image/ico_drink_h@2x.png';
@@ -20,11 +20,30 @@ const list = [
 ];
 
 type Props = {};
-const HealthLifeHabit: FC<Props> = (props: Props) => {
+const HealthLifeHabit: FC<Props> = () => {
+  const [selectedList, setSelectedList] = useState<number[]>([]);
+  const handleSelect = (key: number) => {
+    let arr = [...selectedList];
+
+    if (selectedList.includes(key)) {
+      arr.splice(
+        selectedList.findIndex(item => item === key),
+        1,
+      );
+    } else {
+      arr.push(key);
+    }
+    setSelectedList(arr);
+  };
   return (
     <div className="health-life-habit">
       { list.map((item, key) => (
-        <HealthImgLabel { ...item } key={ key }/>
+        <HealthImgLabel
+          { ...item }
+          key={ key }
+          onTouchEnd={ () => handleSelect(key) }
+          isSelected={ selectedList.includes(key) }
+        />
       )) }
     </div>
   );
