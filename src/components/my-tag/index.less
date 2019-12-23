@@ -65,3 +65,24 @@
   line-height: 40px;
   padding: 0 20px;
 }
+
+.my-select-tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 124px;
+  padding: 0 20px;
+  height: 76px;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 2px 24px 0 rgba(177, 192, 191, 0.3);
+  border-radius: 16px;
+  box-sizing: border-box;
+
+  &.active {
+    background: linear-gradient(313deg,
+    rgba(15, 228, 204, 1) 0%,
+    rgba(43, 125, 206, 1) 100%);
+    box-shadow: 0 2px 24px 0 rgba(44, 193, 203, 0.68);
+    color: white;
+  }
+}

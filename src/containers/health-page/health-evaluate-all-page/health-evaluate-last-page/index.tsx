@@ -13,11 +13,23 @@ import IconRelax from './image/ico_relax_n@2x.png';
 import HealthLifeHabit from '../health-evaluate-third-page/health-life-habit';
 import { MyGradientButton } from '../../../../components/my-button';
 import { useHistory } from 'react-router';
+import IllnessList from './illness-list';
 
 const list = [
   { label: '服用保健品', imgUrl: IconCnc },
   { label: '放松心情', imgUrl: IconRelax },
   { label: '漠不关心', imgUrl: IconNoMind },
+];
+
+const illnessList = [
+  { label: '高血压' },
+  { label: '失眠健忘' },
+  { label: '高血压' },
+  { label: '失眠健忘' },
+  { label: '高血压' },
+  { label: '失眠健忘' },
+  { label: '高血压' },
+  { label: '失眠健忘' },
 ];
 
 type Props = {};
@@ -40,6 +52,7 @@ const HealthEvaluateLastPage: FC<Props> = (props: Props) => {
           <MyHealthLabel imgUrl={ IconSick } label={ '慢性疾病及亚健康' }/>
 
           <WhiteSpace size={ 'xl' }/>
+          <IllnessList illnessList={ illnessList }/>
 
           <MyHealthLabel imgUrl={ IconHealth } label={ '健康意识' }/>
           <HealthLifeHabit list={ list }/>
@@ -49,7 +62,7 @@ const HealthEvaluateLastPage: FC<Props> = (props: Props) => {
       <WingBlank>
         <WingBlank>
           <MyGradientButton
-            onTouchEnd={ () => push('/health/health-evaluate-second-page') }
+            onTouchEnd={ () => push('/health') }
             className={ 'next' }>
             生成报告
           </MyGradientButton>
