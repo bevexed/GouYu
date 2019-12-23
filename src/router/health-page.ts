@@ -22,5 +22,9 @@ export const HealthPage: RouteType[] = [
     path: '/health/health-evaluate-last-page',
     component: lazy(() => import('../containers/health-page/health-evaluate-all-page/health-evaluate-last-page')),
     exact: true,
+  }, {
+    path: '/health/health-task-page',
+    component: lazy(() => import('../containers/health-page/health-task-page')),
+    exact: true,
   },
 ];

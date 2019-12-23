@@ -1,0 +1,90 @@
+.health-task-item {
+  display: flex;
+  margin-top: 26px;
+
+  &-icon-wrap {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 96px;
+    height: 96px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 2px 24px 0 rgba(177, 192, 191, 0.3);
+    border-radius: 50%;
+    margin-right: 22px;
+  }
+
+  &-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .content {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #ededed;
+    padding-bottom: 28px;
+
+    .left {
+      width: 360px;
+      flex-shrink: 0;
+    }
+
+    .title {
+      font-size: 28px;
+      font-weight: 500;
+      color: rgba(38, 45, 44, 1);
+    }
+
+    .describe {
+      margin-top: 5px;
+      font-size: 24px;
+      font-weight: 400;
+      color: rgba(116, 121, 120, 1);
+      line-height: 1.5;
+    }
+
+    .right {
+      flex-grow: 1;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin-left: 20px;
+
+      .card-btn {
+        width: 144px;
+        flex-shrink: 1;
+      }
+
+      .bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-grow: 1;
+        margin-top: 10px;
+      }
+
+      .progress-wrap {
+        width: 54px;
+        height: 8px;
+        background: rgba(243, 244, 245, 1);
+        border-radius: 4px;
+      }
+
+      .current-progress {
+        width: 60%;
+        height: 8px;
+        background: rgba(33, 163, 205, 1);
+        border-radius: 4px;
+      }
+
+      .data {
+        font-size: 20px;
+        font-weight: 400;
+        color: rgba(116, 121, 120, 1);
+      }
+    }
+  }
+}

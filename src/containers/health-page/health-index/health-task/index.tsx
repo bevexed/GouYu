@@ -22,7 +22,7 @@ const HealthTask: FC<HealthTaskProps> = (props: HealthTaskProps) => {
   return (
     <div className="health-task">
       <MyMore
-        path={ '' }
+        path={ '/health/health-task-page' }
         children={ <MyTitle>近30天完成以下康养任务</MyTitle> }
         rightContent={ '去打卡' }
       />
