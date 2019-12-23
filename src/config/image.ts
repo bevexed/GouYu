@@ -12,5 +12,7 @@ export const iconPic = {
   vip: require('../static/image/ico-vip.png'),
   share: require('../static/image/share.png'),
   close: require('../static/image/close.png'),
-  triangle: require('../static/image/ico_point_d@2x.png')
+  triangle: require('../static/image/ico_point_d@2x.png'),
+  _close: require('../static/image/nav_ico_back_h@2x.png'),
+  wx: require('../static/image/icon_wechat_h@2x.png'),
 };

@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import './index.less';
-import { iconPic } from '../../../../config/image';
 import { Progress, WingBlank } from 'antd-mobile';
 import MyWhiteBlank from '../../../../components/my-white-blank';
 import { MyBuyButton } from '../../../../components/my-button';
@@ -12,9 +11,9 @@ const VipGood: FC<VipGoodProps> = (props: VipGoodProps) => {
   return (
     <>
       <WingBlank>
-        <div className="vip-good">
+        <div className="_vip-good">
           <img
-            className="good-img"
+            className="_good-img"
             src="https://g-search1.alicdn.com/img/bao/uploaded/i4/i1/877603842/O1CN01dabYkw1eFgGAkhJxP_!!877603842-0-pixelsss.jpg_180x180.jpg_.webp"
             alt={ '' }
           />
@@ -55,14 +54,6 @@ type VipGoodListProps = {
 const VipGoodList: FC<VipGoodListProps> = (props: VipGoodListProps) => {
   return (
     <div className="vip-good-list">
-      <WingBlank>
-        <header>
-          <span>网红商品VIP免费领</span>
-          <p>更多</p>
-          <img src={ iconPic.more } alt=""/>
-        </header>
-      </WingBlank>
-
       { props.vipGoodList.map((item, index) => (
         <VipGood key={ index }/>
       )) }

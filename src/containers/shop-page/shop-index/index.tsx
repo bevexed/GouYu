@@ -63,6 +63,7 @@ export default class ShopIndex extends Component<Props, State> {
 
         <MyWhiteBlank backgroundColor={ '#F8F9FA' }/>
 
+
         <GoodList
           goodList={ [
             {
@@ -80,6 +81,7 @@ export default class ShopIndex extends Component<Props, State> {
           ] }
         />
 
+        <MyMore path={ '/shop/web-celebrity-goods-page' } children={ '网红商品VIP免费领' }/>
         <VipGoodList vipGoodList={ [1, 2] }/>
 
         <div className="title">猜你喜欢</div>

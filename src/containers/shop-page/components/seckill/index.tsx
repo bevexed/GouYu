@@ -60,10 +60,12 @@ const RenderTab: FC<TabProps> = (tab: TabProps) => {
 
 const RenderContent: FC<TabProps> = (tab: TabProps) => {
   return (
-    <div className={ 'tab-content' }>
+    <div className="tab-content">
       <header>
         <img
-          src="https://hbimg.huabanimg.com/64e30dd609efc8159a76966f968de5a0f95daff012103-5dIdZS_fw658"
+          src={
+            'https://img.alicdn.com/simba/img/TB1Jf8bq8v0gK0jSZKbSuvK2FXa.jpg'
+          }
           alt=""
         />
       </header>

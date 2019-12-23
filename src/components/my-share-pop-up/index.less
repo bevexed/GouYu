@@ -1,0 +1,61 @@
+._my-share-pop-up {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+
+  > .wrap {
+    position: fixed;
+    bottom: 0;
+    width: 750px;
+    height: 308px;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 60px 60px 0 0;
+    text-align: center;
+    padding: 28px;
+    box-sizing: border-box;
+  }
+
+  ._title {
+    font-size: 32px;
+    font-weight: 500;
+    color: rgba(38, 45, 44, 1);
+    line-height: 44px;
+  }
+
+  .close {
+    position: absolute;
+    top: 32px;
+    right: 28px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .btn-list {
+    display: flex;
+    justify-content: center;
+    padding-top: 44px;
+
+    .btn-item {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+
+      > img {
+        width: 108px;
+        height: 108px;
+      }
+
+      > span {
+        margin-top: 10px;
+        font-size: 28px;
+        font-weight: 400;
+        color: rgba(116, 121, 120, 1);
+        line-height: 40px;
+      }
+
+    }
+  }
+}
