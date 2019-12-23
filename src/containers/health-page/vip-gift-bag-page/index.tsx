@@ -4,7 +4,11 @@ import MyIcon from '../../../components/my-icon';
 import { iconPic } from '../../../config/image';
 import { useHistory } from 'react-router';
 import ReactVideo from 'react-player';
-import VipRightList from "./vip-right-list";
+import VipRightList from './vip-right-list';
+import QRcode from './QR-code';
+import { WhiteSpace } from 'antd-mobile';
+import MyTitle from '../../../components/my-title';
+import VipGoodList from "../../shop-page/hot-style-page/vip-good-list";
 
 type Props = {};
 const VipGiftBagPage: FC<Props> = (props: Props) => {
@@ -36,6 +40,16 @@ const VipGiftBagPage: FC<Props> = (props: Props) => {
 
         <VipRightList/>
       </section>
+      <QRcode/>
+
+      <WhiteSpace size={ 'lg' }/>
+      <div className='vip-gift-bag-page-title'>
+        <MyTitle>网红商品VIP免费领</MyTitle>
+        <span>已有2346253人购买</span>
+      </div>
+      <VipGoodList vipGoodList={ [1, 2, 3, 4, 5] }/>
+
+
     </div>
   );
 };
