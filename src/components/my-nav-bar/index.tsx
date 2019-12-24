@@ -11,7 +11,6 @@ interface Prop {
 }
 
 export const MyNavBar: FC<Prop> = (prop: Prop) => {
-  console.log(useHistory());
   const { length, goBack } = useHistory();
   return (
     <div className='my-nav-bar'>

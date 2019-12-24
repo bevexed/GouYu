@@ -22,7 +22,7 @@ import HealthPeopleList from './health-people-list';
 
 type HealthIndexProps = {};
 const HealthIndex: FC<HealthIndexProps> = (props: HealthIndexProps) => {
-  const [tarBarState, setTabBarState] = useState(1);
+  const [tarBarState, setTabBarState] = useState(0);
   const [HealthCouponsState, setHealthCouponsState] = useState(false);
   return (
     <div className="health-index">

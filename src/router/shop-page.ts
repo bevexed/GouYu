@@ -33,5 +33,9 @@ export const ShopPage: RouteType[] = [
     path: '/shop/shop-car-page',
     component: lazy(() => import('../containers/shop-page/shop-car-page')),
     exact: true,
+  }, {
+    path: '/shop/fill-in-order-page',
+    component: lazy(() => import('../containers/shop-page/fill-in-order-page')),
+    exact: true,
   }
 ];
