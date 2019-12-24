@@ -29,5 +29,9 @@ export const ShopPage: RouteType[] = [
     path: '/shop/web-celebrity-goods-page',
     component: lazy(() => import('../containers/shop-page/web-celebrity-goods-page')),
     exact: true,
+  }, {
+    path: '/shop/shop-car-page',
+    component: lazy(() => import('../containers/shop-page/shop-car-page')),
+    exact: true,
   }
 ];

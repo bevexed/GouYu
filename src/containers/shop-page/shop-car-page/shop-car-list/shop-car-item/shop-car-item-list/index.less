@@ -1,0 +1,53 @@
+._shop-car-item-list {
+  .hr {
+    width: 622px;
+    height: 2px;
+    background: #ededed;
+    float: right;
+  }
+}
+
+._shop-car-item-list-item {
+  display: flex;
+  align-items: center;
+
+  &-img {
+    width: 176px;
+    height: 176px;
+    margin-left: 30px;
+  }
+
+  .dis {
+    display: flex;
+    justify-content: space-between;
+    align-self: stretch;
+    flex-direction: column;
+    margin-left: 24px;
+
+    .title {
+      font-size: 28px;
+      font-weight: 400;
+      color: rgba(38, 45, 44, 1);
+    }
+
+    .sub-title {
+      font-size: 24px;
+      font-weight: 400;
+      color: rgba(116, 121, 120, 1);
+      margin: 5px 0;
+    }
+
+    .tags {
+    }
+
+    footer {
+      display: flex;
+      align-items: flex-end;
+
+      > :nth-child(2) {
+        margin-left: 20px;
+        flex-grow: 1;
+      }
+    }
+  }
+}

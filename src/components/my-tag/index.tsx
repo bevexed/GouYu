@@ -4,6 +4,7 @@ import './index.less';
 type Props = {
   children: string | ReactNode;
   onTouchStart?: TouchEventHandler;
+  round?: boolean
 };
 export const MyTag: FC<Props> = (props: Props) => {
   return <div className="my-tag">{ props.children }</div>;
@@ -45,7 +46,8 @@ export const MySmallYellowTag: FC<Props> = (props: Props) => {
 
 export const MyBlueTag: FC<Props> = (props: Props) => {
   return (
-    <div className="my-blue-tag" onTouchStart={ props.onTouchStart }>
+    <div className="my-blue-tag" style={ { borderRadius: props.round ? '16px' : '' } }
+         onTouchStart={ props.onTouchStart }>
       { props.children }
     </div>
   );
