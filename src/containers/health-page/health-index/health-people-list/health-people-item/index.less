@@ -1,0 +1,55 @@
+.health-people-item {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 336px;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-top: 18px;
+
+  &-img {
+    width: 336px;
+    height: auto;
+  }
+
+  > section.dis {
+    padding: 10px 18px;
+    width: 306px;
+    font-size: 26px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 1);
+    line-height: 40px;
+  }
+
+  &-footer {
+    margin: 0 12px 12px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+
+    &-img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+    }
+
+    p {
+      flex-grow: 1;
+      font-size: 22px;
+      color: rgba(116, 121, 120, 1);
+      margin-left: 10px;
+    }
+
+    section {
+      width: 54+24+20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 24px;
+      font-weight: 400;
+      color: rgba(116, 121, 120, 1);
+    }
+  }
+
+}

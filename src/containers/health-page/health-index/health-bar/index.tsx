@@ -2,9 +2,11 @@ import React, { FC, useState } from 'react';
 import './index.less';
 import { MyImage } from '../../../../components/my-image';
 import { iconPic } from '../../../../config/image';
-import { WhiteSpace } from "antd-mobile";
+import { WhiteSpace } from 'antd-mobile';
 
-type HealthBarProps = {};
+type HealthBarProps = {
+  getSelectedState: (selected: number) => void;
+};
 const barList = [
   { label: '状态' },
   { label: '健康达人' },
@@ -22,7 +24,10 @@ const HealthBar: FC<HealthBarProps> = (props: HealthBarProps) => {
         { barList.map((item, key) => (
           <li
             key={ key }
-            onTouchEnd={ () => setSelected(key) }
+            onTouchEnd={ () => {
+              setSelected(key);
+              props.getSelectedState(key);
+            } }
             className={ (selected === key && 'active').toString() }>
             { item.label }
             { selected === key && (

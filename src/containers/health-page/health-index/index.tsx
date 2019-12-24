@@ -18,49 +18,62 @@ import { MyButton } from '../../../components/my-button';
 import HealthGoal from './health-goal';
 import HealthTask from './health-task';
 import MyLittleGoal from './my-little-goal';
+import HealthPeopleList from './health-people-list';
 
 type HealthIndexProps = {};
 const HealthIndex: FC<HealthIndexProps> = (props: HealthIndexProps) => {
+  const [tarBarState, setTabBarState] = useState(1);
   const [HealthCouponsState, setHealthCouponsState] = useState(false);
   return (
     <div className="health-index">
       <WingBlank>
         <HealthHeader/>
-        <HealthBar/>
+        <HealthBar
+          getSelectedState={ tarBarState => setTabBarState(tarBarState) }
+        />
       </WingBlank>
 
-      <HealthEvaluate/>
+      {/*状态*/ }
+      { tarBarState < 1 ? (
+        <>
+          <HealthEvaluate/>
+          <>
+            <HealthEvaluated/>
+            <MyWhiteBlank backgroundColor={ '#F8F9FA' }/>
+            <HealthGoal/>
+            <MyLittleGoal/>
+            <MyWhiteBlank backgroundColor={ '#F8F9FA' }/>
+            <HealthTask/>
+            <MyWhiteBlank backgroundColor={ '#F8F9FA' }/>
+          </>
 
-      <>
-        <HealthEvaluated/>
-        <MyWhiteBlank backgroundColor={ '#F8F9FA' }/>
-        <HealthGoal/>
-        <MyLittleGoal/>
-        <MyWhiteBlank backgroundColor={ '#F8F9FA' }/>
-        <HealthTask/>
-        <MyWhiteBlank backgroundColor={ '#F8F9FA' }/>
-      </>
+          <WingBlank>
+            <WhiteSpace size={ 'lg' }/>
+            <Discounts/>
+          </WingBlank>
+          <MyWhiteBlank backgroundColor={ '#F8F9FA' }/>
 
-      <WingBlank>
-        <WhiteSpace size={ 'lg' }/>
-        <Discounts/>
-      </WingBlank>
-      <MyWhiteBlank backgroundColor={ '#F8F9FA' }/>
+          <MyMore
+            path={ '/shop/second-kill-page' }
+            children={ '健康达人SHOW' }
+            rightContent={ '去围观' }
+          />
+          <StarShowBanner bannerList={ [1, 3, 4] }/>
+          <MyWhiteBlank backgroundColor={ '#F8F9FA' }/>
 
-      <MyMore
-        path={ '/shop/second-kill-page' }
-        children={ '健康达人SHOW' }
-        rightContent={ '去围观' }
-      />
-      <StarShowBanner bannerList={ [1, 3, 4] }/>
-      <MyWhiteBlank backgroundColor={ '#F8F9FA' }/>
+          <Banner title={ <MyTitle>现金天天抽</MyTitle> }/>
+          <MyWhiteBlank backgroundColor={ '#F8F9FA' }/>
 
-      <Banner title={ <MyTitle>现金天天抽</MyTitle> }/>
-      <MyWhiteBlank backgroundColor={ '#F8F9FA' }/>
+          <Banner title={ <MyTitle>网红体验馆</MyTitle> }/>
 
-      <Banner title={ <MyTitle>网红体验馆</MyTitle> }/>
-
-      <MyButton className={ 'open-health-btn' }>开启我的健康之旅</MyButton>
+          <MyButton className={ 'open-health-btn' }>开启我的健康之旅</MyButton>
+        </>
+      ) : (
+        <WingBlank style={ { background: '#F8F9FA' } }>
+          <WhiteSpace/>
+          <HealthPeopleList/>
+        </WingBlank>
+      ) }
 
       <MyTabBar/>
 
