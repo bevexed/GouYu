@@ -13,18 +13,22 @@ import MyTitle from '../../../../components/my-title';
 import MyCheckBox from '../../../../components/my-check-box';
 import FillPayNow from './fill-pay-now';
 import { BlackLabel } from '../../../../components/price';
-import { useHistory } from "react-router";
+import { useHistory } from 'react-router';
+import { MyBlueTag } from '../../../../components/my-tag';
 
 type Props = {};
 const FillInOrderPage: FC<Props> = (props: Props) => {
-  const { push } = useHistory()
+  const { push } = useHistory();
   return (
     <div className="_fill-in-order-page">
       <MyNavBar>填写订单</MyNavBar>
       <WingBlank>
         <MyAddressItem
+          name={ '王涛' }
+          phone={ '132****5121' }
+          phoneAfter={ <MyBlueTag>默认</MyBlueTag> }
+          addressContent={ <span>浙江省杭州市西湖区剑桥公社E座B02</span> }
           onTouchEnd={ () => push('/shop/shop-car/select-consignee-page') }
-          border={ false }
           rightContent={ <MyIcon src={ iconPic.more } onTouchEnd={ () => {
           } }/> }
         />

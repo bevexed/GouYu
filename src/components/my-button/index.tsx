@@ -1,5 +1,7 @@
 import React, { FC, ReactNode, TouchEventHandler } from 'react';
 import './index.less';
+import { WingBlank } from 'antd-mobile';
+import MyWhiteBlank from '../my-white-blank';
 
 interface Prop {
   children: string | ReactNode;
@@ -68,13 +70,29 @@ export const LotteryButton: FC<LotteryButtonProps> = props => {
 
 export const MyGradientButton: FC<Prop> = props => {
   return (
-    <div className={ `my-gradient-button ${ props.className }` } onTouchEnd={ props.onTouchEnd }>
+    <div
+      className={ `my-gradient-button ${ props.className }` }
+      onTouchEnd={ props.onTouchEnd }>
       <span>{ props.children }</span>
     </div>
   );
 };
 
-export const MyNormalButton: FC<Prop> = props => <div className={ `my-normal-button ${ props.className }` }
-                                                      onTouchEnd={ props.onTouchEnd }>
-  <span>{ props.children }</span>
-</div>
+export const MyNormalButton: FC<Prop> = props => (
+  <div
+    className={ `my-normal-button ${ props.className }` }
+    onTouchEnd={ props.onTouchEnd }>
+    <span>{ props.children }</span>
+  </div>
+);
+
+export const MyBottomButton: FC<Prop> = props => (
+  <WingBlank>
+    <div
+      className={ `my-bottom-button ${ props.className }` }
+      onTouchEnd={ props.onTouchEnd }>
+      <span>{ props.children }</span>
+    </div>
+    <MyWhiteBlank height={ 88 * 2 }/>
+  </WingBlank>
+);

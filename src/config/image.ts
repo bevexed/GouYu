@@ -17,5 +17,6 @@ export const iconPic = {
   wx: require('../static/image/icon_wechat_h@2x.png'),
   wx_react: require('../static/image/icon_wechat_h_react@2x.png'),
   zfb_react: require('../static/image/pic_alipay_reat@2x.png'),
-  btn_success: require('../static/image/btn_succeed_h@2x.png')
+  btn_success: require('../static/image/btn_succeed_h@2x.png'),
+  edit: require('../static/image/ico_edit_h@2x.png'),
 };
