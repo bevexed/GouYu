@@ -73,3 +73,8 @@ export const MyGradientButton: FC<Prop> = props => {
     </div>
   );
 };
+
+export const MyNormalButton: FC<Prop> = props => <div className={ `my-normal-button ${ props.className }` }
+                                                      onTouchEnd={ props.onTouchEnd }>
+  <span>{ props.children }</span>
+</div>

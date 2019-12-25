@@ -4,7 +4,7 @@ import { MyImage } from '../my-image';
 
 type Props = {
   src: string;
-  onTouchEnd: TouchEventHandler;
+  onTouchEnd?: TouchEventHandler;
   white?: boolean;
 };
 const MyIcon: FC<Props> = (props: Props) => {

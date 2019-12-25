@@ -23,3 +23,10 @@ export const VipPrice: FC<PriceProps> = (props: PriceProps) => {
   );
 };
 
+export const GrayLabel: FC<PriceProps> = props => (
+  <div className="_gray-label">{ props.children }</div>
+);
+
+export const BlackLabel: FC<PriceProps> = props => (
+  <div className="_black-label">{ props.children }</div>
+);
