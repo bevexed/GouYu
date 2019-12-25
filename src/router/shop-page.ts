@@ -23,7 +23,7 @@ export const ShopPage: RouteType[] = [
     exact: true,
   }, {
     path: '/shop/catalogue-page/catalogue-detail-page/:sortName',
-    component: lazy(() => import('../containers/shop-page/catalogue-detail-page')),
+    component: lazy(() => import('../containers/shop-page/catalogue-page/catalogue-detail-page')),
     exact: true,
   }, {
     path: '/shop/web-celebrity-goods-page',
@@ -35,11 +35,11 @@ export const ShopPage: RouteType[] = [
     exact: true,
   }, {
     path: '/shop/fill-in-order-page',
-    component: lazy(() => import('../containers/shop-page/fill-in-order-page')),
+    component: lazy(() => import('../containers/shop-page/shop-car-page/fill-in-order-page')),
     exact: true,
   }, {
     path: '/shop/pay-success-page',
-    component: lazy(() => import('../containers/shop-page/pay-success-page')),
+    component: lazy(() => import('../containers/shop-page/shop-car-page/pay-success-page')),
     exact: true,
   }
 ];

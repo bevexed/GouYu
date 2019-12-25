@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import './index.less';
-import MyTag from '../../../../components/my-tag';
-import { iconPic } from '../../../../config/image';
-import MyWhiteBlank from "../../../../components/my-white-blank";
+import MyTag from '../../../../../components/my-tag';
+import { iconPic } from '../../../../../config/image';
+import MyWhiteBlank from "../../../../../components/my-white-blank";
 
 type GoodItemProps = {
   img: string;

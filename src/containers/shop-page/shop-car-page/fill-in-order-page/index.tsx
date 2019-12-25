@@ -1,17 +1,18 @@
 import React, { FC } from 'react';
 import './index.less';
-import { MyNavBar } from '../../../components/my-nav-bar';
-import MyAddressItem from '../../my-page/components/my-address-item';
-import { iconPic } from '../../../config/image';
-import MyIcon from '../../../components/my-icon';
+import { MyNavBar } from '../../../../components/my-nav-bar';
+import MyAddressItem from '../../../my-page/components/my-address-item';
+import { iconPic } from '../../../../config/image';
+import MyIcon from '../../../../components/my-icon';
 import { WingBlank } from 'antd-mobile';
-import OrderItem from '../components/oder-item';
-import MyWhiteBlank from '../../../components/my-white-blank';
-import MyList from '../../../components/my-list';
-import MyItem from '../../../components/my-item';
-import MyTitle from '../../../components/my-title';
-import MyCheckBox from '../../../components/my-check-box';
+import OrderItem from '../../components/oder-item';
+import MyWhiteBlank from '../../../../components/my-white-blank';
+import MyList from '../../../../components/my-list';
+import MyItem from '../../../../components/my-item';
+import MyTitle from '../../../../components/my-title';
+import MyCheckBox from '../../../../components/my-check-box';
 import FillPayNow from './fill-pay-now';
+import { BlackLabel } from '../../../../components/price';
 
 type Props = {};
 const FillInOrderPage: FC<Props> = (props: Props) => {
@@ -24,6 +25,23 @@ const FillInOrderPage: FC<Props> = (props: Props) => {
           rightContent={ <MyIcon src={ iconPic.more } onTouchEnd={ () => {
           } }/> }
         />
+
+        <ul className="inputs">
+          <li>
+            <BlackLabel>真实姓名</BlackLabel>
+            <input
+              type="text"
+              placeholder={ '因海关需要，请填写收货人真实姓名' }
+            />
+          </li>
+          <li>
+            <BlackLabel>身份证号</BlackLabel>
+            <input
+              type="text"
+              placeholder={ '因海关需要，请填写收货人身份证号' }
+            />
+          </li>
+        </ul>
       </WingBlank>
 
       <MyWhiteBlank backgroundColor={ '#F8F9FA' }/>

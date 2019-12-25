@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import './index.less';
-import { MyNavBar } from '../../../components/my-nav-bar';
-import { MyImage } from '../../../components/my-image';
-import { iconPic } from '../../../config/image';
-import { BlackLabel, GrayLabel, Price } from '../../../components/price';
-import { MyGradientButton, MyNormalButton, } from '../../../components/my-button';
-import MyWhiteBlank from '../../../components/my-white-blank';
+import { MyNavBar } from '../../../../components/my-nav-bar';
+import { MyImage } from '../../../../components/my-image';
+import { iconPic } from '../../../../config/image';
+import { BlackLabel, GrayLabel, Price } from '../../../../components/price';
+import { MyGradientButton, MyNormalButton, } from '../../../../components/my-button';
+import MyWhiteBlank from '../../../../components/my-white-blank';
 import { WingBlank } from 'antd-mobile';
 
 type Props = {};

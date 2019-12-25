@@ -1,9 +1,9 @@
 import React, { FC, useState } from 'react';
 import './index.less';
 import { useParams } from 'react-router';
-import { MyNavBar } from '../../../components/my-nav-bar';
-import { GoodStateBar } from '../../../components/my-tabs';
-import GuessYouLikeList from '../shop-index/guess-you-like';
+import { MyNavBar } from '../../../../components/my-nav-bar';
+import { GoodStateBar } from '../../../../components/my-tabs';
+import GuessYouLikeList from '../../shop-index/guess-you-like';
 import { GoodList } from './catalogue-good-list';
 import { WhiteSpace } from 'antd-mobile';
 

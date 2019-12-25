@@ -4,7 +4,7 @@ import MySearchBar from '../../../components/my-search-bar';
 import { GoodStateBar } from '../../../components/my-tabs';
 import { WhiteSpace, WingBlank } from 'antd-mobile';
 import GuessYouLikeList from '../../shop-page/shop-index/guess-you-like';
-import { GoodList } from '../../shop-page/catalogue-detail-page/catalogue-good-list';
+import { GoodList } from '../../shop-page/catalogue-page/catalogue-detail-page/catalogue-good-list';
 import { useParams } from 'react-router';
 import { SearchTabBar } from './search-tab-bar';
 import ShopItem from './shop-item';

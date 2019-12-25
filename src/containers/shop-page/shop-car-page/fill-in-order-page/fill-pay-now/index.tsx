@@ -7,8 +7,8 @@
 
 import React, { FC } from 'react';
 import './index.less';
-import MyWhiteBlank from '../../../../components/my-white-blank';
-import { Price } from '../../../../components/price';
+import MyWhiteBlank from '../../../../../components/my-white-blank';
+import { Price } from '../../../../../components/price';
 import { useHistory } from "react-router";
 
 type Props = {};
