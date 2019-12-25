@@ -4,17 +4,19 @@
  * @date 2019/12/24
  * @time 18:46
  */
-import React, { FC, ReactNode } from 'react';
+import React, { FC, ReactNode, TouchEventHandler } from 'react';
 import './index.less';
 import { MyBlueTag } from '../../../../components/my-tag';
 
 type Props = {
   border: boolean;
   rightContent: ReactNode;
+  onTouchEnd?: TouchEventHandler
 };
 const MyAddressItem: FC<Props> = (props: Props) => {
   return (
-    <div className="_my-address-item" style={ { borderBottom: props.border ? '2px solid #ededed' : '' } }>
+    <div className="_my-address-item" onTouchEnd={ props.onTouchEnd }
+         style={ { borderBottom: props.border ? '2px solid #ededed' : '' } }>
       <div className="_my-address-item-left">
         <header>
           <span className="name">王涛</span>

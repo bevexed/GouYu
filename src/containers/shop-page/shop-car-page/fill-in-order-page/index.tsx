@@ -13,14 +13,17 @@ import MyTitle from '../../../../components/my-title';
 import MyCheckBox from '../../../../components/my-check-box';
 import FillPayNow from './fill-pay-now';
 import { BlackLabel } from '../../../../components/price';
+import { useHistory } from "react-router";
 
 type Props = {};
 const FillInOrderPage: FC<Props> = (props: Props) => {
+  const { push } = useHistory()
   return (
     <div className="_fill-in-order-page">
       <MyNavBar>填写订单</MyNavBar>
       <WingBlank>
         <MyAddressItem
+          onTouchEnd={ () => push('/shop/shop-car/select-consignee-page') }
           border={ false }
           rightContent={ <MyIcon src={ iconPic.more } onTouchEnd={ () => {
           } }/> }
