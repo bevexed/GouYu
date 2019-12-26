@@ -61,5 +61,11 @@ export const ShopPage: RouteType[] = [
       import('../containers/shop-page/shop-car-page/select-consignee-page'),
     ),
     exact: true,
+  }, {
+    path: '/shop/shop-car/add-consignee-page',
+    component: lazy(() =>
+      import('../containers/shop-page/shop-car-page/add-consignee-page'),
+    ),
+    exact: true,
   },
 ];

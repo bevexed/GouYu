@@ -13,7 +13,7 @@ import MyWhiteBlank from '../../../../components/my-white-blank';
 import { MyBottomButton } from '../../../../components/my-button';
 
 type Props = {};
-const Index: FC<Props> = (props: Props) => {
+const SelectConsigneePage: FC<Props> = (props: Props) => {
   const { push } = useHistory();
   return (
     <div className="_select-consignee-page">
@@ -44,14 +44,15 @@ const Index: FC<Props> = (props: Props) => {
           </WingBlank>
 
           <MyWhiteBlank backgroundColor={ '#F8F9FA' }/>
-
         </div>
       )) }
 
-      <MyBottomButton>添加新收获人</MyBottomButton>
-
+      <MyBottomButton
+        onTouchEnd={ () => push('/shop/shop-car/add-consignee-page') }>
+        添加新收获人
+      </MyBottomButton>
     </div>
   );
 };
 
-export default Index;
+export default SelectConsigneePage;
