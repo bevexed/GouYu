@@ -12,9 +12,10 @@ import { MyImage } from '../my-image';
 
 type Props = {
   label: string;
-  right: ReactNode;
+  right?: ReactNode;
   icon?: ReactNode;
   arrow?: boolean;
+  children?: ReactNode;
 };
 const MyItem: FC<Props> = (props: Props) => {
   return (
@@ -23,6 +24,9 @@ const MyItem: FC<Props> = (props: Props) => {
         { props.icon && <div className="icon">{ props.icon }</div> }
         <span className="label">{ props.label }</span>
       </section>
+      { props.children && (
+        <section className="_my-item-children">{ props.children }</section>
+      ) }
       <aside className="right">
         <span> { props.right }</span>
         { props.arrow && <MyImage src={ iconPic.more } className="icon"/> }
@@ -30,5 +34,17 @@ const MyItem: FC<Props> = (props: Props) => {
     </div>
   );
 };
+
+interface MySelectItemProps {
+  checkBox: ReactNode;
+  disc: string;
+}
+
+export const MySelectItem: FC<MySelectItemProps> = props => (
+  <div className="_my-select-item">
+    <div className="left">{ props.checkBox }</div>
+    <div className="desc">{ props.disc }</div>
+  </div>
+);
 
 export default MyItem;

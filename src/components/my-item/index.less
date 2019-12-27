@@ -4,11 +4,17 @@
   align-items: center;
   border-bottom: 2px solid #ededed;
 
+  &-children {
+    flex: 1;
+    margin-left: 36px;
+  }
+
   section.left {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 30px 0;
+    width: 112px;
 
     .icon {
       display: flex;
@@ -36,5 +42,22 @@
       width: 28px;
       height: 28px;
     }
+  }
+}
+
+._my-select-item {
+  padding: 0 15Px;
+  display: flex;
+  width: 750px;
+  height: 100px;
+  background: rgba(248, 249, 250, 1);
+  align-items: center;
+  box-sizing: border-box;
+
+  .desc {
+    font-size: 26px;
+    font-weight: 400;
+    color: rgba(153, 153, 153, 1);
+    margin-left: 20px;
   }
 }
