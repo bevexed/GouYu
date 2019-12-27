@@ -3,7 +3,8 @@ import { Toast } from 'antd-mobile';
 
 axios.defaults.baseURL = 'https://api.example.com';
 axios.defaults.headers.common['Authorization'] = 'AUTH_TOKEN';
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+axios.defaults.headers.post['Content-Type'] =
+  'application/x-www-form-urlencoded';
 
 interface AjaxProps {
   url: string;
@@ -13,11 +14,11 @@ interface AjaxProps {
 }
 
 export const ajax = ({
-                       url,
-                       data = {},
-                       method = 'GET',
-                       loading = true,
-                     }: AjaxProps) => {
+  url,
+  data = {},
+  method = 'GET',
+  loading = true,
+}: AjaxProps) => {
   return new Promise((resolve, reject) => {
     let promise;
     if (method === 'GET') {
@@ -36,26 +37,25 @@ export const ajax = ({
 
     // 添加请求拦截器
     axios.interceptors.request.use(
-      function (config) {
+      function(config) {
         // 在发送请求之前做些什么
 
         // 加载 loading 动画
         if (loading) {
-          Toast.loading('数据加载中...', 60, () => {
-          }, true);
+          Toast.loading('数据加载中...', 60, () => {}, true);
         }
 
         return config;
       },
-      function (error) {
+      function(error) {
         // 对请求错误做些什么
         return Promise.reject(error);
       },
     );
 
-// 添加响应拦截器
+    // 添加响应拦截器
     axios.interceptors.response.use(
-      function (response) {
+      function(response) {
         // 对响应数据做点什么
         if (response.data.code === 2) {
           sessionStorage.clear();
@@ -65,7 +65,7 @@ export const ajax = ({
         Toast.hide();
         return response;
       },
-      function (error) {
+      function(error) {
         // 对响应错误做点什么
         // sessionStorage.clear();
         // window.location.replace('/');
@@ -79,5 +79,3 @@ export const ajax = ({
     );
   });
 };
-
-
