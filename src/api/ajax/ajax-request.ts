@@ -11,7 +11,7 @@ export const ajaxRequest = ({
   errorCallback,
 }: ajaxRequestProps) => {
   axios.interceptors.request.use(
-    config =>
+    (config) =>
       beforeSend(config),
     error => {
       errorCallback(error);

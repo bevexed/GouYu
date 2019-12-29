@@ -1,11 +1,10 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
-
-import { a } from './test/reducer';
+import { user } from './user/reducer';
 
 const reducers = combineReducers({
-  a,
+  user
 });
 
 export default createStore(
