@@ -1,5 +1,5 @@
 import { ajax } from '../ajax';
-import { OneClassifyListProps, QueryClassifyListProps, } from '../../redux/goods/reducer';
+import { ClassifyBannerProps, OneClassifyListProps, QueryClassifyListProps, } from '../../redux/goods/reducer';
 import { AjaxQueryClassifyListProps } from './GoodProps';
 
 export const AjaxQueryOneClassifyList = () =>
@@ -13,4 +13,10 @@ export const AjaxQueryClassifyList = (data: AjaxQueryClassifyListProps) =>
     url: '/goods/queryClassifyList',
     method: 'GET',
     data,
+  });
+
+export const AjaxQueryClassifyBanner = () =>
+  ajax<ClassifyBannerProps>({
+    url: '/goods/queryClassifyBanner',
+    method: 'GET',
   });

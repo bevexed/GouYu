@@ -1,5 +1,5 @@
 import { ActionProps } from '../store';
-import { GET_CLASSIFY_LIST, GET_ONE_CLASSIFY_LIST } from '../action-types';
+import { GET_CLASSIFY_BANNER, GET_CLASSIFY_LIST, GET_ONE_CLASSIFY_LIST, } from '../action-types';
 
 const initOneClassifyList = [
   {
@@ -59,6 +59,32 @@ export const queryClassifyList = (
 ) => {
   switch (action.type) {
     case GET_CLASSIFY_LIST:
+      return action.data;
+    default:
+      return state;
+  }
+};
+
+const initClassifyBanner = [
+  {
+    id: 1,
+    image: '图片',
+    isProhibit: '是否禁用(0:否 1:是)',
+    jumpAddress: '跳转地址',
+    title: '标题',
+    type:
+      '类型(0:商城首页轮播banner 1:vipbanner 2:网红商品banner 3:康养首页banner 4:抽奖banner  5:我的首页banner 6.商城分类banner )',
+  },
+];
+
+export type ClassifyBannerProps = typeof initClassifyBanner;
+
+export const classifyBanner = (
+  state = initClassifyBanner,
+  action: ActionProps,
+) => {
+  switch (action.type) {
+    case GET_CLASSIFY_BANNER:
       return action.data;
     default:
       return state;

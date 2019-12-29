@@ -8,23 +8,21 @@ import SortUp from './images/sort-1.png';
 import SortNone from './images/sort-0.png';
 import SortDown from './images/sort-2.png';
 import { useDispatch, useSelector } from 'react-redux';
-import { reqQueryClassifyList, reqQueryOneClassifyList } from '../../redux/goods/actions';
+import { reqQueryClassifyBanner, reqQueryClassifyList, reqQueryOneClassifyList, } from '../../redux/goods/actions';
 import { ReducersProps } from '../../redux/store';
-import { OneClassifyListProps, QueryClassifyListProps } from '../../redux/goods/reducer';
+import { ClassifyBannerProps, OneClassifyListProps, QueryClassifyListProps, } from '../../redux/goods/reducer';
 import { ContentItem } from './my-tab';
-
 
 type TabsProps = {};
 
-interface LeftTabsProps extends TabsProps {
-}
+interface LeftTabsProps extends TabsProps {}
 
 export const LeftTabs: FC<LeftTabsProps> = (props: LeftTabsProps) => {
-
   const [currentTab, setCurrentTab] = useState(0);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(reqQueryOneClassifyList());
+    dispatch(reqQueryClassifyBanner());
   }, [dispatch]);
   const oneClassifyList = useSelector<ReducersProps, OneClassifyListProps>(
     state => state.oneClassifyList,
@@ -34,35 +32,48 @@ export const LeftTabs: FC<LeftTabsProps> = (props: LeftTabsProps) => {
     state => state.queryClassifyList,
   );
 
-  useEffect(()=>{
-    const classifyId = oneClassifyList[currentTab].id + ''
-    dispatch(reqQueryClassifyList({classifyId}))
-  },[currentTab, dispatch, oneClassifyList]);
+  const classifyBanner = useSelector<ReducersProps, ClassifyBannerProps>(
+    state => state.classifyBanner,
+  );
+
+  useEffect(() => {
+    const classifyId = oneClassifyList[currentTab].id + '';
+    dispatch(reqQueryClassifyList({ classifyId }));
+  }, [currentTab, dispatch, oneClassifyList]);
 
   return (
     <div className="left-tabs">
       <div className="tabs">
         {oneClassifyList.map((item, index) => (
           <div
-            className={ ['tab', currentTab === index && 'active'].join(' ') }
-            onTouchStart={ () => setCurrentTab(index) }
-            key={ index }>
-            { item.oneName }
+            className={['tab', currentTab === index && 'active'].join(' ')}
+            onTouchStart={() => setCurrentTab(index)}
+            key={index}
+          >
+            {item.oneName}
           </div>
         ))}
       </div>
 
       <div className="contents">
-        <img
-          className={'top-img'}
-          src="https://img.alicdn.com/tfs/TB1N45jX.H1gK0jSZSyXXXtlpXa-966-644.jpg_490x490q100.jpg_.webp"
-          alt=""
-        />
-        { queryClassifyList.map((item, index) => (
-          <div className="content" key={ index }>
-            { <ContentItem ThreeClassify={item.ThreeClassify} twoName={item.twoName}/> }
+        {classifyBanner.map((item, key) => (
+          <img
+            key={key}
+            className={'top-img'}
+            src="https://img.alicdn.com/tfs/TB1N45jX.H1gK0jSZSyXXXtlpXa-966-644.jpg_490x490q100.jpg_.webp"
+            alt=""
+          />
+        ))}
+        {queryClassifyList.map((item, index) => (
+          <div className="content" key={index}>
+            {
+              <ContentItem
+                ThreeClassify={item.ThreeClassify}
+                twoName={item.twoName}
+              />
+            }
           </div>
-        )) }
+        ))}
       </div>
     </div>
   );
