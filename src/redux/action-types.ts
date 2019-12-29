@@ -4,3 +4,8 @@ export const CLEAR_USER_INFO = 'clear_user_info'
 
 // 综合
 export const ERROR_MSG = 'error_msg';
+
+// 商品
+  // 分类
+export const GET_ONE_CLASSIFY_LIST = 'get_one_classify_list';
+export const GET_CLASSIFY_LIST = 'get_classify_list';

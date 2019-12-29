@@ -15,8 +15,11 @@ const MyGetCodeButton: FC<Props> = (props: Props) => {
   let [codeString, setCodeString] = useState('获取验证码');
   let [time, setTime] = useState(60);
   const [timer, setTimer] = useState();
+
   useEffect(() => {
-    return clearTimeout(timer);
+    return () => {
+      time < 60 && clearTimeout(timer);
+    };
   });
   useEffect(() => {}, []);
   const getCode = async () => {
@@ -34,8 +37,9 @@ const MyGetCodeButton: FC<Props> = (props: Props) => {
       if (time <= 0) {
         time = 60;
         codeString = '获取验证码';
-        clearInterval(timer);
+        clearInterval(_timer);
       }
+
       setTime(time);
       setCodeString(codeString);
     }, 1000);

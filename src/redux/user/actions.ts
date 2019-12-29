@@ -7,6 +7,16 @@ import { Toast } from 'antd-mobile';
 import { UserInfoProps } from './reducer';
 import { AjaxStatus } from '../../api/ajax';
 
+export const getUserInfo = (userInfo: UserInfoProps) => ({
+  type: GET_USER_INFO,
+  data: userInfo,
+});
+
+export const clearUserInfo = () => ({
+  type: CLEAR_USER_INFO,
+  data:{token:''}
+});
+
 export const getCode = async ({ phone, type }: AjaxUserGetCodeProps) => {
   if (!isPhoneNumber(phone)) {
     Toast.fail('请验证手机号');
@@ -17,15 +27,6 @@ export const getCode = async ({ phone, type }: AjaxUserGetCodeProps) => {
   console.log(res);
   return true;
 };
-
-export const getUserInfo = (userInfo: UserInfoProps) => ({
-  type: GET_USER_INFO,
-  data: userInfo,
-});
-
-export const clearUserInfo = () => ({
-  type: CLEAR_USER_INFO,
-});
 
 export const reqUserLogin = (data: AjaxUserLoginProps) => {
   return async (dispatch: Dispatch) => {

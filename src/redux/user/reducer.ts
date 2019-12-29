@@ -1,10 +1,6 @@
 import { CLEAR_USER_INFO, GET_USER_INFO } from '../action-types';
 import { getLocalStorage, saveLocalStorage } from '../../util/storage';
-
-interface ActionProps {
-  type: string;
-  data: any;
-}
+import { ActionProps } from '../store';
 
 const initUserInfo = {
   isFirst: '是否第一次登录(0:否 1:是)',
@@ -31,7 +27,8 @@ export const userInfo = (state = initUserInfo, action: ActionProps) => {
       saveLocalStorage('token', action.data.token);
       return { ...state, ...action.data };
     case CLEAR_USER_INFO:
-      return localStorage.clear();
+      localStorage.clear();
+      return { ...state, ...action.data };
     default:
       const token = getLocalStorage('token');
       return { ...state, token };
