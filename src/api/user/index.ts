@@ -9,10 +9,8 @@ export const AjaxUserGetCode = (data: AjaxUserGetCodeProps) =>
     method: 'GET',
   });
 
-export const AjaxUserLogin = (
-  data: AjaxUserLoginProps,
-): Promise<UserInfoProps> =>
-  ajax({
+export const AjaxUserLogin = (data: AjaxUserLoginProps) =>
+  ajax<UserInfoProps>({
     url: '/user/userLogin',
     data,
     method: 'POST',

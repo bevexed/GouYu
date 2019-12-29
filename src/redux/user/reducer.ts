@@ -1,4 +1,5 @@
-import { GET_USER_INFO } from '../action-types';
+import { CLEAR_USER_INFO, GET_USER_INFO } from '../action-types';
+import { getLocalStorage, saveLocalStorage } from '../../util/storage';
 
 interface ActionProps {
   type: string;
@@ -26,8 +27,13 @@ export type UserInfoProps = typeof initUserInfo;
 export const userInfo = (state = initUserInfo, action: ActionProps) => {
   switch (action.type) {
     case GET_USER_INFO:
-      return { state, ...action.data };
+      saveLocalStorage('userInfo', action.data);
+      saveLocalStorage('token', action.data.token);
+      return { ...state, ...action.data };
+    case CLEAR_USER_INFO:
+      return localStorage.clear();
     default:
-      return state;
+      const token = getLocalStorage('token');
+      return { ...state, token };
   }
 };

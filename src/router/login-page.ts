@@ -3,7 +3,7 @@ import { RouteType } from './index';
 
 export const LoginPage: RouteType[] = [
   {
-    path: '/login',
+    path: '/login-page',
     component: lazy(() => import('../containers/login-page/login-index')),
     exact: true,
   },

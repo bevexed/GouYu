@@ -15,7 +15,6 @@ interface LoginIndexProps {}
 const LoginIndex: FC<LoginIndexProps> = () => {
   const dispatch = useDispatch();
   const {token} =  useSelector<ReducersProps,UserInfoProps>((state) => state.userInfo)
-  console.log(token);
   const [phone, setPhone] = useState('18640460506');
   const [code, setCode] = useState('88888');
 

@@ -14,6 +14,10 @@ type Props = {
 const MyGetCodeButton: FC<Props> = (props: Props) => {
   let [codeString, setCodeString] = useState('获取验证码');
   let [time, setTime] = useState(60);
+  const [timer, setTimer] = useState();
+  useEffect(() => {
+    return clearTimeout(timer);
+  });
   useEffect(() => {}, []);
   const getCode = async () => {
     let res = await props.cb();
@@ -23,7 +27,7 @@ const MyGetCodeButton: FC<Props> = (props: Props) => {
     if (time < 60) {
       return Toast.show(time + 's后重发');
     }
-    let timer = setInterval(() => {
+    let _timer = setInterval(() => {
       --time;
       codeString = time + 's后重发';
 
@@ -35,6 +39,7 @@ const MyGetCodeButton: FC<Props> = (props: Props) => {
       setTime(time);
       setCodeString(codeString);
     }, 1000);
+    setTimer(_timer);
   };
   return (
     <div className="_my-get-code-button" onTouchEnd={getCode}>

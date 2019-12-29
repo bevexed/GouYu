@@ -3,7 +3,7 @@ import { RouteType } from './index';
 
 export const HealthPage: RouteType[] = [
   {
-    path: '/health',
+    path: '/health-page',
     component: lazy(() => import('../containers/health-page/health-index')),
     exact: true,
   }, {

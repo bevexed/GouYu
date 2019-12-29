@@ -17,7 +17,11 @@ interface AjaxProps {
   loading?: boolean;
 }
 
-export const ajax = <T>({ url, data, method = 'GET' }: AjaxProps):Promise<T> => {
+export const ajax = <T>({
+  url,
+  data,
+  method = 'GET',
+}: AjaxProps): Promise<ResProps<T>> => {
   // 发送简单请求
   console.log('%c Params', 'color:green', data);
   return new Promise((resolve, reject) => {
@@ -60,20 +64,22 @@ ajaxResponse({
   },
 });
 
-enum Status {
+export enum AjaxStatus {
   'success',
   'fail',
 }
 
-interface ResProps {
+
+export interface ResProps<T> {
   message: string;
-  status: Status;
+  status: AjaxStatus;
   success: boolean;
+  data: T;
   [key: string]: any;
 }
 
-const Intercept = (data: ResProps) => {
-  if (data.status === Status.success && data.success) {
+const Intercept = <T>(data: ResProps<T>) => {
+  if (data.status === AjaxStatus.success && data.success) {
   } else {
     Toast.fail(data.message);
   }

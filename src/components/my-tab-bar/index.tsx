@@ -29,13 +29,13 @@ const tabBarItem = [
     title: '社区',
   },
   {
-    pathname: '/shop',
+    pathname: '/shop-page',
     icon: <img className="my-tab-bar-pic" src={ MallPic_N } alt={ '' }/>,
     selectedIcon: <img className="my-tab-bar-pic" src={ MallPic_S } alt={ '' }/>,
     title: '商城',
   },
   {
-    pathname: '/health',
+    pathname: '/health-page',
     icon: <img className="my-tab-bar-pic" src={ HomePic_N } alt={ '' }/>,
     selectedIcon: <img className="my-tab-bar-pic" src={ HomePic_S } alt={ '' }/>,
     title: '康养',
