@@ -3,6 +3,7 @@ import { ajaxRequest } from './ajax-request';
 import { ajaxResponse } from './ajax-response';
 import { BackEndBaseUrl } from '../../config/url';
 import Qs from 'qs';
+import { Toast } from 'antd-mobile';
 
 axios.defaults.baseURL = BackEndBaseUrl;
 // axios.defaults.headers.common['Authorization'] = 'AUTH_TOKEN';
@@ -16,19 +17,15 @@ interface AjaxProps {
   loading?: boolean;
 }
 
-export const ajax = ({
-  url,
-  data,
-  method = 'GET',
-}: AjaxProps) => {
+export const ajax = ({ url, data, method = 'GET' }: AjaxProps) => {
   // 发送简单请求
-  const _data = Qs.stringify(data);
+  console.log('Params', data);
   return new Promise((resolve, reject) => {
     let promise;
     if (method === 'GET') {
-      promise = axios.get(url, { params: _data });
+      promise = axios.get(url, { params: data });
     } else {
-      promise = axios.post(url, _data);
+      promise = axios.post(url, Qs.stringify(data));
     }
     promise.then(
       response => {
@@ -41,15 +38,6 @@ export const ajax = ({
   });
 };
 
-ajaxResponse({
-  resolveCallback(res) {
-    return res;
-  },
-  rejectCallback(error) {
-    return error;
-  },
-});
-
 ajaxRequest({
   beforeSend(config) {
     return config;
@@ -58,3 +46,33 @@ ajaxRequest({
     return error;
   },
 });
+
+ajaxResponse({
+  resolveCallback(res) {
+    const { data } = res;
+    Intercept(data);
+    return res;
+  },
+  rejectCallback(error) {
+    Toast.fail('服务器错误', error);
+    return error;
+  },
+});
+
+enum Status {
+  'success',
+  'fail',
+}
+
+interface ResProps {
+  message: string;
+  status: Status;
+  success: boolean;
+  [key: string]: any;
+}
+
+const Intercept = (data: ResProps) => {
+  if (data.status === Status.success && data.success) {
+  } else {
+  }
+};

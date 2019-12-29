@@ -23,7 +23,7 @@ const AppRoutes: RouteType[] = [
   ...HealthPage,
   {
     path: '/',
-    component: lazy(() => import('../containers/login-page/login-page')),
+    component: lazy(() => import('../containers/login-page/login-index')),
     exact: true,
   },
 ];

@@ -1,5 +1,5 @@
 import { ajax } from '../ajax';
-import { AjaxUserLoginProps } from "./UserProps";
+import { AjaxUserGetCodeProps, AjaxUserLoginProps } from "./UserProps";
 
 export const AjaxUserLogin = (data: AjaxUserLoginProps) =>
   ajax({
@@ -7,9 +7,11 @@ export const AjaxUserLogin = (data: AjaxUserLoginProps) =>
     data,
     method: 'POST',
   });
-// export const AjaxUserLogin = (data: AjaxUserLoginProps) =>
-//   ajax({
-//     url: 'https://language.fangti.com/api/login/check_open_id',
-//     data,
-//     method: 'POST',
-//   });
+
+export const AjaxUserGetCode = (data: AjaxUserGetCodeProps) =>
+  ajax({
+    url: '/user/getCode',
+    data,
+    method: 'GET',
+  });
+

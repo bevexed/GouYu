@@ -19,16 +19,12 @@ import HealthGoal from './health-goal';
 import HealthTask from './health-task';
 import MyLittleGoal from './my-little-goal';
 import HealthPeopleList from './health-people-list';
-import { reqUserLogin } from '../../../redux/user/actions';
-import { useDispatch } from 'react-redux';
 
 type HealthIndexProps = {};
 const HealthIndex: FC<HealthIndexProps> = (props: HealthIndexProps) => {
-  const dispatch = useDispatch();
   const [tarBarState, setTabBarState] = useState(0);
   const [HealthCouponsState, setHealthCouponsState] = useState(false);
   useEffect(() => {
-    dispatch(reqUserLogin({ code: '123', userMobile: '12345678911' }));
   });
   return (
     <div className="health-index">

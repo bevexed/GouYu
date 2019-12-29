@@ -2,8 +2,8 @@
 import axios from 'axios';
 
 interface ajaxRequestProps {
-  beforeSend<T>(config: T): T;
-  errorCallback<T>(error: T): T;
+  beforeSend: (arg: any) => any;
+  errorCallback: (arg: any) => any;
 }
 
 export const ajaxRequest = ({
@@ -11,8 +11,7 @@ export const ajaxRequest = ({
   errorCallback,
 }: ajaxRequestProps) => {
   axios.interceptors.request.use(
-    (config) =>
-      beforeSend(config),
+    config => beforeSend(config),
     error => {
       errorCallback(error);
       return Promise.reject(error);

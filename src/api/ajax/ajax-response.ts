@@ -2,8 +2,8 @@
 import axios from 'axios';
 
 interface ajaxResponseProps {
-  resolveCallback<T>(res: T): T;
-  rejectCallback<T>(error: T): T;
+  resolveCallback: (arg:any)=>any;
+  rejectCallback: (arg:any)=>any;
 }
 
 export const ajaxResponse = ({
