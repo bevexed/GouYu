@@ -2,39 +2,25 @@ import React, { FC, useState } from 'react';
 import { MyImage } from '../../../components/my-image';
 import { LoginPic } from '../../../config/image';
 import './index.less';
-import { Toast } from 'antd-mobile';
 import { MyButton } from '../../../components/my-button';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import MyGetCodeButton from '../../../components/my-button/my-get-code-button';
-import { AjaxUserGetCode } from '../../../api/user';
-import { isPhoneNumber } from '../../../util/regex';
+import { getCode, reqUserLogin } from '../../../redux/user/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { ReducersProps } from "../../../redux/store";
+import { UserInfoProps } from "../../../redux/user/reducer";
 
-interface InputLabel {
-  phone: number | string;
-  code: number | string;
-}
+interface LoginIndexProps {}
 
-const LoginIndex: FC<InputLabel> = props => {
-  const [phone, setPhone] = useState('');
-  const [code, setCode] = useState('');
-
-  const getCode = async () => {
-    if (!isPhoneNumber(phone)) {
-      Toast.fail('请验证手机号');
-      return false
-    }
-
-    const res = await AjaxUserGetCode({ phone, type: 1 });
-    console.log(res);
-    return true;
-  };
-
-  const onLogin = () => {
-    Toast.show('短信验证码错误');
-    setTimeout(() => Toast.success('登录成功'), 1000);
-  };
+const LoginIndex: FC<LoginIndexProps> = () => {
+  const dispatch = useDispatch();
+  const {token} =  useSelector<ReducersProps,UserInfoProps>((state) => state.userInfo)
+  console.log(token);
+  const [phone, setPhone] = useState('18640460506');
+  const [code, setCode] = useState('88888');
 
   return (
+    token?<Redirect to={'/health-page'}/>:
     <div className="login">
       <header>
         <span>欢迎登录</span>
@@ -45,7 +31,7 @@ const LoginIndex: FC<InputLabel> = props => {
         <label htmlFor="phone">
           <input
             id="phone"
-            type="tel"
+            type="phone"
             placeholder={'请输入手机号码'}
             maxLength={11}
             value={phone}
@@ -61,11 +47,14 @@ const LoginIndex: FC<InputLabel> = props => {
             value={code}
             onChange={e => setCode(e.target.value)}
           />
-          <MyGetCodeButton cb={getCode} />
+          <MyGetCodeButton cb={() => getCode({ phone, type: 1 })} />
         </label>
       </section>
 
-      <MyButton className={'login'} onTouchEnd={onLogin}>
+      <MyButton
+        className={'login'}
+        onTouchEnd={() => dispatch(reqUserLogin({ userMobile: phone, code }))}
+      >
         登录
       </MyButton>
 
@@ -76,7 +65,7 @@ const LoginIndex: FC<InputLabel> = props => {
       <footer>
         <MyImage src={LoginPic.agreeBtn} />
         <span>已阅读并同意</span>
-        <Link to={'./user-agreement'}>《用户服务协议》</Link>
+        <Link to={'/login/user-agreement-page'}>《用户服务协议》</Link>
       </footer>
     </div>
   );

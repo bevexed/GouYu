@@ -17,9 +17,9 @@ interface AjaxProps {
   loading?: boolean;
 }
 
-export const ajax = ({ url, data, method = 'GET' }: AjaxProps) => {
+export const ajax = <T>({ url, data, method = 'GET' }: AjaxProps):Promise<T> => {
   // 发送简单请求
-  console.log('Params', data);
+  console.log('%c Params', 'color:green', data);
   return new Promise((resolve, reject) => {
     let promise;
     if (method === 'GET') {
@@ -29,6 +29,7 @@ export const ajax = ({ url, data, method = 'GET' }: AjaxProps) => {
     }
     promise.then(
       response => {
+        console.log('%c res', 'color:red', response.data);
         resolve(response.data);
       },
       error => {
@@ -74,5 +75,6 @@ interface ResProps {
 const Intercept = (data: ResProps) => {
   if (data.status === Status.success && data.success) {
   } else {
+    Toast.fail(data.message);
   }
 };

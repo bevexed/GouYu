@@ -1,12 +1,6 @@
 import { ajax } from '../ajax';
-import { AjaxUserGetCodeProps, AjaxUserLoginProps } from "./UserProps";
-
-export const AjaxUserLogin = (data: AjaxUserLoginProps) =>
-  ajax({
-    url: '/user/userLogin',
-    data,
-    method: 'POST',
-  });
+import { AjaxUserGetCodeProps, AjaxUserLoginProps } from './UserProps';
+import { UserInfoProps } from '../../redux/user/reducer';
 
 export const AjaxUserGetCode = (data: AjaxUserGetCodeProps) =>
   ajax({
@@ -15,3 +9,11 @@ export const AjaxUserGetCode = (data: AjaxUserGetCodeProps) =>
     method: 'GET',
   });
 
+export const AjaxUserLogin = (
+  data: AjaxUserLoginProps,
+): Promise<UserInfoProps> =>
+  ajax({
+    url: '/user/userLogin',
+    data,
+    method: 'POST',
+  });
