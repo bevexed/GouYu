@@ -10,6 +10,7 @@ import {
   queryClassifyList,
   QueryClassifyListProps,
 } from './goods/reducer';
+import { homePageData, HomePageDataProps } from './home-page/reducer';
 
 export interface ActionProps {
   type: string;
@@ -18,6 +19,9 @@ export interface ActionProps {
 
 export interface ReducersProps {
   userInfo: UserInfoProps;
+
+  homePageData: HomePageDataProps;
+
   oneClassifyList: OneClassifyListProps;
   queryClassifyList: QueryClassifyListProps;
   classifyBanner: ClassifyBannerProps;
@@ -25,6 +29,8 @@ export interface ReducersProps {
 
 const reducers = combineReducers<ReducersProps, ActionProps>({
   userInfo,
+
+  homePageData,
 
   oneClassifyList,
   queryClassifyList,

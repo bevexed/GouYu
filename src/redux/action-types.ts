@@ -10,3 +10,7 @@ export const ERROR_MSG = 'error_msg';
 export const GET_ONE_CLASSIFY_LIST = 'get_one_classify_list';
 export const GET_CLASSIFY_LIST = 'get_classify_list';
 export const GET_CLASSIFY_BANNER = 'get_classify_banner';
+
+
+// 首页
+export const GET_HOME_PAGE_DATA = 'get_home_page_data'

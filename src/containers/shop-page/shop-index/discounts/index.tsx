@@ -1,49 +1,54 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import { Carousel } from 'antd-mobile';
 import './index.less';
-import { useHistory } from "react-router";
+import { useHistory } from 'react-router';
+import { useSelector } from 'react-redux';
+import { ReducersProps } from '../../../../redux/store';
+import { HomePageDataProps } from '../../../../redux/home-page/reducer';
 
 type Props = {};
 const Discounts: FC<Props> = (props: Props) => {
-  const [state, setState] = useState(['1', '3', '2']);
-
-  useEffect(() => setState(['1', '2', '3']), []);
+  const { integralGoodsList } = useSelector<ReducersProps, HomePageDataProps>(
+    state => state.homePageData,
+  );
 
   const { push } = useHistory();
 
   return (
     <Carousel
-      autoplay={ true }
+      autoplay={true}
       infinite
-      cellSpacing={ 10 }
-      slideWidth={ 1 }
-      dotStyle={ {
+      cellSpacing={10}
+      slideWidth={1}
+      dotStyle={{
         background: 'rgba(206,215,227,1)',
         width: '18px',
         height: '2px',
         borderRadius: 0,
-      } }
-      dotActiveStyle={ {
+      }}
+      dotActiveStyle={{
         backgroundColor: 'rgba(56,85,120,1)',
         width: '18px',
         height: '2px',
         borderRadius: 0,
-      } }
-      // beforeChange={ (from, to) => console.log(`slide from ${ from } to ${ to }`) }
-      // afterChange={ index => console.log(index) }
+      }}
     >
-      { state.map((val, key) => (
-        <div className={ 'discounts-item' } key={ key } onTouchEnd={ () => push('health/vip-gift-bag-page') }>
+      {integralGoodsList.map((val, key) => (
+        <div
+          className={'discounts-item'}
+          key={key}
+          onTouchEnd={() => push('health/vip-gift-bag-page')}
+        >
           <img
-            src={ require('./image/pic_banner@2x.png') }
-            alt=""
-            onLoad={ () => {
+            src={val.goodsImage}
+            alt={val.goodsTitle}
+            onLoad={() => {
               // fire window resize event to change height
               window.dispatchEvent(new Event('resize'));
-            } }
+            }}
           />
         </div>
-      )) }
+      ))}
     </Carousel>
   );
 };

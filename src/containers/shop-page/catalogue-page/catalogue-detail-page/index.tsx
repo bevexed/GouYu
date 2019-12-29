@@ -3,7 +3,6 @@ import './index.less';
 import { useParams } from 'react-router';
 import { MyNavBar } from '../../../../components/my-nav-bar';
 import { GoodStateBar } from '../../../../components/my-tabs';
-import GuessYouLikeList from '../../shop-index/guess-you-like';
 import { GoodList } from './catalogue-good-list';
 import { WhiteSpace } from 'antd-mobile';
 
@@ -22,7 +21,8 @@ const CataloguePage: FC<Props> = (props: Props) => {
       />
       <WhiteSpace/>
       { listState === 'block' ? (
-        <GuessYouLikeList guessYouLikeList={ [1, 2, 3, 4] }/>
+        ''
+        // <GuessYouLikeList guessYouLikeList={ [1, 2, 3, 4] }/>
       ) : (
         <GoodList
           goodList={ [

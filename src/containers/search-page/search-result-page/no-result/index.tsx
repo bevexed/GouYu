@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import './index.less';
 import NullPic from './image/none.png';
-import GuessYouLikeList from "../../../shop-page/shop-index/guess-you-like";
 import MyWhiteBlank from "../../../../components/my-white-blank";
 
 type Props = {};
@@ -15,7 +14,7 @@ const NoResult: FC<Props> = (props: Props) => {
       <MyWhiteBlank backgroundColor={ '#F8F9FA' }/>
 
       <div className="title">猜你喜欢</div>
-      <GuessYouLikeList guessYouLikeList={ [1, 2, 3, 4] }/>
+      {/*<GuessYouLikeList guessYouLikeList={ [1, 2, 3, 4] }/>*/}
     </div>
   );
 };

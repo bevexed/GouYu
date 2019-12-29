@@ -5,7 +5,6 @@ import { iconPic } from '../../../config/image';
 import { WhiteSpace, WingBlank } from 'antd-mobile';
 import HealthTaskList from './health-task-list';
 import { useHistory } from 'react-router';
-import GuessYouLikeList from '../../shop-page/shop-index/guess-you-like';
 
 type HealthTaskPageProps = {};
 const HealthTaskPage: FC<HealthTaskPageProps> = (
@@ -34,7 +33,7 @@ const HealthTaskPage: FC<HealthTaskPageProps> = (
       <section className="bottom">
         <div className="title">猜你喜欢</div>
 
-        <GuessYouLikeList guessYouLikeList={ [1, 2, 3, 4] }/>
+        {/*<GuessYouLikeList guessYouLikeList={ [1, 2, 3, 4] }/>*/}
       </section>
     </div>
   );

@@ -5,6 +5,11 @@ import MyWhiteBlank from '../../../../components/my-white-blank';
 import { MyBuyButton } from '../../../../components/my-button';
 
 interface VipGoodProps {
+  goodsImage: string;
+  goodsDescribe:string;
+  goodsTitle:string;
+  goodsName:string;
+  stock:number
 }
 
 const VipGood: FC<VipGoodProps> = (props: VipGoodProps) => {
@@ -12,38 +17,34 @@ const VipGood: FC<VipGoodProps> = (props: VipGoodProps) => {
     <>
       <WingBlank>
         <div className="_vip-good">
-          <img
-            className="_good-img"
-            src="https://g-search1.alicdn.com/img/bao/uploaded/i4/i1/877603842/O1CN01dabYkw1eFgGAkhJxP_!!877603842-0-pixelsss.jpg_180x180.jpg_.webp"
-            alt={ '' }
-          />
+          <img className="_good-img" src={props.goodsImage} alt={props.goodsDescribe} />
           <section className="right">
-            <div className="title">护肝养胃 熬夜&酒局必备</div>
-            <div className="dis">澳洲进口，swisse奶蓟草护肝片</div>
+            <div className="title">{props.goodsName}</div>
+            <div className="dis">{props.goodsTitle}</div>
             <div className="sold-out">
               <span>已有25444位用户免费领取</span>
-              <MyBuyButton state={ 'free' }/>
+              <MyBuyButton state={'free'} />
             </div>
             <div className="price">
               <span>￥888</span>
-              <span>仅剩100件</span>
+              <span>仅剩{props.stock}件</span>
               <Progress
-                percent={ 40 }
+                percent={40}
                 position="normal"
-                unfilled={ false }
+                unfilled={false}
                 appearTransition
-                barStyle={ { borderColor: '#E92B2C' } }
-                style={ {
+                barStyle={{ borderColor: '#E92B2C' }}
+                style={{
                   border: '1px solid #E92B2C',
                   borderRadius: '5px',
                   width: 144 / 2,
-                } }
+                }}
               />
             </div>
           </section>
         </div>
       </WingBlank>
-      <MyWhiteBlank backgroundColor={ '#F3F7F7' }/>
+      <MyWhiteBlank backgroundColor={'#F3F7F7'} />
     </>
   );
 };
@@ -54,9 +55,9 @@ type VipGoodListProps = {
 const VipGoodList: FC<VipGoodListProps> = (props: VipGoodListProps) => {
   return (
     <div className="vip-good-list">
-      { props.vipGoodList.map((item, index) => (
-        <VipGood key={ index }/>
-      )) }
+      {props.vipGoodList.map((item, index) => (
+        <VipGood key={index} {...item}/>
+      ))}
     </div>
   );
 };

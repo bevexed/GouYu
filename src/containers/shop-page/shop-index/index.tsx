@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { FC, useEffect } from 'react';
 import { History } from 'history';
 import { WhiteSpace, WingBlank } from 'antd-mobile';
 import { iconPic } from '../../../config/image';
@@ -14,86 +14,86 @@ import VipGoodList from './vip-good-list';
 import GuessYouLikeList from './guess-you-like';
 import FloatButton from './float-button';
 import MyMore from '../../../components/my-more';
+import { useDispatch, useSelector } from 'react-redux';
+import { reqHomePageData } from '../../../redux/home-page/actions';
+import { useHistory } from 'react-router';
+import { ReducersProps } from '../../../redux/store';
+import { HomePageDataProps } from '../../../redux/home-page/reducer';
 
 interface Props {
   history: History;
 }
 type State = {};
 
-export default class ShopIndex extends Component<Props, State> {
-  render() {
-    const { push } = this.props.history;
-    return (
-      <div className="shop-index">
-        <WingBlank>
-          <div className="search">
-            <img src={ iconPic.search } alt=""/>
-            <input
-              type="text"
-              placeholder={ '居家必备瑜伽垫' }
-              onFocus={ () => push('/search-page') }
-            />
-          </div>
+const ShopIndex: FC<Props> = props => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(reqHomePageData());
+  }, [dispatch]);
+  const { goodsList, integralGoodsList } = useSelector<
+    ReducersProps,
+    HomePageDataProps
+  >(state => state.homePageData);
+  const { push } = useHistory();
+  return (
+    <div className="shop-index">
+      <WingBlank>
+        <div className="search">
+          <img src={iconPic.search} alt="" />
+          <input
+            type="text"
+            placeholder={'居家必备瑜伽垫'}
+            onFocus={() => push('/search-page')}
+          />
+        </div>
 
-          <Banner/>
+        <Banner />
 
-          <WhiteSpace size={ 'lg' }/>
+        <WhiteSpace size={'lg'} />
 
-          <Catalogue/>
+        <Catalogue />
 
-          <WhiteSpace size={ 'md' }/>
+        <WhiteSpace size={'md'} />
 
-          <Discounts/>
-        </WingBlank>
+        <Discounts />
+      </WingBlank>
 
-        <MyWhiteBlank backgroundColor={ '#F8F9FA' }/>
+      <MyWhiteBlank backgroundColor={'#F8F9FA'} />
 
-        <MyMore path={ '/shop/second-kill-page' } children={ '限时秒杀' }/>
-        <Seckill
-          tabs={ [
-            { title: '08:00', state: 0 },
-            { title: '10:00', state: 1 },
-            { title: '12:00', state: 1 },
-            { title: '14:00', state: 1 },
-            { title: '16:00', state: 1 },
-            { title: '18:00', state: 1 },
-            { title: '20:00', state: 1 },
-          ] }
-        />
+      <MyMore path={'/shop/second-kill-page'} children={'限时秒杀'} />
+      <Seckill
+        tabs={[
+          { title: '08:00', state: 0 },
+          { title: '10:00', state: 1 },
+          { title: '12:00', state: 1 },
+          { title: '14:00', state: 1 },
+          { title: '16:00', state: 1 },
+          { title: '18:00', state: 1 },
+          { title: '20:00', state: 1 },
+        ]}
+      />
 
-        <MyWhiteBlank backgroundColor={ '#F8F9FA' }/>
+      <MyWhiteBlank backgroundColor={'#F8F9FA'} />
 
+      <GoodList goodList={goodsList} />
 
-        <GoodList
-          goodList={ [
-            {
-              img:
-                'https://g-search3.alicdn.com/img/bao/uploaded/i4/i2/668693/O1CN01wDbsyy2E5RYoR2ULs_!!668693.jpg_180x180.jpg_.webp',
-              title:
-                '护肝养胃，活力十足，清苷朝鲜蓟枳椇子植物饮料，植物草本配护肝养胃，活力十足，清苷朝鲜蓟枳椇子植物饮料，植物草本配',
-            },
-            {
-              img:
-                'https://g-search3.alicdn.com/img/bao/uploaded/i4/i2/668693/O1CN01wDbsyy2E5RYoR2ULs_!!668693.jpg_180x180.jpg_.webp',
-              title:
-                '护肝养胃，活力十足，清苷朝鲜蓟枳椇子植物饮料，植物草本配护肝养胃，活力十足，清苷朝鲜蓟枳椇子植物饮料，植物草本配',
-            },
-          ] }
-        />
+      <MyMore
+        path={'/shop/web-celebrity-goods-page'}
+        children={'网红商品VIP免费领'}
+      />
+      <VipGoodList vipGoodList={integralGoodsList} />
 
-        <MyMore path={ '/shop/web-celebrity-goods-page' } children={ '网红商品VIP免费领' }/>
-        <VipGoodList vipGoodList={ [1, 2] }/>
+      <div className="title">猜你喜欢</div>
 
-        <div className="title">猜你喜欢</div>
+      <GuessYouLikeList guessYouLikeList={goodsList} />
 
-        <GuessYouLikeList guessYouLikeList={ [1, 2, 3, 4] }/>
+      <FloatButton />
 
-        <FloatButton/>
+      <MyTabBar />
 
-        <MyTabBar/>
+      <MyWhiteBlank height={100} />
+    </div>
+  );
+};
 
-        <MyWhiteBlank height={ 100 }/>
-      </div>
-    );
-  }
-}
+export default ShopIndex;

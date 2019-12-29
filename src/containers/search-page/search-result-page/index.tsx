@@ -3,7 +3,6 @@ import './index.less';
 import MySearchBar from '../../../components/my-search-bar';
 import { GoodStateBar } from '../../../components/my-tabs';
 import { WhiteSpace, WingBlank } from 'antd-mobile';
-import GuessYouLikeList from '../../shop-page/shop-index/guess-you-like';
 import { GoodList } from '../../shop-page/catalogue-page/catalogue-detail-page/catalogue-good-list';
 import { useParams } from 'react-router';
 import { SearchTabBar } from './search-tab-bar';
@@ -31,7 +30,7 @@ const SearchResultPage: FC<SearchResultProps> = (props: SearchResultProps) => {
             />
             <WhiteSpace/>
             { listState === 'block' ? (
-              <GuessYouLikeList guessYouLikeList={ [1, 2, 3, 4] }/>
+              'null' // <GuessYouLikeList guessYouLikeList={ [1, 2, 3, 4] }/>
             ) : (
               <GoodList
                 goodList={ [

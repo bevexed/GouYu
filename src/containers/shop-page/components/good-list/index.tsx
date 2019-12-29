@@ -6,21 +6,21 @@ import { MyBuyButton } from '../../../../components/my-button';
 import MyWhiteBlank from "../../../../components/my-white-blank";
 
 type GoodItemProps = {
-  img: string;
-  title: string;
+  goodsImage: string;
+  goodsTitle: string;
 };
 
 type GoodListProps = {
   goodList: GoodItemProps[];
 };
 
-export const GoodItem: FC<GoodItemProps> = (props: GoodItemProps) => {
+export const GoodItem: FC<GoodItemProps> = (props) => {
   return (
     <>
       <div className="good-item">
-        <img className="good-img" src={ props.img } alt=""/>
+        <img className="good-img" src={ props.goodsImage } alt=""/>
         <section className="right">
-          <div className="title">{ props.title }</div>
+          <div className="title">{ props.goodsTitle }</div>
 
           <div className="price">
             <MyTag>VIP省 ￥5.99</MyTag>

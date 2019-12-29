@@ -4,33 +4,54 @@ import './index.less';
 import MyTag from '../../../../components/my-tag';
 import { VipPrice } from '../../../../components/price';
 
-type GuessYouLikeItemProps = {};
+const _item = {
+  createTime: 1577602033000,
+  goldVipOneCommission: 15,
+  goldVipTwoCommission: 8,
+  goodsDescribe: '2.png,3.png',
+  goodsImage: '1.png',
+  goodsInfoImage: 'xxx.png',
+  goodsName: '戴尔（DELL）灵越7590',
+  goodsOneClassify: 7,
+  goodsThreeClassify: 6,
+  goodsTitle:
+    '戴尔（DELL）灵越7590 燃7000酷睿九代15.6英寸轻薄高能合金本游戏设计手提笔记本电脑 i7-9750H GTX1650 4G独显 旗舰版 16G内存 1TB固态硬盘',
+  goodsTwoClassify: 4,
+  id: 2,
+  isOverseas: 0,
+  marketPrice: 9000,
+  memberPrice: 8500,
+  modifyTime: 1577602038000,
+  productCode: 'xa213213',
+  salePrice: 8779,
+  seckillPrice: 0,
+  shelf: 1,
+  skuId: 2,
+  stock: 10,
+  storeId: 1,
+  type: 0,
+  vipOneCommission: 10,
+  vipTwoCommission: 5,
+  vipDisparityPrice:10
+};
 const GuessYouLikeItem: FC<GuessYouLikeItemProps> = (
   props: GuessYouLikeItemProps,
 ) => {
   return (
     <div className="guess-you-like-item">
-      <img
-        className="guess-you-like-item-img"
-        src="https://g-search3.alicdn.com/img/bao/uploaded/i4/i1/2249185639/O1CN01YoMYXT1rWhzX5e5tV_!!2249185639-0-pixelsss.jpg_180x180.jpg_.webp"
-        alt=""
-      />
+      <img className="guess-you-like-item-img" src={props.goodsImage} alt="" />
       <section className="bottom">
-        <div className="guess-you-like-item-title">
-          护肝养胃 熬夜&酒局必… 护肝养胃 熬夜&酒局必…
-        </div>
+        <div className="guess-you-like-item-title">{props.goodsName}</div>
 
-        <div className="guess-you-like-item-dis">
-          澳洲进口，swisse奶蓟草护肝片澳洲进口，swisse奶蓟草护肝片
-        </div>
+        <div className="guess-you-like-item-dis">{props.goodsTitle} </div>
 
         <div className="guess-you-like-item-price">
-          <div className="guess-you-like-item-real">￥888</div>
-          <div className="guess-you-like-item-ori">￥999</div>
+          <div className="guess-you-like-item-real">￥{props.seckillPrice}</div>
+          <div className="guess-you-like-item-ori">￥{props.salePrice}</div>
         </div>
 
         <div className="tags">
-          <MyTag>VIP省￥5.99</MyTag>
+          <MyTag>VIP省￥{props.vipDisparityPrice}</MyTag>
           <MyTag>分享赚￥2.99</MyTag>
         </div>
 
@@ -43,6 +64,8 @@ const GuessYouLikeItem: FC<GuessYouLikeItemProps> = (
   );
 };
 
+type GuessYouLikeItemProps = typeof _item;
+
 type GuessYouLikeListProps = {
   guessYouLikeList: GuessYouLikeItemProps[];
 };
@@ -52,13 +75,11 @@ const GuessYouLikeList: FC<GuessYouLikeListProps> = (
   return (
     <div className="guess-you-like">
       <WingBlank>
-        <section className='list'>
-
-          { props.guessYouLikeList.map((item, index) => (
-            <GuessYouLikeItem key={ index }/>
-          )) }
+        <section className="list">
+          {props.guessYouLikeList.map((item, index) => (
+            <GuessYouLikeItem key={index} {...item} />
+          ))}
         </section>
-
       </WingBlank>
     </div>
   );

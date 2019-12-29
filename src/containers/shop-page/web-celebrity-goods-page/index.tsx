@@ -3,7 +3,6 @@ import './index.less';
 import { MyNavBar } from '../../../components/my-nav-bar';
 import { MyImage } from '../../../components/my-image';
 import { iconPic } from '../../../config/image';
-import VipGoodList from '../shop-index/vip-good-list';
 import MySharePopUp from '../../../components/my-share-pop-up';
 
 type Props = {};
@@ -31,7 +30,7 @@ const WebCelebrityGoodsPage: FC<Props> = (props: Props) => {
         />
       </div>
 
-      <VipGoodList vipGoodList={ [1, 2, 3, 4, 5] }/>
+      {/*<VipGoodList vipGoodList={ [1, 2, 3, 4, 5] }/>*/}
 
       <MySharePopUp
         popUpShow={ popShow }
