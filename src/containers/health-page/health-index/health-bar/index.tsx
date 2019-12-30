@@ -40,5 +40,5 @@ const HealthBar: FC<HealthBarProps> = (props: HealthBarProps) => {
     </div>
   );
 };
-
+ 
 export default HealthBar;

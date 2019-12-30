@@ -49,7 +49,6 @@ const LoginIndex: FC<LoginIndexProps> = () => {
           <MyGetCodeButton cb={() => getCode({ phone, type: 1 })} />
         </label>
       </section>
-
       <MyButton
         className={'login'}
         onTouchEnd={() => dispatch(reqUserLogin({ userMobile: phone, code }))}

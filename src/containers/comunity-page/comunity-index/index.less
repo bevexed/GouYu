@@ -1,0 +1,92 @@
+.comunity-index {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  .comunity-index-header {
+    position: sticky;
+    display: flex;
+    width: 750px;
+    height: 88px;
+    justify-content: space-between;
+    padding: 0 30px;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 1);
+    .header-title {
+      font-size: 40px;
+      font-weight: 500;
+      color: rgba(38, 45, 44, 1);
+      margin-top: 28px;
+    }
+    .header-icon {
+      width: 44px;
+      height: 44px;
+      margin-top: 34px;
+    }
+  }
+  .comunity-content-tabs {
+    flex: 1;
+    background: rgba(255, 255, 255, 1);
+    .content-tabs-hot {
+      background: rgba(248, 249, 250, 1);
+      padding: 24px 12px 0 30px;
+      box-sizing: border-box;
+      max-height: 600px;
+      display: flex;
+      flex-wrap: wrap;
+      .hot-content {
+        width: 336px;
+        height: 608px;
+        background: rgba(255, 255, 255, 1);
+        border-radius: 16px;
+        margin:18px 18px 0 0;
+        .hot-image {
+          width: 100%;
+          height: 448px;
+          border-radius: 16px;
+        }
+        .hot-content-tit {
+          height: 80px;
+          font-size: 26px;
+          font-weight: 400;
+          color: rgba(0, 0, 0, 1);
+          line-height: 40px;
+          padding: 10px 18px 0 18px;
+          box-sizing: border-box;
+        }
+        .hot-content-footer {
+          display: flex;
+          padding: 14px 10px 0 10px;
+          height: 36px;
+          line-height: 32px;
+          justify-content: space-between;
+          box-sizing: border-box;
+          .hot-content-footer-left {
+            display: flex;
+            .footer-left-bg {
+              width: 36px;
+              height: 36px;
+              background: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577709944390&di=4c9ade114fd08cc53b55eace4feef7bf&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F18%2F02%2F18%2F597a908f980e964090d3eb910f39acf3.jpg%2521%2Ffwfh%2F804x804%2Fquality%2F90%2Funsharp%2Ftrue%2Fcompress%2Ftrue")
+                center center;
+            }
+          }
+          .footer-left-tit {
+            font-size: 22px;
+            font-weight: 400;
+            color: rgba(116, 121, 120, 1);
+            margin-left: 14px;
+          }
+        }
+        .hot-content-footer-right {
+          display: flex;
+          color:rgba(116,121,120,1);
+          font-size:24px;
+          .footer-right-love {
+            width: 28px;
+            height: 28px;
+            margin:3px 10px 0 0;
+          }
+        }
+      }
+    }
+  }
+}

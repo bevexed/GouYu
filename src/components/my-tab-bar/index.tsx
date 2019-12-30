@@ -21,7 +21,7 @@ interface Prop {
 
 const tabBarItem = [
   {
-    pathname: '/',
+    pathname: '/comunity-page',
     icon: <img className="my-tab-bar-pic" src={ CommunityPic_N } alt={ '' }/>,
     selectedIcon: (
       <img className="my-tab-bar-pic" src={ CommunityPic_S } alt={ '' }/>

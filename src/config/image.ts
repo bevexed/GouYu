@@ -19,4 +19,6 @@ export const iconPic = {
   zfb_react: require('../static/image/pic_alipay_reat@2x.png'),
   btn_success: require('../static/image/btn_succeed_h@2x.png'),
   edit: require('../static/image/ico_edit_h@2x.png'),
+  add_head:require('../static/image/ico_add_h@2x.png'),
+  active_love:require('../static/image/ico_thumbsup_n copy@2x.png'),
 };
