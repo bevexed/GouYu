@@ -21,4 +21,10 @@ export const iconPic = {
   edit: require('../static/image/ico_edit_h@2x.png'),
   add_head:require('../static/image/ico_add_h@2x.png'),
   active_love:require('../static/image/ico_thumbsup_n copy@2x.png'),
+  camera:require('../static/image/btn_upload_h@2x.png'),
+  star:require('../static/image/ico_like_n@2x.png'),
+  info:require('../static/image/ico_comment_n@2x.png'),
+  give_link:require('../static/image/ico_like_n.png'),
+  write:require('../static/image/ico_share_h.png'),
+  dot:require('../static/image/ico_point_d.png')
 };

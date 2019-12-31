@@ -28,7 +28,320 @@
     background: rgba(255, 255, 255, 1);
     .content-tabs-hot {
       background: rgba(248, 249, 250, 1);
-      padding: 24px 12px 0 30px;
+      padding: 24px 0 0 30px;
+      box-sizing: border-box;
+      max-height: 600px;
+      display: flex;
+      flex-wrap: wrap;
+      position: relative;
+      .right-camera{
+        position: sticky;
+        bottom:38px;
+        left:100%;
+        width:134px;
+        height:170px;
+      }
+      .hot-content {
+        width: 336px;
+        height: 608px;
+        background: rgba(255, 255, 255, 1);
+        border-radius: 16px;
+        margin:18px 18px 0 0;
+        .hot-image {
+          width: 100%;
+          height: 448px;
+          border-radius: 16px;
+        }
+        .hot-content-tit {
+          height: 80px;
+          font-size: 26px;
+          font-weight: 400;
+          color: rgba(0, 0, 0, 1);
+          line-height: 40px;
+          padding: 10px 18px 0 18px;
+          box-sizing: border-box;
+        }
+        .hot-content-footer {
+          display: flex;
+          padding: 14px 10px 0 10px;
+          height: 36px;
+          line-height: 32px;
+          justify-content: space-between;
+          box-sizing: border-box;
+          .hot-content-footer-left {
+            display: flex;
+            .footer-left-bg {
+              width: 36px;
+              height: 36px;
+              background-image: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577709944390&di=4c9ade114fd08cc53b55eace4feef7bf&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F18%2F02%2F18%2F597a908f980e964090d3eb910f39acf3.jpg%2521%2Ffwfh%2F804x804%2Fquality%2F90%2Funsharp%2Ftrue%2Fcompress%2Ftrue");
+              background-position: 50px;
+            }
+          }
+          .footer-left-tit {
+            font-size: 22px;
+            font-weight: 400;
+            color: rgba(116, 121, 120, 1);
+            margin-left: 14px;
+          }
+        }
+        .hot-content-footer-right {
+          display: flex;
+          color:rgba(116,121,120,1);
+          font-size:24px;
+          .footer-right-love {
+            width: 28px;
+            height: 28px;
+            margin:3px 10px 0 0;
+          }
+        }
+      }
+    }
+  }
+ 
+  //状态
+  .content-tabs-dynamic{
+    background:rgba(248,249,250,1);
+    height: 100vw;
+    margin-top: 1px;
+    .tabs-dynamic-top{
+      padding-top:15px;
+    }
+     .dynamic-camera{
+    position: sticky;
+    bottom:38px;
+    left:100%;
+    width:134px;
+    height:170px;
+  }
+  
+    .dynamic-top{
+      width:700px;
+      border-radius:50px;
+      background:#fff;
+      height:90px;
+      display:flex;
+      margin:20px 0 20px 20px;
+      line-height: 90px;
+      justify-content: space-between;
+      position: relative;
+      .top-triangle{
+        position: absolute;
+        width: 0;
+        height: 0;
+        border: 15px solid;
+        border-color: transparent transparent #fff;
+        left: 180px;
+        top:-30px;
+        z-index: 1111;
+      }
+      span{
+        font-size:28px;
+        color:rgba(38,45,44,1);
+        margin-left: 20px;
+      }
+      .dynamic-top-right{
+        display:flex;
+        padding-right: 30px;
+        justify-content: center;
+        align-items: center;
+        .right-icon{
+          width:28px;
+          height:28px;
+        }
+        .dynamic-top-right-icon{
+         background-image:url('http://cdn.duitang.com/uploads/item/201410/21/20141021130151_ndsC4.jpeg');
+         background-position:50%;
+          width:60px;
+          height: 60px;
+          margin-right: 10px;
+          border-radius: 50%;
+        }
+      }
+    }
+    .dynamic-center{
+      width:750px;
+      height:856px;
+      background:rgba(255,255,255,1);
+      padding:28px 20px 0 30px;
+      box-sizing: border-box;
+      margin-top:24px;
+      .dynamic-center-top{
+        display: flex;
+        .center-top-left{
+          width:88px;
+          height: 88px;
+          background-image:url('http://cdn.duitang.com/uploads/item/201410/21/20141021130151_ndsC4.jpeg');
+          background-position:50% 30% 20%;
+          border-radius: 50%;
+        }
+        .center-top-right{
+          margin-left:20px;
+          h3{
+            font-size:28px;
+            font-weight:500;
+            color:rgba(38,45,44,1);
+          }
+          p{
+            margin-top: 10px;
+            height:34px;
+            font-size:24px;
+            font-weight:400;
+            color:rgba(153,153,153,1);
+            line-height:34px;
+          }
+        }
+      }
+      .dynamic-center-text{
+        height:88px;
+        font-size:30px;
+        font-weight:400;
+        color:rgba(38,45,44,1);
+        line-height:46px;
+        margin: 22px 0 24px 0;
+      }
+      .dynamic-center-image{
+        display: flex;
+        .center-image{
+          width:448px;
+          height:448px;
+        }
+      }
+      .dynamic-cente-footer-txt{
+        height: 50px;
+        border-bottom: 2px solid #EDEDED;
+        margin: 20px 0 24px 0;
+      }
+      .dynamic-cente-footer{
+        display: flex;
+        justify-content: space-between;
+      }
+      .cente-footer-g{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span{
+          margin-left:12px;
+        }
+        .cente-footer-icon{
+          width:32px;
+          height:32px;
+        }
+      }
+    }
+  }
+  //头条
+ 
+  .Headlines-content{
+    height:100vw;
+    //background:rgba(248,249,250,1);
+    padding-top:1px;
+    box-sizing: border-box;
+    .Headlines{
+      background:rgba(255,255,255,1);
+    }
+    .Headlines-con{
+      margin:24px 22px 0 30px;
+      padding-top: 15px;
+      height:438px;
+      box-sizing: border-box;
+      .Headlines-con-tit{
+        height:94px;
+        font-size:30px;
+        font-weight:400;
+        color:rgba(38,45,44,1);
+        line-height:48px;
+        margin-bottom: 24px;
+      }
+      .headlines-con-img{
+        display: flex;
+        justify-content: space-between;
+        .headlines-image{
+          width:218px;
+          height:218px;
+          border-radius:16px;
+        }
+      }
+      .headlines-con-footer{
+        height:34px;
+        font-size:24px;
+        font-weight:400;
+        color:rgba(116,121,120,1);
+        line-height:34px;
+        margin-top: 24px;
+      }
+
+    }
+  }
+  //同城
+  .withcity-con{
+    .withcity-con-top{
+      height:254px;
+      background-image:url('../../../static/image/map@2x.png');
+    
+      .withcity-region{
+        display: flex;
+        margin:22px 0 0 30px;
+        .region-dot{
+          width: 30px;
+          height:30px;
+        }
+        span{
+          margin-left: 8px;
+          font-size:28px;
+          font-weight:500;
+          color:#21A3CD;
+        }
+      }
+      .withcity-center{
+        width: 730px;
+        height:130px;
+        background-image: url('../../../static/image/bg_run.png');
+        margin:10px 0 0 20px;
+        display: flex;
+        line-height:130px;
+        position: relative;
+        .head-portrait{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-left: 66px;
+          width: 160px;
+          .region-Head{
+            width:55px;
+            height:55px;
+            margin-right:-13px;
+          }
+        }
+        .withcity-text{
+          margin-left: 68px;
+          font-size:28px;
+          font-weight:400;
+          color:rgba(116,121,120,1);
+          span{
+            color: #21A3CD;
+          }
+        }
+        .withcity-about{
+          height: 70px;
+          width: 160px;
+          background: url('../../../static/image/bg_btn.png') no-repeat center;
+          position: absolute;
+          right:73px;
+          bottom:-30px;
+          float: right;
+          text-align: center;
+          line-height: 70px;
+          font-size:28px;
+          font-weight:500;
+          color:rgba(255,255,255,1);
+        }
+        
+      }
+    
+    }
+    .withcity-con-list{
+      background: rgba(248, 249, 250, 1);
+      padding: 24px 0 0 30px;
       box-sizing: border-box;
       max-height: 600px;
       display: flex;
@@ -65,8 +378,8 @@
             .footer-left-bg {
               width: 36px;
               height: 36px;
-              background: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577709944390&di=4c9ade114fd08cc53b55eace4feef7bf&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F18%2F02%2F18%2F597a908f980e964090d3eb910f39acf3.jpg%2521%2Ffwfh%2F804x804%2Fquality%2F90%2Funsharp%2Ftrue%2Fcompress%2Ftrue")
-                center center;
+              background-image: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577709944390&di=4c9ade114fd08cc53b55eace4feef7bf&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F18%2F02%2F18%2F597a908f980e964090d3eb910f39acf3.jpg%2521%2Ffwfh%2F804x804%2Fquality%2F90%2Funsharp%2Ftrue%2Fcompress%2Ftrue");
+              background-position: 50px;
             }
           }
           .footer-left-tit {
@@ -88,5 +401,31 @@
         }
       }
     }
+    
   }
+ .am-tabs-default-bar{
+   background:#fff!important;
+ }
+ .am-tabs-pane-wrap{
+  background:rgba(248,249,250,1);
+ }
+ .am-tabs-default-bar-underline{
+    width: 15px;
+    height:15px;
+    border: 0;
+    background-image: url('../../../static/image/ico_point_d@2x.png');
+    background-repeat: no-repeat;
+    background-position:center;
+    top:33px;
+    left:-60px;
+ }
+ .am-tabs-default-bar-tab:after{
+  display:none !important;
+ }
+ .am-tabs-tab-bar-wrap{
+  padding-bottom: 20px!important;
+ }
+ .am-tabs-default-bar-content{
+   color:#747978;
+ }
 }
