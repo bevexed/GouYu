@@ -70,6 +70,5 @@
   "devDependencies": {
     "http-proxy-middleware": "^0.20.0",
     "slide-ruler": "^1.2.1"
-  },
-  "proxy": "http://192.168.1.150:8086/api"
+  }
 }
