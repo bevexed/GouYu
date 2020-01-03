@@ -6,7 +6,10 @@ import { SearchPage } from "./search-page";
 import { PrizePage } from "./prize-page";
 import { HealthPage } from "./health-page";
 import { ComunityPage } from './comuntity-page';
-import {NearfinedPage} from './nearfined-page';
+import { NearfinedPage } from './nearfined-page';
+import { QuestionPage } from './question-page';
+import { MayQuestionPage } from './mayquestion-page';
+import { RemindPage } from './remind-page';
 export interface RouteType {
   path: string;
   component: LazyExoticComponent<any>;
@@ -24,6 +27,9 @@ const AppRoutes: RouteType[] = [
   ...HealthPage,
   ...ComunityPage,
   ...NearfinedPage,
+  ...QuestionPage,
+  ...MayQuestionPage,
+  ...RemindPage,
   {
     path: '/',
     component: lazy(() => import('../containers/login-page/login-index')),
@@ -35,10 +41,10 @@ export const MapRouters: React.FC = () => {
   return (
     <HashRouter>
       <Switch>
-        <Suspense fallback={ <div>加载中。。。</div> }>
-          { AppRoutes.map((item, key) => (
-            <Route { ...item } key={ key }/>
-          )) }
+        <Suspense fallback={<div>加载中。。。</div>}>
+          {AppRoutes.map((item, key) => (
+            <Route {...item} key={key} />
+          ))}
         </Suspense>
       </Switch>
     </HashRouter>

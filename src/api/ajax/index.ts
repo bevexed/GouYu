@@ -10,7 +10,7 @@ import { getLocalStorage } from "../../util/storage";
 
 axios.defaults.baseURL = BackEndBaseUrl;
 // axios.defaults.headers.post['Content-Type'] =
-//   'application/x-www-form-urlencoded';
+// 'application/x-www-form-urlencoded';
 
 interface AjaxProps {
   url: string;

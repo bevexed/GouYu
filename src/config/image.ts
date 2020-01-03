@@ -26,5 +26,10 @@ export const iconPic = {
   info:require('../static/image/ico_comment_n@2x.png'),
   give_link:require('../static/image/ico_like_n.png'),
   write:require('../static/image/ico_share_h.png'),
-  dot:require('../static/image/ico_point_d.png')
+  dot:require('../static/image/ico_point_d.png'),
+  my_answer:require('../static/image/btn_answer_h.png'),
+  Ask_quize:require('../static/image/btn_quize_h.png'),
+  alarm_clock:require('../static/image/ico_history__d.png'),
+  up:require('../static/image/ico_start_h.png'),
+  end:require('../static/image/ico_start_h copy.png'),
 };

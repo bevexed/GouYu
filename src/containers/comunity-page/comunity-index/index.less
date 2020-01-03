@@ -96,6 +96,25 @@
         }
       }
     }
+    .am-tabs-default-bar-content{
+      padding-bottom: 20px;
+    }
+    .am-tabs-default-bar-tab{
+      background: #fff;
+    }
+    .am-whitespace{
+      display: none;
+    }
+    .am-tabs-default-bar-underline{
+      width: 15px;
+      height:15px;
+      border: 0;
+      background-image: url('../../../static/image/ico_point_d@2x.png');
+      background-repeat: no-repeat;
+      background-position:center;
+      top:33px;
+      left:-60px;
+   }
   }
  
   //状态
@@ -241,7 +260,7 @@
     }
     .Headlines-con{
       margin:24px 22px 0 30px;
-      padding-top: 15px;
+      padding-top: 19px;
       height:438px;
       box-sizing: border-box;
       .Headlines-con-tit{
@@ -403,28 +422,120 @@
     }
     
   }
+  //问答
+  .answer-content{
+    height:100vw;
+    .answer-content-top{
+      padding:24px 30px 0 30px;
+      box-sizing: border-box;
+      .answer-content-top-con{
+        display: flex;
+        width: 690px;
+        height: 128px;
+        background:rgba(255,255,255,1);
+        box-shadow:0px 4px 20px 0px rgba(214,214,214,0.38);
+        border-radius:16px;
+        justify-content: space-between;
+        .answer-content-top-left{
+          display: flex;
+          width: 400px;
+          padding:24px 0 24px 24px;
+          box-sizing: border-box;
+          .answer-content-top-image{
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+          }
+          .top-left-test{
+            padding-left: 20px;
+            h3{
+              font-size:28px;
+              font-weight:500;
+              color:rgba(38,45,44,1);
+              height: 40px;
+              line-height:40px;
+              margin-bottom: 6px;
+            }
+            span{
+              font-size:24px;
+              color:rgba(116,121,120,1);
+            }
+          }
+        }
+        .answer-content-top-right{
+          display: flex;
+          width: 300px;
+          .my-answer{
+            width: 164px;
+            height: 128px;
+            margin-right:-26px;
+          }
+          .Ask-quize{
+            width: 164px;
+            height: 128px;
+          }
+        }
+      }
+    }
+
+    .Headlines{
+      background:rgba(255,255,255,1);
+    }
+    .Headlines-con{
+      margin:24px 22px 0 30px;
+      padding-top: 19px;
+      height:438px;
+      box-sizing: border-box;
+      .Headlines-con-tit{
+        height:94px;
+        font-size:30px;
+        font-weight:400;
+        color:rgba(38,45,44,1);
+        line-height:48px;
+        margin-bottom: 24px;
+      }
+      .headlines-con-img{
+        display: flex;
+        justify-content: space-between;
+        .headlines-image{
+          width:218px;
+          height:218px;
+          border-radius:16px;
+        }
+      }
+      .headlines-con-footer{
+        height:34px;
+        font-size:24px;
+        font-weight:400;
+        color:rgba(116,121,120,1);
+        line-height:34px;
+        margin-top: 24px;
+      }
+
+    }
+  }
  .am-tabs-default-bar{
    background:#fff!important;
  }
  .am-tabs-pane-wrap{
   background:rgba(248,249,250,1);
  }
- .am-tabs-default-bar-underline{
-    width: 15px;
-    height:15px;
-    border: 0;
-    background-image: url('../../../static/image/ico_point_d@2x.png');
-    background-repeat: no-repeat;
-    background-position:center;
-    top:33px;
-    left:-60px;
- }
+//  .am-tabs-default-bar-underline{
+//     width: 15px;
+//     height:15px;
+//     border: 0;
+//     background-image: url('../../../static/image/ico_point_d@2x.png');
+//     background-repeat: no-repeat;
+//     background-position:center;
+//     top:33px;
+//     left:-60px;
+//  }
  .am-tabs-default-bar-tab:after{
   display:none !important;
  }
- .am-tabs-tab-bar-wrap{
-  padding-bottom: 20px!important;
- }
+//  .am-tabs-tab-bar-wrap{
+//   padding-bottom: 20px!important;
+//  }
  .am-tabs-default-bar-content{
    color:#747978;
  }

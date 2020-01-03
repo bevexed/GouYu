@@ -41,7 +41,7 @@ const tabBarItem = [
     title: '康养',
   },
   {
-    pathname: '/',
+    pathname: '/remind-page',
     icon: <img className="my-tab-bar-pic" src={ Remand_N } alt={ '' }/>,
     selectedIcon: <img className="my-tab-bar-pic" src={ Remand_S } alt={ '' }/>,
     title: '提醒',
