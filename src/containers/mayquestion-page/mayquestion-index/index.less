@@ -1,5 +1,5 @@
 .mayquestion-container{
-    height: 100vh;
+    height: 100%;
     background:#fff;
     .mayquestion-container-top{
         display: flex;
@@ -20,49 +20,11 @@
             box-sizing: border-box;
         }
     }
-    .mayquestion-container-tabs{
-        //height: 72px;
-        //background:rgba(248,249,250,1);
-       
-        // .am-tabs-default-bar-top{
-        // background:rgba(248,249,250,1)!important;
-        // }
-        .container-tabs-con{
-            position: relative;
-            .am-whitespace{
-                display: none;
-            }
-            // .am-tabs-default-bar-tab{
-            //     height:80px;
-            //     width:20%!important;
-            //     background:rgba(255,255,255,1);
-            //     box-shadow:0px -8px 16px 0px rgba(214,214,214,0.34);
-            //     border-radius:16px 16px 0px 0px;
-            //     margin-top: -10px;
-            // }
-            // .am-tabs-default-bar-tab{
-            //     width: 20%!important;
-            // }
-            // .am-tabs-default-bar-underline{
-            //     width: 1%!important;
-            //     left: 30%;
-            // }
-            // .active{
-            //     width:148px;
-            //     position: absolute;
-            //     left: 20px;
-            //     top: -10px;
-            //     z-index: 1111111;
-            //     height:80px;
-            //     background:rgba(255,255,255,1);
-            //     box-shadow:0px -8px 16px 0px rgba(214,214,214,0.34);
-            //     border-radius:16px 16px 0px 0px;
-
-            // }
             .mayquestion-ask{
-                height: 100vh;
+                height: 83vh;
                 padding:0 22px 0 30px;
                 box-sizing: border-box;
+                overflow-y: auto;
                 .mayquestion-ask-con{
                     padding-top: 26px;
                     border-bottom:1px solid  #EDEDED;
@@ -88,8 +50,15 @@
             }
             //回答
             .mayquestion-answer{
+                background: #fff;
+                overflow: hidden;
+               // 
+            }
+            .mayquestion-answer-content{
+                height: 83vh;
+                overflow-y: auto;
                 background: #F8F9FA;
-                height: 100vh;
+                margin-top:-24px;
             }
             .Headlines{
                 box-sizing: border-box;
@@ -140,13 +109,4 @@
                 }
           
               }
-        }
-        .am-tabs-default-bar-content{
-            color:#747978;
-          }
-          .am-tabs-default-bar-underline{
-              display: none;
-          }
-
-    }
 }

@@ -105,7 +105,7 @@ class NearfinedIndex extends Component<NearfinedIndex>{
             <div className="nearfined">
                 <div className="nearfined-top-tit">
                     <MyImage src={iconPic.backBlack} onTouchEnd={()=>this.props.history.goBack()}className="nearfined-image" />
-                    <h1>附近跑友团</h1>
+                    <h1 className="nearfined-top-title">附近跑友团</h1>
                 </div>
                 {this.TabExample()}
             </div>

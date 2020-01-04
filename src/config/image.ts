@@ -32,4 +32,8 @@ export const iconPic = {
   alarm_clock:require('../static/image/ico_history__d.png'),
   up:require('../static/image/ico_start_h.png'),
   end:require('../static/image/ico_start_h copy.png'),
+  receiving:require('../static/image/ico_notice_h@2x.png'),
+  car:require('../static/image/ico_logistics_h@2x.png'),
+  message:require('../static/image/ico_news_h@2x.png'),
+  right:require('../static/image/btn_more_right@2x.png'),
 };
