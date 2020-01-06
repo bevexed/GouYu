@@ -14,3 +14,6 @@ export const GET_CLASSIFY_BANNER = 'get_classify_banner';
 
 // 首页
 export const GET_HOME_PAGE_DATA = 'get_home_page_data'
+
+//社区分类
+export const GIT_CLASSIFY_PAGE_DATA= 'git_classify_page_data'

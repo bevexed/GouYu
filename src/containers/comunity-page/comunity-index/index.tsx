@@ -1,11 +1,14 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState,useEffect } from 'react';
 import './index.less';
 import { MyTabBar } from '../../../components/my-tab-bar';
 import { MyImage } from '../../../components/my-image';
 import { iconPic } from '../../../config/image';
 import { Tabs, WhiteSpace } from 'antd-mobile';
 import { useHistory } from 'react-router';
-
+import { reqClassifyPageData } from '../../../redux/community-classify-page/actions';
+import { useDispatch, useSelector, useStore } from 'react-redux';
+import { ReducersProps } from '../../../redux/store';
+import { ClassifyPageDataProps } from '../../../redux/community-classify-page/reducer';
 interface ComuntityIndexProps { }
 
 const tabs = [
@@ -17,13 +20,19 @@ const tabs = [
 ];
 
 //热点
-const renderHot = () => {
+const RenderHot:FC<{}> = () => {
+    const specialList  = useSelector<
+        ReducersProps,
+        ClassifyPageDataProps
+      >(state => state.classifyPageData);
     return (
         <div className="content-tabs-hot">
             {
-                new Array(10).fill(1).map((item, key) =>
+                specialList.records.map((item, key) =>
                     <div className="hot-content" key={key}>
-                        <MyImage className="hot-image" src={'https://img.alicdn.com/tfs/TB1vYlkdnZmx1VjSZFGXXax2XXa-468-644.jpg_320x5000q100.jpg_.webp'} />
+                        <MyImage className="hot-image" 
+                        src={item.headImage}
+                        />
                         <p className="hot-content-tit">此处是文字部分，此处是文字部分，此处是文字</p>
                         <div className="hot-content-footer">
                             <div className="hot-content-footer-left">
@@ -238,7 +247,7 @@ const TabExample: FC<TabExampleProps> = (props: TabExampleProps) => {
                 {/* <div className="content-tabs-hot">
                 {renderHot()}
             </div> */}
-                {renderHot()}
+                <RenderHot/>
                 <RenderDynamic />
                 {renderHeadlines()}
                 {/* <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '250px', backgroundColor: '#fff' }}>
@@ -254,7 +263,12 @@ const TabExample: FC<TabExampleProps> = (props: TabExampleProps) => {
 
 const ComuntityIndex: FC<ComuntityIndexProps> = (props) => {
     const [listState, setListState] = useState();
-    //const { push } = useHistory()
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(reqClassifyPageData());
+      }, [dispatch]);
+      
+      
     return <div className="comunity-index">
         <div className="comunity-index-header">
             <span className="header-title">社区</span>
