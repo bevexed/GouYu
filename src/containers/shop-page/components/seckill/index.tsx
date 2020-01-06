@@ -22,15 +22,18 @@ type TabProps = {
 type SeckillProps = {
   tabs: any[];
   children: ReactNode;
-  getChange?: (index: number) => void;
+  getChange?: (index: any) => void;
 };
 const Seckill: FC<SeckillProps> = (props: SeckillProps) => {
   const [page, setPage] = useState(0);
-  const _tabs = props.tabs.map(({ name, status }, index) => ({
-    title: name,
-    state: status,
-    index
-  }));
+  const _tabs = props.tabs.map(
+    ({ name, status,...rest }, index) => ({
+      title: name,
+      state: status,
+      index,
+      ...rest
+    })
+  );
   return (
     <div className="seckill">
       <Tabs
@@ -39,7 +42,10 @@ const Seckill: FC<SeckillProps> = (props: SeckillProps) => {
         page={page}
         onChange={(tab, index) => {
           setPage(index);
-          props.getChange && props.getChange(index);
+          props.getChange &&
+            props.getChange(
+             tab
+            );
         }}
         tabBarBackgroundColor={"#F8F9FA"}
         tabBarActiveTextColor={"#262D2C"}

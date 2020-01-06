@@ -8,7 +8,7 @@ export const ShopPage: RouteType[] = [
     exact: true,
   },
   {
-    path: '/shop/second-kill-page',
+    path: '/shop/second-kill-page/:seckillActivityId',
     component: lazy(() => import('../containers/shop-page/second-kill-page')),
     exact: true,
   },

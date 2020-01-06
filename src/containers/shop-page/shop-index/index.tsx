@@ -20,6 +20,7 @@ import { useHistory } from "react-router";
 import { ReducersProps } from "../../../redux/store";
 import { HomePageDataProps } from "../../../redux/home-page/reducer";
 import { ajax } from "../../../api/ajax";
+import { MyCenterTitle } from "../../../components/my-title";
 
 interface Props {
   history: History;
@@ -43,14 +44,24 @@ const ShopIndex: FC<Props> = props => {
     state => state.homePageData
   );
 
+  const [records, setRecords] = useState<any[]>([]);
   const [seckillActivityTimeSlotId, setSeckillActivityTimeSlotId] = useState(0);
+  const [seckillActivityId, setSeckillActivityId] = useState(0);
   useEffect(() => {
     ajax<any>({
       method: "GET",
       url: "/goods/getHomeSeckillGoodsList",
-      data: { seckillActivityTimeSlotId }
+      data: {
+        seckillActivityTimeSlotId:
+          seckillActivityTimeSlotId || seckillActivityTimeSlotList[0].id
+      }
+    }).then(res => {
+      setRecords(res.data.records);
     });
-  }, [seckillActivityTimeSlotId]);
+  }, [
+    seckillActivityTimeSlotId,
+    seckillActivityTimeSlotList,
+  ]);
 
   const { push } = useHistory();
   return (
@@ -78,17 +89,21 @@ const ShopIndex: FC<Props> = props => {
 
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
 
-      <MyMore path={"/shop/second-kill-page"} children={"限时秒杀"} />
+      <MyMore
+        path={"/shop/second-kill-page/" + (seckillActivityId || seckillActivityTimeSlotList[0].seckillActivityId)}
+        children={"限时秒杀"}
+      />
       <Seckill
         tabs={seckillActivityTimeSlotList}
         getChange={a => {
-          console.log(a);
+          setSeckillActivityId(a.seckillActivityId);
+          setSeckillActivityTimeSlotId(a.id);
         }}
       >
         <>
           <RenderContent />
           <MyWhiteBlank backgroundColor={"#F8F9FA"} />
-          <GoodList goodList={goodsList} />
+          <GoodList goodList={records} />
         </>
       </Seckill>
 
@@ -98,7 +113,7 @@ const ShopIndex: FC<Props> = props => {
       />
       <VipGoodList vipGoodList={integralGoodsList} />
 
-      <div className="title">猜你喜欢</div>
+      <MyCenterTitle>猜你喜欢</MyCenterTitle>
 
       <GuessYouLikeList guessYouLikeList={goodsList} />
 

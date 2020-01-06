@@ -1,10 +1,14 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { WingBlank } from "antd-mobile";
 import "./index.less";
 import MyTag from "../../../../components/my-tag";
 import { VipPrice } from "../../../../components/price";
 import { useHistory } from "react-router";
 import { MyImage } from "../../../../components/my-image";
+import { ajax } from "../../../../api/ajax";
+import { useSelector } from "react-redux";
+import { ReducersProps } from "../../../../redux/store";
+import { UserInfoProps } from "../../../../redux/user/reducer";
 
 const GuessYouLikeItem: FC<GuessYouLikeItemProps> = (
   props: GuessYouLikeItemProps
@@ -45,14 +49,25 @@ type GuessYouLikeItemProps = typeof _item;
 type GuessYouLikeListProps = {
   guessYouLikeList: GuessYouLikeItemProps[];
 };
-const GuessYouLikeList: FC<GuessYouLikeListProps> = (
-  props: GuessYouLikeListProps
-) => {
+const GuessYouLikeList: FC<GuessYouLikeListProps> = () => {
+  const { user } = useSelector<ReducersProps, UserInfoProps>(
+    state => state.userInfo
+  );
+
+  const [guessYouLikeList, setGuessYouLikeList] = useState<any>([]);
+  const pageSet = { current: 1, size: 10000000 };
+  useEffect(() => {
+    ajax<any>({
+      url: "/HistorySearch/guessLike",
+      method: "GET",
+      data: user.id ? { userId: user.id, ...pageSet } : pageSet
+    }).then(res => setGuessYouLikeList(res.data.records));
+  }, [user]);
   return (
     <div className="guess-you-like">
       <WingBlank>
         <section className="guess-you-like-list">
-          {props.guessYouLikeList.map((item, index) => (
+          {guessYouLikeList.map((item: any, index: number) => (
             <GuessYouLikeItem key={index} {...item} />
           ))}
         </section>

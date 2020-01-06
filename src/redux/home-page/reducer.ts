@@ -36,7 +36,7 @@ const initHonePageData = {
       isUp: 1,
       name: '8:00',
       status: 2,
-      seckillActivityId: 1,
+      seckillActivityId: 0,
     },
   ],
   goodsList: [
