@@ -1,16 +1,11 @@
 import React, { FC } from 'react';
 import { Carousel } from 'antd-mobile';
 import './index.less';
-import { useSelector } from 'react-redux';
-import { HomePageDataProps } from '../../../../redux/home-page/reducer';
-import { ReducersProps } from '../../../../redux/store';
 
-type Props = {};
+type Props = {
+  bannerList:any[]
+};
 const Banner: FC<Props> = (props: Props) => {
-  const { bannerList } = useSelector<ReducersProps, HomePageDataProps>(
-    state => state.homePageData,
-  );
-
   return (
     <Carousel
       autoplay={true}
@@ -32,7 +27,7 @@ const Banner: FC<Props> = (props: Props) => {
       // beforeChange={ (from, to) => console.log(`slide from ${ from } to ${ to }`) }
       // afterChange={ index => console.log('slide to', index) }
     >
-      {bannerList.map((val, key) => (
+      {props.bannerList.map((val, key) => (
         <div className={'carousel-item'} key={key}>
           <a href="http://www.alipay.com">
             <img

@@ -82,6 +82,7 @@ const initHonePageData = {
       sort: 0,
     },
   ],
+  vipBannerList:[]
 };
 
 export type HomePageDataProps = typeof initHonePageData

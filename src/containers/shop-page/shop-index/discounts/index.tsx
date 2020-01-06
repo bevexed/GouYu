@@ -2,15 +2,11 @@ import React, { FC } from 'react';
 import { Carousel } from 'antd-mobile';
 import './index.less';
 import { useHistory } from 'react-router';
-import { useSelector } from 'react-redux';
-import { ReducersProps } from '../../../../redux/store';
-import { HomePageDataProps } from '../../../../redux/home-page/reducer';
 
-type Props = {};
+type Props = {
+  integralGoodsList:any[]
+};
 const Discounts: FC<Props> = (props: Props) => {
-  const { integralGoodsList } = useSelector<ReducersProps, HomePageDataProps>(
-    state => state.homePageData,
-  );
 
   const { push } = useHistory();
 
@@ -33,15 +29,15 @@ const Discounts: FC<Props> = (props: Props) => {
         borderRadius: 0,
       }}
     >
-      {integralGoodsList.map((val, key) => (
+      {props.integralGoodsList.map((val, key) => (
         <div
           className={'discounts-item'}
           key={key}
           onTouchEnd={() => push('health/vip-gift-bag-page')}
         >
           <img
-            src={val.goodsImage}
-            alt={val.goodsTitle}
+            src={val.image}
+            alt={val.title}
             onLoad={() => {
               // fire window resize event to change height
               window.dispatchEvent(new Event('resize'));

@@ -2,9 +2,6 @@ import React, { FC, TouchEventHandler } from 'react';
 import { Grid } from 'antd-mobile';
 import './index.less';
 import { useHistory } from 'react-router';
-import { useSelector } from "react-redux";
-import { ReducersProps } from "../../../../redux/store";
-import { HomePageDataProps } from "../../../../redux/home-page/reducer";
 
 type Props = {};
 
@@ -27,17 +24,13 @@ const Item: FC<GridProps> = (dataItem: GridProps) => {
 };
 
 interface GridsProps {
-  gridData?: GridProps[];
+  specialList?: any[];
 }
 
 const Catalogue: FC<GridsProps> = (props: GridsProps) => {
-  const { specialList } = useSelector<ReducersProps, HomePageDataProps>(
-    state => state.homePageData,
-  );
-
   return (
     <Grid
-      data={ specialList }
+      data={ props.specialList }
       square={ true }
       columnNum={ 5 }
       hasLine={ false }

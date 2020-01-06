@@ -12,7 +12,6 @@ const SecondKillPage: FC<Props> = (props: Props) => {
 
       <div className='fixed'>
         <Seckill
-          contentShow={ false }
           tabs={ [
             { title: '08:00', state: 0 },
             { title: '10:00', state: 1 },
@@ -22,7 +21,9 @@ const SecondKillPage: FC<Props> = (props: Props) => {
             { title: '18:00', state: 1 },
             { title: '20:00', state: 1 },
           ] }
-        />
+        >
+          123
+        </Seckill>
       </div>
 
       <GoodList
