@@ -1,6 +1,6 @@
 import { ajax } from '../ajax';
 import { ClassifyBannerProps, OneClassifyListProps, QueryClassifyListProps, } from '../../redux/goods/reducer';
-import { AjaxQueryClassifyListProps } from './GoodProps';
+import { AjaxGetOrdinaryGoodsInfoProps, AjaxQueryClassifyListProps } from './GoodProps';
 
 export const AjaxQueryOneClassifyList = () =>
   ajax<OneClassifyListProps>({
@@ -19,4 +19,11 @@ export const AjaxQueryClassifyBanner = () =>
   ajax<ClassifyBannerProps>({
     url: '/goods/queryClassifyBanner',
     method: 'GET',
+  });
+
+export const AjaxGetOrdinaryGoodsInfo = (data:AjaxGetOrdinaryGoodsInfoProps) =>
+  ajax<any>({
+    url:'goods/getOrdinaryGoodsInfo',
+    method:'GET',
+    data
   });

@@ -1,4 +1,4 @@
-import { CLEAR_USER_INFO, GET_USER_INFO } from '../action-types';
+import { CLEAR_USER_INFO, GET_USER_INFO, SET_USER_INFO } from '../action-types';
 import { getLocalStorage, saveLocalStorage } from '../../util/storage';
 import { ActionProps } from '../store';
 
@@ -8,8 +8,8 @@ const initUserInfo = {
     bindWx: '是否绑定微信',
     gold: '金币',
     grade: '等级(0:普通会员 1:vip会员 2:金牌会员 3:城市合伙人)',
-    headImage: '头像',
-    id: '用户id',
+    headImage: '',
+    id: '',
     nickName: '用户昵称',
     sex: '性别',
     status: '状态',
@@ -29,6 +29,10 @@ export const userInfo = (state = initUserInfo, action: ActionProps) => {
     case CLEAR_USER_INFO:
       localStorage.clear();
       return { ...state, ...action.data };
+    case SET_USER_INFO:
+      const data = getLocalStorage('userInfo');
+      const _data  = data  ? JSON.parse(data): {};
+      return { ...state, ..._data };
     default:
       const token = getLocalStorage('token');
       return { ...state, token };

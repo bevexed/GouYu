@@ -10,6 +10,8 @@ import { NearfinedPage } from './nearfined-page';
 import { QuestionPage } from './question-page';
 import { MayQuestionPage } from './mayquestion-page';
 import { RemindPage } from './remind-page';
+import { GoodPage } from "./good-page";
+
 export interface RouteType {
   path: string;
   component: LazyExoticComponent<any>;
@@ -30,6 +32,7 @@ const AppRoutes: RouteType[] = [
   ...QuestionPage,
   ...MayQuestionPage,
   ...RemindPage,
+  ...GoodPage,
   {
     path: '/',
     component: lazy(() => import('../containers/login-page/login-index')),

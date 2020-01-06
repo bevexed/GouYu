@@ -1,25 +1,30 @@
-import { CLEAR_USER_INFO, GET_USER_INFO } from '../action-types';
-import { AjaxUserGetCode, AjaxUserLogin } from '../../api/user';
-import { AjaxUserGetCodeProps, AjaxUserLoginProps, } from '../../api/user/UserProps';
-import { Dispatch } from 'redux';
-import { isPhoneNumber } from '../../util/regex';
-import { Toast } from 'antd-mobile';
-import { UserInfoProps } from './reducer';
-import { AjaxStatus } from '../../api/ajax';
+import { CLEAR_USER_INFO, GET_USER_INFO, SET_USER_INFO } from "../action-types";
+import { AjaxUserGetCode, AjaxUserLogin } from "../../api/user";
+import { AjaxUserGetCodeProps, AjaxUserLoginProps } from "../../api/user/UserProps";
+import { Dispatch } from "redux";
+import { isPhoneNumber } from "../../util/regex";
+import { Toast } from "antd-mobile";
+import { UserInfoProps } from "./reducer";
+import { AjaxStatus } from "../../api/ajax";
 
 export const getUserInfo = (userInfo: UserInfoProps) => ({
   type: GET_USER_INFO,
-  data: userInfo,
+  data: userInfo
 });
 
 export const clearUserInfo = () => ({
   type: CLEAR_USER_INFO,
-  data:{token:''}
+  data: { token: "" }
+});
+
+export const setUserInfo = () => ({
+  type: SET_USER_INFO,
+  data:{}
 });
 
 export const getCode = async ({ phone, type }: AjaxUserGetCodeProps) => {
   if (!isPhoneNumber(phone)) {
-    Toast.fail('请验证手机号');
+    Toast.fail("请验证手机号");
     return false;
   }
 
@@ -35,7 +40,7 @@ export const reqUserLogin = (data: AjaxUserLoginProps) => {
     if (status === AjaxStatus.success) {
       dispatch(getUserInfo(res.data));
     } else {
-      dispatch(clearUserInfo())
+      dispatch(clearUserInfo());
     }
   };
 };

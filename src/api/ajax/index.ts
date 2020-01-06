@@ -5,7 +5,7 @@ import { BackEndBaseUrl } from '../../config/url';
 import Qs from 'qs';
 import { Toast } from 'antd-mobile';
 import Store from '../../redux/store'
-import { clearUserInfo } from "../../redux/user/actions";
+import { clearUserInfo, setUserInfo } from "../../redux/user/actions";
 import { getLocalStorage } from "../../util/storage";
 
 axios.defaults.baseURL = BackEndBaseUrl;
@@ -26,7 +26,6 @@ export const ajax = <T>({
 }: AjaxProps): Promise<ResProps<T>> => {
   // 发送简单请求
   console.log('%c Params', 'color:green', data);
-  axios.defaults.headers.common['token'] = getLocalStorage('token');
 
   return new Promise((resolve, reject) => {
     let promise;
@@ -50,6 +49,11 @@ export const ajax = <T>({
 
 ajaxRequest({
   beforeSend(config) {
+    const token =  getLocalStorage('token');
+    if (!token){
+      Store.dispatch(setUserInfo())
+    }
+    axios.defaults.headers.common['token'] = token;
     return config;
   },
   errorCallback(error) {
