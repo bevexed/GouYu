@@ -1,5 +1,6 @@
 import React, { lazy, LazyExoticComponent, Suspense } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
+import ExamplePage from "../components/example";
 import { LoginPage } from './login-page';
 import { ShopPage } from "./shop-page";
 import { SearchPage } from "./search-page";
@@ -48,8 +49,10 @@ export const MapRouters: React.FC = () => {
           {AppRoutes.map((item, key) => (
             <Route {...item} key={key} />
           ))}
-          <Route component={lazy(()=>import('../components/example'))}/>
+          <Route path={'/ui'} exact component={ExamplePage}/>
+
         </Suspense>
+
       </Switch>
     </HashRouter>
   );
