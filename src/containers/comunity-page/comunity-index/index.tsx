@@ -1,4 +1,4 @@
-import React, { FC, useState,useEffect } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import './index.less';
 import { MyTabBar } from '../../../components/my-tab-bar';
 import { MyImage } from '../../../components/my-image';
@@ -9,6 +9,7 @@ import { reqClassifyPageData } from '../../../redux/community-classify-page/acti
 import { useDispatch, useSelector, useStore } from 'react-redux';
 import { ReducersProps } from '../../../redux/store';
 import { ClassifyPageDataProps } from '../../../redux/community-classify-page/reducer';
+import { AjaxGetDynamicPageList, AjaxGetHeadlinesPageList } from '../../../api/community-classify-page';
 interface ComuntityIndexProps { }
 
 const tabs = [
@@ -20,28 +21,28 @@ const tabs = [
 ];
 
 //热点
-const RenderHot:FC<{}> = () => {
-    const specialList  = useSelector<
+const RenderHot: FC<{}> = () => {
+    const specialList = useSelector<
         ReducersProps,
         ClassifyPageDataProps
-      >(state => state.classifyPageData);
+    >(state => state.classifyPageData);
     return (
         <div className="content-tabs-hot">
             {
-                specialList.records.map((item, key) =>
-                    <div className="hot-content" key={key}>
-                        <MyImage className="hot-image" 
-                        src={item.headImage}
+                specialList.records.map((item) =>
+                    <div className="hot-content" key={item.id}>
+                        <MyImage className="hot-image"
+                            src={`${item.video}?x-oss-process=video/snapshot,t_10000,m_fast,w_800`}
                         />
-                        <p className="hot-content-tit">此处是文字部分，此处是文字部分，此处是文字</p>
+                        <p className="hot-content-tit">{item.content}</p>
                         <div className="hot-content-footer">
                             <div className="hot-content-footer-left">
-                                <div className="footer-left-bg"></div>
-                                <span className="footer-left-tit">毒岛百合子</span>
+                                <MyImage src={item.headImage} className="footer-left-bg" />
+                                <span className="footer-left-tit">{item.nickName}</span>
                             </div>
                             <div className="hot-content-footer-right">
                                 <MyImage src={iconPic.active_love} className="footer-right-love" />
-                                <span>1646</span>
+                                <span>{item.zanNumber}</span>
                             </div>
 
                         </div>
@@ -56,6 +57,16 @@ const RenderHot:FC<{}> = () => {
 //动态
 const RenderDynamic: FC<{}> = () => {
     const { push } = useHistory()
+    const [goodData, setGoodData] = useState();
+    useEffect(() => {
+        const getData = async () => {
+            const res = await AjaxGetDynamicPageList();
+            console.log(res);
+            setGoodData(res.data)
+        };
+        getData();
+    })
+    console.log('goodData', goodData)
     return (
         <div className="content-tabs-dynamic">
             <div className="tabs-dynamic-top">
@@ -110,7 +121,18 @@ const RenderDynamic: FC<{}> = () => {
     )
 }
 //头条
-const renderHeadlines = () => {
+const RenderHeadlines: FC<{}> = () => {
+    const [headlinesData, setheadlinesData] = useState();
+    useEffect(() => {
+        const getheadData = async () => {
+            console.log(1)
+            const res = await AjaxGetHeadlinesPageList();
+            console.log(res);
+            setheadlinesData(res)
+        };
+        getheadData();
+    },[])
+    console.log('headlinesData', headlinesData)
     return (
         <div className="Headlines-content">
             {new Array(10).fill(1).map((item, key) =>
@@ -247,9 +269,9 @@ const TabExample: FC<TabExampleProps> = (props: TabExampleProps) => {
                 {/* <div className="content-tabs-hot">
                 {renderHot()}
             </div> */}
-                <RenderHot/>
+                <RenderHot />
                 <RenderDynamic />
-                {renderHeadlines()}
+                <RenderHeadlines />
                 {/* <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '250px', backgroundColor: '#fff' }}>
                 Content of third tab
         </div> */}
@@ -266,9 +288,9 @@ const ComuntityIndex: FC<ComuntityIndexProps> = (props) => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(reqClassifyPageData());
-      }, [dispatch]);
-      
-      
+    }, [dispatch]);
+
+
     return <div className="comunity-index">
         <div className="comunity-index-header">
             <span className="header-title">社区</span>
