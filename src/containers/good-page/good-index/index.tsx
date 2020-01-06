@@ -17,7 +17,6 @@ const GoodPage: FC<Props> = (props: Props) => {
   useEffect(() => {
     const getData = async () => {
       const res = await AjaxGetOrdinaryGoodsInfo({ id, userId });
-      console.log(res);
       setGoodData(res.data)
     };
     getData();

@@ -3,8 +3,10 @@
   .img{
     min-height: 750px;
     min-width: 750px;
+    background: #888888;
   }
   .bar{
+    z-index: 999;
     display: flex;
     justify-content: space-between;
     position: absolute;
@@ -12,10 +14,25 @@
     left: 30px;
     right: 30px;
     margin: auto;
-    z-index: 999;
   }
   .back, .share{
     width: 56px;
     height: 56px;
+  }
+
+  .Pagination{
+    z-index: 999;
+    position: absolute;
+    width:88px;
+    height:38px;
+    background:rgba(0,0,0,0.4);
+    border-radius:20px;
+    font-size:24px;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+    text-align: center;
+    line-height:38px;
+    bottom: 32px;
+    right: 32px;
   }
 }
