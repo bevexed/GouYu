@@ -23,6 +23,7 @@ const ExamplePage: FC<Props> = (props: Props) => {
   const [sharePop, setSharePop] = useState(false);
   return (
     <div className="_example">
+      123
       <h1>UI</h1>
       <WingBlank>
         <MyTitle>GoodStateBar</MyTitle>
