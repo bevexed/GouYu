@@ -18,6 +18,7 @@ import Shop from "../shop";
 import GuessYouLikeList from "../../shop-page/shop-index/guess-you-like";
 import { reqHomePageData } from "../../../redux/home-page/actions";
 import { HomePageDataProps } from "../../../redux/home-page/reducer";
+import GoodBottom from "../good-bottom";
 
 type Props = typeof data;
 const GoodPage: FC<Props> = (props: Props) => {
@@ -25,17 +26,18 @@ const GoodPage: FC<Props> = (props: Props) => {
   useEffect(() => {
     dispatch(reqHomePageData());
   }, [dispatch]);
-  const { goodsList, integralGoodsList } = useSelector<
-    ReducersProps,
-    HomePageDataProps
-    >(state => state.homePageData);
+  const { goodsList } = useSelector<ReducersProps, HomePageDataProps>(
+    state => state.homePageData
+  );
   const { id } = useParams();
+
   const userId = useSelector<ReducersProps, string>(
     state => state.userInfo.user.id
   );
   const [goodData, setGoodData] = useState<Props>(data);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const getData = async () => {
       const res = await AjaxGetOrdinaryGoodsInfo({ id, userId });
       setGoodData(res.data);
@@ -86,6 +88,8 @@ const GoodPage: FC<Props> = (props: Props) => {
       <MyCenterTitle>猜你喜欢</MyCenterTitle>
 
       <GuessYouLikeList guessYouLikeList={goodsList} />
+
+      <GoodBottom/>
     </div>
   );
 };

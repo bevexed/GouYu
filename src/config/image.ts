@@ -6,6 +6,9 @@ export const LoginPic = {
 };
 
 export const iconPic = {
+  cart_gray:require('../static/image/ico_cart_gray@2x.png'),
+  like_gray:require('../static/image/ico_like_gray@2x.png'),
+  service_gray:require('../static/image/ico_service_gray@2x.png'),
   more: require('../static/image/ico_more_h@2x.png'),
   blue_more:require('../static/image/blue_more.png'),
   blue_down_arrow:require('../static/image/blue_down_arrow.png'),
