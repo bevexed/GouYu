@@ -5,6 +5,8 @@ import { useParams } from "react-router";
 import { AjaxGetOrdinaryGoodsInfo } from "../../../api/goods";
 import { useSelector } from "react-redux";
 import { ReducersProps } from "../../../redux/store";
+import MyTitle from "../../../components/my-title";
+import { WingBlank } from "antd-mobile";
 
 type Props = typeof data;
 const GoodPage: FC<Props> = (props: Props) => {
@@ -17,13 +19,16 @@ const GoodPage: FC<Props> = (props: Props) => {
   useEffect(() => {
     const getData = async () => {
       const res = await AjaxGetOrdinaryGoodsInfo({ id, userId });
-      setGoodData(res.data)
+      setGoodData(res.data);
     };
     getData();
-  },[id]);
+  }, [id]);
   return (
     <div className="_good-page">
-      <GoodBanner bannerList={goodData.goodsDescribe?.split(',')} />
+      <GoodBanner bannerList={goodData.goodsDescribe?.split(",")} />
+      <WingBlank>
+        <MyTitle>{goodData.goodsName}</MyTitle>
+      </WingBlank>
     </div>
   );
 };

@@ -1,6 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
 import "./index.less";
-import { WhiteSpace } from "antd-mobile";
 import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
 import { iconPic } from "../../../config/image";
@@ -54,7 +53,6 @@ const GoodBanner: FC<Props> = (props: Props) => {
           ))}
         </div>
       </div>
-      <WhiteSpace size={"lg"} />
     </div>
   );
 };

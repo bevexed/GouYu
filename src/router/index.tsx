@@ -48,6 +48,7 @@ export const MapRouters: React.FC = () => {
           {AppRoutes.map((item, key) => (
             <Route {...item} key={key} />
           ))}
+          <Route component={lazy(()=>import('../components/example'))}/>
         </Suspense>
       </Switch>
     </HashRouter>
