@@ -17,7 +17,7 @@ const GuessYouLikeItem: FC<GuessYouLikeItemProps> = (
   return (
     <div
       className="guess-you-like-item"
-      onTouchEnd={() => push("/good-page/" + props.id)}
+      onClick={() => push("/good-page/" + props.id)}
     >
       <MyImage className="guess-you-like-item-img" src={props.goodsImage} />
       <section className="bottom">

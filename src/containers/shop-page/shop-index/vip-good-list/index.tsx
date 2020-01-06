@@ -49,7 +49,7 @@ const VipGood: FC<VipGoodProps> = (props: VipGoodProps) => {
   );
 };
 
-type VipGoodListProps = {
+ export type VipGoodListProps = {
   vipGoodList: VipGoodProps[];
 };
 const VipGoodList: FC<VipGoodListProps> = (props: VipGoodListProps) => {

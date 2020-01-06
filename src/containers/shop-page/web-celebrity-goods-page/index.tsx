@@ -1,13 +1,26 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import './index.less';
 import { MyNavBar } from '../../../components/my-nav-bar';
 import { MyImage } from '../../../components/my-image';
 import { iconPic } from '../../../config/image';
 import MySharePopUp from '../../../components/my-share-pop-up';
+import VipGoodList from "../shop-index/vip-good-list";
+import { ajax } from "../../../api/ajax";
 
 type Props = {};
 const WebCelebrityGoodsPage: FC<Props> = (props: Props) => {
   const [popShow, setPopShow] = useState(false);
+  const [list,setList] = useState<any>([])
+  useEffect(()=>{
+    ajax<any>({
+      url:'goods/getVipGoodsPageList',
+      method:'GET',
+      data:{
+        current:1,
+        size:10000
+      }
+    }).then(res=>setList(res.data.records))
+  },[''])
   return (
     <div className="web-celebrity-goods-page">
       <MyNavBar
@@ -30,7 +43,7 @@ const WebCelebrityGoodsPage: FC<Props> = (props: Props) => {
         />
       </div>
 
-      {/*<VipGoodList vipGoodList={ [1, 2, 3, 4, 5] }/>*/}
+      <VipGoodList vipGoodList={ list }/>
 
       <MySharePopUp
         popUpShow={ popShow }

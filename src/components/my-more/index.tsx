@@ -16,7 +16,7 @@ const MyMore: FC<MyMoreProps> = (props: MyMoreProps) => {
     <div className="my-more">
       <WingBlank>
         <header
-          onTouchEnd={() => {
+          onClick={() => {
             return typeof props.path === "function"
               ? props.path()
               : push(props.path);
