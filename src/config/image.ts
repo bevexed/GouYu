@@ -25,6 +25,7 @@ export const iconPic = {
   star:require('../static/image/ico_like_n@2x.png'),
   info:require('../static/image/ico_comment_n@2x.png'),
   give_link:require('../static/image/ico_like_n.png'),
+  rod:require('../static/image/ico_like_b.png'),
   write:require('../static/image/ico_share_h.png'),
   dot:require('../static/image/ico_point_d.png'),
   my_answer:require('../static/image/btn_answer_h.png'),
@@ -32,4 +33,10 @@ export const iconPic = {
   alarm_clock:require('../static/image/ico_history__d.png'),
   up:require('../static/image/ico_start_h.png'),
   end:require('../static/image/ico_start_h copy.png'),
+  receiving:require('../static/image/ico_notice_h@2x.png'),
+  car:require('../static/image/ico_logistics_h@2x.png'),
+  message:require('../static/image/ico_news_h@2x.png'),
+  right:require('../static/image/btn_more_right@2x.png'),
+  round_arrow:require('../static/image/nav_ico_share_h.png'),
+  bottom:require('../static/image/btn_more_bottom.png'),
 };
