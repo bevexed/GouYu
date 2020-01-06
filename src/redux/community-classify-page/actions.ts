@@ -10,6 +10,6 @@ const getClassifyPageData = (ClassifyPageData: ClassifyPageDataProps) => ({
 
 export const reqClassifyPageData = () => async (dispatch: Dispatch) => {
   const res = await AjaxGetClassifyPageList();
-   console.log(2222,res.data)
+  
   dispatch(getClassifyPageData(res.data));
 };

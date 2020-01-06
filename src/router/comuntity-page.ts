@@ -14,5 +14,10 @@ export const ComunityPage: RouteType[] = [
     path: '/comunity/comments-details-page',
     component: lazy(() => import('../containers/comunity-page/dynamic-details-page/comments-details-page')),
     exact: true,
+  },{
+    path: '/comunity/headline-details-page',
+    component: lazy(() => import('../containers/comunity-page/headline-details-page')),
+    exact: true,
   },
+
 ];

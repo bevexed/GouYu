@@ -1,12 +1,8 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component } from 'react';
 import './index.less';
 import { MyImage } from '../../../components/my-image';
 import { iconPic } from '../../../config/image';
 import { RouteComponentProps } from 'react-router';
-//import { useDispatch, useSelector } from 'react-redux';
-//import { ReducersProps } from '../../../redux/store';
-//import { ClassifyPageDataProps } from '../../../redux/community-classify-page/reducer';
-import { AjaxGetDynamicDetailsPageList } from '../../../api/community-classify-page';
 //import { Modal,List } from 'antd-mobile';
 //List, Button, WhiteSpace, WingBlank, Icon
 interface DetailsIndex extends RouteComponentProps {
@@ -19,21 +15,8 @@ class DetailsIndex extends Component<DetailsIndex>{
         focusflage: true,
         SearchBarState: 0,
         commentsState: true,
-        DynamicDetailsList: null,
-        Dataid: null,
-    }
 
-    componentDidMount() {
-        const idData = this.props.location.search.slice(1).split('=')
-        //this.onDetailsList(idData)
     }
-
-    onDetailsList = async (idData: number) => {
-        const res = await AjaxGetDynamicDetailsPageList();
-        console.log(res);
-        this.setState({ DynamicDetailsList: res.data.records })
-    }
-
     onchange = () => {
         this.setState({
             flage: false,
@@ -129,6 +112,27 @@ class DetailsIndex extends Component<DetailsIndex>{
                     <MyImage src={iconPic.bottom} className="unfold-icon" />
                 </div>
                 <div className="empty"></div>
+                <div className="dynamic-like-list">
+                    <p className="link-title"><span>猜你喜欢</span></p>
+                    <div className="dynamic-like-list-content">
+                        <div className="dynamic-like-list-con">
+                            <MyImage className="lick-image" src={'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577774306343&di=9513ed808d895914506fd67f1070774f&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170512%2Fceb4c51b34c54032a65e1fb23af7eeaa_th.jpg'} />
+                            <div className="dynamic-like-bottom">
+                                <h4 className="dynamic-like-bottom-title"></h4>
+                                <p className="dynamic-like-bottom-test">澳洲进口，swisse奶蓟草护肝片</p>
+                                <div className="dynamic-like-bottom-money">
+                                    <p>¥888</p>
+                                    <span>¥999</span>
+                                </div>
+                                 <div className="dynamic-like-bottom-zero">
+                                     <p>VIP省¥5.99</p>
+                                     <span>分享赚¥2.99</span>
+                                 </div>
+                                 
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
 
@@ -141,7 +145,7 @@ class DetailsIndex extends Component<DetailsIndex>{
                 <div className="dynamic-details-con">
                     <div className="dynamic-container-top">
                         <MyImage src={iconPic.backBlack} onTouchEnd={() => this.props.history.goBack()} className="dynamic-image" />
-                        <p className="dynamic-container-title">动态详情</p>
+                        <p className="dynamic-container-title">头条详情</p>
                         <MyImage src={iconPic.round_arrow} onTouchEnd={() => this.props.history.goBack()} className="dynamic-image" />
                     </div>
                     <div className="dynamic-details-center-con">
