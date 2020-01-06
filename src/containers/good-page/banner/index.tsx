@@ -1,29 +1,36 @@
 import React, { FC, useEffect } from 'react';
 import './index.less'
-import { WhiteSpace, WingBlank } from "antd-mobile";
+import { WhiteSpace } from "antd-mobile";
 import Swiper from "swiper";
+import 'swiper/css/swiper.min.css';
+import { iconPic } from "../../../config/image";
+import { MyImage } from "../../../components/my-image";
+import { useHistory } from "react-router";
 
 type Props = {
-  bannerList:any[]
+  bannerList:string[]
 };
 const GoodBanner: FC<Props> = (props: Props) => {
+  const {go} = useHistory()
   useEffect(() => {
     new Swiper('.swiper-container', {
-      direction: 'horizontal', // 垂直切换选项
-      freeMode: true,
-      slidesPerView: 2.3,
-      height: 376
+      autoplay: true,//可选选项，自动滑动,
+      height:750
     });
   });
   return (
-    <WingBlank className={ 'star-show-banner' }>
+    <div className={ '_good-banner' }>
       <div className="swiper-container">
+        <div className='bar'>
+          <MyImage src={iconPic.more} className='back' onTouchEnd={()=>go(-1)}/>
+          <MyImage src={iconPic.share_back_black} className='back' />
+        </div>
         <div className="swiper-wrapper">
           { props.bannerList.map((val, index) => (
             <div className="swiper-slide" key={ index }>
-              <img
-                src={ `https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=334699929,3250564392&fm=26&gp=0.jpg` }
-                alt=""
+              <MyImage
+                src={ val }
+                alt= {val}
                 className={ 'img' }
                 onLoad={ () => {
                   // fire window resize event to change height
@@ -35,7 +42,7 @@ const GoodBanner: FC<Props> = (props: Props) => {
         </div>
       </div>
       <WhiteSpace size={ "lg" }/>
-    </WingBlank>
+    </div>
   );
 };
 
