@@ -9,7 +9,6 @@ const PieCanvas: FC<Props> = (props: Props) => {
     const HEIGHT = (Canvas.height = 128);
     const WIDTH = (Canvas.width = 128);
     const lineWidth = 12;
-    console.log(WIDTH, HEIGHT);
     if (ctx) {
       // 白色圆环
       ctx.beginPath();
@@ -30,7 +29,6 @@ const PieCanvas: FC<Props> = (props: Props) => {
       ctx.beginPath();
       ctx.fillStyle = '#000';
       ctx.font = 'bold 22px Arial';
-      console.log(ctx.measureText('80%'));
       const { width } = ctx.measureText('80%');
       ctx.fillText('80%', (WIDTH - width) / 2, (HEIGHT + 16) / 2);
 

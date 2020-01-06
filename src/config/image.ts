@@ -11,6 +11,7 @@ export const iconPic = {
   search: require('../static/image/nav_ico_search_h@2x.png'),
   vip: require('../static/image/ico-vip.png'),
   share: require('../static/image/share.png'),
+  share_back_black:require('../static/image/nav_ico_back_h.png'),
   close: require('../static/image/close.png'),
   triangle: require('../static/image/ico_point_d@2x.png'),
   _close: require('../static/image/nav_ico_back_h@2x.png'),
