@@ -1,13 +1,13 @@
-import React, { FC, ReactNode } from 'react';
-import './index.less';
-import { iconPic } from '../../config/image';
-import { WingBlank } from 'antd-mobile';
-import { useHistory } from 'react-router';
+import React, { FC, ReactNode } from "react";
+import "./index.less";
+import { iconPic } from "../../config/image";
+import { WingBlank } from "antd-mobile";
+import { useHistory } from "react-router";
 import MyTitle from "../my-title";
 
 type MyMoreProps = {
   children: string | ReactNode;
-  path: string;
+  path: string | Function;
   rightContent?: string | ReactNode;
 };
 const MyMore: FC<MyMoreProps> = (props: MyMoreProps) => {
@@ -15,16 +15,16 @@ const MyMore: FC<MyMoreProps> = (props: MyMoreProps) => {
   return (
     <div className="my-more">
       <WingBlank>
-        <header>
-          <MyTitle>{ props.children }</MyTitle>
-          <p onTouchStart={ () => push(props.path) }>
-            { props.rightContent || '更多' }
-          </p>
-          <img
-            onTouchStart={ () => push(props.path) }
-            src={ iconPic.more }
-            alt=""
-          />
+        <header
+          onTouchEnd={() => {
+            return typeof props.path === "function"
+              ? props.path()
+              : push(props.path);
+          }}
+        >
+          <MyTitle>{props.children}</MyTitle>
+          <p>{props.rightContent || "更多"}</p>
+          <img src={iconPic.more} alt="" />
         </header>
       </WingBlank>
     </div>

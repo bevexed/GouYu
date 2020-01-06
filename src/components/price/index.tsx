@@ -4,6 +4,7 @@ import { iconPic } from '../../config/image';
 
 type PriceProps = {
   children: ReactNode;
+  ellipsis?:boolean;
 };
 
 export const OriginPrice: FC<PriceProps> = (props: PriceProps) => {
@@ -23,10 +24,17 @@ export const VipPrice: FC<PriceProps> = (props: PriceProps) => {
   );
 };
 
-export const GrayLabel: FC<PriceProps> = props => (
-  <div className="_gray-label">{ props.children }</div>
+interface GrayLabelProps  extends PriceProps{
+
+}
+export const GrayLabel: FC<GrayLabelProps> = props => (
+  <div className={["_gray-label",props.ellipsis ? 'ellipsis':''].join(' ')}>{ props.children }</div>
 );
 
 export const BlackLabel: FC<PriceProps> = props => (
   <div className="_black-label">{ props.children }</div>
+);
+
+export const BlueLabel: FC<PriceProps> = props => (
+  <div className="_blue-label">{ props.children }</div>
 );

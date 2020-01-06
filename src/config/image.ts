@@ -7,6 +7,8 @@ export const LoginPic = {
 
 export const iconPic = {
   more: require('../static/image/ico_more_h@2x.png'),
+  blue_more:require('../static/image/blue_more.png'),
+  blue_down_arrow:require('../static/image/blue_down_arrow.png'),
   backBlack: require('../static/image/back-black.png'),
   back_with_bk:require('../static/image/back-with-bk.png'),
   search: require('../static/image/nav_ico_search_h@2x.png'),
