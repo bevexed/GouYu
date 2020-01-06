@@ -1,8 +1,8 @@
-import React, { FC, useState } from 'react';
-import './index.less';
-import { MyImage } from '../my-image';
-import AddIcon from './image/btn_add_h@2x.png';
-import CutIcon from './image/btn_cut_h@2x.png';
+import React, { FC, useState } from "react";
+import "./index.less";
+import { MyImage } from "../my-image";
+import AddIcon from "./image/btn_add_h@2x.png";
+import CutIcon from "./image/btn_cut_h@2x.png";
 
 type Props = {
   val: number;
@@ -11,11 +11,11 @@ type Props = {
   step?: number;
 };
 const MyStepper: FC<Props> = ({
-                                val,
-                                onChange,
-                                defaultValue = 0,
-                                step = 1,
-                              }: Props) => {
+  val,
+  onChange,
+  defaultValue = 0,
+  step = 1
+}: Props) => {
   const [num, setNum] = useState(val || defaultValue);
   const add = () => {
     setNum(num + step);
@@ -29,9 +29,9 @@ const MyStepper: FC<Props> = ({
 
   return (
     <div className="_my-stepper">
-      <MyImage src={ CutIcon } onTouchEnd={ reduce }/>
-      <p>{ num }</p>
-      <MyImage src={ AddIcon } onTouchEnd={ add }/>
+      <MyImage src={CutIcon} onTouchEnd={reduce} />
+      <p>{num}</p>
+      <MyImage src={AddIcon} onTouchEnd={add} />
     </div>
   );
 };

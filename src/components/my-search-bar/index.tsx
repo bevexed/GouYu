@@ -1,9 +1,10 @@
-import React, { FC, useState } from 'react';
+import React, { FC, InputHTMLAttributes, useState } from 'react';
 import './index.less';
 import { iconPic } from '../../config/image';
 import { useHistory } from 'react-router';
 
-type MySearchBarProps = {};
+interface MySearchBarProps extends InputHTMLAttributes<any>{
+};
 const MySearchBar: FC<MySearchBarProps> = (props: MySearchBarProps) => {
   const [focusState, setFocus] = useState(false);
   const { go } = useHistory();
@@ -18,6 +19,7 @@ const MySearchBar: FC<MySearchBarProps> = (props: MySearchBarProps) => {
             setFocus(true);
           } }
           onBlur={ () => setFocus(false) }
+          placeholder={props.placeholder}
         />
       </div>
       <span className={ ['cancel', focusState && 'active'].join(' ') }>
