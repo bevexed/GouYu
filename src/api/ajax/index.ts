@@ -53,7 +53,8 @@ ajaxRequest({
     if (!token) {
       Store.dispatch(setUserInfo());
     }
-    axios.defaults.headers.common["token"] = token.replace(`"`,'');
+    const reg = /["]/g;
+    axios.defaults.headers.common["token"] = token.replace(reg,'');
     return config;
   },
   errorCallback(error) {

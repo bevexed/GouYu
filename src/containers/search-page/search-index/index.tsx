@@ -11,7 +11,7 @@ const SearchIndex: FC<SearchProps> = (props: SearchProps) => {
   const [HistoryList, setHistoryList] = useState<any>([]);
   useEffect(()=>{
     AjaxHistorySearchQueryList().then(
-      res=>setHistoryList(res.data)
+      res=>setHistoryList(res.data.records)
     )
   },[''])
 
@@ -22,7 +22,7 @@ const SearchIndex: FC<SearchProps> = (props: SearchProps) => {
       <WingBlank>
         <div className="history-search">历史搜索</div>
         <div className="search-flex">
-          { new Array(6).fill('亚健康调理').map((item, index) => (
+          { HistoryList.map((item:any, index:number) => (
             <MyGrayTag key={ index } onTouchStart={ () => push('/search-result/' + index) }>{ item }</MyGrayTag>
           )) }
         </div>

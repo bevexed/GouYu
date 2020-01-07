@@ -27,7 +27,7 @@ export const AjaxHistorySearchSave = (data: { content: string }) =>
   });
 
 export const AjaxHistorySearchQueryList = () =>
-  ajax({
+  ajax<any>({
     url: "/HistorySearch/searchQueryList",
     method: "GET",
     data:{id:30}
