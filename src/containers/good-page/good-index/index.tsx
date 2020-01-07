@@ -41,7 +41,7 @@ const GoodPage: FC<Props> = (props: Props) => {
     getData();
   }, [id]);
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   return (
     <div className="_good-page">
@@ -86,7 +86,7 @@ const GoodPage: FC<Props> = (props: Props) => {
 
       <GoodBottom />
 
-      <Specification open={open} close={() => setOpen(false)} />
+      <Specification open={open} id={id} close={() => setOpen(false)} />
     </div>
   );
 };

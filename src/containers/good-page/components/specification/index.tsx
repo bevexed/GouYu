@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import "./index.less";
 import { MyImage } from "../../../../components/my-image";
 import { GrayLabel, Price } from "../../../../components/price";
@@ -10,16 +10,25 @@ import { GoToShopButton } from "../../../../components/my-button";
 import { preventScroll } from "../../../../util/scroll";
 import MyIcon from "../../../../components/my-icon";
 import { iconPic } from "../../../../config/image";
+import { ajax } from "../../../../api/ajax";
 
 type Props = {
   open: boolean;
   close(): void;
+  id?: string;
 };
 const Specification: FC<Props> = (props: Props) => {
+  const [OrdinaryGoodsSkuList, setOrdinaryGoodsSkuList] = useState<any>([]);
+  console.log(OrdinaryGoodsSkuList);
   useEffect(() => {
+    ajax({
+      url: "/goods/getOrdinaryGoodsSkuList",
+      method: "GET",
+      data: { goodsId: props.id }
+    }).then(res=>setOrdinaryGoodsSkuList(res.data));
     preventScroll(".wrap");
     return () => props.close();
-  },[]);
+  }, [props.id]);
   return props.open ? (
     <div className={`wrap`}>
       <div className="specification">
@@ -29,10 +38,10 @@ const Specification: FC<Props> = (props: Props) => {
           onTouchEnd={props.close}
         />
         <header>
-          <MyImage src={""} className={"shop-img"} />
+          <MyImage src={OrdinaryGoodsSkuList[0]?.skuImage} className={"shop-img"} />
           <div className="right">
-            <Price>￥189</Price>
-            <GrayLabel>库存2920</GrayLabel>
+            <Price>￥{OrdinaryGoodsSkuList[0]?.salePrice}</Price>
+            <GrayLabel>库存2{OrdinaryGoodsSkuList[0]?.skuStock}</GrayLabel>
             <MyTitle>清苷朝鲜蓟枳椇子植物饮料</MyTitle>
             <GrayLabel ellipsis={true}>
               护肝养胃，活力十足，清苷朝鲜蓟枳椇…
@@ -43,7 +52,7 @@ const Specification: FC<Props> = (props: Props) => {
         <WhiteSpace size={"lg"} />
 
         <section>
-          <GrayLabel>颜色</GrayLabel>
+          <GrayLabel>{OrdinaryGoodsSkuList[0]?.oneAttributeValue}</GrayLabel>
           <div className="select-list">
             {[1, 2, 3, 4].map((item, key) => (
               <MySelectTag
@@ -57,7 +66,7 @@ const Specification: FC<Props> = (props: Props) => {
         </section>
 
         <section>
-          <GrayLabel>尺码</GrayLabel>
+          <GrayLabel>{OrdinaryGoodsSkuList[0]?.twoAttributeValue}</GrayLabel>
           <div className="select-list">
             {[1, 2, 3, 4].map((item, key) => (
               <MySelectTag
