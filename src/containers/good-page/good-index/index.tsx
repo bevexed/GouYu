@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import "./index.less";
-import GoodBanner from "../banner";
+import GoodBanner from "../components/banner";
 import { useParams } from "react-router";
 import { AjaxGetOrdinaryGoodsInfo } from "../../../api/goods";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,12 +13,13 @@ import MyWhiteBlank from "../../../components/my-white-blank";
 import MyMore from "../../../components/my-more";
 import MyIcon from "../../../components/my-icon";
 import { iconPic } from "../../../config/image";
-import Comment from "../comments";
-import Shop from "../shop";
+import Comment from "../components/comments";
+import Shop from "../components/shop";
 import GuessYouLikeList from "../../shop-page/shop-index/guess-you-like";
 import { reqHomePageData } from "../../../redux/home-page/actions";
-import GoodBottom from "../good-bottom";
+import GoodBottom from "../components/good-bottom";
 import { ajax } from "../../../api/ajax";
+import Specification from "../components/specification";
 
 type Props = typeof data;
 const GoodPage: FC<Props> = (props: Props) => {
@@ -100,6 +101,8 @@ const GoodPage: FC<Props> = (props: Props) => {
       <GuessYouLikeList />
 
       <GoodBottom />
+
+      <Specification />
     </div>
   );
 };

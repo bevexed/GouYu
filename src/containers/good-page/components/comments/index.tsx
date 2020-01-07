@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import "./index.less";
-import { MyImage } from "../../../components/my-image";
+import { MyImage } from "../../../../components/my-image";
 import { WingBlank } from "antd-mobile";
-import { BlackLabel, BlueLabel } from "../../../components/price";
-import Heart from "../../search-page/search-result-page/shop-item/image/xin.png";
-import { iconPic } from "../../../config/image";
+import { BlackLabel, BlueLabel } from "../../../../components/price";
+import Heart from "../../../search-page/search-result-page/shop-item/image/xin.png";
+import { iconPic } from "../../../../config/image";
 
 type Props = {
   [key: string]: any;

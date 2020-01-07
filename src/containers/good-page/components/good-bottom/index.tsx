@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import "./index.less";
-import MyWhiteBlank from "../../../components/my-white-blank";
-import MyIcon from "../../../components/my-icon";
-import { iconPic } from "../../../config/image";
-import { GrayLabel } from "../../../components/price";
+import MyWhiteBlank from "../../../../components/my-white-blank";
+import MyIcon from "../../../../components/my-icon";
+import { iconPic } from "../../../../config/image";
+import { GrayLabel } from "../../../../components/price";
 
 type Props = {};
 const GoodBottom: FC<Props> = (props: Props) => {
