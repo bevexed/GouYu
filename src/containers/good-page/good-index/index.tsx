@@ -7,18 +7,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { ReducersProps } from "../../../redux/store";
 import MyTitle, { MyCenterTitle } from "../../../components/my-title";
 import { WingBlank } from "antd-mobile";
-import { BlueLabel, GrayLabel, OriginPrice, Price, VipPrice } from "../../../components/price";
+import { GrayLabel, OriginPrice, Price, VipPrice } from "../../../components/price";
 import MyTag from "../../../components/my-tag";
 import MyWhiteBlank from "../../../components/my-white-blank";
 import MyMore from "../../../components/my-more";
-import MyIcon from "../../../components/my-icon";
-import { iconPic } from "../../../config/image";
 import Comment from "../components/comments";
 import Shop from "../components/shop";
 import GuessYouLikeList from "../../shop-page/shop-index/guess-you-like";
 import { reqHomePageData } from "../../../redux/home-page/actions";
 import GoodBottom from "../components/good-bottom";
-import { ajax } from "../../../api/ajax";
 import Specification from "../components/specification";
 
 type Props = typeof data;
@@ -42,16 +39,6 @@ const GoodPage: FC<Props> = (props: Props) => {
       setGoodData(res.data);
     };
     getData();
-  }, [id]);
-
-  const [commentList, setCommentList] = useState<any>([]);
-  // 获取评价详情
-  useEffect(() => {
-    ajax<any>({
-      url: "/comment/commentList",
-      method: "GET",
-      data: { id, current: 1, size: 10000 }
-    }).then(res => setCommentList(res.data.records));
   }, [id]);
 
   const [open, setOpen] = useState(false);
@@ -85,13 +72,8 @@ const GoodPage: FC<Props> = (props: Props) => {
         <GrayLabel>·天无理由退货·闪电退货</GrayLabel>
       </div>
 
-      <WingBlank className="dis">
-        <MyTitle>商品评价</MyTitle>
-        <GrayLabel>（{commentList.length}评价）</GrayLabel>
-        <BlueLabel>查看更多</BlueLabel>
-        <MyIcon src={iconPic.blue_more} />
-      </WingBlank>
-      <Comment commentList={commentList} />
+
+      <Comment id={id} />
 
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
 
