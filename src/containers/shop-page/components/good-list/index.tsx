@@ -23,7 +23,7 @@ export const GoodItem: FC<GoodItemProps> = (props) => {
 
           <div className="price">
             <MyTag>VIP省 ￥{props.vipDisparityPrice}</MyTag>
-            <MyTag>分享赚 ￥5.99</MyTag>
+            <MyTag>分享赚 ￥{props.goldVipOneCommission}</MyTag>
             <div className="ori">¥{props.marketPrice}</div>
           </div>
 

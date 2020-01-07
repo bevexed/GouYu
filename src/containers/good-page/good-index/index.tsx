@@ -17,8 +17,8 @@ import Comment from "../comments";
 import Shop from "../shop";
 import GuessYouLikeList from "../../shop-page/shop-index/guess-you-like";
 import { reqHomePageData } from "../../../redux/home-page/actions";
-import { HomePageDataProps } from "../../../redux/home-page/reducer";
 import GoodBottom from "../good-bottom";
+import { ajax } from "../../../api/ajax";
 
 type Props = typeof data;
 const GoodPage: FC<Props> = (props: Props) => {
@@ -26,9 +26,6 @@ const GoodPage: FC<Props> = (props: Props) => {
   useEffect(() => {
     dispatch(reqHomePageData());
   }, [dispatch]);
-  const { goodsList } = useSelector<ReducersProps, HomePageDataProps>(
-    state => state.homePageData
-  );
   const { id } = useParams();
 
   const userId = useSelector<ReducersProps, string>(
@@ -36,6 +33,7 @@ const GoodPage: FC<Props> = (props: Props) => {
   );
   const [goodData, setGoodData] = useState<Props>(data);
 
+  // 获取商品详情
   useEffect(() => {
     window.scrollTo(0, 0);
     const getData = async () => {
@@ -44,6 +42,17 @@ const GoodPage: FC<Props> = (props: Props) => {
     };
     getData();
   }, [id]);
+
+  const [commentList, setCommentList] = useState<any>([]);
+  // 获取评价详情
+  useEffect(() => {
+    ajax<any>({
+      url: "/comment/commentList",
+      method: "GET",
+      data: { id, current: 1, size: 10000 }
+    }).then(res => setCommentList(res.data.records));
+  }, [id]);
+
   return (
     <div className="_good-page">
       <GoodBanner bannerList={goodData.goodsDescribe?.split(",")} />
@@ -61,7 +70,7 @@ const GoodPage: FC<Props> = (props: Props) => {
 
         <div className="tag">
           <MyTag>VIP省￥ {goodData.vipDisparityPrice}</MyTag>
-          <MyTag>分享赚￥ {goodData.vipDisparityPrice}</MyTag>
+          <MyTag>分享赚￥ {goodData.goldVipOneCommission}</MyTag>
           <div />
           <div className="tag-btn">成为VIP分享拿佣金</div>
         </div>
@@ -75,11 +84,12 @@ const GoodPage: FC<Props> = (props: Props) => {
 
       <WingBlank className="dis">
         <MyTitle>商品评价</MyTitle>
-        <GrayLabel>（{999}评价）</GrayLabel>
+        <GrayLabel>（{commentList.length}评价）</GrayLabel>
         <BlueLabel>查看更多</BlueLabel>
         <MyIcon src={iconPic.blue_more} />
       </WingBlank>
-      <Comment />
+      <Comment commentList={commentList} />
+
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
 
       <Shop />
@@ -87,9 +97,9 @@ const GoodPage: FC<Props> = (props: Props) => {
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
       <MyCenterTitle>猜你喜欢</MyCenterTitle>
 
-      <GuessYouLikeList guessYouLikeList={goodsList} />
+      <GuessYouLikeList />
 
-      <GoodBottom/>
+      <GoodBottom />
     </div>
   );
 };

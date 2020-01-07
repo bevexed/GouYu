@@ -3,30 +3,33 @@ import './index.less';
 import { Progress, WingBlank } from 'antd-mobile';
 import MyWhiteBlank from '../../../../components/my-white-blank';
 import { MyBuyButton } from '../../../../components/my-button';
+import { useHistory } from "react-router";
 
 interface VipGoodProps {
   goodsImage: string;
   goodsDescribe:string;
   goodsTitle:string;
   goodsName:string;
-  stock:number
+  stock:number;
+  [key:string]:any
 }
 
 const VipGood: FC<VipGoodProps> = (props: VipGoodProps) => {
+  const {push} = useHistory();
   return (
     <>
       <WingBlank>
-        <div className="_vip-good">
+        <div className="_vip-good" onClick={()=>push('/')}>
           <img className="_good-img" src={props.goodsImage} alt={props.goodsDescribe} />
           <section className="right">
             <div className="title">{props.goodsName}</div>
             <div className="dis">{props.goodsTitle}</div>
             <div className="sold-out">
-              <span>已有25444位用户免费领取</span>
+              <span>已有{props.soldNumber}位用户免费领取</span>
               <MyBuyButton state={'free'} />
             </div>
             <div className="price">
-              <span>￥888</span>
+              <span>￥{props.vipPrice}</span>
               <span>仅剩{props.stock}件</span>
               <Progress
                 percent={40}

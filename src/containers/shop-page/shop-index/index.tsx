@@ -115,7 +115,7 @@ const ShopIndex: FC<Props> = props => {
 
       <MyCenterTitle>猜你喜欢</MyCenterTitle>
 
-      <GuessYouLikeList guessYouLikeList={goodsList} />
+      <GuessYouLikeList/>
 
       <FloatButton />
 

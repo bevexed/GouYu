@@ -26,18 +26,18 @@ const GuessYouLikeItem: FC<GuessYouLikeItemProps> = (
         <div className="guess-you-like-item-dis">{props.goodsTitle} </div>
 
         <div className="guess-you-like-item-price">
-          <div className="guess-you-like-item-real">￥{props.seckillPrice}</div>
+          <div className="guess-you-like-item-real">￥{props.marketPrice}</div>
           <div className="guess-you-like-item-ori">￥{props.salePrice}</div>
         </div>
 
         <div className="tags">
           <MyTag>VIP省￥{props.vipDisparityPrice}</MyTag>
-          <MyTag>分享赚￥2.99</MyTag>
+          <MyTag>分享赚￥{props.goldVipOneCommission}</MyTag>
         </div>
 
         <div className="vip-price">
-          <VipPrice>666</VipPrice>
-          <div className="sold-out">已售999＋</div>
+          <VipPrice>{props.memberPrice}</VipPrice>
+          <div className="sold-out">已售{props.soldNumber}</div>
         </div>
       </section>
     </div>
@@ -47,7 +47,6 @@ const GuessYouLikeItem: FC<GuessYouLikeItemProps> = (
 type GuessYouLikeItemProps = typeof _item;
 
 type GuessYouLikeListProps = {
-  guessYouLikeList: GuessYouLikeItemProps[];
 };
 const GuessYouLikeList: FC<GuessYouLikeListProps> = () => {
   const { user } = useSelector<ReducersProps, UserInfoProps>(
@@ -105,5 +104,6 @@ const _item = {
   type: 0,
   vipOneCommission: 10,
   vipTwoCommission: 5,
-  vipDisparityPrice: 10
+  vipDisparityPrice: 10,
+  soldNumber: 0
 };
