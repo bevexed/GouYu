@@ -6,7 +6,10 @@
   background: rgba(0, 0, 0, 0.3);
   touch-action: none;
   z-index: 999;
+  transition: all .3s;
+  overflow: hidden;
 }
+
 .specification {
   position: fixed;
   bottom: 0;
@@ -16,7 +19,11 @@
   border-radius: 0 60px 0 0;
   padding: 18px;
   box-sizing: border-box;
-
+  >.icon{
+    position: absolute;
+    top: 32px;
+    right: 32px;
+  }
   > header {
     overflow: hidden;
     height: 220px;

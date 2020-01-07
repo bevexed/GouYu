@@ -54,6 +54,8 @@ const GoodPage: FC<Props> = (props: Props) => {
     }).then(res => setCommentList(res.data.records));
   }, [id]);
 
+  const [open, setOpen] = useState(false);
+
   return (
     <div className="_good-page">
       <GoodBanner bannerList={goodData.goodsDescribe?.split(",")} />
@@ -78,7 +80,7 @@ const GoodPage: FC<Props> = (props: Props) => {
         <MyWhiteBlank />
       </WingBlank>
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
-      <MyMore path={() => alert(1)} children={"选择规格和数量"} />
+      <MyMore path={() => setOpen(true)} children={"选择规格和数量"} />
       <div className="_back">
         <GrayLabel>·天无理由退货·闪电退货</GrayLabel>
       </div>
@@ -102,7 +104,7 @@ const GoodPage: FC<Props> = (props: Props) => {
 
       <GoodBottom />
 
-      <Specification />
+      <Specification open={open} close={() => setOpen(false)} />
     </div>
   );
 };

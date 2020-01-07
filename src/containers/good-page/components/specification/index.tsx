@@ -8,15 +8,26 @@ import { MySelectTag } from "../../../../components/my-tag";
 import MyStepper from "../../../../components/my-stepper";
 import { GoToShopButton } from "../../../../components/my-button";
 import { preventScroll } from "../../../../util/scroll";
+import MyIcon from "../../../../components/my-icon";
+import { iconPic } from "../../../../config/image";
 
-type Props = {};
+type Props = {
+  open: boolean;
+  close(): void;
+};
 const Specification: FC<Props> = (props: Props) => {
   useEffect(() => {
     preventScroll(".wrap");
-  });
-  return (
-    <div className={"wrap"}>
+    return () => props.close();
+  },[]);
+  return props.open ? (
+    <div className={`wrap`}>
       <div className="specification">
+        <MyIcon
+          className={"icon"}
+          src={iconPic._close}
+          onTouchEnd={props.close}
+        />
         <header>
           <MyImage src={""} className={"shop-img"} />
           <div className="right">
@@ -70,7 +81,7 @@ const Specification: FC<Props> = (props: Props) => {
         </footer>
       </div>
     </div>
-  );
+  ) : null;
 };
 
 export default Specification;

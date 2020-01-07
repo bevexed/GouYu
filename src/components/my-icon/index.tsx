@@ -6,12 +6,13 @@ type Props = {
   src: string;
   onTouchEnd?: TouchEventHandler;
   white?: boolean;
+  className?:string;
 };
 const MyIcon: FC<Props> = (props: Props) => {
   return (
     <MyImage
       onTouchEnd={ props.onTouchEnd }
-      className={ `_my-icon ${ props.white && 'white' }` }
+      className={ `_my-icon ${ props.white && 'white' } ${props.className}` }
       src={ props.src }
     />
   );
