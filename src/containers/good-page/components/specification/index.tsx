@@ -11,6 +11,9 @@ import { preventScroll } from "../../../../util/scroll";
 import MyIcon from "../../../../components/my-icon";
 import { iconPic } from "../../../../config/image";
 import { ajax } from "../../../../api/ajax";
+import { useHistory, useParams } from "react-router";
+import { useDispatch } from "react-redux";
+import { updateBuyNow } from "../../../../redux/buy-now/actions";
 
 type Props = {
   open: boolean;
@@ -18,17 +21,32 @@ type Props = {
   id?: string;
 };
 const Specification: FC<Props> = (props: Props) => {
+  const dispatch = useDispatch();
+  const { push } = useHistory();
+  const { id } = useParams();
   const [OrdinaryGoodsSkuList, setOrdinaryGoodsSkuList] = useState<any>([]);
   console.log(OrdinaryGoodsSkuList);
   useEffect(() => {
     ajax({
       url: "/goods/getOrdinaryGoodsSkuList",
       method: "GET",
-      data: { goodsId: props.id }
-    }).then(res=>setOrdinaryGoodsSkuList(res.data));
+      data: { goodsId: id }
+    }).then(res => setOrdinaryGoodsSkuList(res.data));
     preventScroll(".wrap");
     return () => props.close();
-  }, [props.id]);
+  }, [id]);
+
+  const submit = async () => {
+    dispatch(
+      updateBuyNow({
+        goodsId: "1",
+        buyQuantity: "1",
+        skuId: "1"
+      })
+    );
+    push("/shop/fill-in-order-page");
+  };
+
   return props.open ? (
     <div className={`wrap`}>
       <div className="specification">
@@ -38,7 +56,10 @@ const Specification: FC<Props> = (props: Props) => {
           onTouchEnd={props.close}
         />
         <header>
-          <MyImage src={OrdinaryGoodsSkuList[0]?.skuImage} className={"shop-img"} />
+          <MyImage
+            src={OrdinaryGoodsSkuList[0]?.skuImage}
+            className={"shop-img"}
+          />
           <div className="right">
             <Price>￥{OrdinaryGoodsSkuList[0]?.salePrice}</Price>
             <GrayLabel>库存2{OrdinaryGoodsSkuList[0]?.skuStock}</GrayLabel>
@@ -52,7 +73,7 @@ const Specification: FC<Props> = (props: Props) => {
         <WhiteSpace size={"lg"} />
 
         <section>
-          <GrayLabel>{OrdinaryGoodsSkuList[0]?.oneAttributeValue}</GrayLabel>
+          <GrayLabel>1</GrayLabel>
           <div className="select-list">
             {[1, 2, 3, 4].map((item, key) => (
               <MySelectTag
@@ -66,7 +87,7 @@ const Specification: FC<Props> = (props: Props) => {
         </section>
 
         <section>
-          <GrayLabel>{OrdinaryGoodsSkuList[0]?.twoAttributeValue}</GrayLabel>
+          <GrayLabel>2</GrayLabel>
           <div className="select-list">
             {[1, 2, 3, 4].map((item, key) => (
               <MySelectTag
@@ -86,7 +107,7 @@ const Specification: FC<Props> = (props: Props) => {
 
         <footer>
           <GoToShopButton>加入购物车</GoToShopButton>
-          <GoToShopButton>立即购买</GoToShopButton>
+          <GoToShopButton onTouchEnd={submit}>立即购买</GoToShopButton>
         </footer>
       </div>
     </div>

@@ -41,7 +41,7 @@ const GoodPage: FC<Props> = (props: Props) => {
     getData();
   }, [id]);
 
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   return (
     <div className="_good-page">
@@ -72,12 +72,12 @@ const GoodPage: FC<Props> = (props: Props) => {
         <GrayLabel>·天无理由退货·闪电退货</GrayLabel>
       </div>
 
-
       <Comment id={id} />
 
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
 
-      <Shop />
+      {/*//todo: shop接口*/}
+      {goodData.storeId !== 0 && <Shop />}
 
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
       <MyCenterTitle>猜你喜欢</MyCenterTitle>
@@ -86,6 +86,7 @@ const GoodPage: FC<Props> = (props: Props) => {
 
       <GoodBottom />
 
+      {/*//todo: sku*/}
       <Specification open={open} id={id} close={() => setOpen(false)} />
     </div>
   );

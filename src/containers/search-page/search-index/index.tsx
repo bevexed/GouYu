@@ -1,12 +1,20 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import './index.less';
 import MySearchBar from '../../../components/my-search-bar';
 import { MyBorderTag, MyGrayTag } from '../../../components/my-tag';
 import { WingBlank } from 'antd-mobile';
 import { useHistory } from "react-router";
+import { AjaxHistorySearchQueryList } from "../../../api/search";
 
 type SearchProps = {};
 const SearchIndex: FC<SearchProps> = (props: SearchProps) => {
+  const [HistoryList, setHistoryList] = useState<any>([]);
+  useEffect(()=>{
+    AjaxHistorySearchQueryList().then(
+      res=>setHistoryList(res.data)
+    )
+  },[''])
+
   const { push } = useHistory();
   return (
     <div className="search-page">

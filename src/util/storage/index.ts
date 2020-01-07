@@ -3,5 +3,5 @@ export const saveLocalStorage = (name: string, value: any) => {
 };
 
 export const getLocalStorage = (name: string) => {
-  return localStorage.getItem(name)
+  return localStorage.getItem(name) || ''
 };
