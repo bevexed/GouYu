@@ -7,7 +7,7 @@ interface AjaxQueryGoodsListProps {
 }
 
 export const AjaxQueryGoodsList = (data: AjaxQueryGoodsListProps) =>
-  ajax({
+  ajax<any>({
     url: "/goods/queryGoodsList",
     method: "GET",
     data
@@ -30,6 +30,5 @@ export const AjaxHistorySearchQueryList = () =>
   ajax<any>({
     url: "/HistorySearch/searchQueryList",
     method: "GET",
-    data:{id:30}
   });
 

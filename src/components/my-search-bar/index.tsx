@@ -8,10 +8,13 @@ interface MySearchBarProps extends InputHTMLAttributes<any> {}
 const MySearchBar: FC<MySearchBarProps> = (props: MySearchBarProps) => {
   const [focusState, setFocus] = useState(false);
   const [content, setContent] = useState<string>("");
+  const {push} = useHistory();
   const search = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.keyCode === 13) {
       AjaxHistorySearchSave({
         content
+      }).then(res=>{
+        push("/search-result/" + content)
       });
     }
   };

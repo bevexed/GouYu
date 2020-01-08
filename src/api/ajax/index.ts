@@ -50,11 +50,11 @@ export const ajax = <T>({
 ajaxRequest({
   beforeSend(config) {
     const token = getLocalStorage("token");
+
     if (!token) {
       Store.dispatch(setUserInfo());
     }
-    const reg = /["]/g;
-    axios.defaults.headers.common["token"] = token.replace(reg,'');
+    config.headers.token = token;
     return config;
   },
   errorCallback(error) {
@@ -64,15 +64,25 @@ ajaxRequest({
 
 ajaxResponse({
   resolveCallback(res) {
-    Intercept(res.data);
-    return res;
+    if (Intercept(res.data)) {
+      return res;
+    }
+    return;
   },
   rejectCallback(error) {
-    console.dir('error-status', error);
-    if (error?.response?.status === 401) {
-      Toast.fail(error?.response?.data?.message);
-      Store.dispatch(clearUserInfo());
+    console.log("error-status", error.response);
+    const status = error?.response?.status;
+    switch (status) {
+      case 500:
+        return Toast.fail("服务器错误");
+      case 404:
+        return Toast.fail("服务器错误");
+      case 401:
+        Toast.fail(error?.response?.data?.message);
+        return Store.dispatch(clearUserInfo());
+      default:
     }
+
     return error;
   }
 });
@@ -92,7 +102,9 @@ export interface ResProps<T> {
 
 const Intercept = <T>(data: ResProps<T>) => {
   if (data.status === AjaxStatus.success && data.success) {
+    return true;
   } else {
     Toast.fail(data.message);
+    return false;
   }
 };
