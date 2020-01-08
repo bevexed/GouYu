@@ -26,13 +26,18 @@ const RenderHot: FC<{}> = () => {
         ReducersProps,
         ClassifyPageDataProps
     >(state => state.classifyPageData);
+    const { push } = useHistory()
+    const [Hotflage, setHotflage] = useState();
+    //const [Flage, setFlage] = useState(false)
+    console.log('hot', specialList.records)
     return (
         <div className="content-tabs-hot">
             {
-                specialList.records.map((item: any) =>
+                specialList.records && specialList.records.map((item: any) =>
                     <div className="hot-content" key={item.id}>
                         <MyImage className="hot-image"
-                            src={item.images ? item.images : `${item.video}?x-oss-process=video/snapshot,t_10000,m_fast,w_800`}
+                            src={item.images ? item.images.split(',')[0] : `${item.video}?x-oss-process=video/snapshot,t_10000,m_fast,w_800`}
+                            onClick={() => push(`/comunity/hot-details-page?id=${item.id}`)}
                         />
                         <p className="hot-content-tit">{item.content}</p>
                         <div className="hot-content-footer">
@@ -40,11 +45,10 @@ const RenderHot: FC<{}> = () => {
                                 <MyImage src={item.headImage} className="footer-left-bg" />
                                 <span className="footer-left-tit">{item.nickName}</span>
                             </div>
-                            <div className="hot-content-footer-right">
-                                <MyImage src={iconPic.active_love} className="footer-right-love" />
+                            <div className="hot-content-footer-right" onClick={() => setHotflage(item.id)} >
+                                {Hotflage == item.id? < MyImage src={iconPic.active_love} className="footer-right-love" /> : <MyImage src={iconPic.default_link} className="footer-right-love" />}
                                 <span>{item.zanNumber}</span>
                             </div>
-
                         </div>
                     </div>
                 )}
@@ -66,7 +70,7 @@ const RenderDynamic: FC<{}> = () => {
         };
         getDynamicData();
     }, [])
-    console.log('动态Data', DynamicData)
+    // console.log('动态Data', DynamicData)
     return (
         <div className="content-tabs-dynamic">
             <div className="tabs-dynamic-top">
@@ -91,7 +95,7 @@ const RenderDynamic: FC<{}> = () => {
                         </div>
                         <p className="dynamic-center-text">健身教学：阿圣诞节啊时打巴斯克接电话可撒了点看的巴萨的撒谎的卡上看见圣诞节狂欢</p>
                         {
-                            item.images && item.images.split(',').length >= 0 ? <div className="dynamic-center-image-list">{item.images.split(',').map((value: any) => <MyImage src={value} className="image-lest" />)}</div> :
+                            item.images && item.images.split(',').length >= 0 ? <div className="dynamic-center-image-list">{item.images.split(',').slice(0, -1).map((value: any) => <MyImage src={value} className="image-lest" />)}</div> :
                                 <div className="dynamic-center-image">
                                     <MyImage className="center-image" src={`${item.video}?x-oss-process=video/snapshot,t_10000,m_fast,w_800`} />
                                 </div>
@@ -140,7 +144,7 @@ const RenderHeadlines: FC<{}> = () => {
     return (
         <div className="Headlines-content">
             {headlinesData && headlinesData.map((item: any) =>
-                <div className="Headlines" key={item.id} onClick={() => push('/comunity/headline-details-page')}>
+                <div className="Headlines" key={item.id} onClick={() => push(`/comunity/headline-details-page?id=${item.id}`)}>
                     <div className="Headlines-con">
                         <p className="Headlines-con-tit">{item.content}</p>
                         <div className="headlines-con-img">
@@ -181,7 +185,7 @@ const RenderAnswer: FC<{}> = () => {
                 </div>
             </div>
             {new Array(10).fill(1).map((item, key) =>
-                <div className="Headlines" key={key}>
+                <div className="Headlines" key={key} onClick={()=>push('/comunity/answer-details-page')}>
                     <div className="Headlines-con" >
                         <p className="Headlines-con-tit">健身教学：连续22天的腹肌训练，很多女生去健身房除了用跑步机，对其他器械动作一头雾水</p>
                         <div className="headlines-con-img">

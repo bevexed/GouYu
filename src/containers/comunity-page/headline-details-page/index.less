@@ -335,6 +335,7 @@
     }
     //猜你喜欢
     .dynamic-like-list{
+        padding: 0 12px;
         .link-title{
           font-size: 28px;
           color: #262D2C;
@@ -345,12 +346,91 @@
           padding: 28px 0 24px 0;
         }
         .dynamic-like-list-content{
+          display: flex;
+          flex-wrap: wrap;
           .dynamic-like-list-con{
+              width:336px;
               display: flex;
               flex-direction: column;
+              margin:18px 0 0 18px;
             .lick-image{
               width:336px;
               height:336px;
+            }
+            .dynamic-like-bottom{
+                border:2px solid rgba(237,237,237,1);
+                padding-left: 16px;
+                .dynamic-like-bottom-title{
+                    font-size:28px;
+                    height:44px;
+                    color:rgba(38,45,44,1);
+                    line-height:44px;
+                    
+                }
+                .dynamic-like-bottom-test{
+                    font-size:26px;
+                    color:rgba(116,121,120,1);
+                    line-height:40px;
+                    padding-right: 10px;
+                }
+                .dynamic-like-bottom-money{
+                    display: flex;
+                    padding:16px 16px 16px 0;
+                    justify-content: space-between;
+
+                    .bottom-money-left{
+                        font-size:32px;
+                        font-weight:500;
+                        color:rgba(233,43,44,1);
+                        
+                    }
+                    .bottom-money-right{
+                      font-size:26px;
+                      color:rgba(187,189,189,1);
+                      text-decoration: line-through;
+                    }
+                }
+                .dynamic-like-bottom-zero{
+                  display: flex;
+                  .bottom-zero-g{
+                    font-size:20px;
+                    color:rgba(233,43,44,1);
+                    width:134px;
+                    height:36px;
+                    background:rgba(255,233,233,1);
+                    border-radius:4px;
+                    line-height: 36px;
+                  }
+                  .bottom-zero-right{
+                    width:143px;
+                    margin-left: 16px;
+                  }
+                }
+                .dynamic-red-envelope{
+                  display: flex;
+                  justify-content: space-between;
+                  padding:26px 16px 22px 0;
+                  align-items: center;
+                  .red-envelope-left{
+                    display: flex;
+                    align-items: center;
+                    span{
+                      font-size:32px;
+                      font-weight:500;
+                      color:rgba(38,45,44,1);
+                      margin-left: 5px;
+                    }
+                    .red-image{
+                      width: 28px;
+                      height: 28px;
+                    }
+                  }
+                  .red-envelope-right{
+                    font-size:20px;
+                    font-weight:400;
+                    color:rgba(116,121,120,1);
+                  }
+                }
             }
           }
         }

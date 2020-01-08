@@ -41,4 +41,6 @@ export const iconPic = {
   right:require('../static/image/btn_more_right@2x.png'),
   round_arrow:require('../static/image/nav_ico_share_h.png'),
   bottom:require('../static/image/btn_more_bottom.png'),
+  red_envelope:require('../static/image/ico_vip_red.png'),
+  default_link:require('../static/image/ico_thumbsup_n.png'),
 };

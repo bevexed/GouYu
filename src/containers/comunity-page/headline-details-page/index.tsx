@@ -3,19 +3,49 @@ import './index.less';
 import { MyImage } from '../../../components/my-image';
 import { iconPic } from '../../../config/image';
 import { RouteComponentProps } from 'react-router';
+import { AjaxGetHeadDetailsPageList } from '../../../api/community-classify-page';
 //import { Modal,List } from 'antd-mobile';
 //List, Button, WhiteSpace, WingBlank, Icon
 interface DetailsIndex extends RouteComponentProps {
     val: null,
     tabs: null,
+    HeadDetailsData: object
 }
-class DetailsIndex extends Component<DetailsIndex>{
+class DetailsIndex extends Component<DetailsIndex, any>{
     state = {
         flage: true,
         focusflage: true,
         SearchBarState: 0,
         commentsState: true,
+        HeadDetailsData: {
+            cityName: "",
+            classifyName: '',
+            commentNumber: '',
+            communityClassifyId: '',
+            content: "",
+            createTime: '',
+            grade: "",
+            id: '',
+            images: '',
+            isFollow: '',
+            isPass: '',
+            nickName: "",
+            userId: '',
+            zanNumber: '',
+            video: '',
+        }
+    }
 
+    componentDidMount() {
+        this.onHeadDetailsList()
+    }
+
+    onHeadDetailsList = async () => {
+        const idData = this.props.location.search.slice(1).split('=')
+        const res = await AjaxGetHeadDetailsPageList({ id: idData[1] });
+        // console.log('detailsres', res);
+        this.setState({ HeadDetailsData: res.data })
+        console.log('HeadDetailsData', this.state.HeadDetailsData)
     }
     onchange = () => {
         this.setState({
@@ -35,16 +65,16 @@ class DetailsIndex extends Component<DetailsIndex>{
     }
     //tabs切换
     SearchTabBar = () => {
-
+        const { HeadDetailsData, SearchBarState } = this.state
         const BarList = [
             {
-                label: '评论 58',
+                label: `评论 ${HeadDetailsData.commentNumber}`,
             },
             {
-                label: '赞1666',
+                label: `赞${HeadDetailsData.zanNumber}`,
             }
         ];
-        const { SearchBarState } = this.state
+
         return (
             <div className="search-tab-bar">
                 {BarList.map((item, index) => (
@@ -60,6 +90,41 @@ class DetailsIndex extends Component<DetailsIndex>{
                         {item.label}
                     </div>
                 ))}
+            </div>
+        )
+    }
+    //猜你喜欢
+    renderLink = () => {
+        return (
+            <div className="dynamic-like-list">
+                <p className="link-title"><span>猜你喜欢</span></p>
+                <div className="dynamic-like-list-content">
+
+                  {
+                      new Array(10).fill(1).map((item,key) =>
+                      <div className="dynamic-like-list-con" key={key}>
+                        <MyImage className="lick-image" src={'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577774306343&di=9513ed808d895914506fd67f1070774f&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170512%2Fceb4c51b34c54032a65e1fb23af7eeaa_th.jpg'} />
+                        <div className="dynamic-like-bottom">
+                            <h4 className="dynamic-like-bottom-title">护肝养胃 熬夜酒局必…</h4>
+                            <p className="dynamic-like-bottom-test">澳洲进口，swisse奶蓟草护肝片</p>
+                            <div className="dynamic-like-bottom-money">
+                                <p className="bottom-money-left">¥888</p>
+                                <span className="bottom-money-right">¥999</span>
+                            </div>
+                            <div className="dynamic-like-bottom-zero">
+                                <p className="bottom-zero-left bottom-zero-g">VIP省¥5.99</p>
+                                <p className="bottom-zero-right bottom-zero-g">分享赚¥2.99</p>
+                            </div>
+                            <div className="dynamic-red-envelope">
+                                <div className="red-envelope-left">
+                                    <MyImage className="red-image" src={iconPic.red_envelope} />
+                                    <span>¥666</span>
+                                </div>
+                                <p className="red-envelope-right">已售999＋</p>
+                            </div>
+                        </div>
+                    </div>)}
+                </div>
             </div>
         )
     }
@@ -112,27 +177,7 @@ class DetailsIndex extends Component<DetailsIndex>{
                     <MyImage src={iconPic.bottom} className="unfold-icon" />
                 </div>
                 <div className="empty"></div>
-                <div className="dynamic-like-list">
-                    <p className="link-title"><span>猜你喜欢</span></p>
-                    <div className="dynamic-like-list-content">
-                        <div className="dynamic-like-list-con">
-                            <MyImage className="lick-image" src={'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577774306343&di=9513ed808d895914506fd67f1070774f&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170512%2Fceb4c51b34c54032a65e1fb23af7eeaa_th.jpg'} />
-                            <div className="dynamic-like-bottom">
-                                <h4 className="dynamic-like-bottom-title"></h4>
-                                <p className="dynamic-like-bottom-test">澳洲进口，swisse奶蓟草护肝片</p>
-                                <div className="dynamic-like-bottom-money">
-                                    <p>¥888</p>
-                                    <span>¥999</span>
-                                </div>
-                                 <div className="dynamic-like-bottom-zero">
-                                     <p>VIP省¥5.99</p>
-                                     <span>分享赚¥2.99</span>
-                                 </div>
-                                 
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {this.renderLink()}
             </div>
         )
 
