@@ -15,6 +15,7 @@ import { useHistory } from "react-router";
 type Props = {};
 const AddConsigneePage: FC<Props> = (props: Props) => {
   const [pickerValue, setPickerValue] = useState<any[]>([]);
+  const [realAddress, setRealAddress] = useState<any[]>([]);
   const { go } = useHistory();
   const getSel = (): any[] => {
     const value = pickerValue;
@@ -32,22 +33,21 @@ const AddConsigneePage: FC<Props> = (props: Props) => {
     name: "",
     phone: "",
     postalCode: "",
-    province: getSel()[0],
-    city: getSel()[1],
-    region: getSel()[2],
+    province: '',
+    city: '',
+    region: '',
     address: "",
     isDefault: 1
   });
-  const address = () => {
-    let i = 0
-    Object.entries(data).forEach(([key, value]) => {
+  const address = async () => {
+    console.log(realAddress);
+    Object.entries({...data,province:getSel()[0],city:getSel()[1],region:getSel()[2]}).forEach(([key, value]) => {
       if (!value) {
         return Toast.fail("请填写" + key);
       }
-      ++i;
     });
 
-    AjaxUserAddressSave(data).then(res => {
+    AjaxUserAddressSave({...data,province:getSel()[0],city:getSel()[1],region:getSel()[2]}).then(res => {
       if (res.status === 0) {
         Toast.success(res.message, 3, () => {
           go(-1);

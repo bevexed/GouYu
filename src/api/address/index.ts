@@ -17,3 +17,15 @@ export const AjaxUserAddressSave = (data: typeof _add) =>
     method: "POST",
     data
   });
+
+export const AjaxUserAddressList = ({page,size}:{page:number,size:number}) => ajax<any>({
+  url:'userAddress/list',
+  method:'GET',
+  data:{page,size}
+})
+
+export const AjaxUserAddressEditDefault = (id:number)=>ajax<any>({
+  url:'userAddress/editDefault',
+  method:'POST',
+  data:{id}
+})

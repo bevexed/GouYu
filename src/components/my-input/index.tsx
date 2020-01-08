@@ -12,16 +12,10 @@ interface Props extends InputHTMLAttributes<any> {
   placeholder?: string;
   disabled?: boolean;
 }
-const MyInput: FC<Props> = ({
-  placeholder = "请输入",
-  disabled = false
-}: Props) => {
+const MyInput: FC<Props> = (props) => {
   return (
     <input
-      type="text"
-      disabled={disabled}
-      placeholder={placeholder}
-      className="_my-input"
+      {...props}
     />
   );
 };
