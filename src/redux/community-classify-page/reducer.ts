@@ -44,7 +44,7 @@ export const classifyPageData = (
 ) => {
   switch (action.type) {
     case GIT_CLASSIFY_PAGE_DATA:
-        console.log(1111111111,action)
+       
       return action.data
     default:
       return state

@@ -1,4 +1,4 @@
-import React, { FC, useState,useEffect } from 'react';
+import React, { FC, useState, useEffect, Props } from 'react';
 import './index.less';
 import { MyTabBar } from '../../../components/my-tab-bar';
 import { MyImage } from '../../../components/my-image';
@@ -9,6 +9,7 @@ import { reqClassifyPageData } from '../../../redux/community-classify-page/acti
 import { useDispatch, useSelector, useStore } from 'react-redux';
 import { ReducersProps } from '../../../redux/store';
 import { ClassifyPageDataProps } from '../../../redux/community-classify-page/reducer';
+import { AjaxGetDynamicPageList, AjaxGetHeadlinesPageList } from '../../../api/community-classify-page';
 interface ComuntityIndexProps { }
 
 const tabs = [
@@ -20,30 +21,34 @@ const tabs = [
 ];
 
 //热点
-const RenderHot:FC<{}> = () => {
-    const specialList  = useSelector<
+const RenderHot: FC<{}> = () => {
+    const specialList = useSelector<
         ReducersProps,
         ClassifyPageDataProps
-      >(state => state.classifyPageData);
+    >(state => state.classifyPageData);
+    const { push } = useHistory()
+    const [Hotflage, setHotflage] = useState();
+    //const [Flage, setFlage] = useState(false)
+    console.log('hot', specialList.records)
     return (
         <div className="content-tabs-hot">
             {
-                specialList.records.map((item, key) =>
-                    <div className="hot-content" key={key}>
-                        <MyImage className="hot-image" 
-                        src={item.headImage}
+                specialList.records && specialList.records.map((item: any) =>
+                    <div className="hot-content" key={item.id}>
+                        <MyImage className="hot-image"
+                            src={item.images ? item.images.split(',')[0] : `${item.video}?x-oss-process=video/snapshot,t_10000,m_fast,w_800`}
+                            onClick={() => push(`/comunity/hot-details-page?id=${item.id}`)}
                         />
-                        <p className="hot-content-tit">此处是文字部分，此处是文字部分，此处是文字</p>
+                        <p className="hot-content-tit">{item.content}</p>
                         <div className="hot-content-footer">
                             <div className="hot-content-footer-left">
-                                <div className="footer-left-bg"></div>
-                                <span className="footer-left-tit">毒岛百合子</span>
+                                <MyImage src={item.headImage} className="footer-left-bg" />
+                                <span className="footer-left-tit">{item.nickName}</span>
                             </div>
-                            <div className="hot-content-footer-right">
-                                <MyImage src={iconPic.active_love} className="footer-right-love" />
-                                <span>1646</span>
+                            <div className="hot-content-footer-right" onClick={() => setHotflage(item.id)} >
+                                {Hotflage == item.id? < MyImage src={iconPic.active_love} className="footer-right-love" /> : <MyImage src={iconPic.default_link} className="footer-right-love" />}
+                                <span>{item.zanNumber}</span>
                             </div>
-
                         </div>
                     </div>
                 )}
@@ -56,6 +61,16 @@ const RenderHot:FC<{}> = () => {
 //动态
 const RenderDynamic: FC<{}> = () => {
     const { push } = useHistory()
+    const [DynamicData, setDynamicData] = useState();
+    useEffect(() => {
+        const getDynamicData = async () => {
+            const res = await AjaxGetDynamicPageList();
+            console.log(res);
+            setDynamicData(res.data.records)
+        };
+        getDynamicData();
+    }, [])
+    // console.log('动态Data', DynamicData)
     return (
         <div className="content-tabs-dynamic">
             <div className="tabs-dynamic-top">
@@ -69,19 +84,22 @@ const RenderDynamic: FC<{}> = () => {
                 </div>
             </div>
             {
-                new Array(10).fill(1).map((item, key) =>
-                    <div className="dynamic-center" key={key} onClick={() => push('/comunity/dynamic-details-page')}>
+                DynamicData && DynamicData.map((item: any) =>
+                    <div className="dynamic-center" key={item.id} onClick={() => push(`/comunity/dynamic-details-page?id=${item.id}`)}>
                         <div className="dynamic-center-top">
-                            <div className="center-top-left"></div>
+                            <MyImage className="center-top-left" src={item.headImage} />
                             <div className="center-top-right">
-                                <h3>毒岛百合子</h3>
+                                <h3>{item.nickName}</h3>
                                 <p>2019/10/24 23:00</p>
                             </div>
                         </div>
                         <p className="dynamic-center-text">健身教学：阿圣诞节啊时打巴斯克接电话可撒了点看的巴萨的撒谎的卡上看见圣诞节狂欢</p>
-                        <div className="dynamic-center-image">
-                            <MyImage className="center-image" src={'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577774306343&di=9513ed808d895914506fd67f1070774f&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170512%2Fceb4c51b34c54032a65e1fb23af7eeaa_th.jpg'} />
-                        </div>
+                        {
+                            item.images && item.images.split(',').length >= 0 ? <div className="dynamic-center-image-list">{item.images.split(',').slice(0, -1).map((value: any) => <MyImage src={value} className="image-lest" />)}</div> :
+                                <div className="dynamic-center-image">
+                                    <MyImage className="center-image" src={`${item.video}?x-oss-process=video/snapshot,t_10000,m_fast,w_800`} />
+                                </div>
+                        }
                         <p className="dynamic-cente-footer-txt">
                             <span>#女生腹肌</span>
                         </p>
@@ -110,22 +128,34 @@ const RenderDynamic: FC<{}> = () => {
     )
 }
 //头条
-const renderHeadlines = () => {
+const RenderHeadlines: FC<{}> = () => {
+    const [headlinesData, setheadlinesData] = useState();
+    const { push } = useHistory()
+    useEffect(() => {
+        const getheadData = async () => {
+            console.log(1)
+            const res = await AjaxGetHeadlinesPageList();
+            console.log(res);
+            setheadlinesData(res.data.records)
+        };
+        getheadData();
+    }, [])
+    console.log('headlinesData', headlinesData)
     return (
         <div className="Headlines-content">
-            {new Array(10).fill(1).map((item, key) =>
-                <div className="Headlines" key={key}>
+            {headlinesData && headlinesData.map((item: any) =>
+                <div className="Headlines" key={item.id} onClick={() => push(`/comunity/headline-details-page?id=${item.id}`)}>
                     <div className="Headlines-con">
-                        <p className="Headlines-con-tit">健身教学：连续22天的腹肌训练，很多女生去健身房除了用跑步机，对其他器械动作一头雾水</p>
+                        <p className="Headlines-con-tit">{item.content}</p>
                         <div className="headlines-con-img">
                             <MyImage className="headlines-image" src={'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577774306343&di=9513ed808d895914506fd67f1070774f&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170512%2Fceb4c51b34c54032a65e1fb23af7eeaa_th.jpg'} />
                             <MyImage className="headlines-image" src={'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577785236487&di=ecae8c37c6ab058ae6e6439371e25d9b&imgtype=0&src=http%3A%2F%2Fpic.eastlady.cn%2Fuploads%2Ftp%2F201703%2F9999%2F3732714ab0.jpg'} />
                             <MyImage className="headlines-image" src={'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577774306343&di=9513ed808d895914506fd67f1070774f&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170512%2Fceb4c51b34c54032a65e1fb23af7eeaa_th.jpg'} />
                         </div>
                         <p className="headlines-con-footer">
-                            <span>狗鱼健康官方号</span>
-                            <span>  158条评论 </span>
-                            <span> 33分钟前</span>
+                            <span>{item.publisher}</span>
+                            <span> {item.commentNumber}条评论 </span>
+                            <span> {item.createTime}分钟前</span>
                         </p>
                     </div>
                 </div>
@@ -155,7 +185,7 @@ const RenderAnswer: FC<{}> = () => {
                 </div>
             </div>
             {new Array(10).fill(1).map((item, key) =>
-                <div className="Headlines" key={key}>
+                <div className="Headlines" key={key} onClick={()=>push('/comunity/answer-details-page')}>
                     <div className="Headlines-con" >
                         <p className="Headlines-con-tit">健身教学：连续22天的腹肌训练，很多女生去健身房除了用跑步机，对其他器械动作一头雾水</p>
                         <div className="headlines-con-img">
@@ -247,9 +277,9 @@ const TabExample: FC<TabExampleProps> = (props: TabExampleProps) => {
                 {/* <div className="content-tabs-hot">
                 {renderHot()}
             </div> */}
-                <RenderHot/>
+                <RenderHot />
                 <RenderDynamic />
-                {renderHeadlines()}
+                <RenderHeadlines />
                 {/* <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '250px', backgroundColor: '#fff' }}>
                 Content of third tab
         </div> */}
@@ -266,9 +296,9 @@ const ComuntityIndex: FC<ComuntityIndexProps> = (props) => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(reqClassifyPageData());
-      }, [dispatch]);
-      
-      
+    }, [dispatch]);
+
+
     return <div className="comunity-index">
         <div className="comunity-index-header">
             <span className="header-title">社区</span>
