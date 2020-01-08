@@ -14,9 +14,9 @@ interface LoginIndexProps {}
 
 const LoginIndex: FC<LoginIndexProps> = () => {
   const dispatch = useDispatch();
-  const {token} =  useSelector<ReducersProps,UserInfoProps>((state) => state.userInfo)
+  const {token} =  useSelector<ReducersProps,UserInfoProps>((state) => state.userInfo);
   const [phone, setPhone] = useState('18640460506');
-  const [code, setCode] = useState('88888');
+  const [code, setCode] = useState('8888');
 
   return (
     token?<Redirect to={'/health-page'}/>:

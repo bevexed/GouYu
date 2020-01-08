@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import "./index.less";
-import { MyImage } from "../../../components/my-image";
+import { MyImage } from "../../../../components/my-image";
 import { WingBlank } from "antd-mobile";
-import { BlackLabel } from "../../../components/price";
-import Heart from "../../search-page/search-result-page/shop-item/image/xin.png";
-import { GoToShopButton } from "../../../components/my-button";
+import { BlackLabel } from "../../../../components/price";
+import Heart from "../../../search-page/search-result-page/shop-item/image/xin.png";
+import { GoToShopButton } from "../../../../components/my-button";
 
 type Props = {};
 const Shop: FC<Props> = (props: Props) => {

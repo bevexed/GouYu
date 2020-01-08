@@ -1,0 +1,86 @@
+.wrap {
+  position: absolute;
+  top: 0;
+  width: 750px;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  touch-action: none;
+  z-index: 999;
+  transition: all .3s;
+  overflow: hidden;
+}
+
+.specification {
+  position: fixed;
+  bottom: 0;
+  width: 750px;
+  height: 870px;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 0 60px 0 0;
+  padding: 18px;
+  box-sizing: border-box;
+  >.icon{
+    position: absolute;
+    top: 32px;
+    right: 32px;
+  }
+  > header {
+    overflow: hidden;
+    height: 220px;
+    display: flex;
+    > .shop-img {
+      width: 220px;
+      height: 220px;
+      background: rgba(241, 238, 228, 1);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    > .right {
+      display: flex;
+      flex-direction: column;
+      margin-left: 20px;
+      > :first-child {
+        padding-bottom: 20px;
+      }
+    }
+  }
+
+  div.select-list {
+    padding: 16px 0 56px;
+    display: flex;
+    justify-content: space-between;
+    > * {
+      width: 162px;
+    }
+  }
+
+  section.num {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ededed;
+    padding-bottom: 20px;
+  }
+
+  > footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    > * {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 344px;
+      height: 84px;
+      box-sizing: border-box;
+    }
+    > :first-child {
+      background: linear-gradient(
+        145deg,
+        rgba(253, 184, 0, 1) 0%,
+        rgba(255, 210, 0, 1) 100%
+      );
+      border-radius: 12px;
+    }
+  }
+}

@@ -1,34 +1,24 @@
 import React, { FC, useEffect, useState } from "react";
 import "./index.less";
-import GoodBanner from "../banner";
+import GoodBanner from "../components/banner";
 import { useParams } from "react-router";
 import { AjaxGetOrdinaryGoodsInfo } from "../../../api/goods";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { ReducersProps } from "../../../redux/store";
 import MyTitle, { MyCenterTitle } from "../../../components/my-title";
 import { WingBlank } from "antd-mobile";
-import { BlueLabel, GrayLabel, OriginPrice, Price, VipPrice } from "../../../components/price";
+import { GrayLabel, OriginPrice, Price, VipPrice } from "../../../components/price";
 import MyTag from "../../../components/my-tag";
 import MyWhiteBlank from "../../../components/my-white-blank";
 import MyMore from "../../../components/my-more";
-import MyIcon from "../../../components/my-icon";
-import { iconPic } from "../../../config/image";
-import Comment from "../comments";
-import Shop from "../shop";
+import Comment from "../components/comments";
+import Shop from "../components/shop";
 import GuessYouLikeList from "../../shop-page/shop-index/guess-you-like";
-import { reqHomePageData } from "../../../redux/home-page/actions";
-import { HomePageDataProps } from "../../../redux/home-page/reducer";
-import GoodBottom from "../good-bottom";
+import GoodBottom from "../components/good-bottom";
+import Specification from "../components/specification";
 
 type Props = typeof data;
 const GoodPage: FC<Props> = (props: Props) => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(reqHomePageData());
-  }, [dispatch]);
-  const { goodsList } = useSelector<ReducersProps, HomePageDataProps>(
-    state => state.homePageData
-  );
   const { id } = useParams();
 
   const userId = useSelector<ReducersProps, string>(
@@ -36,6 +26,7 @@ const GoodPage: FC<Props> = (props: Props) => {
   );
   const [goodData, setGoodData] = useState<Props>(data);
 
+  // 获取商品详情
   useEffect(() => {
     window.scrollTo(0, 0);
     const getData = async () => {
@@ -44,6 +35,9 @@ const GoodPage: FC<Props> = (props: Props) => {
     };
     getData();
   }, [id]);
+
+  const [open, setOpen] = useState(false);
+
   return (
     <div className="_good-page">
       <GoodBanner bannerList={goodData.goodsDescribe?.split(",")} />
@@ -61,35 +55,34 @@ const GoodPage: FC<Props> = (props: Props) => {
 
         <div className="tag">
           <MyTag>VIP省￥ {goodData.vipDisparityPrice}</MyTag>
-          <MyTag>分享赚￥ {goodData.vipDisparityPrice}</MyTag>
+          <MyTag>分享赚￥ {goodData.goldVipOneCommission}</MyTag>
           <div />
           <div className="tag-btn">成为VIP分享拿佣金</div>
         </div>
         <MyWhiteBlank />
       </WingBlank>
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
-      <MyMore path={() => alert(1)} children={"选择规格和数量"} />
+      <MyMore path={() => setOpen(true)} children={"选择规格和数量"} />
       <div className="_back">
         <GrayLabel>·天无理由退货·闪电退货</GrayLabel>
       </div>
 
-      <WingBlank className="dis">
-        <MyTitle>商品评价</MyTitle>
-        <GrayLabel>（{999}评价）</GrayLabel>
-        <BlueLabel>查看更多</BlueLabel>
-        <MyIcon src={iconPic.blue_more} />
-      </WingBlank>
-      <Comment />
+      <Comment id={id} />
+
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
 
-      <Shop />
+      {/*//todo: shop接口*/}
+      {goodData.storeId !== 0 && <Shop />}
 
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
       <MyCenterTitle>猜你喜欢</MyCenterTitle>
 
-      <GuessYouLikeList guessYouLikeList={goodsList} />
+      <GuessYouLikeList />
 
-      <GoodBottom/>
+      <GoodBottom />
+
+      {/*//todo: sku*/}
+      <Specification open={open} id={id} close={() => setOpen(false)} />
     </div>
   );
 };

@@ -5,8 +5,7 @@ import { iconPic } from '../../../../../config/image';
 import MyWhiteBlank from "../../../../../components/my-white-blank";
 
 type GoodItemProps = {
-  img: string;
-  title: string;
+  [key:string]:any
 };
 
 type GoodListProps = {
@@ -17,21 +16,21 @@ export const GoodItem: FC<GoodItemProps> = (props: GoodItemProps) => {
   return (
     <>
       <div className="good-item">
-        <img className="good-img" src={ props.img } alt=""/>
+        <img className="good-img" src={ props.goodsImage } alt=""/>
         <section className="right">
-          <div className="title">{ props.title }</div>
+          <div className="title">{ props.goodsName }</div>
 
           <div className="price">
-            <MyTag>VIP省 ￥5.99</MyTag>
-            <MyTag>分享赚 ￥5.99</MyTag>
-            <div className="ori">¥49</div>
+            <MyTag>VIP省 ￥{props.vipDisparityPrice}</MyTag>
+            <MyTag>分享赚 ￥{props.goldVipOneCommission}</MyTag>
+            <div className="ori">¥{props.marketPrice}</div>
           </div>
 
 
           <footer>
-            <span className="del">￥39</span>
-            <img src={ iconPic.vip } alt=""/> <span className="vip">￥29</span>
-            <div className="sold-out">已售563件</div>
+            <span className="del">￥{props.memberPrice}</span>
+            <img src={ iconPic.vip } alt=""/> <span className="vip">￥{props.memberPrice}</span>
+            <div className="sold-out">已售{props.soldNumber}件</div>
 
           </footer>
         </section>

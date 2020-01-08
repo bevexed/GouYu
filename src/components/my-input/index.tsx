@@ -5,20 +5,17 @@
  * @time 13:54
  */
 
-import React, { FC } from "react";
+import React, { FC, InputHTMLAttributes } from "react";
 import "./index.less";
 
-type Props = { placeholder?: string; disabled?: boolean };
-const MyInput: FC<Props> = ({
-  placeholder = "请输入",
-  disabled = false
-}: Props) => {
+interface Props extends InputHTMLAttributes<any> {
+  placeholder?: string;
+  disabled?: boolean;
+}
+const MyInput: FC<Props> = (props) => {
   return (
     <input
-      type="text"
-      disabled={disabled}
-      placeholder={placeholder}
-      className="_my-input"
+      {...props}
     />
   );
 };
