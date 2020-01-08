@@ -4,7 +4,7 @@
  * @date 2019/12/24
  * @time 18:46
  */
-import React, { FC, ReactNode, TouchEventHandler } from 'react';
+import React, { FC, ReactNode } from 'react';
 import './index.less';
 
 type Props = {
@@ -12,12 +12,12 @@ type Props = {
   phone: string;
   rightContent: ReactNode;
   addressContent: ReactNode;
-  onTouchEnd?: TouchEventHandler;
+  onClick?: (a:any)=>void;
   phoneAfter?: ReactNode
 };
 const MyAddressItem: FC<Props> = (props: Props) => {
   return (
-    <div className="_my-address-item" onTouchEnd={ props.onTouchEnd }>
+    <div className="_my-address-item" onClick={ props.onClick }>
       <div className="_my-address-item-left">
         <header>
           <span className="name">{ props.name }</span>

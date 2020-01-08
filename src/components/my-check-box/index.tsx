@@ -11,7 +11,7 @@ type Props = {
 const MyCheckBox: FC<Props> = (props: Props) => {
   const [check, setCheck] = useState(props.value);
   return (
-    <div className="_my-check-box">
+    <div className="_my-check-box" onClick={e=>e.stopPropagation()}>
       <MyIcon
         src={ check ? IconImg : IconImgNo }
         onTouchEnd={ () => {

@@ -3,7 +3,7 @@ import "./index.less";
 import GoodBanner from "../components/banner";
 import { useParams } from "react-router";
 import { AjaxGetOrdinaryGoodsInfo } from "../../../api/goods";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { ReducersProps } from "../../../redux/store";
 import MyTitle, { MyCenterTitle } from "../../../components/my-title";
 import { WingBlank } from "antd-mobile";
@@ -14,16 +14,11 @@ import MyMore from "../../../components/my-more";
 import Comment from "../components/comments";
 import Shop from "../components/shop";
 import GuessYouLikeList from "../../shop-page/shop-index/guess-you-like";
-import { reqHomePageData } from "../../../redux/home-page/actions";
 import GoodBottom from "../components/good-bottom";
 import Specification from "../components/specification";
 
 type Props = typeof data;
 const GoodPage: FC<Props> = (props: Props) => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(reqHomePageData());
-  }, [dispatch]);
   const { id } = useParams();
 
   const userId = useSelector<ReducersProps, string>(

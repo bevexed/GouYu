@@ -36,8 +36,8 @@ export const ajax = <T>({
     }
     promise.then(
       response => {
-        console.log("%c res", "color:red", response.data);
-        resolve(response.data);
+        console.log("%c res", "color:red", response);
+        resolve(response?.data);
       },
       error => {
         console.log("%c error", "color:red", error);

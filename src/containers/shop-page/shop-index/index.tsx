@@ -34,7 +34,6 @@ const ShopIndex: FC<Props> = props => {
   }, [dispatch]);
 
   const {
-    goodsList,
     integralGoodsList,
     seckillActivityTimeSlotList,
     bannerList,

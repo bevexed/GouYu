@@ -28,7 +28,7 @@ const Specification: FC<Props> = (props: Props) => {
   const [Labels, setLabels] = useState<label[]>([]);
   const [oneValues, setOneValues] = useState<number[]>([0, 0]);
   const [twoValues, setTwoValues] = useState<number[]>([0, 0]);
-  const [currentSelect, setCurrentSelect] = useState<any>('');
+  const [currentSelect, setCurrentSelect] = useState<any>("");
   const [buyQuantity, setBuyQuantity] = useState(1);
   useMemo(() => {
     ajax<any>({
@@ -61,14 +61,14 @@ const Specification: FC<Props> = (props: Props) => {
         });
       });
       setLabels(Labels);
-      setCurrentSelect(res.data[0])
+      setCurrentSelect(res.data[0]);
     });
 
     preventScroll(".wrap");
     return () => {
       props.close();
     };
-  }, ['']);
+  }, [""]);
 
   useMemo(() => {}, [OrdinaryGoodsSkuList]);
 
@@ -89,7 +89,7 @@ const Specification: FC<Props> = (props: Props) => {
       OrdinaryGoodsSkuList.forEach((item: any) => {
         if (
           // @ts-ignore
-        item.oneAttributeValue === Labels[0].value[value] &&
+          item.oneAttributeValue === Labels[0].value[value] &&
           // @ts-ignore
           item.twoAttributeValue === Labels[1].value[[twoValues[1]]]
         ) {
@@ -101,7 +101,7 @@ const Specification: FC<Props> = (props: Props) => {
       OrdinaryGoodsSkuList.forEach((item: any) => {
         if (
           // @ts-ignore
-        item?.oneAttributeValue === Labels[0].value[oneValues[1]] &&
+          item?.oneAttributeValue === Labels[0].value[oneValues[1]] &&
           // @ts-ignore
           item.twoAttributeValue === Labels[1].value[value]
         ) {
@@ -120,10 +120,7 @@ const Specification: FC<Props> = (props: Props) => {
           onTouchEnd={props.close}
         />
         <header>
-          <MyImage
-            src={currentSelect.skuImage}
-            className={"shop-img"}
-          />
+          <MyImage src={currentSelect.skuImage} className={"shop-img"} />
           <div className="right">
             <Price>￥{currentSelect.salePrice}</Price>
             <GrayLabel>库存{currentSelect.skuStock}</GrayLabel>

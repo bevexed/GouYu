@@ -12,16 +12,27 @@ import { GrayLabel } from "../../../../components/price";
 import MyWhiteBlank from "../../../../components/my-white-blank";
 import { MyBottomButton } from "../../../../components/my-button";
 import { AjaxUserAddressEditDefault, AjaxUserAddressList } from "../../../../api/address";
+import { useDispatch } from "react-redux";
+import { updateBuyNow } from "../../../../redux/buy-now/actions";
 
 type Props = {};
 const SelectConsigneePage: FC<Props> = (props: Props) => {
-  const { push ,go} = useHistory();
+  const { push, go } = useHistory();
+  const dispath = useDispatch();
+  const selectAddress = (item: any) => {
+    dispath(
+      updateBuyNow({
+        receiverAddressId: item.id,
+        ...item
+      })
+    );
+    go(-1)
+  };
+
   const siteDefault = (id: number) => {
     AjaxUserAddressEditDefault(id).then(res => {
       if (res.status === 0) {
-        Toast.success(res.message, 1.5, () =>
-        go(0)
-        );
+        Toast.success(res.message, 1.5, () => go(0));
       }
     });
   };
@@ -34,13 +45,13 @@ const SelectConsigneePage: FC<Props> = (props: Props) => {
   return (
     <div className="select-consignee-page">
       <MyNavBar>选择收货人</MyNavBar>
-
       {list.map((item, key) => (
         <div key={key}>
           <WingBlank>
             <MyAddressItem
               name={item.name}
               phone={item.phone}
+              onClick={()=>selectAddress(item)}
               phoneAfter={
                 <>
                   <MyImage src={iconPic.edit} className="edit-icon" />
@@ -56,9 +67,8 @@ const SelectConsigneePage: FC<Props> = (props: Props) => {
                   </span>
                 </>
               }
-              onTouchEnd={() => push("/shop/shop-car/select-consignee-page")}
               rightContent={
-                <MyCheckBox onChange={() => siteDefault(item.id)} />
+                <MyCheckBox onChange={(e) => siteDefault(item.id)} />
               }
             />
           </WingBlank>
