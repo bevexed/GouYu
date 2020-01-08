@@ -26,9 +26,9 @@ const Specification: FC<Props> = (props: Props) => {
   const { id } = useParams();
   const [OrdinaryGoodsSkuList, setOrdinaryGoodsSkuList] = useState<any>([]);
   const [Labels, setLabels] = useState<label[]>([]);
-  const [oneValues, setOneValues] = useState<number[]>([0,0]);
-  const [twoValues, setTwoValues] = useState<number[]>([0,0]);
-  console.log(OrdinaryGoodsSkuList,Labels);
+  const [oneValues, setOneValues] = useState<number[]>([0, 0]);
+  const [twoValues, setTwoValues] = useState<number[]>([0, 0]);
+  const [currentSelect, setCurrentSelect] = useState<any>({});
   useMemo(() => {
     ajax<any>({
       url: "/goods/getOrdinaryGoodsSkuList",
@@ -37,58 +37,70 @@ const Specification: FC<Props> = (props: Props) => {
     }).then(res => {
       setOrdinaryGoodsSkuList(res.data);
       const arr = res.data[0];
-      const Labels:label[]= [
+      const Labels: label[] = [
         {
           name: arr?.oneAttributeName,
-          value:[]
+          value: []
         },
         {
           name: arr?.twoAttributeName,
-          value:[]
+          value: []
         }
       ];
-      res.data.forEach((item:any)=>{
-        Labels.forEach((label:any)=>{
+      res.data.forEach((item: any) => {
+        Labels.forEach((label: any) => {
           console.log(label.value, item);
           if (label.name === item.oneAttributeName) {
             label.value.push(item.oneAttributeValue);
-          }else {
-            label.value.push(item.twoAttributeValue)
+          } else {
+            label.value.push(item.twoAttributeValue);
           }
           // @ts-ignore
-          label.value = [...new Set(label.value)]
+          label.value = [...new Set(label.value)];
           console.log(label.value);
-
-        })
+        });
       });
-      setLabels(Labels)
+      setLabels(Labels);
+      changeLabel([0,0])
     });
     preventScroll(".wrap");
     return () => props.close();
-  }, ['']);
+  }, [""]);
 
-  useMemo(()=>{
-
-  },[OrdinaryGoodsSkuList])
+  useMemo(() => {}, [OrdinaryGoodsSkuList]);
 
   const submit = async () => {
     dispatch(
       updateBuyNow({
-        goodsId: "1",
         buyQuantity: "1",
-        skuId: "1"
+        skuId: currentSelect.goodsId,
+        ...currentSelect
       })
     );
     push("/shop/fill-in-order-page");
   };
 
-  const changeLabel = ([key,value]:number[])=>{
-    if (key === 0 ){
-      setOneValues([key,value])
-    }else {
-      setTwoValues([key,value])
+  const changeLabel = ([key, value]: number[]) => {
+    if (key === 0) {
+      setOneValues([key, value]);
+      OrdinaryGoodsSkuList.forEach((item: any) => {
+        // @ts-ignore
+        if (item.oneAttributeValue === Labels[0].value[value] && item.twoAttributeValue === Labels[1].value[[twoValues[1]]]) {
+          setCurrentSelect(item);
+        }
+      });
+    } else {
+      setTwoValues([key, value]);
+      OrdinaryGoodsSkuList.forEach((item: any) => {
+        // @ts-ignore
+        if (item.oneAttributeValue === Labels[0].value[oneValues[1]] && item.twoAttributeValue === Labels[1].value[value]) {
+         setCurrentSelect(item);
+        }
+      });
     }
-  }
+
+
+  };
 
   return props.open ? (
     <div className={`wrap`}>
@@ -115,23 +127,24 @@ const Specification: FC<Props> = (props: Props) => {
 
         <WhiteSpace size={"lg"} />
 
-        {
-          Labels.map((item:any,key:number)=>
-            <section key={key}>
-              <GrayLabel>{item.name}</GrayLabel>
-              <div className="select-list">
-                {item.value.map((label:any, index:number) => (
-                  <MySelectTag
-                    key={index}
-                    onTouchEnd={()=>changeLabel([key,index])}
-                    isSelected={(key === 0 && oneValues[1] === index) || (key === 1 && twoValues[1] === index)}
-                    children={label}
-                  />
-                ))}
-              </div>
-            </section>
-          )
-        }
+        {Labels.map((item: any, key: number) => (
+          <section key={key}>
+            <GrayLabel>{item.name}</GrayLabel>
+            <div className="select-list">
+              {item.value.map((label: any, index: number) => (
+                <MySelectTag
+                  key={index}
+                  onTouchEnd={() => changeLabel([key, index])}
+                  isSelected={
+                    (key === 0 && oneValues[1] === index) ||
+                    (key === 1 && twoValues[1] === index)
+                  }
+                  children={label}
+                />
+              ))}
+            </div>
+          </section>
+        ))}
 
         <section className={"num"}>
           <GrayLabel>数量</GrayLabel>
@@ -148,7 +161,7 @@ const Specification: FC<Props> = (props: Props) => {
 };
 
 export default Specification;
-interface label{
-  name?:any,
-  value?:any[]
+interface label {
+  name?: any;
+  value?: any[];
 }
