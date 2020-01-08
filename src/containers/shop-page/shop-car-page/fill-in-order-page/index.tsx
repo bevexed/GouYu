@@ -1,3 +1,9 @@
+/**
+ * @Description: 立即购买
+ * @author 两万
+ * @date 2020/1/8
+ * @time 17:56
+ */
 import React, { FC, useEffect, useState } from "react";
 import "./index.less";
 import { MyNavBar } from "../../../../components/my-nav-bar";
@@ -5,7 +11,6 @@ import MyAddressItem from "../../../my-page/components/my-address-item";
 import { iconPic } from "../../../../config/image";
 import MyIcon from "../../../../components/my-icon";
 import { WingBlank } from "antd-mobile";
-import OrderItem from "../../components/oder-item";
 import MyWhiteBlank from "../../../../components/my-white-blank";
 import MyList from "../../../../components/my-list";
 import MyItem from "../../../../components/my-item";
@@ -18,27 +23,23 @@ import { MyBlueTag } from "../../../../components/my-tag";
 import { useSelector } from "react-redux";
 import { ReducersProps } from "../../../../redux/store";
 import { BuyNowProps } from "../../../../redux/buy-now/reducer";
-import { AjaxOrderSubmissionOrdinaryGoods } from "../../../../api/order";
 import { AjaxUserAddressList } from "../../../../api/address";
+import OrderGoodItem from "../../components/order-good-item";
 
 type Props = {};
 const FillInOrderPage: FC<Props> = (props: Props) => {
   const data = useSelector<ReducersProps, BuyNowProps>(state => state.buyNow);
-  console.log(data);
-  const UP = () => {
-    AjaxOrderSubmissionOrdinaryGoods(data).then(res => {
-      console.log(res);
-      if (res.status === 0) {
-        push("/shop/pay-success-page");
-      }
-    });
-  };
-  const [list, setList] = useState<any[]>([]);
+  const [list, setList] = useState<any>({});
+  console.log(list,data);
   useEffect(() => {
+    if (data.receiverAddressId !== '0') {
+      return setList(data)
+    }
     AjaxUserAddressList({ page: 1, size: 1000 }).then(res => {
-      const data = res.data.records.filter((item: any) => item.isDefault === 1);
-      data.length > 0
-        ? setList(data[0])
+
+      const address = res.data.records.filter((item: any) => item.isDefault === 1);
+      address.length > 0
+        ? setList(address[0])
         : push("/shop/shop-car/add-consignee-page");
     });
   }, []);
@@ -48,10 +49,14 @@ const FillInOrderPage: FC<Props> = (props: Props) => {
       <MyNavBar>填写订单</MyNavBar>
       <WingBlank>
         <MyAddressItem
-          name={"王涛"}
-          phone={"132****5121"}
-          phoneAfter={<MyBlueTag>默认</MyBlueTag>}
-          addressContent={<span>浙江省杭州市西湖区剑桥公社E座B02</span>}
+          name={list.name}
+          phone={list.phone}
+          phoneAfter={list.isDefault === 1 ? <MyBlueTag>默认</MyBlueTag> : ""}
+          addressContent={
+            <span>
+              {list?.province + list?.city + list?.region + list?.address}
+            </span>
+          }
           onClick={() => push("/shop/shop-car/select-consignee-page")}
           rightContent={<MyIcon src={iconPic.more} onTouchEnd={() => {}} />}
         />
@@ -76,9 +81,9 @@ const FillInOrderPage: FC<Props> = (props: Props) => {
 
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
 
-      {new Array(1).fill(1).map((item, key) => (
-        <OrderItem key={key} />
-      ))}
+      <WingBlank>
+        <OrderGoodItem showBorderBottom={false} data={data} />
+      </WingBlank>
 
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
 
