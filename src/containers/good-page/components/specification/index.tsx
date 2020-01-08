@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useMemo, useState } from "react";
 import "./index.less";
 import { MyImage } from "../../../../components/my-image";
 import { GrayLabel, Price } from "../../../../components/price";
@@ -25,16 +25,51 @@ const Specification: FC<Props> = (props: Props) => {
   const { push } = useHistory();
   const { id } = useParams();
   const [OrdinaryGoodsSkuList, setOrdinaryGoodsSkuList] = useState<any>([]);
-  console.log(OrdinaryGoodsSkuList);
-  useEffect(() => {
-    ajax({
+  const [Labels, setLabels] = useState<label[]>([]);
+  const [oneValues, setOneValues] = useState<number[]>([0,0]);
+  const [twoValues, setTwoValues] = useState<number[]>([0,0]);
+  console.log(OrdinaryGoodsSkuList,Labels);
+  useMemo(() => {
+    ajax<any>({
       url: "/goods/getOrdinaryGoodsSkuList",
       method: "GET",
       data: { goodsId: id }
-    }).then(res => setOrdinaryGoodsSkuList(res.data));
+    }).then(res => {
+      setOrdinaryGoodsSkuList(res.data);
+      const arr = res.data[0];
+      const Labels:label[]= [
+        {
+          name: arr?.oneAttributeName,
+          value:[]
+        },
+        {
+          name: arr?.twoAttributeName,
+          value:[]
+        }
+      ];
+      res.data.forEach((item:any)=>{
+        Labels.forEach((label:any)=>{
+          console.log(label.value, item);
+          if (label.name === item.oneAttributeName) {
+            label.value.push(item.oneAttributeValue);
+          }else {
+            label.value.push(item.twoAttributeValue)
+          }
+          // @ts-ignore
+          label.value = [...new Set(label.value)]
+          console.log(label.value);
+
+        })
+      });
+      setLabels(Labels)
+    });
     preventScroll(".wrap");
     return () => props.close();
-  }, [id]);
+  }, ['']);
+
+  useMemo(()=>{
+
+  },[OrdinaryGoodsSkuList])
 
   const submit = async () => {
     dispatch(
@@ -46,6 +81,14 @@ const Specification: FC<Props> = (props: Props) => {
     );
     push("/shop/fill-in-order-page");
   };
+
+  const changeLabel = ([key,value]:number[])=>{
+    if (key === 0 ){
+      setOneValues([key,value])
+    }else {
+      setTwoValues([key,value])
+    }
+  }
 
   return props.open ? (
     <div className={`wrap`}>
@@ -72,33 +115,23 @@ const Specification: FC<Props> = (props: Props) => {
 
         <WhiteSpace size={"lg"} />
 
-        <section>
-          <GrayLabel>1</GrayLabel>
-          <div className="select-list">
-            {[1, 2, 3, 4].map((item, key) => (
-              <MySelectTag
-                key={key}
-                onTouchEnd={() => {}}
-                isSelected={true}
-                children={item}
-              />
-            ))}
-          </div>
-        </section>
-
-        <section>
-          <GrayLabel>2</GrayLabel>
-          <div className="select-list">
-            {[1, 2, 3, 4].map((item, key) => (
-              <MySelectTag
-                key={key}
-                onTouchEnd={() => {}}
-                isSelected={true}
-                children={item}
-              />
-            ))}
-          </div>
-        </section>
+        {
+          Labels.map((item:any,key:number)=>
+            <section key={key}>
+              <GrayLabel>{item.name}</GrayLabel>
+              <div className="select-list">
+                {item.value.map((label:any, index:number) => (
+                  <MySelectTag
+                    key={index}
+                    onTouchEnd={()=>changeLabel([key,index])}
+                    isSelected={(key === 0 && oneValues[1] === index) || (key === 1 && twoValues[1] === index)}
+                    children={label}
+                  />
+                ))}
+              </div>
+            </section>
+          )
+        }
 
         <section className={"num"}>
           <GrayLabel>数量</GrayLabel>
@@ -115,3 +148,7 @@ const Specification: FC<Props> = (props: Props) => {
 };
 
 export default Specification;
+interface label{
+  name?:any,
+  value?:any[]
+}

@@ -16,12 +16,9 @@ const SearchResultPage: FC<SearchResultProps> = (props: SearchResultProps) => {
   const { search } = useParams();
   useEffect(() => {
     AjaxQueryGoodsList({
-      goodsName:search + '',
-
-    }).then(
-        res => setList(res.data.records)
-    );
-  },[search]);
+      goodsName: search + ""
+    }).then(res => setList(res.data.records));
+  }, [search]);
   const [listState, setListState] = useState("list");
   const [SearchBarState, setSearchBarState] = useState(0);
   return (
@@ -30,7 +27,9 @@ const SearchResultPage: FC<SearchResultProps> = (props: SearchResultProps) => {
       <SearchTabBar
         getSearchBarState={SearchBarState => setSearchBarState(SearchBarState)}
       />
-      {SearchBarState === 0 ? (
+      {list.length === 0 ? (
+        <NoResult />
+      ) : SearchBarState === 0 ? (
         <>
           <GoodStateBar
             getListState={listState => {
@@ -41,9 +40,7 @@ const SearchResultPage: FC<SearchResultProps> = (props: SearchResultProps) => {
           {listState === "block" ? (
             "null" // <GuessYouLikeList guessYouLikeList={ [1, 2, 3, 4] }/>
           ) : (
-            <GoodList
-              goodList={list}
-            />
+            <GoodList goodList={list} />
           )}
         </>
       ) : (
@@ -53,8 +50,6 @@ const SearchResultPage: FC<SearchResultProps> = (props: SearchResultProps) => {
           ))}
         </WingBlank>
       )}
-
-      <NoResult />
     </div>
   );
 };

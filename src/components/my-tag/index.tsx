@@ -55,7 +55,7 @@ export const MyBlueTag: FC<Props> = (props: Props) => {
 
 interface MySelectTagProps extends Props {
   isSelected: boolean;
-  onTouchEnd: () => void;
+  onTouchEnd: any;
 }
 
 export const MySelectTag: FC<MySelectTagProps> = props => {

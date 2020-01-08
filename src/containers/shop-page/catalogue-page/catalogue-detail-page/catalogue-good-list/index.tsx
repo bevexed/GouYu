@@ -30,7 +30,7 @@ export const GoodItem: FC<GoodItemProps> = (props: GoodItemProps) => {
           <footer>
             <span className="del">￥{props.memberPrice}</span>
             <img src={ iconPic.vip } alt=""/> <span className="vip">￥{props.memberPrice}</span>
-            <div className="sold-out">已售563件</div>
+            <div className="sold-out">已售{props.soldNumber}件</div>
 
           </footer>
         </section>
