@@ -34,13 +34,13 @@ const FillPayNow: FC<Props> = (props: Props) => {
     }).then(res => {
       console.log(res);
       if (res.status === 0) {
-        push("/shop/pay-success-page");
+        replace("/shop/pay-success-page");
       }else {
         Toast.fail(res.message)
       }
     });
   };
-  const { push } = useHistory();
+  const { replace } = useHistory();
   return (
     <>
       <div className="_pay-now">

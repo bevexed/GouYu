@@ -81,9 +81,9 @@ ajaxResponse({
         Toast.fail(error?.response?.data?.message);
         return Store.dispatch(clearUserInfo());
       default:
+        return error;
     }
 
-    return error;
   }
 });
 
