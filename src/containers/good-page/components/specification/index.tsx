@@ -28,7 +28,8 @@ const Specification: FC<Props> = (props: Props) => {
   const [Labels, setLabels] = useState<label[]>([]);
   const [oneValues, setOneValues] = useState<number[]>([0, 0]);
   const [twoValues, setTwoValues] = useState<number[]>([0, 0]);
-  const [currentSelect, setCurrentSelect] = useState<any>({});
+  const [currentSelect, setCurrentSelect] = useState<any>('');
+  const [buyQuantity, setBuyQuantity] = useState(1);
   useMemo(() => {
     ajax<any>({
       url: "/goods/getOrdinaryGoodsSkuList",
@@ -57,23 +58,25 @@ const Specification: FC<Props> = (props: Props) => {
           }
           // @ts-ignore
           label.value = [...new Set(label.value)];
-          console.log(label.value);
         });
       });
       setLabels(Labels);
-      changeLabel([0,0])
+      setCurrentSelect(res.data[0])
     });
+
     preventScroll(".wrap");
-    return () => props.close();
-  }, [""]);
+    return () => {
+      props.close();
+    };
+  }, ['']);
 
   useMemo(() => {}, [OrdinaryGoodsSkuList]);
 
   const submit = async () => {
     dispatch(
       updateBuyNow({
-        buyQuantity: "1",
-        skuId: currentSelect.goodsId,
+        buyQuantity,
+        skuId: currentSelect.id,
         ...currentSelect
       })
     );
@@ -84,22 +87,28 @@ const Specification: FC<Props> = (props: Props) => {
     if (key === 0) {
       setOneValues([key, value]);
       OrdinaryGoodsSkuList.forEach((item: any) => {
-        // @ts-ignore
-        if (item.oneAttributeValue === Labels[0].value[value] && item.twoAttributeValue === Labels[1].value[[twoValues[1]]]) {
+        if (
+          // @ts-ignore
+        item.oneAttributeValue === Labels[0].value[value] &&
+          // @ts-ignore
+          item.twoAttributeValue === Labels[1].value[[twoValues[1]]]
+        ) {
           setCurrentSelect(item);
         }
       });
     } else {
       setTwoValues([key, value]);
       OrdinaryGoodsSkuList.forEach((item: any) => {
-        // @ts-ignore
-        if (item.oneAttributeValue === Labels[0].value[oneValues[1]] && item.twoAttributeValue === Labels[1].value[value]) {
-         setCurrentSelect(item);
+        if (
+          // @ts-ignore
+        item?.oneAttributeValue === Labels[0].value[oneValues[1]] &&
+          // @ts-ignore
+          item.twoAttributeValue === Labels[1].value[value]
+        ) {
+          setCurrentSelect(item);
         }
       });
     }
-
-
   };
 
   return props.open ? (
@@ -112,12 +121,12 @@ const Specification: FC<Props> = (props: Props) => {
         />
         <header>
           <MyImage
-            src={OrdinaryGoodsSkuList[0]?.skuImage}
+            src={currentSelect.skuImage}
             className={"shop-img"}
           />
           <div className="right">
-            <Price>￥{OrdinaryGoodsSkuList[0]?.salePrice}</Price>
-            <GrayLabel>库存2{OrdinaryGoodsSkuList[0]?.skuStock}</GrayLabel>
+            <Price>￥{currentSelect.salePrice}</Price>
+            <GrayLabel>库存{currentSelect.skuStock}</GrayLabel>
             <MyTitle>清苷朝鲜蓟枳椇子植物饮料</MyTitle>
             <GrayLabel ellipsis={true}>
               护肝养胃，活力十足，清苷朝鲜蓟枳椇…
@@ -148,7 +157,7 @@ const Specification: FC<Props> = (props: Props) => {
 
         <section className={"num"}>
           <GrayLabel>数量</GrayLabel>
-          <MyStepper val={1} onChange={() => {}} />
+          <MyStepper val={buyQuantity} onChange={val => setBuyQuantity(val)} />
         </section>
 
         <footer>
