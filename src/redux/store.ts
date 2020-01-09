@@ -13,6 +13,7 @@ import {
 import { homePageData, HomePageDataProps } from './home-page/reducer';
 import { classifyPageData, ClassifyPageDataProps } from './community-classify-page/reducer'
 import { buyNow, BuyNowProps } from "./buy-now/reducer";
+import { shopCar } from "./shop-car/reducer";
 
 export interface ActionProps {
   type: string;
@@ -30,6 +31,7 @@ export interface ReducersProps {
   classifyPageData:ClassifyPageDataProps;
 
   buyNow:BuyNowProps
+  shopCar:any[]
 
 }
 
@@ -42,7 +44,8 @@ const reducers = combineReducers<ReducersProps, ActionProps>({
   queryClassifyList,
   classifyBanner,
 
-  buyNow
+  buyNow,
+  shopCar
 });
 
 export default createStore(

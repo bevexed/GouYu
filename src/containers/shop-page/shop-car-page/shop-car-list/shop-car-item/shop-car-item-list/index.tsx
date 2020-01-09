@@ -8,12 +8,12 @@ import MyStepper from '../../../../../../components/my-stepper';
 import { WhiteSpace } from 'antd-mobile';
 
 type Props = {};
-const ShopCarItemList: FC<Props> = (props: Props) => {
+const ShopCarItemList: FC<any> = (props) => {
   return (
     <div className="_shop-car-item-list">
-      { new Array(3).fill(1).map((item, key) => (
+      { props.shoppingCartList.map((item:any, key:number) => (
         <div key={ key }>
-          <ShopCarItemListItem/>
+          <ShopCarItemListItem {...item}/>
           { key < 2 && (
             <>
               <WhiteSpace size={ 'lg' }/>
@@ -27,7 +27,7 @@ const ShopCarItemList: FC<Props> = (props: Props) => {
   );
 };
 
-const ShopCarItemListItem: FC<Props> = props => {
+const ShopCarItemListItem: FC<any> = props => {
   const [num, setNum] = useState(0);
   return (
     <div className="_shop-car-item-list-item">
@@ -35,7 +35,7 @@ const ShopCarItemListItem: FC<Props> = props => {
       } }/>
       <MyImage
         src={
-          'https://g-search1.alicdn.com/img/bao/uploaded/i4/i3/2990351630/O1CN01QKIBGO1NuaAPhHD2j_!!0-item_pic.jpg_250x250.jpg_.webp'
+         props.pic
         }
         className="_shop-car-item-list-item-img"
       />
@@ -46,9 +46,9 @@ const ShopCarItemListItem: FC<Props> = props => {
           <MyBlueTag round={ true }>限时秒</MyBlueTag>
         </div>
         <footer>
-          <Price>￥123</Price>
-          <OriginPrice>￥49</OriginPrice>
-          <MyStepper onChange={ setNum } val={ num }/>
+          <Price>￥{props.memberPrice}</Price>
+          <OriginPrice>￥{props.marketPrice}</OriginPrice>
+          <MyStepper onChange={ setNum } val={ props.number }/>
         </footer>
       </section>
     </div>

@@ -3,7 +3,7 @@ import "./index.less";
 import { MyImage } from "../../../../components/my-image";
 import { GrayLabel, Price } from "../../../../components/price";
 import MyTitle from "../../../../components/my-title";
-import { WhiteSpace } from "antd-mobile";
+import { Toast, WhiteSpace } from "antd-mobile";
 import { MySelectTag } from "../../../../components/my-tag";
 import MyStepper from "../../../../components/my-stepper";
 import { GoToShopButton } from "../../../../components/my-button";
@@ -12,8 +12,11 @@ import MyIcon from "../../../../components/my-icon";
 import { iconPic } from "../../../../config/image";
 import { ajax } from "../../../../api/ajax";
 import { useHistory, useParams } from "react-router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateBuyNow } from "../../../../redux/buy-now/actions";
+import { AjaxShoppingCartAddShoppingCart } from "../../../../api/shop-car";
+import { ReducersProps } from "../../../../redux/store";
+import { BuyNowProps } from "../../../../redux/buy-now/reducer";
 
 type Props = {
   open: boolean;
@@ -24,6 +27,7 @@ const Specification: FC<Props> = (props: Props) => {
   const dispatch = useDispatch();
   const { push } = useHistory();
   const { id } = useParams();
+  const data = useSelector<ReducersProps, BuyNowProps>(state => state.buyNow);
   const [OrdinaryGoodsSkuList, setOrdinaryGoodsSkuList] = useState<any>([]);
   const [Labels, setLabels] = useState<label[]>([]);
   const [oneValues, setOneValues] = useState<number[]>([0, 0]);
@@ -66,6 +70,22 @@ const Specification: FC<Props> = (props: Props) => {
     };
   }, [id]);
 
+  const add= ()=>{
+    //@ts-ignore
+    const{goodsId,skuId,storeId,type,pic,subTitle,marketPrice,salePrice,memberPrice,seckillPrice,vipSeckillPrice,specifications} = data
+    AjaxShoppingCartAddShoppingCart({
+      number:buyQuantity,
+      skuId: currentSelect.id,
+      goodsId,storeId,type,pic,subTitle,marketPrice,salePrice,memberPrice,seckillPrice,vipSeckillPrice,specifications,
+      ...currentSelect
+    }).then(res=>{
+      if (res.status === 0) {
+        return  Toast.success(res.message)
+      }
+      Toast.fail(res.message)
+
+    });
+  }
   useEffect(() => {
     if (OrdinaryGoodsSkuList.length && Labels.length) {
       changeLabel([0, 0]);
@@ -137,7 +157,7 @@ const Specification: FC<Props> = (props: Props) => {
         <MyIcon
           className={"icon"}
           src={iconPic._close}
-          onTouchEnd={props.close}
+          onTouchEnd={()=>props.close()}
         />
         <header>
           <MyImage src={currentSelect.skuImage} className={"shop-img"} />
@@ -178,7 +198,7 @@ const Specification: FC<Props> = (props: Props) => {
         </section>
 
         <footer>
-          <GoToShopButton>加入购物车</GoToShopButton>
+          <GoToShopButton onTouchEnd={add}>加入购物车</GoToShopButton>
           <GoToShopButton onTouchEnd={submit}>立即购买</GoToShopButton>
         </footer>
       </div>
