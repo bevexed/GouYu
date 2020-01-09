@@ -210,7 +210,7 @@ class DetailsIndex extends Component<DetailsIndex, any>{
                                 <p className={`dynamic-details-accordion-rig ${flage || 'dynamic-details-flage'}`} onClick={this.onchange}>全部</p>
                             </div>
                             <div className="hot-details-con-img">
-                            {HotDetailsData.images ? <MyImage className="details-image" src={HotDetailsData.images} /> : HotDetailsData.video && <MyImage className="details-image" src={`${HotDetailsData.video}?x-oss-process=video/snapshot,t_10000,m_fast,w_800`} />}
+                            {HotDetailsData.images ? HotDetailsData.images.split(',').map((item) => <MyImage className="details-image" src={item} />) : <MyImage className="details-image" src={`${HotDetailsData.video}?x-oss-process=video/snapshot,t_10000,m_fast,w_800`} />}
                             </div>
                             <p className="dynamic-cente-footer-txt">
                                 <span>#海外产品</span>

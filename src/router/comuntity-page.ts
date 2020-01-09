@@ -19,6 +19,11 @@ export const ComunityPage: RouteType[] = [
     component: lazy(() => import('../containers/comunity-page/headline-details-page')),
     exact: true,
   },{
+    path: '/comunity/headcomments-details-page',
+    component: lazy(() => import('../containers/comunity-page/headline-details-page/headcomments-details-page')),
+    exact: true,
+  }
+  ,{
     path: '/comunity/hot-details-page',
     component: lazy(() => import('../containers/comunity-page/hot-details-page')),
     exact: true,

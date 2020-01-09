@@ -1,0 +1,97 @@
+.comments-details-container{
+    .comments-details-container-con{
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
+    .comments-details-top{
+        display: flex;
+        height:128px;
+        background:rgba(255,255,255,1);
+        align-items: center;
+        padding-left: 30px;
+        box-sizing: border-box;
+        box-shadow:8px 16px 24px 0px rgba(159,187,186,0.18);
+        .question-image{
+            height: 40px;
+            width: 40px;
+        }
+        h1{
+            font-size:36px;
+            font-weight:500;
+            color:rgba(38,45,44,1);
+            padding-left: 234px;
+            box-sizing: border-box;
+        }
+    }
+    .comments-details-center{
+        flex: 1;
+        overflow-y: auto;
+        .active{
+            background: #fff;
+        }
+        .comments-center-top{
+            padding: 5px 30px 0 30px;
+            display: flex;
+            margin-top: 28px;
+            .center-top-left-image{
+                width: 88px;
+                height: 88px;
+                border-radius: 50%;
+            }
+            .comments-center-right{
+                display: flex;
+                margin-left: 20px;
+                justify-content: space-between;
+                width: 582px;
+                .comments-center-top-left{
+                    h3{
+                        height:40px;
+                        font-size:28px;
+                        font-weight:500;
+                        color:rgba(38,45,44,1);
+                        line-height:40px;
+                    }
+                    .top-left-distance{
+                        height:34px;
+                        font-size:24px;
+                        color:rgba(153,153,153,1);
+                        line-height:34px;
+                        padding: 10px 0 24px 0;
+                    }
+                    .top-left-text{
+                        height:42px;
+                        font-size:30px;
+                        color:rgba(38,45,44,1);
+                        padding-bottom: 28px;
+                    }
+                }
+                .Release-con-right-image{
+                    width: 32px;
+                    height: 32px;
+                    margin-right: 12px;
+                }
+                .tabs-Release-con-right{
+                    display: flex;
+                    align-items: center;
+                    height: 70px;
+                }
+            }
+        }
+    }
+    .comments-details-footer{
+        height:98px;
+        background:rgba(255,255,255,1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .reply-comment{
+            height:66px;
+            background:rgba(243,244,245,1);
+            border-radius:8px;
+            width:690px;
+        }
+    }
+ }
+ 
+ 

@@ -46,9 +46,9 @@ class DetailsIndex extends Component<DetailsIndex, any>{
     onDetailsList = async () => {
         const idData = this.props.location.search.slice(1).split('=')
         const res = await AjaxGetDynamicDetailsPageList({ id: idData[1] });
-       // console.log('detailsres', res);
+        // console.log('detailsres', res);
         this.setState({ DynamicDetails: res.data })
-       // console.log('dddd', this.state.DynamicDetails)
+        // console.log('dddd', this.state.DynamicDetails)
     }
 
     onchange = () => {
@@ -149,8 +149,22 @@ class DetailsIndex extends Component<DetailsIndex, any>{
         )
     }
 
+    renderPraise = () => {
+        return (
+            <div className="Praise">
+                <div className="Praise-content">
+                    <MyImage className="center-top-left" src={'http://cdn.duitang.com/uploads/item/201410/21/20141021130151_ndsC4.jpeg'} />
+                    <div className="Praise-content-right">
+                        <p>毒岛百合子</p>
+                        <p className="center-top-right-focus"> 关注 </p>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
     render() {
-        const { flage, focusflage, DynamicDetails } = this.state
+        const { flage, focusflage, DynamicDetails, SearchBarState } = this.state
         console.log('DynamicData', DynamicDetails)
         return (
             <div className="dynamic-details">
@@ -177,7 +191,7 @@ class DetailsIndex extends Component<DetailsIndex, any>{
                                 <p className={`dynamic-details-accordion-rig ${flage || 'dynamic-details-flage'}`} onClick={this.onchange}>全部</p>
                             </div>
                             <div className="dynamic-details-con-img">
-                                {DynamicDetails.images ? DynamicDetails.images.split(',').slice(0, -1).map((item) => <MyImage className="details-image" src={item} />) : <MyImage className="details-image" src={`${DynamicDetails.video}?x-oss-process=video/snapshot,t_10000,m_fast,w_800`} />}
+                                {DynamicDetails.images ? DynamicDetails.images.split(',').map((item) => <MyImage className="details-image" src={item} />) : <MyImage className="details-image" src={`${DynamicDetails.video}?x-oss-process=video/snapshot,t_10000,m_fast,w_800`} />}
                                 {/* <MyImage className="detai'ls-image" src={'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577774306343&di=9513ed808d895914506fd67f1070774f&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170512%2Fceb4c51b34c54032a65e1fb23af7eeaa_th.jpg'} />
                                 <MyImage className="details-image" src={'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577785236487&di=ecae8c37c6ab058ae6e6439371e25d9b&imgtype=0&src=http%3A%2F%2Fpic.eastlady.cn%2Fuploads%2Ftp%2F201703%2F9999%2F3732714ab0.jpg'} />
                                 <MyImage className="details-image" src={'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577774306343&di=9513ed808d895914506fd67f1070774f&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170512%2Fceb4c51b34c54032a65e1fb23af7eeaa_th.jpg'} /> */}
@@ -189,7 +203,7 @@ class DetailsIndex extends Component<DetailsIndex, any>{
                         </div>
 
                         {this.SearchTabBar()}
-                        {this.renderComments()}
+                        {SearchBarState == 0 ? this.renderComments() : this.renderPraise()}
                     </div>
                     <div className="dynamic-details-footer">
                         <div className="dynamic-details-footer-g">

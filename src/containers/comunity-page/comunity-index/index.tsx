@@ -9,7 +9,7 @@ import { reqClassifyPageData } from '../../../redux/community-classify-page/acti
 import { useDispatch, useSelector, useStore } from 'react-redux';
 import { ReducersProps } from '../../../redux/store';
 import { ClassifyPageDataProps } from '../../../redux/community-classify-page/reducer';
-import { AjaxGetDynamicPageList, AjaxGetHeadlinesPageList } from '../../../api/community-classify-page';
+import { AjaxGetDynamicPageList, AjaxGetHeadlinesPageList, AjaxGetAnswerPageList } from '../../../api/community-classify-page';
 interface ComuntityIndexProps { }
 
 const tabs = [
@@ -28,30 +28,44 @@ const RenderHot: FC<{}> = () => {
     >(state => state.classifyPageData);
     const { push } = useHistory()
     const [Hotflage, setHotflage] = useState();
-    //const [Flage, setFlage] = useState(false)
+    // const [Flage, setFlage] = useState(true);
+    // const [activeFlage, setactiveFlage] = useState(false)
     console.log('hot', specialList.records)
+    // const gitvelink = (id: any) => {
+    //     //setHotflage(id)
+    //     console.log(1111111111)
+    //     console.log('id',id)
+    // }
+    console.log('id', Hotflage)
     return (
         <div className="content-tabs-hot">
-            {
-                specialList.records && specialList.records.map((item: any) =>
-                    <div className="hot-content" key={item.id}>
-                        <MyImage className="hot-image"
-                            src={item.images ? item.images.split(',')[0] : `${item.video}?x-oss-process=video/snapshot,t_10000,m_fast,w_800`}
-                            onClick={() => push(`/comunity/hot-details-page?id=${item.id}`)}
-                        />
-                        <p className="hot-content-tit">{item.content}</p>
-                        <div className="hot-content-footer">
-                            <div className="hot-content-footer-left">
-                                <MyImage src={item.headImage} className="footer-left-bg" />
-                                <span className="footer-left-tit">{item.nickName}</span>
-                            </div>
-                            <div className="hot-content-footer-right" onClick={() => setHotflage(item.id)} >
-                                {Hotflage == item.id? < MyImage src={iconPic.active_love} className="footer-right-love" /> : <MyImage src={iconPic.default_link} className="footer-right-love" />}
-                                <span>{item.zanNumber}</span>
+         
+            {/* {
+                specialList.records && specialList.records.map((item: any) => {
+
+                    return (
+                        <div className="hot-content" key={item.id}>
+                            <MyImage className="hot-image"
+                                src={item.images ? item.images.split(',')[0] : `${item.video}?x-oss-process=video/snapshot,t_10000,m_fast,w_800`}
+                                onClick={() => push(`/comunity/hot-details-page?id=${item.id}`)}
+                            />
+                            {item.video && <MyImage src={iconPic.play_v} className="play-video" />}
+                            <p className="hot-content-tit">{item.content}</p>
+                            <div className="hot-content-footer">
+                                <div className="hot-content-footer-left">
+                                    <MyImage src={item.headImage} className="footer-left-bg" />
+                                    <span className="footer-left-tit">{item.nickName}</span>
+                                </div>
+                                <div className="hot-content-footer-right" onClick={() => setHotflage(item.id)} >
+                                    {Hotflage === item.id ? < MyImage src={iconPic.active_love} className="footer-right-love" /> : < MyImage src={iconPic.default_link} className="footer-right-love" />}
+                                   
+                                    <span>{item.zanNumber}</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                )}
+                    )
+
+                })} */}
             <MyImage src={iconPic.camera} className="right-camera" />
         </div>
 
@@ -62,6 +76,7 @@ const RenderHot: FC<{}> = () => {
 const RenderDynamic: FC<{}> = () => {
     const { push } = useHistory()
     const [DynamicData, setDynamicData] = useState();
+  
     useEffect(() => {
         const getDynamicData = async () => {
             const res = await AjaxGetDynamicPageList();
@@ -70,7 +85,7 @@ const RenderDynamic: FC<{}> = () => {
         };
         getDynamicData();
     }, [])
-    // console.log('动态Data', DynamicData)
+    console.log('动态Data', DynamicData)
     return (
         <div className="content-tabs-dynamic">
             <div className="tabs-dynamic-top">
@@ -85,7 +100,7 @@ const RenderDynamic: FC<{}> = () => {
             </div>
             {
                 DynamicData && DynamicData.map((item: any) =>
-                    <div className="dynamic-center" key={item.id} onClick={() => push(`/comunity/dynamic-details-page?id=${item.id}`)}>
+                    <div className="dynamic-center" key={item.id} >
                         <div className="dynamic-center-top">
                             <MyImage className="center-top-left" src={item.headImage} />
                             <div className="center-top-right">
@@ -93,22 +108,24 @@ const RenderDynamic: FC<{}> = () => {
                                 <p>2019/10/24 23:00</p>
                             </div>
                         </div>
-                        <p className="dynamic-center-text">健身教学：阿圣诞节啊时打巴斯克接电话可撒了点看的巴萨的撒谎的卡上看见圣诞节狂欢</p>
-                        {
-                            item.images && item.images.split(',').length >= 0 ? <div className="dynamic-center-image-list">{item.images.split(',').slice(0, -1).map((value: any) => <MyImage src={value} className="image-lest" />)}</div> :
-                                <div className="dynamic-center-image">
-                                    <MyImage className="center-image" src={`${item.video}?x-oss-process=video/snapshot,t_10000,m_fast,w_800`} />
-                                </div>
-                        }
-                        <p className="dynamic-cente-footer-txt">
-                            <span>#女生腹肌</span>
-                        </p>
+                        <div onClick={() => push(`/comunity/dynamic-details-page?id=${item.id}`)}>
+                            <p className="dynamic-center-text">健身教学：阿圣诞节啊时打巴斯克接电话可撒了点看的巴萨的撒谎的卡上看见圣诞节狂欢</p>
+                            {
+                                item.images && item.images.split(',').length >= 0 ? <div className="dynamic-center-image-list">{item.images.split(',').map((value: any) => <MyImage src={value} className="image-lest" />)}</div> :
+                                    <div className="dynamic-center-image">
+                                        <MyImage className="center-image" src={`${item.video}?x-oss-process=video/snapshot,t_10000,m_fast,w_800`} />
+                                    </div>
+                            }
+                            <p className="dynamic-cente-footer-txt">
+                                <span>#女生腹肌</span>
+                            </p>
+                        </div>
                         <div className="dynamic-cente-footer">
                             <div className="cente-footer-g">
                                 <MyImage src={iconPic.star} className="cente-footer-icon" />
                                 <span>999</span>
                             </div>
-                            <div className="cente-footer-g">
+                            <div className="cente-footer-g" onClick={() => push('/comunity/comments-details-page')}>
                                 <MyImage src={iconPic.info} className="cente-footer-icon" />
                                 <span>1000</span>
                             </div>
@@ -166,6 +183,17 @@ const RenderHeadlines: FC<{}> = () => {
 }
 //问答
 const RenderAnswer: FC<{}> = () => {
+    const [AnswerData, setAnswerData] = useState();
+    console.log(localStorage.getItem('token'))
+    const tokendata = localStorage.getItem('token')
+    useEffect(() => {
+        const getAnswerData = async () => {
+            const res = await AjaxGetAnswerPageList({ token: tokendata });
+            setAnswerData(res)
+        };
+        getAnswerData();
+    })
+    console.log('AnswerData1231234', AnswerData)
     const { push } = useHistory()
     return (
         <div className="answer-content">
@@ -185,7 +213,7 @@ const RenderAnswer: FC<{}> = () => {
                 </div>
             </div>
             {new Array(10).fill(1).map((item, key) =>
-                <div className="Headlines" key={key} onClick={()=>push('/comunity/answer-details-page')}>
+                <div className="Headlines" key={key} onClick={() => push('/comunity/answer-details-page')}>
                     <div className="Headlines-con" >
                         <p className="Headlines-con-tit">健身教学：连续22天的腹肌训练，很多女生去健身房除了用跑步机，对其他器械动作一头雾水</p>
                         <div className="headlines-con-img">
@@ -260,7 +288,7 @@ const RenderWithCity: FC<{}> = () => {
 }
 //tabs
 interface TabExampleProps {
-    set: (a: any) => void
+    set: (a: any) => void,
 }
 const TabExample: FC<TabExampleProps> = (props: TabExampleProps) => {
     const [listState, setListState] = useState();

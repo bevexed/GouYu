@@ -4,8 +4,8 @@ import { MyImage } from '../../../components/my-image';
 import { iconPic } from '../../../config/image';
 import { RouteComponentProps } from 'react-router';
 import { AjaxGetHeadDetailsPageList } from '../../../api/community-classify-page';
-//import { Modal,List } from 'antd-mobile';
-//List, Button, WhiteSpace, WingBlank, Icon
+import { Modal, TextareaItem } from 'antd-mobile';
+//import UserAgreement from '../../login-page/user-agreement-page';
 interface DetailsIndex extends RouteComponentProps {
     val: null,
     tabs: null,
@@ -33,7 +33,9 @@ class DetailsIndex extends Component<DetailsIndex, any>{
             userId: '',
             zanNumber: '',
             video: '',
-        }
+        },
+        indexdata: null,
+        modaldata: false
     }
 
     componentDidMount() {
@@ -63,6 +65,29 @@ class DetailsIndex extends Component<DetailsIndex, any>{
             commentsState: !this.state.commentsState,
         })
     }
+    onClose = () => {
+
+        this.setState({
+            modaldata: false,
+        })
+    }
+    openModel = () => {
+        let ss = navigator.userAgent
+       //console.log(dsbride)
+        if (ss.indexOf('DOG_FISH_MALL') == -1) {
+            let token = localStorage.getItem('token')
+            if (token) {
+                this.setState({
+                    modaldata: true,
+                })
+            }
+        } else {
+            //alert(bridge.call("getToken"));
+        }
+        console.log(1111)
+        console.log('ss', ss)
+    }
+
     //tabs切换
     SearchTabBar = () => {
         const { HeadDetailsData, SearchBarState } = this.state
@@ -100,30 +125,30 @@ class DetailsIndex extends Component<DetailsIndex, any>{
                 <p className="link-title"><span>猜你喜欢</span></p>
                 <div className="dynamic-like-list-content">
 
-                  {
-                      new Array(10).fill(1).map((item,key) =>
-                      <div className="dynamic-like-list-con" key={key}>
-                        <MyImage className="lick-image" src={'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577774306343&di=9513ed808d895914506fd67f1070774f&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170512%2Fceb4c51b34c54032a65e1fb23af7eeaa_th.jpg'} />
-                        <div className="dynamic-like-bottom">
-                            <h4 className="dynamic-like-bottom-title">护肝养胃 熬夜酒局必…</h4>
-                            <p className="dynamic-like-bottom-test">澳洲进口，swisse奶蓟草护肝片</p>
-                            <div className="dynamic-like-bottom-money">
-                                <p className="bottom-money-left">¥888</p>
-                                <span className="bottom-money-right">¥999</span>
-                            </div>
-                            <div className="dynamic-like-bottom-zero">
-                                <p className="bottom-zero-left bottom-zero-g">VIP省¥5.99</p>
-                                <p className="bottom-zero-right bottom-zero-g">分享赚¥2.99</p>
-                            </div>
-                            <div className="dynamic-red-envelope">
-                                <div className="red-envelope-left">
-                                    <MyImage className="red-image" src={iconPic.red_envelope} />
-                                    <span>¥666</span>
+                    {
+                        new Array(10).fill(1).map((item, key) =>
+                            <div className="dynamic-like-list-con" key={key}>
+                                <MyImage className="lick-image" src={'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577774306343&di=9513ed808d895914506fd67f1070774f&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170512%2Fceb4c51b34c54032a65e1fb23af7eeaa_th.jpg'} />
+                                <div className="dynamic-like-bottom">
+                                    <h4 className="dynamic-like-bottom-title">护肝养胃 熬夜酒局必…</h4>
+                                    <p className="dynamic-like-bottom-test">澳洲进口，swisse奶蓟草护肝片</p>
+                                    <div className="dynamic-like-bottom-money">
+                                        <p className="bottom-money-left">¥888</p>
+                                        <span className="bottom-money-right">¥999</span>
+                                    </div>
+                                    <div className="dynamic-like-bottom-zero">
+                                        <p className="bottom-zero-left bottom-zero-g">VIP省¥5.99</p>
+                                        <p className="bottom-zero-right bottom-zero-g">分享赚¥2.99</p>
+                                    </div>
+                                    <div className="dynamic-red-envelope">
+                                        <div className="red-envelope-left">
+                                            <MyImage className="red-image" src={iconPic.red_envelope} />
+                                            <span>¥666</span>
+                                        </div>
+                                        <p className="red-envelope-right">已售999＋</p>
+                                    </div>
                                 </div>
-                                <p className="red-envelope-right">已售999＋</p>
-                            </div>
-                        </div>
-                    </div>)}
+                            </div>)}
                 </div>
             </div>
         )
@@ -157,7 +182,7 @@ class DetailsIndex extends Component<DetailsIndex, any>{
                                     <div className="comments-center-tarbar">
                                         <p className="comments-center-tarbar-date">2019.09.09 12:34</p>
                                         <div className="comments-center-tarbar-right">
-                                            <div className="tarbar-right-con tarbar-left" onClick={() => this.props.history.push('/comunity/comments-details-page')}>
+                                            <div className="tarbar-right-con tarbar-left" onClick={() => this.props.history.push('/comunity/headcomments-details-page')}>
                                                 <MyImage src={iconPic.info} className="tarbar-right-icon" />
                                                 <span>1000</span>
                                             </div>
@@ -176,15 +201,48 @@ class DetailsIndex extends Component<DetailsIndex, any>{
                     <p>{commentsState === true ? '展开' : '收起'}85条评论</p>
                     <MyImage src={iconPic.bottom} className="unfold-icon" />
                 </div>
-                <div className="empty"></div>
-                {this.renderLink()}
+
             </div>
         )
 
     }
+    onpraise = (index: any) => {
+        console.log('index', index)
+        // this.setState({
+        //     indexdata: index
+        // })
+
+    }
+    //赞
+    renderPraise = () => {
+        const { focusflage } = this.state
+        return (
+            <div className="Praise">
+                {
+                    new Array(5).fill(1).map((item, key) => {
+
+                        return (
+                            <div className="Praise-content" key={key}>
+                                <MyImage className="center-top-left" src={'http://cdn.duitang.com/uploads/item/201410/21/20141021130151_ndsC4.jpeg'} />
+                                <div className="Praise-content-right" onClick={() => this.onpraise(key)}>
+                                    <p>毒岛百合子</p>
+                                    {focusflage ? <p className="center-top-right-focus" onClick={this.onFocusf}> 关注 </p> : <p className="center-top-been-focused"> 已关注 </p>}
+                                </div>
+                            </div>
+                        )
+
+                    })}
+                {/* <div className="dynamic-details-unfold" onClick={this.onComments}>
+                    <p>{commentsState === true ? '展开' : '收起'}85条评论</p>
+                    <MyImage src={iconPic.bottom} className="unfold-icon" />
+                </div>
+                */}
+            </div>
+        )
+    }
 
     render() {
-        const { flage, focusflage } = this.state
+        const { flage, focusflage, SearchBarState, modaldata } = this.state
         return (
             <div className="dynamic-details">
                 <div className="dynamic-details-con">
@@ -222,10 +280,12 @@ class DetailsIndex extends Component<DetailsIndex, any>{
                         </div>
 
                         {this.SearchTabBar()}
-                        {this.renderComments()}
+                        {SearchBarState == 0 ? this.renderComments() : this.renderPraise()}
+                        <div className="empty"></div>
+                        {this.renderLink()}
                     </div>
                     <div className="dynamic-details-footer">
-                        <div className="dynamic-details-footer-g">
+                        <div className="dynamic-details-footer-g" onClick={this.openModel}>
                             <MyImage src={iconPic.info} className="dynamic-details-footer-icon" />
                             <span>评论</span>
                         </div>
@@ -239,17 +299,26 @@ class DetailsIndex extends Component<DetailsIndex, any>{
                         </div>
                     </div>
                 </div>
-                {/* <Modal
+                <Modal
                     popup
-                    //visible={this.state.modal2}
-                    onClose={this.onClose('modal2')}
+                    visible={this.state.modaldata}
+                    onClose={this.onClose}
                     animationType="slide-up"
-                    afterClose={() => { alert('afterClose'); }}
+                    className="comments-diteils-modal"
                 >
-                    <List renderHeader={() => <div>委托买入</div>} className="popup-list">
-                        121212
-                    </List>
-                </Modal> */}
+                    <div className="comments-modal">
+                        <div className="comments-modal-con">
+                            <TextareaItem
+                                placeholder="请输入问题~"
+                                autoHeight
+                                labelNumber={5}
+                                className="comments-modal-con-txt"
+                            />
+                        </div>
+
+                        <p className="comments-modal-footer">发送</p>
+                    </div>
+                </Modal>
 
             </div>
         )

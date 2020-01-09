@@ -84,12 +84,12 @@ class NearfinedIndex extends Component<NearfinedIndex>{
                     tabBarActiveTextColor='#262D2C'
                 >
                     {this.LatelyRelease()}
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '250px', backgroundColor: '#fff' }}>
+                    {/* <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '250px', backgroundColor: '#fff' }}>
                         Content of second tab
                    </div>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '250px', backgroundColor: '#fff' }}>
                         Content of third tab
-                    </div>
+                    </div> */}
                 </Tabs>
                 <WhiteSpace />
             </div>

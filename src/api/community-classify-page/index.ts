@@ -1,6 +1,6 @@
 import { ajax } from '../ajax';
 import { ClassifyPageDataProps } from '../../redux/community-classify-page/reducer';
-import { AjaxGetDynamicProps,AjaxGetHeadProps } from './CommunityProps'
+import { AjaxGetDynamicProps, AjaxGetHeadProps,AjaxGetAwersProps,AjaxGetQuestionsProps } from './CommunityProps'
 
 export const AjaxGetClassifyPageList = () =>
     ajax<ClassifyPageDataProps>({
@@ -29,4 +29,17 @@ export const AjaxGetHeadDetailsPageList = (data: AjaxGetHeadProps) =>//头条详
         method: 'GET',
         data
     });
+export const AjaxGetAnswerPageList = (data:AjaxGetAwersProps) =>//回答
+    ajax<any>({
+        url: '/community/getMyCommunityAnswer',
+        method: 'GET',
+        data
+    });
+    export const AjaxGetQuestionsPage = (data:AjaxGetQuestionsProps) =>//回答/提问
+    ajax<any>({
+        url: '/community/addCommunityQuestions',
+        method: 'POST',
+        data
+    });
+
 

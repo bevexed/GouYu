@@ -95,6 +95,7 @@ class MayquestionDetailsIndex extends Component<MayquestionDetailsIndex, any>{
 
                             </div>)}
                 </div>
+                <MyImage src={iconPic.pen} className="answer-pen"/>
             </div>
         )
     }

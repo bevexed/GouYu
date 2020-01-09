@@ -5,3 +5,13 @@ export interface AjaxGetDynamicProps {
 export interface AjaxGetHeadProps {
     id: any
 }
+export interface AjaxGetAwersProps {
+    token: any
+}
+export interface AjaxGetQuestionsProps {
+   // data: any,
+    //title:any
+}
+
+
+
