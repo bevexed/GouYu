@@ -5,11 +5,13 @@ import MyIcon from "../../../../components/my-icon";
 import { iconPic } from "../../../../config/image";
 import { GrayLabel } from "../../../../components/price";
 
-type Props = {};
+type Props = {
+  onClick : ()=>void
+};
 const GoodBottom: FC<Props> = (props: Props) => {
   return (
     <>
-      <div className="_good-bottom">
+      <div className="_good-bottom" onClick={props.onClick}>
         <ul className="three-icon">
           <li>
             <MyIcon src={iconPic.cart_gray} />

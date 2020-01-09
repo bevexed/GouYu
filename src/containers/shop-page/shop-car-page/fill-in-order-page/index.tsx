@@ -28,9 +28,10 @@ import OrderGoodItem from "../../components/order-good-item";
 
 type Props = {};
 const FillInOrderPage: FC<Props> = (props: Props) => {
+  const { push } = useHistory();
+
   const data = useSelector<ReducersProps, BuyNowProps>(state => state.buyNow);
   const [list, setList] = useState<any>({});
-  console.log(list, data);
   useEffect(() => {
     if (data.receiverAddressId !== "0") {
       return setList(data);
@@ -45,8 +46,7 @@ const FillInOrderPage: FC<Props> = (props: Props) => {
           : push("/shop/shop-car/add-consignee-page");
       }
     });
-  }, []);
-  const { push } = useHistory();
+  }, [data, push]);
   return (
     <div className="_fill-in-order-page">
       <MyNavBar>填写订单</MyNavBar>

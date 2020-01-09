@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useState } from "react";
+import React, { FC, useEffect, useMemo, useState } from "react";
 import "./index.less";
 import { MyImage } from "../../../../components/my-image";
 import { GrayLabel, Price } from "../../../../components/price";
@@ -50,27 +50,27 @@ const Specification: FC<Props> = (props: Props) => {
       ];
       res.data.forEach((item: any) => {
         Labels.forEach((label: any) => {
-          console.log(label.value, item);
           if (label.name === item.oneAttributeName) {
             label.value.push(item.oneAttributeValue);
-          } else {
-            label.value.push(item.twoAttributeValue);
           }
           // @ts-ignore
           label.value = [...new Set(label.value)];
         });
       });
       setLabels(Labels);
-      setCurrentSelect(res.data[0]);
     });
 
     preventScroll(".wrap");
     return () => {
       props.close();
     };
-  }, [""]);
+  }, [id]);
 
-  useMemo(() => {}, [OrdinaryGoodsSkuList]);
+  useEffect(() => {
+    if (OrdinaryGoodsSkuList.length && Labels.length) {
+      changeLabel([0, 0]);
+    }
+  }, [OrdinaryGoodsSkuList, Labels]);
 
   const submit = async () => {
     dispatch(
@@ -86,7 +86,17 @@ const Specification: FC<Props> = (props: Props) => {
   const changeLabel = ([key, value]: number[]) => {
     if (key === 0) {
       setOneValues([key, value]);
+      Labels[1].value = [];
       OrdinaryGoodsSkuList.forEach((item: any) => {
+        Labels.forEach((label: any) => {
+          // @ts-ignore
+          if (item.oneAttributeValue === Labels[0].value[value]) {
+            // @ts-ignore
+            Labels[1].value.push(item.twoAttributeValue);
+          }
+          // @ts-ignore
+          label.value = [...new Set(label.value)];
+        });
         if (
           // @ts-ignore
           item.oneAttributeValue === Labels[0].value[value] &&
