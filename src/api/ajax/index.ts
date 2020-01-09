@@ -68,6 +68,20 @@ ajaxRequest({
 
 ajaxResponse({
   resolveCallback(res) {
+    console.log(res);
+    const status = res?.data?.status;
+    switch (status) {
+      case 500:
+        return Toast.fail("服务器错误");
+      case 404:
+        return Toast.fail("服务器错误");
+      case 401:
+        console.log(1);
+        Toast.fail(res?.data?.message,1.5,
+          ()=> window.location.replace("/")
+        );
+        return  Store.dispatch(clearUserInfo());
+    }
     if (Intercept(res.data)) {
       return res;
     }

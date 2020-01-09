@@ -30,17 +30,20 @@ type Props = {};
 const FillInOrderPage: FC<Props> = (props: Props) => {
   const data = useSelector<ReducersProps, BuyNowProps>(state => state.buyNow);
   const [list, setList] = useState<any>({});
-  console.log(list,data);
+  console.log(list, data);
   useEffect(() => {
-    if (data.receiverAddressId !== '0') {
-      return setList(data)
+    if (data.receiverAddressId !== "0") {
+      return setList(data);
     }
     AjaxUserAddressList({ page: 1, size: 1000 }).then(res => {
-
-      const address = res.data.records.filter((item: any) => item.isDefault === 1);
-      address.length > 0
-        ? setList(address[0])
-        : push("/shop/shop-car/add-consignee-page");
+      if (res) {
+        const address = res?.data?.records.filter(
+          (item: any) => item.isDefault === 1
+        );
+        address?.length > 0
+          ? setList(address[0])
+          : push("/shop/shop-car/add-consignee-page");
+      }
     });
   }, []);
   const { push } = useHistory();
