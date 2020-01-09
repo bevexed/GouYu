@@ -5,7 +5,7 @@ import { BackEndBaseUrl } from "../../config/url";
 import Qs from "qs";
 import { Toast } from "antd-mobile";
 import Store from "../../redux/store";
-import { clearUserInfo, setUserInfo } from "../../redux/user/actions";
+import { clearUserInfo } from "../../redux/user/actions";
 import { getLocalStorage } from "../../util/storage";
 
 axios.defaults.baseURL = BackEndBaseUrl;
@@ -49,10 +49,14 @@ export const ajax = <T>({
 
 ajaxRequest({
   beforeSend(config) {
-    const token = getLocalStorage("token");
-
+    let token;
     if (!token) {
-      Store.dispatch(setUserInfo());
+      const ua = window.navigator.userAgent;
+      if (ua.indexOf("DOG_FISH_MALL") === -1) {
+        token = getLocalStorage("token");
+      } else {
+        token = bridge.call("getToken");
+      }
     }
     config.headers.token = token;
     return config;
@@ -67,7 +71,7 @@ ajaxResponse({
     if (Intercept(res.data)) {
       return res;
     }
-    return;
+    return res;
   },
   rejectCallback(error) {
     console.log("error-status", error.response);
@@ -83,7 +87,6 @@ ajaxResponse({
       default:
         return error;
     }
-
   }
 });
 
