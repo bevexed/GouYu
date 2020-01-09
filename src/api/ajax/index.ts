@@ -5,8 +5,9 @@ import { BackEndBaseUrl } from "../../config/url";
 import Qs from "qs";
 import { Toast } from "antd-mobile";
 import Store from "../../redux/store";
-import { clearUserInfo, setUserInfo } from "../../redux/user/actions";
+import { clearUserInfo } from "../../redux/user/actions";
 import { getLocalStorage } from "../../util/storage";
+import { isApp } from "../../util/dsbridge";
 
 axios.defaults.baseURL = BackEndBaseUrl;
 // axios.defaults.headers.post['Content-Type'] =
@@ -46,13 +47,15 @@ export const ajax = <T>({
     );
   });
 };
-
 ajaxRequest({
   beforeSend(config) {
-    const token = getLocalStorage("token");
-
+    let token;
     if (!token) {
-      Store.dispatch(setUserInfo());
+      if (!isApp()) {
+        token = getLocalStorage("token");
+      } else {
+        token = bridge.call("getToken");
+      }
     }
     config.headers.token = token;
     return config;
@@ -64,10 +67,24 @@ ajaxRequest({
 
 ajaxResponse({
   resolveCallback(res) {
+    console.log(res);
+    const status = res?.data?.status;
+    switch (status) {
+      case 500:
+        return Toast.fail("服务器错误");
+      case 404:
+        return Toast.fail("服务器错误");
+      case 401:
+        console.log(1);
+        Toast.fail(res?.data?.message,1.5,
+          ()=> window.location.replace("/")
+        );
+        return  Store.dispatch(clearUserInfo());
+    }
     if (Intercept(res.data)) {
       return res;
     }
-    return;
+    return res;
   },
   rejectCallback(error) {
     console.log("error-status", error.response);
@@ -83,7 +100,6 @@ ajaxResponse({
       default:
         return error;
     }
-
   }
 });
 

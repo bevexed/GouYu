@@ -1,9 +1,9 @@
-import React, { FC, useMemo, useState } from "react";
+import React, { FC, useEffect, useMemo, useState } from "react";
 import "./index.less";
 import { MyImage } from "../../../../components/my-image";
 import { GrayLabel, Price } from "../../../../components/price";
 import MyTitle from "../../../../components/my-title";
-import { WhiteSpace } from "antd-mobile";
+import { Toast, WhiteSpace } from "antd-mobile";
 import { MySelectTag } from "../../../../components/my-tag";
 import MyStepper from "../../../../components/my-stepper";
 import { GoToShopButton } from "../../../../components/my-button";
@@ -12,8 +12,11 @@ import MyIcon from "../../../../components/my-icon";
 import { iconPic } from "../../../../config/image";
 import { ajax } from "../../../../api/ajax";
 import { useHistory, useParams } from "react-router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateBuyNow } from "../../../../redux/buy-now/actions";
+import { AjaxShoppingCartAddShoppingCart } from "../../../../api/shop-car";
+import { ReducersProps } from "../../../../redux/store";
+import { BuyNowProps } from "../../../../redux/buy-now/reducer";
 
 type Props = {
   open: boolean;
@@ -24,6 +27,7 @@ const Specification: FC<Props> = (props: Props) => {
   const dispatch = useDispatch();
   const { push } = useHistory();
   const { id } = useParams();
+  const data = useSelector<ReducersProps, BuyNowProps>(state => state.buyNow);
   const [OrdinaryGoodsSkuList, setOrdinaryGoodsSkuList] = useState<any>([]);
   const [Labels, setLabels] = useState<label[]>([]);
   const [oneValues, setOneValues] = useState<number[]>([0, 0]);
@@ -50,27 +54,43 @@ const Specification: FC<Props> = (props: Props) => {
       ];
       res.data.forEach((item: any) => {
         Labels.forEach((label: any) => {
-          console.log(label.value, item);
           if (label.name === item.oneAttributeName) {
             label.value.push(item.oneAttributeValue);
-          } else {
-            label.value.push(item.twoAttributeValue);
           }
           // @ts-ignore
           label.value = [...new Set(label.value)];
         });
       });
       setLabels(Labels);
-      setCurrentSelect(res.data[0]);
     });
 
     preventScroll(".wrap");
     return () => {
       props.close();
     };
-  }, [""]);
+  }, [id]);
 
-  useMemo(() => {}, [OrdinaryGoodsSkuList]);
+  const add= ()=>{
+    //@ts-ignore
+    const{goodsId,skuId,storeId,type,pic,subTitle,marketPrice,salePrice,memberPrice,seckillPrice,vipSeckillPrice,specifications} = data
+    AjaxShoppingCartAddShoppingCart({
+      number:buyQuantity,
+      skuId: currentSelect.id,
+      goodsId,storeId,type,pic,subTitle,marketPrice,salePrice,memberPrice,seckillPrice,vipSeckillPrice,specifications,
+      ...currentSelect
+    }).then(res=>{
+      if (res.status === 0) {
+        return  Toast.success(res.message)
+      }
+      Toast.fail(res.message)
+
+    });
+  }
+  useEffect(() => {
+    if (OrdinaryGoodsSkuList.length && Labels.length) {
+      changeLabel([0, 0]);
+    }
+  }, [OrdinaryGoodsSkuList, Labels]);
 
   const submit = async () => {
     dispatch(
@@ -85,8 +105,28 @@ const Specification: FC<Props> = (props: Props) => {
 
   const changeLabel = ([key, value]: number[]) => {
     if (key === 0) {
+      if (!Labels[1].name) {
+        return OrdinaryGoodsSkuList.forEach((item: any) => {
+          if (
+            // @ts-ignore
+            item.oneAttributeValue === Labels[0].value[value]
+          ) {
+            setCurrentSelect(item);
+          }
+        });
+      }
       setOneValues([key, value]);
+      Labels[1].value = [];
       OrdinaryGoodsSkuList.forEach((item: any) => {
+        Labels.forEach((label: any) => {
+          // @ts-ignore
+          if (item.oneAttributeValue === Labels[0].value[value]) {
+            // @ts-ignore
+            Labels[1].value.push(item.twoAttributeValue);
+          }
+          // @ts-ignore
+          label.value = [...new Set(label.value)];
+        });
         if (
           // @ts-ignore
           item.oneAttributeValue === Labels[0].value[value] &&
@@ -117,7 +157,7 @@ const Specification: FC<Props> = (props: Props) => {
         <MyIcon
           className={"icon"}
           src={iconPic._close}
-          onTouchEnd={props.close}
+          onTouchEnd={()=>props.close()}
         />
         <header>
           <MyImage src={currentSelect.skuImage} className={"shop-img"} />
@@ -158,7 +198,7 @@ const Specification: FC<Props> = (props: Props) => {
         </section>
 
         <footer>
-          <GoToShopButton>加入购物车</GoToShopButton>
+          <GoToShopButton onTouchEnd={add}>加入购物车</GoToShopButton>
           <GoToShopButton onTouchEnd={submit}>立即购买</GoToShopButton>
         </footer>
       </div>

@@ -1,8 +1,6 @@
 import React, { FC } from 'react';
 import { TabBar } from 'antd-mobile';
 import './index.less';
-import HomePic_N from './images/tab_ico_home_n@2x.png';
-import HomePic_S from './images/tab_ico_home_s@2x.png';
 import CommunityPic_N from './images/tab_ico_community_n@2x.png';
 import CommunityPic_S from './images/tab_ico_community_s@2x.png';
 import MallPic_N from './images/tab_ico_mall_n@2x.png';
@@ -34,12 +32,12 @@ const tabBarItem = [
     selectedIcon: <img className="my-tab-bar-pic" src={ MallPic_S } alt={ '' }/>,
     title: '商城',
   },
-  {
-    pathname: '/health-page',
-    icon: <img className="my-tab-bar-pic" src={ HomePic_N } alt={ '' }/>,
-    selectedIcon: <img className="my-tab-bar-pic" src={ HomePic_S } alt={ '' }/>,
-    title: '康养',
-  },
+  // {
+  //   pathname: '/health-page',
+  //   icon: <img className="my-tab-bar-pic" src={ HomePic_N } alt={ '' }/>,
+  //   selectedIcon: <img className="my-tab-bar-pic" src={ HomePic_S } alt={ '' }/>,
+  //   title: '康养',
+  // },
   {
     pathname: '/remind-page',
     icon: <img className="my-tab-bar-pic" src={ Remand_N } alt={ '' }/>,

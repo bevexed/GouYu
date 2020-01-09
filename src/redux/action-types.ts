@@ -19,6 +19,7 @@ export const GET_HOME_PAGE_DATA = "get_home_page_data";
 export const GIT_CLASSIFY_PAGE_DATA = "git_classify_page_data";
 
 // shopCar
+export const GET_SHOP_CART = "get_shop_cart";
 export const ADD = "add";
 export const DELETE = "delete";
 export const UPDATE = "update";

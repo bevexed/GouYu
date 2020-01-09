@@ -1,22 +1,31 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import './index.less';
 import MyIcon from '../my-icon';
 import IconImg from './image/btn_sellect_h@2x.png';
 import IconImgNo from './image/btn_sellect_h_no@2x.png';
 
 type Props = {
-  onChange: (state: boolean) => void;
+  onClick?:(a:any)=>any;
+  onChange?: () => void;
   value?:boolean
 };
 const MyCheckBox: FC<Props> = (props: Props) => {
-  const [check, setCheck] = useState(props.value);
+  const [check, setCheck] = useState(false);
+  useEffect(() => {
+    setCheck(props.value?props.value:false)
+    return () => {
+    };
+  }, [props.value]);
+
   return (
     <div className="_my-check-box" onClick={e=>e.stopPropagation()}>
       <MyIcon
         src={ check ? IconImg : IconImgNo }
         onTouchEnd={ () => {
-          setCheck(!check);
-          props.onChange(!check);
+          if (props.onChange) {
+            setCheck(!check);
+            props.onChange()
+          }
         } }
       />
     </div>

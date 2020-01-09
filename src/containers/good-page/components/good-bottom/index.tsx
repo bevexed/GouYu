@@ -4,16 +4,19 @@ import MyWhiteBlank from "../../../../components/my-white-blank";
 import MyIcon from "../../../../components/my-icon";
 import { iconPic } from "../../../../config/image";
 import { GrayLabel } from "../../../../components/price";
+import { useHistory } from "react-router";
 
-type Props = {};
+type Props = {
+};
 const GoodBottom: FC<Props> = (props: Props) => {
+  const {push} = useHistory()
   return (
     <>
       <div className="_good-bottom">
         <ul className="three-icon">
-          <li>
+          <li onClick={()=>push('/shop/shop-car-page')}>
             <MyIcon src={iconPic.cart_gray} />
-            <GrayLabel>客服</GrayLabel>
+            <GrayLabel >加购</GrayLabel>
           </li>
           <li>
             <MyIcon src={iconPic.like_gray} />
@@ -21,7 +24,7 @@ const GoodBottom: FC<Props> = (props: Props) => {
           </li>
           <li>
             <MyIcon src={iconPic.service_gray} />
-            <GrayLabel>加购</GrayLabel>
+            <GrayLabel>客服</GrayLabel>
           </li>
         </ul>
 
