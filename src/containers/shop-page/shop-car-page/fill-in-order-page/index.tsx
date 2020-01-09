@@ -14,8 +14,6 @@ import { WingBlank } from "antd-mobile";
 import MyWhiteBlank from "../../../../components/my-white-blank";
 import MyList from "../../../../components/my-list";
 import MyItem from "../../../../components/my-item";
-import MyTitle from "../../../../components/my-title";
-import MyCheckBox from "../../../../components/my-check-box";
 import FillPayNow from "./fill-pay-now";
 import { BlackLabel } from "../../../../components/price";
 import { useHistory } from "react-router";
@@ -108,19 +106,6 @@ const FillInOrderPage: FC<Props> = (props: Props) => {
       </MyList>
 
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
-
-      <MyList renderHeader={<MyTitle>支付方式</MyTitle>}>
-        <MyItem
-          right={<MyCheckBox onChange={() => {}} />}
-          icon={<MyIcon src={iconPic.zfb_react} />}
-          label={"支付宝支付"}
-        />
-        <MyItem
-          right={<MyCheckBox onChange={() => {}} />}
-          icon={<MyIcon src={iconPic.wx_react} />}
-          label={"微信支付"}
-        />
-      </MyList>
 
       <FillPayNow />
     </div>

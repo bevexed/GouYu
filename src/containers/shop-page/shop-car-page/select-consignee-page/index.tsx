@@ -68,7 +68,7 @@ const SelectConsigneePage: FC<Props> = (props: Props) => {
                 </>
               }
               rightContent={
-                <MyCheckBox onChange={(e) => siteDefault(item.id)} />
+                <MyCheckBox onChange={() => siteDefault(item.id)} />
               }
             />
           </WingBlank>

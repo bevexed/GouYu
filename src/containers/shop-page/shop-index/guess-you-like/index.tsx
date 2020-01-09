@@ -14,11 +14,13 @@ const GuessYouLikeItem: FC<GuessYouLikeItemProps> = (
   props: GuessYouLikeItemProps
 ) => {
   const { push } = useHistory();
+  useEffect(() => {});
+  const go = () => {
+    window.scrollTo(0, 0);
+    push("/good-page/" + props.id);
+  };
   return (
-    <div
-      className="guess-you-like-item"
-      onClick={() => push("/good-page/" + props.id)}
-    >
+    <div className="guess-you-like-item" onClick={go}>
       <MyImage className="guess-you-like-item-img" src={props.goodsImage} />
       <section className="bottom">
         <div className="guess-you-like-item-title">{props.goodsName}</div>
@@ -46,8 +48,7 @@ const GuessYouLikeItem: FC<GuessYouLikeItemProps> = (
 
 type GuessYouLikeItemProps = typeof _item;
 
-type GuessYouLikeListProps = {
-};
+type GuessYouLikeListProps = {};
 const GuessYouLikeList: FC<GuessYouLikeListProps> = () => {
   const { user } = useSelector<ReducersProps, UserInfoProps>(
     state => state.userInfo

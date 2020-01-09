@@ -3,7 +3,7 @@ import "./index.less";
 import GoodBanner from "../components/banner";
 import { useParams } from "react-router";
 import { AjaxGetOrdinaryGoodsInfo } from "../../../api/goods";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ReducersProps } from "../../../redux/store";
 import MyTitle, { MyCenterTitle } from "../../../components/my-title";
 import { WingBlank } from "antd-mobile";
@@ -16,9 +16,11 @@ import Shop from "../components/shop";
 import GuessYouLikeList from "../../shop-page/shop-index/guess-you-like";
 import GoodBottom from "../components/good-bottom";
 import Specification from "../components/specification";
+import { updateBuyNow } from "../../../redux/buy-now/actions";
 
 type Props = typeof data;
 const GoodPage: FC<Props> = (props: Props) => {
+  const dispatch = useDispatch()
   const { id } = useParams();
 
   const userId = useSelector<ReducersProps, string>(
@@ -28,10 +30,10 @@ const GoodPage: FC<Props> = (props: Props) => {
 
   // 获取商品详情
   useEffect(() => {
-    window.scrollTo(0, 0);
     const getData = async () => {
       const res = await AjaxGetOrdinaryGoodsInfo({ id, userId });
       setGoodData(res.data);
+      dispatch(updateBuyNow(res.data))
     };
     getData();
   }, [id]);

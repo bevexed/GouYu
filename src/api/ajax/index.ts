@@ -7,6 +7,7 @@ import { Toast } from "antd-mobile";
 import Store from "../../redux/store";
 import { clearUserInfo } from "../../redux/user/actions";
 import { getLocalStorage } from "../../util/storage";
+import { isApp } from "../../util/dsbridge";
 
 axios.defaults.baseURL = BackEndBaseUrl;
 // axios.defaults.headers.post['Content-Type'] =
@@ -46,13 +47,11 @@ export const ajax = <T>({
     );
   });
 };
-
 ajaxRequest({
   beforeSend(config) {
     let token;
     if (!token) {
-      const ua = window.navigator.userAgent;
-      if (ua.indexOf("DOG_FISH_MALL") === -1) {
+      if (!isApp()) {
         token = getLocalStorage("token");
       } else {
         token = bridge.call("getToken");

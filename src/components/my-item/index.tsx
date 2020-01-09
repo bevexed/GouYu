@@ -5,7 +5,7 @@
  * @time 14:38
  */
 
-import React, { FC, ReactNode } from 'react';
+import React, { EventHandler, FC, ReactNode } from 'react';
 import './index.less';
 import { iconPic } from '../../config/image';
 import { MyImage } from '../my-image';
@@ -16,10 +16,11 @@ type Props = {
   icon?: ReactNode;
   arrow?: boolean;
   children?: ReactNode;
+  onClick?: EventHandler<any>
 };
 const MyItem: FC<Props> = (props: Props) => {
   return (
-    <div className="_my-item">
+    <div className="_my-item" onClick={props.onClick}>
       <section className="left">
         { props.icon && <div className="icon">{ props.icon }</div> }
         <span className="label">{ props.label }</span>
