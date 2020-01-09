@@ -1,10 +1,14 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { WingBlank } from "antd-mobile";
 import "./index.less";
 import MyTag from "../../../../components/my-tag";
 import { VipPrice } from "../../../../components/price";
 import { useHistory } from "react-router";
 import { MyImage } from "../../../../components/my-image";
+import { ajax } from "../../../../api/ajax";
+import { useSelector } from "react-redux";
+import { ReducersProps } from "../../../../redux/store";
+import { UserInfoProps } from "../../../../redux/user/reducer";
 
 const GuessYouLikeItem: FC<GuessYouLikeItemProps> = (
   props: GuessYouLikeItemProps
@@ -13,7 +17,7 @@ const GuessYouLikeItem: FC<GuessYouLikeItemProps> = (
   return (
     <div
       className="guess-you-like-item"
-      onTouchEnd={() => push("/good-page/" + props.id)}
+      onClick={() => push("/good-page/" + props.id)}
     >
       <MyImage className="guess-you-like-item-img" src={props.goodsImage} />
       <section className="bottom">
@@ -22,18 +26,18 @@ const GuessYouLikeItem: FC<GuessYouLikeItemProps> = (
         <div className="guess-you-like-item-dis">{props.goodsTitle} </div>
 
         <div className="guess-you-like-item-price">
-          <div className="guess-you-like-item-real">￥{props.seckillPrice}</div>
+          <div className="guess-you-like-item-real">￥{props.marketPrice}</div>
           <div className="guess-you-like-item-ori">￥{props.salePrice}</div>
         </div>
 
         <div className="tags">
           <MyTag>VIP省￥{props.vipDisparityPrice}</MyTag>
-          <MyTag>分享赚￥2.99</MyTag>
+          <MyTag>分享赚￥{props.goldVipOneCommission}</MyTag>
         </div>
 
         <div className="vip-price">
-          <VipPrice>666</VipPrice>
-          <div className="sold-out">已售999＋</div>
+          <VipPrice>{props.memberPrice}</VipPrice>
+          <div className="sold-out">已售{props.soldNumber}</div>
         </div>
       </section>
     </div>
@@ -43,16 +47,26 @@ const GuessYouLikeItem: FC<GuessYouLikeItemProps> = (
 type GuessYouLikeItemProps = typeof _item;
 
 type GuessYouLikeListProps = {
-  guessYouLikeList: GuessYouLikeItemProps[];
 };
-const GuessYouLikeList: FC<GuessYouLikeListProps> = (
-  props: GuessYouLikeListProps
-) => {
+const GuessYouLikeList: FC<GuessYouLikeListProps> = () => {
+  const { user } = useSelector<ReducersProps, UserInfoProps>(
+    state => state.userInfo
+  );
+
+  const [guessYouLikeList, setGuessYouLikeList] = useState<any>([]);
+  const pageSet = { current: 1, size: 10000000 };
+  useEffect(() => {
+    ajax<any>({
+      url: "/HistorySearch/guessLike",
+      method: "GET",
+      data: user.id ? { userId: user.id, ...pageSet } : pageSet
+    }).then(res => setGuessYouLikeList(res.data.records));
+  }, [user]);
   return (
     <div className="guess-you-like">
       <WingBlank>
-        <section className="list">
-          {props.guessYouLikeList.map((item, index) => (
+        <section className="guess-you-like-list">
+          {guessYouLikeList.map((item: any, index: number) => (
             <GuessYouLikeItem key={index} {...item} />
           ))}
         </section>
@@ -90,5 +104,6 @@ const _item = {
   type: 0,
   vipOneCommission: 10,
   vipTwoCommission: 5,
-  vipDisparityPrice: 10
+  vipDisparityPrice: 10,
+  soldNumber: 0
 };

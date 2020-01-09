@@ -54,7 +54,7 @@ export const MyBuyButton: FC<MyBuyButtonProps> = (props: MyBuyButtonProps) => {
 };
 
 export const GoToShopButton: FC<Partial<Prop>> = props => {
-  return <div className="go-to-shop-button">进店</div>;
+  return <div className="go-to-shop-button" onTouchEnd={props.onTouchEnd}>{props.children || '进店' }</div>;
 };
 
 interface LotteryButtonProps extends Prop {

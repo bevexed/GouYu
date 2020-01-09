@@ -4,17 +4,16 @@ import MyTag from '../../../../components/my-tag';
 import { iconPic } from '../../../../config/image';
 import { MyBuyButton } from '../../../../components/my-button';
 import MyWhiteBlank from "../../../../components/my-white-blank";
+import { useHistory } from "react-router";
 
-type GoodItemProps = {
-  goodsImage: string;
-  goodsTitle: string;
-};
+type GoodItemProps = any;
 
 type GoodListProps = {
-  goodList: GoodItemProps[];
+  goodList: any[];
 };
 
 export const GoodItem: FC<GoodItemProps> = (props) => {
+  const {push} = useHistory()
   return (
     <>
       <div className="good-item">
@@ -23,18 +22,17 @@ export const GoodItem: FC<GoodItemProps> = (props) => {
           <div className="title">{ props.goodsTitle }</div>
 
           <div className="price">
-            <MyTag>VIP省 ￥5.99</MyTag>
-            <MyTag>分享赚 ￥5.99</MyTag>
-            <div className="ori">¥49</div>
+            <MyTag>VIP省 ￥{props.vipDisparityPrice}</MyTag>
+            <MyTag>分享赚 ￥{props.goldVipOneCommission}</MyTag>
+            <div className="ori">¥{props.marketPrice}</div>
           </div>
 
-          <div className="sold-out">已售563件</div>
+          <div className="sold-out">已售{props.soldNumber}件</div>
 
           <footer>
-            <span className="del">￥39</span>
-            <img src={ iconPic.vip } alt=""/> <span className="vip">￥29</span>
-            <MyBuyButton state={ 'buy' } onTouchEnd={ () => {
-            } }/>
+            <span className="del">￥{props.salePrice}</span>
+            <img src={ iconPic.vip } alt=""/> <span className="vip">￥{props.memberPrice}</span>
+            <MyBuyButton state={ 'buy' } onTouchEnd={()=>push('/good-page/'+props.id)}/>
           </footer>
         </section>
       </div>

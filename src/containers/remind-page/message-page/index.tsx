@@ -108,7 +108,7 @@ class MessageIndex extends Component<MessageIndex>{
                             List.map((item, key) =>
                                 <div key={key} onClick={() => this.onchage(key)} className={[
                                     'tabs-con',
-                                    BarState == key && BarState === 0 ? 'active' : BarState == key && BarState === 1 ? 'rightactive' : ''
+                                    BarState === key && BarState === 0 ? 'active' : BarState === key && BarState === 1 ? 'rightactive' : ''
                                 ].join(' ')}>
                                     {item.label}
                                 </div>

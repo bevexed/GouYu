@@ -197,7 +197,7 @@ class DetailsIndex extends Component<DetailsIndex, any>{
                                 <MyImage className="details-image" src={'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577774306343&di=9513ed808d895914506fd67f1070774f&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170512%2Fceb4c51b34c54032a65e1fb23af7eeaa_th.jpg'} /> */}
                             </div>
                             <p className="dynamic-cente-footer-txt">
-                                <span>#海外产品</span>
+                            <span>#{DynamicDetails.cityName}</span>
                             </p>
 
                         </div>

@@ -2,8 +2,8 @@ import React, { FC, useEffect, useState } from "react";
 import "./index.less";
 import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
-import { iconPic } from "../../../config/image";
-import { MyImage } from "../../../components/my-image";
+import { iconPic } from "../../../../config/image";
+import { MyImage } from "../../../../components/my-image";
 import { useHistory } from "react-router";
 
 type Props = {

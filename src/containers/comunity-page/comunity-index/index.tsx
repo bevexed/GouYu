@@ -39,8 +39,8 @@ const RenderHot: FC<{}> = () => {
     console.log('id', Hotflage)
     return (
         <div className="content-tabs-hot">
-         
-            {/* {
+
+            {
                 specialList.records && specialList.records.map((item: any) => {
 
                     return (
@@ -58,14 +58,14 @@ const RenderHot: FC<{}> = () => {
                                 </div>
                                 <div className="hot-content-footer-right" onClick={() => setHotflage(item.id)} >
                                     {Hotflage === item.id ? < MyImage src={iconPic.active_love} className="footer-right-love" /> : < MyImage src={iconPic.default_link} className="footer-right-love" />}
-                                   
+
                                     <span>{item.zanNumber}</span>
                                 </div>
                             </div>
                         </div>
                     )
 
-                })} */}
+                })}
             <MyImage src={iconPic.camera} className="right-camera" />
         </div>
 
@@ -76,19 +76,19 @@ const RenderHot: FC<{}> = () => {
 const RenderDynamic: FC<{}> = () => {
     const { push } = useHistory()
     const [DynamicData, setDynamicData] = useState();
-  
+
     useEffect(() => {
         const getDynamicData = async () => {
             const res = await AjaxGetDynamicPageList();
-            console.log(res);
+            //console.log('resDta', res);
             setDynamicData(res.data.records)
         };
         getDynamicData();
     }, [])
-    console.log('动态Data', DynamicData)
+    //console.log('动态Data', DynamicData)
     return (
         <div className="content-tabs-dynamic">
-            <div className="tabs-dynamic-top">
+            {/* <div className="tabs-dynamic-top">
                 <div className="dynamic-top">
                     <span>范局态度，下午好!</span>
                     <div className="dynamic-top-right">
@@ -97,7 +97,7 @@ const RenderDynamic: FC<{}> = () => {
                     </div>
                     <div className="top-triangle"></div>
                 </div>
-            </div>
+            </div> */}
             {
                 DynamicData && DynamicData.map((item: any) =>
                     <div className="dynamic-center" key={item.id} >
@@ -105,11 +105,11 @@ const RenderDynamic: FC<{}> = () => {
                             <MyImage className="center-top-left" src={item.headImage} />
                             <div className="center-top-right">
                                 <h3>{item.nickName}</h3>
-                                <p>2019/10/24 23:00</p>
+                                <p>{item.createTime}</p>
                             </div>
                         </div>
                         <div onClick={() => push(`/comunity/dynamic-details-page?id=${item.id}`)}>
-                            <p className="dynamic-center-text">健身教学：阿圣诞节啊时打巴斯克接电话可撒了点看的巴萨的撒谎的卡上看见圣诞节狂欢</p>
+                            <p className="dynamic-center-text">{item.content}</p>
                             {
                                 item.images && item.images.split(',').length >= 0 ? <div className="dynamic-center-image-list">{item.images.split(',').map((value: any) => <MyImage src={value} className="image-lest" />)}</div> :
                                     <div className="dynamic-center-image">
@@ -131,7 +131,7 @@ const RenderDynamic: FC<{}> = () => {
                             </div>
                             <div className="cente-footer-g">
                                 <MyImage src={iconPic.give_link} className="cente-footer-icon" />
-                                <span>666</span>
+                                <span>{item.zanNumber}</span>
                             </div>
                             <div className="cente-footer-g">
                                 <MyImage src={iconPic.write} className="cente-footer-icon" />
@@ -164,11 +164,12 @@ const RenderHeadlines: FC<{}> = () => {
                 <div className="Headlines" key={item.id} onClick={() => push(`/comunity/headline-details-page?id=${item.id}`)}>
                     <div className="Headlines-con">
                         <p className="Headlines-con-tit">{item.content}</p>
-                        <div className="headlines-con-img">
-                            <MyImage className="headlines-image" src={'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577774306343&di=9513ed808d895914506fd67f1070774f&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170512%2Fceb4c51b34c54032a65e1fb23af7eeaa_th.jpg'} />
-                            <MyImage className="headlines-image" src={'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577785236487&di=ecae8c37c6ab058ae6e6439371e25d9b&imgtype=0&src=http%3A%2F%2Fpic.eastlady.cn%2Fuploads%2Ftp%2F201703%2F9999%2F3732714ab0.jpg'} />
-                            <MyImage className="headlines-image" src={'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577774306343&di=9513ed808d895914506fd67f1070774f&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170512%2Fceb4c51b34c54032a65e1fb23af7eeaa_th.jpg'} />
-                        </div>
+                        {
+                                item.images && item.images.split(',').length >= 0 ? <div className="dynamic-center-image-list">{item.images.split(',').map((value: any) => <MyImage src={value} className="image-lest" />)}</div> :
+                                    <div className="dynamic-center-image">
+                                        <MyImage className="center-image" src={`${item.video}?x-oss-process=video/snapshot,t_10000,m_fast,w_800`} />
+                                    </div>
+                            }
                         <p className="headlines-con-footer">
                             <span>{item.publisher}</span>
                             <span> {item.commentNumber}条评论 </span>
@@ -189,6 +190,7 @@ const RenderAnswer: FC<{}> = () => {
     useEffect(() => {
         const getAnswerData = async () => {
             const res = await AjaxGetAnswerPageList({ token: tokendata });
+            console.log('问答',res)
             setAnswerData(res)
         };
         getAnswerData();

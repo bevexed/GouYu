@@ -51,7 +51,7 @@ const HealthIndex: FC<HealthIndexProps> = (props: HealthIndexProps) => {
 
           <WingBlank>
             <WhiteSpace size={'lg'} />
-            <Discounts />
+            <Discounts integralGoodsList={[]}/>
           </WingBlank>
           <MyWhiteBlank backgroundColor={'#F8F9FA'} />
 

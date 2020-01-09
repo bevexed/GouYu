@@ -1,6 +1,6 @@
 import { ajax } from '../ajax';
 import { ClassifyPageDataProps } from '../../redux/community-classify-page/reducer';
-import { AjaxGetDynamicProps, AjaxGetHeadProps,AjaxGetAwersProps,AjaxGetQuestionsProps } from './CommunityProps'
+import { AjaxGetDynamicProps, AjaxGetHeadProps, AjaxGetAwersProps, AjaxGetQuestionsProps, AjaxGetHeadlinesCommentProps, AjaxGetImageProps } from './CommunityProps'
 
 export const AjaxGetClassifyPageList = () =>
     ajax<ClassifyPageDataProps>({
@@ -29,15 +29,27 @@ export const AjaxGetHeadDetailsPageList = (data: AjaxGetHeadProps) =>//头条详
         method: 'GET',
         data
     });
-export const AjaxGetAnswerPageList = (data:AjaxGetAwersProps) =>//回答
+export const AjaxGetHeadlinesCommentPageList = (data: AjaxGetHeadlinesCommentProps) =>//头条评论回复列表
+    ajax<any>({
+        url: '/community/getHeadlinesCommentPageList',
+        method: 'GET',
+        data
+    });
+export const AjaxGetAnswerPageList = (data: AjaxGetAwersProps) =>//回答
     ajax<any>({
         url: '/community/getMyCommunityAnswer',
         method: 'GET',
         data
     });
-    export const AjaxGetQuestionsPage = (data:AjaxGetQuestionsProps) =>//回答/提问
+export const AjaxGetQuestionsPage = (data: AjaxGetQuestionsProps) =>//回答/提问
     ajax<any>({
         url: '/community/addCommunityQuestions',
+        method: 'POST',
+        data
+    });
+export const AjaxGetImagePage = (data: AjaxGetImageProps) =>//提问图片上传
+    ajax<any>({
+        url: '/oss/uploadMany',
         method: 'POST',
         data
     });

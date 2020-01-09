@@ -11,11 +11,15 @@ import OrderGoodItem from '../order-good-item';
 import OrderShopItem from '../order-shop-item';
 import { WingBlank } from 'antd-mobile';
 
-type Props = {};
+type Props = {
+  data:any
+};
 const OrderItem: FC<Props> = (props: Props) => {
+  const data  = props.data;
+
   return (
     <WingBlank className="_order-item">
-      <OrderShopItem/>
+       <OrderShopItem/>
       { new Array(3).fill(1).map((item, key) => (
         <OrderGoodItem showBorderBottom={ key < 2 } key={ key }/>
       )) }

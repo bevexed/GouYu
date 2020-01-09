@@ -1,7 +1,10 @@
-export const saveLocalStorage = (name: string, value: any) => {
-  localStorage.setItem(name, JSON.stringify(value));
+export const saveLocalStorage = (name: string, value: object | string) => {
+  if (typeof value === 'object') {
+    value = JSON.stringify(value)
+  }
+  localStorage.setItem(name, value);
 };
 
 export const getLocalStorage = (name: string) => {
-  return localStorage.getItem(name)
+  return localStorage.getItem(name) || ''
 };

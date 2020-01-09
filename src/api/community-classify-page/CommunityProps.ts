@@ -12,6 +12,13 @@ export interface AjaxGetQuestionsProps {
    // data: any,
     //title:any
 }
+export interface AjaxGetHeadlinesCommentProps {
+    // data: any,
+     //title:any
+ }
+ export interface  AjaxGetImageProps {
+        
+ }
 
 
 

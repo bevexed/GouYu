@@ -1,3 +1,59 @@
 ._good-page{
+  background: white;
+   .price{
+     display: flex;
+     align-items: center;
+     margin-top: 20px;
+     >:nth-child(n){
+       margin-right: 20px;
+     }
+     >:nth-last-child(2){
+       flex-grow: 1;
+     }
+     >:last-child{
+       margin: 0;
+     }
+   }
+
+  .tag{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    >:nth-child(n){
+      margin-right: 20px;
+    }
+    >:nth-last-child(2){
+      flex-grow: 1;
+    }
+    .tag-btn{
+      width:232px;
+      height:48px;
+      background:linear-gradient(137deg,rgba(246,86,88,1) 0%,rgba(233,43,44,1) 100%);
+      border-radius:8px;
+      font-size:24px;
+      font-weight:500;
+      color:rgba(255,255,255,1);
+      line-height: 48px;
+      text-align: center;
+      margin: 0;
+    }
+  }
+
+  >._back{
+    padding:12px 15Px;
+    background:rgba(248,249,250,1);
+  }
+
+  >.dis{
+display: flex;
+    align-items: center;
+    border-bottom: 2px solid #ededed;
+    >:first-child{
+      flex-grow: 0;
+    }
+    >:nth-child(2){
+      flex-grow: 1;
+    }
+  }
 
 }

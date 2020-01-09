@@ -4,7 +4,7 @@ import { RouteComponentProps } from 'react-router';
 import { MyImage } from '../../../components/my-image';
 import { iconPic } from '../../../config/image';
 import { TextareaItem, ImagePicker } from 'antd-mobile';
-import { AjaxGetQuestionsPage } from '../../../api/community-classify-page/'
+import { AjaxGetQuestionsPage, AjaxGetImagePage } from '../../../api/community-classify-page/'
 interface QuestionIndex extends RouteComponentProps {
     val: null,
     tabs: null,
@@ -20,15 +20,20 @@ interface QuestionIndex extends RouteComponentProps {
 class QuestionIndex extends Component<QuestionIndex>{
     state = {
         files: [],
-        textareaData: ''
+        textareaData: '',
+        image: []
     }
 
-    onChangeData = (files: any, type: any, index: any) => {
-       console.log('fles111', files);
+    onChangeData = async (filedata: any, type: any, index: any) => {
+        const fileda = filedata[0].url
+        console.log('files', fileda)
         this.setState({
-            files,
+            files: filedata,
         });
+        const res = await AjaxGetImagePage({ files: fileda })
+        console.log('res', res)
     }
+
     onChagevalue = (e: any) => {
         //console.log('e', e)
         this.setState({
@@ -38,12 +43,15 @@ class QuestionIndex extends Component<QuestionIndex>{
 
     onQuestion = () => {
         const { textareaData, files } = this.state
+        const user = localStorage.getItem('token')
         const data = {
             title: textareaData,
+            token: user,
             images: files[0]
         }
-        console.log('files',files)
+        console.log('files', files)
         AjaxGetQuestionsPage({ ...data })
+        this.props.history.push('/comunity-page')
     }
 
     render() {
