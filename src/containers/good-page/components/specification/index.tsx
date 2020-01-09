@@ -85,6 +85,16 @@ const Specification: FC<Props> = (props: Props) => {
 
   const changeLabel = ([key, value]: number[]) => {
     if (key === 0) {
+      if (!Labels[1].name) {
+        return OrdinaryGoodsSkuList.forEach((item: any) => {
+          if (
+            // @ts-ignore
+            item.oneAttributeValue === Labels[0].value[value]
+          ) {
+            setCurrentSelect(item);
+          }
+        });
+      }
       setOneValues([key, value]);
       Labels[1].value = [];
       OrdinaryGoodsSkuList.forEach((item: any) => {
