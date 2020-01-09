@@ -52,7 +52,9 @@ const FillPayNow: FC<Props> = (props: Props) => {
   const SURE = () => {
     const data = { goodsId, skuId, buyQuantity, storeId };
     AjaxOrderBuyNowOrdinaryGoods(data).then(res => {
-      console.log(res);
+      if (res.success) {
+        setOpen(true)
+      }
     });
   };
 
@@ -97,7 +99,7 @@ const FillPayNow: FC<Props> = (props: Props) => {
       {open ? (
         <div className={"big-wrap"}>
           <MyIcon src={iconPic.close} onTouchEnd={() => setOpen(false)} />
-          <div className={"wrap"}>
+          <div className={"_wrap"}>
             <MyCenterTitle>
               <Price>
                 <span style={{ color: "#000" }}>付款</span> 29:59
