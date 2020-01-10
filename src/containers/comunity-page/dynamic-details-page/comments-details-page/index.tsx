@@ -36,9 +36,9 @@ class CommentsIndex extends Component<CommentsIndex>{
         const sid = Data[0].split('=')[1]
         const userid = Data[1].split('=')[1]
         const res = await AjaxGetDynamicCommentDetailsPageList({ id: sid, userId: userid });
-        console.log('CommentDetails6666', res.records);
+        console.log('CommentDetails6666', res.data);
         this.setState({
-            CommentDetailsData: res.records
+            CommentDetailsData: res.data.records
         })
     }
 

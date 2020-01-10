@@ -3,18 +3,47 @@ import './index.less';
 import { MyImage } from '../../../../components/my-image';
 import { iconPic } from '../../../../config/image';
 import { RouteComponentProps } from 'react-router';
+import { AjaxGetHeadlinesCommentDetailsPageList } from '../../../../api/community-classify-page'
 interface CommentsIndex extends RouteComponentProps {
     val: null,
     tabs: null,
 }
 class CommentsIndex extends Component<CommentsIndex>{
 
-    state={
-        detailsflage: 0
+    state = {
+        detailsflage: 0,
+        CommentDetailsData: [
+            {
+                communityDynamicId: '',
+                content: '',
+                createTime: '',
+                headImage: '',
+                id: '',
+                isZan: '',
+                nickName: '',
+                userId: '',
+                zanNumber: ''
+            }
+        ]
+    }
+    componentDidMount() {
+        this.onHeadCommentDetailsList()
     }
 
+    onHeadCommentDetailsList = async () => {
+        const Data = this.props.location.search.slice(1).split('&')
+        const sid = Data[0].split('=')[1]
+        const userid = Data[1].split('=')[1]
+        const res = await AjaxGetHeadlinesCommentDetailsPageList({ id: sid, userId: userid });
+        console.log('Head6666', res.data);
+        this.setState({
+            CommentDetailsData: res.data.records
+        })
+    }
+
+
     render() {
-        const {detailsflage}=this.state
+        const { detailsflage, CommentDetailsData } = this.state
         return (
             <div className="comments-details-container">
                 <div className="comments-details-container-con">
@@ -24,33 +53,33 @@ class CommentsIndex extends Component<CommentsIndex>{
                     </div>
                     <div className="comments-details-center">
                         {
-                            new Array(10).fill(1).map((item,key)=>
-                            <div className={[
-                                'comments-center-top',
-                                detailsflage === key && 'active',
-                            ].join(' ')} key={key} onClick={() => this.setState({ detailsflage: key })}>
-                            <MyImage src={'http://cdn.duitang.com/uploads/item/201410/21/20141021130151_ndsC4.jpeg'} className="center-top-left-image" />
-                            <div className="comments-center-right">
-                                <div className="comments-center-top-left">
-                                    <h3>毒岛百合子</h3>
-                                    <p className="top-left-distance">
-                                        <span>2019/10/24 23:00</span>
-                                        {/* <span className="minutes">33分钟前</span> */}
-                                    </p>
-                                    <p className="top-left-text">
-                                    看来大家都是懒人~
-                                    </p>
+                            CommentDetailsData && CommentDetailsData.map((item, key) =>
+                                <div className={[
+                                    'comments-center-top',
+                                    detailsflage === key && 'active',
+                                ].join(' ')} key={item.id} onClick={() => this.setState({ detailsflage: key })}>
+                                    <MyImage src={'http://cdn.duitang.com/uploads/item/201410/21/20141021130151_ndsC4.jpeg'} className="center-top-left-image" />
+                                    <div className="comments-center-right">
+                                        <div className="comments-center-top-left">
+                                            <h3>{item.nickName}</h3>
+                                            <p className="top-left-distance">
+                                                <span>{item.createTime}</span>
+                                                {/* <span className="minutes">33分钟前</span> */}
+                                            </p>
+                                            <p className="top-left-text">
+                                                {item.content}
+                                            </p>
+                                        </div>
+                                        <div className="tabs-Release-con-right">
+                                            <MyImage src={iconPic.rod} className="Release-con-right-image" />
+                                            <span>{item.zanNumber}</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="tabs-Release-con-right">
-                                    <MyImage src={iconPic.rod} className="Release-con-right-image" />
-                                    <span>346</span>
-                                </div>
-                            </div>
-                        </div>
-                       )}
+                            )}
                     </div>
                     <div className="comments-details-footer">
-                        <input placeholder="回复评论" className="reply-comment"/>
+                        <input placeholder="回复评论" className="reply-comment" />
                     </div>
                 </div>
             </div>

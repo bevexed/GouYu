@@ -209,7 +209,7 @@ class DetailsIndex extends Component<DetailsIndex, any>{
                                     <div className="comments-center-tarbar">
                                         <p className="comments-center-tarbar-date">{item.createTime}</p>
                                         <div className="comments-center-tarbar-right">
-                                            <div className="tarbar-right-con tarbar-left" onClick={() => this.props.history.push('/comunity/headcomments-details-page')}>
+                                            <div className="tarbar-right-con tarbar-left" onClick={() => this.props.history.push(`/comunity/headcomments-details-page?id=${item.id}&userId=${item.userId}`)}>
                                                 <MyImage src={iconPic.info} className="tarbar-right-icon" />
                                                 <span>{totalData}</span>
                                             </div>

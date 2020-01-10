@@ -6,6 +6,7 @@ import { RouteComponentProps } from 'react-router';
 //import { AjaxGetHeadDetailsPageList } from '../../../api/community-classify-page';
 //import { Modal,List } from 'antd-mobile';
 //List, Button, WhiteSpace, WingBlank, Icon
+import { isApp,AppGetBack } from '../../../util/dsbridge';
 interface MayquestionDetailsIndex extends RouteComponentProps {
     val: null,
     tabs: null,
@@ -37,7 +38,13 @@ class MayquestionDetailsIndex extends Component<MayquestionDetailsIndex, any>{
         return (
             <div className="mayquest-details-content">
                 <div className="dynamic-container-top">
-                    <MyImage src={iconPic.backBlack} onTouchEnd={() => this.props.history.goBack()} className="dynamic-image" />
+                <MyImage src={iconPic.backBlack} onTouchEnd={()=>{
+                            if (isApp()) {
+                               return AppGetBack()
+                            }
+                           this.props.history.goBack()
+                        }
+                        } className="dynamic-image" />
                     <p className="dynamic-container-title">问答</p>
                 </div>
                 <div className="mayquest-details-con">

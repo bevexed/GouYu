@@ -27,5 +27,14 @@ export interface AjaxGetDynamicCommentProps{
 export interface AjaxGetDynamicCommentDetailsProps{
     
 }
+export interface  AjaxGetHeadlinesCommentDetailsProps{
+
+}
+export interface  AjaxGetMyCommunityProps{
+
+}
+export interface AjaxGetCommunityAnswerProps{
+    
+}
 
 

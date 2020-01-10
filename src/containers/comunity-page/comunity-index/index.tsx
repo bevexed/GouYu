@@ -111,7 +111,7 @@ const RenderDynamic: FC<{}> = () => {
                         <div onClick={() => push(`/comunity/dynamic-details-page?id=${item.id}`)}>
                             <p className="dynamic-center-text">{item.content}</p>
                             {
-                                item.images && item.images.split(',').length >= 0 ? <div className="dynamic-center-image-list">{item.images.split(',').map((value: any) => <MyImage src={value} className="image-lest" />)}</div> :
+                                item.images && item.images.split(',').length >= 0 ? <div className="dynamic-center-image-list">{item.images.split(',').map((value: any) => <MyImage src={value} className="image-lest" key={value} />)}</div> :
                                     <div className="dynamic-center-image">
                                         <MyImage className="center-image" src={`${item.video}?x-oss-process=video/snapshot,t_10000,m_fast,w_800`} />
                                     </div>
@@ -125,7 +125,8 @@ const RenderDynamic: FC<{}> = () => {
                                 <MyImage src={iconPic.star} className="cente-footer-icon" />
                                 <span>999</span>
                             </div>
-                            <div className="cente-footer-g" onClick={() => push('/comunity/comments-details-page')}>
+                            {/* onClick={() => push('/comunity/comments-details-page')} */}
+                            <div className="cente-footer-g" >
                                 <MyImage src={iconPic.info} className="cente-footer-icon" />
                                 <span>{item.zanNumber}</span>
                             </div>
@@ -165,7 +166,7 @@ const RenderHeadlines: FC<{}> = () => {
                     <div className="Headlines-con">
                         <p className="Headlines-con-tit">{item.content}</p>
                         {
-                            item.images && item.images.split(',').length >= 0 ? <div className="dynamic-center-image-list">{item.images.split(',').map((value: any) => <MyImage src={value} className="image-lest" />)}</div> :
+                            item.images && item.images.split(',').length >= 0 ? <div className="dynamic-center-image-list">{item.images.split(',').map((value: any) => <MyImage src={value} className="image-lest" key={value} />)}</div> :
                                 <div className="dynamic-center-image">
                                     <MyImage className="center-image" src={`${item.video}?x-oss-process=video/snapshot,t_10000,m_fast,w_800`} />
                                 </div>
@@ -185,8 +186,9 @@ const RenderHeadlines: FC<{}> = () => {
 //问答
 const RenderAnswer: FC<{}> = () => {
     const [AnswerListData, setAnswerListData] = useState();
-    //console.log(localStorage.getItem('token'))
-    //const tokendata = localStorage.getItem('token')
+    const tokendata: any = localStorage.getItem('userInfo')
+    const useinfo = JSON.parse(tokendata).user
+    console.log('useinfo', useinfo)
     useEffect(() => {
         const getAnswerListData = async () => {
             const resList = await AjaxGetAnswerPageList();
@@ -199,13 +201,13 @@ const RenderAnswer: FC<{}> = () => {
     const { push } = useHistory()
     return (
         <div className="answer-content">
-            <div className="answer-content-top">
+            {useinfo && <div className="answer-content-top">
                 <div className="answer-content-top-con">
                     <div className="answer-content-top-left">
-                        <MyImage src={'http://cdn.duitang.com/uploads/item/201410/21/20141021130151_ndsC4.jpeg'} className="answer-content-top-image" />
+                        <MyImage src={useinfo.headImage} className="answer-content-top-image" />
                         <div className="top-left-test">
-                            <h3>饭局态度</h3>
-                            <span>晚上好~</span>
+                            <h3>{useinfo.nickName}</h3>
+                            <span></span>
                         </div>
                     </div>
                     <div className="answer-content-top-right">
@@ -213,13 +215,13 @@ const RenderAnswer: FC<{}> = () => {
                         <MyImage src={iconPic.Ask_quize} className="Ask-quize" onTouchEnd={() => push('/question-page')} />
                     </div>
                 </div>
-            </div>
+            </div>}
             {AnswerListData && AnswerListData.map((item: any) =>
                 <div className="Headlines" key={item.id} onClick={() => push(`/mayquestion-page/mayquestion-details-page?id=${item.id}`)}>
                     <div className="Headlines-con" >
                         <p className="Headlines-con-tit">{item.title}</p>
                         <div className="headlines-con-img">
-                            {item.images.split(',').map((value: any) => <MyImage src={value} className="headlines-image" />)}
+                            {item.images.split(',').map((value: any) => <MyImage src={value} className="headlines-image" key={value} />)}
                         </div>
                         <p className="headlines-con-footer">
                             <span>狗鱼健康官方号</span>

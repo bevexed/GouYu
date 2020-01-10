@@ -39,16 +39,16 @@ class DetailsIndex extends Component<DetailsIndex, any>{
             video: '',
         },
         commentsData: [{
-            content: "42341",
-            createTime: 1576226254000,
+            content: "",
+            createTime: '',
             headImage: "",
-            headlinesId: 2,
-            id: 2,
-            isZan: 0,
+            headlinesId: '',
+            id: '',
+            isZan: '',
             nextNodes: [],
-            nickName: "gj_qAsr",
-            userId: 26,
-            zanNumber: 0
+            nickName: "",
+            userId: '',
+            zanNumber: ''
         }],
         totalData: 0,
     }
@@ -228,7 +228,8 @@ class DetailsIndex extends Component<DetailsIndex, any>{
                         </div>
 
                         {this.SearchTabBar()}
-                        {SearchBarState == 0 ? this.renderComments() : this.renderPraise()}
+                        { this.renderComments()}
+                        {/* {SearchBarState == 0 ? this.renderComments() : this.renderPraise()} */}
                     </div>
                     <div className="dynamic-details-footer">
                         <div className="dynamic-details-footer-g">

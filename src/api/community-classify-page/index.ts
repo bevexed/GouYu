@@ -7,7 +7,10 @@ import {
     AjaxGetImageProps,
     AjaxGetIAnswerDetailsProps,
     AjaxGetDynamicCommentProps,
-    AjaxGetDynamicCommentDetailsProps
+    AjaxGetDynamicCommentDetailsProps,
+    AjaxGetHeadlinesCommentDetailsProps,
+    AjaxGetMyCommunityProps,
+    AjaxGetCommunityAnswerProps
 } from './CommunityProps'
 
 export const AjaxGetClassifyPageList = () =>
@@ -37,7 +40,7 @@ export const AjaxGetDynamicCommentPageList = (data: AjaxGetDynamicCommentProps) 
         method: 'GET',
         data
     });
-    export const AjaxGetDynamicCommentDetailsPageList = (data: AjaxGetDynamicCommentDetailsProps) =>//动态评论详情列表
+export const AjaxGetDynamicCommentDetailsPageList = (data: AjaxGetDynamicCommentDetailsProps) =>//动态评论详情列表
     ajax<any>({
         url: '/community/getCommunityCommentInfo',
         method: 'GET',
@@ -55,6 +58,12 @@ export const AjaxGetHeadlinesCommentPageList = (data: AjaxGetHeadlinesCommentPro
         method: 'GET',
         data
     });
+export const AjaxGetHeadlinesCommentDetailsPageList = (data: AjaxGetHeadlinesCommentDetailsProps) =>//头条评论详情列表
+    ajax<any>({
+        url: '/community/getHeadlinesCommentInfo',
+        method: 'GET',
+        data
+    });
 export const AjaxGetAnswerPageList = () =>//回答
     ajax<any>({
         url: '/community/getCommunityQuestionsPageList',
@@ -66,6 +75,19 @@ export const AjaxGetQuestionsPage = (data: AjaxGetQuestionsProps) =>//回答/提
         method: 'POST',
         data
     });
+export const AjaxGetMyCommunityPageList = (data: AjaxGetMyCommunityProps) =>//我的回答/提问列表
+    ajax<any>({
+        url: '/community/getMyCommunityQuestions',
+        method: 'GET',
+        data
+    });
+export const AjaxGetCommunityAnswerPageList = (data: AjaxGetCommunityAnswerProps) =>//我的回答/回答列表
+    ajax<any>({
+        url: '/community/getMyCommunityAnswer',
+        method: 'GET',
+        data
+    });
+
 export const AjaxGetImagePage = (data: AjaxGetImageProps) =>//提问图片上传
     ajax<any>({
         url: '/oss/uploadMany',
