@@ -13,6 +13,6 @@ export const AppWxPay = (num: any) => {
   bridge.call("wxPay", num);
 };
 
-export const AppGetBack = ()=>{
-  bridge.call('getBack')
-}
+export const AppGetBack = () => {
+  bridge.call("getBack");
+};

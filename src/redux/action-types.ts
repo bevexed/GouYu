@@ -26,6 +26,7 @@ export const UPDATE = "update";
 export const SELECT_SHOP = 'select_shop';
 export const CANCEL_SHOP = 'cancel_shop';
 export const SELECT_ONE_GOOD = 'select_one_good'
+export const CANCEL_ONE_GOOD = 'cancel_one_good'
 
 // WantBuy
 

@@ -5,7 +5,7 @@ import './index.less';
 const UserAgreement: FC = () => {
   return (
     <div className="user-agreement">
-      <MyNavBar>用户协议</MyNavBar>
+      <MyNavBar appBack={true}>用户协议</MyNavBar>
 
       <article>
         <p>

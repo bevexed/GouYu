@@ -1,4 +1,4 @@
-import { CANCEL_SHOP, GET_SHOP_CART, SELECT_ONE_GOOD, SELECT_SHOP } from "../action-types";
+import { CANCEL_ONE_GOOD, CANCEL_SHOP, GET_SHOP_CART, SELECT_ONE_GOOD, SELECT_SHOP } from "../action-types";
 import { Dispatch } from "redux";
 import { AjaxShoppingCartGetShoppingCartList } from "../../api/shop-car";
 
@@ -19,6 +19,11 @@ export const cancelShop = (storeId:any) => ({
 
 export const selectOneGood = (goodsId:any) => ({
   type: SELECT_ONE_GOOD,
+  data: goodsId
+});
+
+export const cancelOneGood = (goodsId:any) => ({
+  type: CANCEL_ONE_GOOD,
   data: goodsId
 });
 

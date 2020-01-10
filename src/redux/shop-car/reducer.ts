@@ -1,5 +1,5 @@
 import { ActionProps } from "../store";
-import { CANCEL_SHOP, GET_SHOP_CART, SELECT_ONE_GOOD, SELECT_SHOP } from "../action-types";
+import { CANCEL_ONE_GOOD, CANCEL_SHOP, GET_SHOP_CART, SELECT_ONE_GOOD, SELECT_SHOP } from "../action-types";
 
 const init: any[] = [];
 export const shopCar = (state = init, action: ActionProps) => {
@@ -31,12 +31,31 @@ export const shopCar = (state = init, action: ActionProps) => {
 
     case SELECT_ONE_GOOD:
       state.map((item, key) => {
-        item.c = false;
         item.shoppingCartList.forEach((good: any, index: number) => {
           if (item.goodsId === action.data) {
             good.c = true;
           }
         });
+        if (
+          item.shoppingCartList.every(
+            (good: any, index: number) => good.c === true
+          )
+        ) {
+          item.c = true;
+        }
+        return item;
+      });
+      return [...state];
+
+    case CANCEL_ONE_GOOD:
+      state.map((item, key) => {
+        item.shoppingCartList.forEach((good: any, index: number) => {
+          if (item.goodsId === action.data) {
+            good.c = true;
+          }
+        });
+        item.c = false;
+
         return item;
       });
       return [...state];

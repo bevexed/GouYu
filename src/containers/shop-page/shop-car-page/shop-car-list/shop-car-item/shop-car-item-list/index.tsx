@@ -55,8 +55,8 @@ const ShopCarItemListItem: FC<any> = props => {
         value={props.c}
         onChange={a => {
           if (a) {
-          } else {
             dispatch(selectOneGood(props.goodsId));
+          } else {
           }
         }}
       />
