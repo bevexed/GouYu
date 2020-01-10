@@ -278,7 +278,7 @@ class DetailsIndex extends Component<DetailsIndex, any>{
                             if (isApp()) {
                                return AppGetBack()
                             }
-                            () => this.props.history.goBack()
+                           this.props.history.goBack()
                         }
                         } className="dynamic-image" />
                         <p className="dynamic-container-title">头条详情</p>
