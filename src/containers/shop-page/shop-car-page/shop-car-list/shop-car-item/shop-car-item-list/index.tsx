@@ -48,7 +48,6 @@ const ShopCarItemListItem: FC<any> = props => {
       dispatch(ajaxGetShopCart);
     });
   };
-  console.log(props);
   return (
     <div className="_shop-car-item-list-item">
       <MyCheckBox

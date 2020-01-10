@@ -44,7 +44,6 @@ export const shopCar = (state = init, action: ActionProps) => {
             good.c = true;
           }
         });
-        console.log(item);
         if (item.shoppingCartList.some((good: any) => good.c)) {
           item.c = true;
         }

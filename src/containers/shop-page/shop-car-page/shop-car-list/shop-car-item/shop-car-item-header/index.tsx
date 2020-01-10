@@ -12,7 +12,6 @@ type Props = {
 };
 const ShopCarItemHeader: FC<Props> = (props: Props) => {
   const dispatch = useDispatch();
-  console.log(props);
   return (
     <div className="_shop-car-item-header">
       <MyCheckBox
