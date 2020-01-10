@@ -25,8 +25,8 @@ class QuestionIndex extends Component<QuestionIndex>{
     }
 
     onChangeData = async (filedata: any, type: any, index: any) => {
-        const fileda = filedata[0].file.name
-        console.log('files', fileda)
+        const fileda = filedata[0].file
+        console.log('files', filedata)
         this.setState({
             files: filedata,
         });

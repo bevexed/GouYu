@@ -5,6 +5,7 @@ import { iconPic } from '../../../config/image';
 import { RouteComponentProps } from 'react-router';
 import { AjaxGetHeadDetailsPageList, AjaxGetHeadlinesCommentPageList } from '../../../api/community-classify-page';
 import { Modal, TextareaItem } from 'antd-mobile';
+import { isApp,AppGetBack } from '../../../util/dsbridge';
 //import UserAgreement from '../../login-page/user-agreement-page';
 interface DetailsIndex extends RouteComponentProps {
     val: null,
@@ -273,7 +274,13 @@ class DetailsIndex extends Component<DetailsIndex, any>{
             <div className="dynamic-details">
                 <div className="dynamic-details-con">
                     <div className="dynamic-container-top">
-                        <MyImage src={iconPic.backBlack} onTouchEnd={() => this.props.history.goBack()} className="dynamic-image" />
+                        <MyImage src={iconPic.backBlack} onTouchEnd={()=>{
+                            if (isApp()) {
+                               return AppGetBack()
+                            }
+                            () => this.props.history.goBack()
+                        }
+                        } className="dynamic-image" />
                         <p className="dynamic-container-title">头条详情</p>
                         <MyImage src={iconPic.round_arrow} onTouchEnd={() => this.props.history.goBack()} className="dynamic-image" />
                     </div>
