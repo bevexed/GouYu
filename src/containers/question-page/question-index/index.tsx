@@ -25,12 +25,12 @@ class QuestionIndex extends Component<QuestionIndex>{
     }
 
     onChangeData = async (filedata: any, type: any, index: any) => {
-        const fileda = filedata[0].url
+        const fileda = filedata[0].file.name
         console.log('files', fileda)
         this.setState({
             files: filedata,
         });
-        const res = await AjaxGetImagePage({ files: fileda })
+        const res = await AjaxGetImagePage({ files: [{ files: fileda }] })
         console.log('res', res)
     }
 

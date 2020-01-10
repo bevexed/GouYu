@@ -6,7 +6,7 @@ import { RouteComponentProps } from 'react-router';
 //import { useDispatch, useSelector } from 'react-redux';
 //import { ReducersProps } from '../../../redux/store';
 //import { ClassifyPageDataProps } from '../../../redux/community-classify-page/reducer';
-import { AjaxGetDynamicDetailsPageList } from '../../../api/community-classify-page';
+import { AjaxGetDynamicDetailsPageList, AjaxGetDynamicCommentPageList } from '../../../api/community-classify-page';
 //import { Modal,List } from 'antd-mobile';
 //List, Button, WhiteSpace, WingBlank, Icon
 interface DetailsIndex extends RouteComponentProps {
@@ -38,9 +38,23 @@ class DetailsIndex extends Component<DetailsIndex, any>{
             zanNumber: '',
             video: '',
         },
+        commentsData: [{
+            content: "42341",
+            createTime: 1576226254000,
+            headImage: "",
+            headlinesId: 2,
+            id: 2,
+            isZan: 0,
+            nextNodes: [],
+            nickName: "gj_qAsr",
+            userId: 26,
+            zanNumber: 0
+        }],
+        totalData: 0,
     }
     componentDidMount() {
         this.onDetailsList()
+        this.getDynamiclist()
     }
 
     onDetailsList = async () => {
@@ -48,7 +62,18 @@ class DetailsIndex extends Component<DetailsIndex, any>{
         const res = await AjaxGetDynamicDetailsPageList({ id: idData[1] });
         // console.log('detailsres', res);
         this.setState({ DynamicDetails: res.data })
-        // console.log('dddd', this.state.DynamicDetails)
+        console.log('dddd', this.state.DynamicDetails)
+    }
+    getDynamiclist = async () => {
+        const userInfo: any = localStorage.getItem('userInfo')
+        const idData = this.props.location.search.slice(1).split('=')
+        const resData = await AjaxGetDynamicCommentPageList({ communityDynamicId: idData[1], userId: JSON.parse(userInfo).user.id });
+        console.log('Dynamiclist', resData.data)
+        //console.log('userInfo', JSON.parse(userInfo).user.id)
+        this.setState({
+            commentsData: resData.data.records,
+            totalData: resData.data.total
+        })
     }
 
     onchange = () => {
@@ -68,13 +93,13 @@ class DetailsIndex extends Component<DetailsIndex, any>{
     }
     //tabs切换
     SearchTabBar = () => {
-        const { DynamicDetails } = this.state
+        const { DynamicDetails, totalData } = this.state
         const BarList = [
             {
-                label: `评论${DynamicDetails.commentNumber}`,
+                label: `评论 ${totalData}`,
             },
             {
-                label: `赞${DynamicDetails.zanNumber}`,
+                label: `赞 ${DynamicDetails.zanNumber}`,
             }
         ];
         const { SearchBarState } = this.state
@@ -98,40 +123,40 @@ class DetailsIndex extends Component<DetailsIndex, any>{
     }
     //评论
     renderComments = () => {
-        const { commentsState, DynamicDetails } = this.state
+        const { commentsState, DynamicDetails, commentsData, totalData } = this.state
         return (
             <div className="dynamic-details-comments">
                 <div className={`dynamic-details-comments-content ${commentsState === true ? 'dynamic-details-comments-content' : 'dynamic-details-comments-con'}`}>
                     {
-                        new Array(10).fill(1).map((item, key) =>
-                            <div className="comments-center-con" key={key}>
+                        commentsData && commentsData.map((item, key) =>
+                            <div className="comments-center-con" key={item.id}>
                                 <MyImage src={'http://cdn.duitang.com/uploads/item/201410/21/20141021130151_ndsC4.jpeg'} className="center-con-left-image" />
                                 <div className="center-top-right">
                                     <h3 className="center-top-right-tit">{DynamicDetails.nickName}</h3>
                                     <p className="top-right-date">
-                                        看来大家都是懒人~
-                                </p>
+                                        {item.content}
+                                    </p>
 
                                     <div className="comments-center-footer" onClick={() => this.props.history.push('/comunity/comments-details-page')}>
                                         <p className="comments-center-footer-name">
-                                            <span className="footer-name-g">毒岛百合子</span>
+                                            <span className="footer-name-g">{item.nickName}</span>
                                             <i>等人</i>
                                         </p>
                                         <div className="comments-center-footer-reply">
-                                            <span className="footer-name-g">共555条回复</span>
+                                            <span className="footer-name-g">共 {totalData} 条回复</span>
                                             <MyImage className="footer-left-image" src={iconPic.right} />
                                         </div>
                                     </div>
                                     <div className="comments-center-tarbar">
-                                        <p className="comments-center-tarbar-date">2019.09.09 12:34</p>
+                                        <p className="comments-center-tarbar-date">{item.createTime}</p>
                                         <div className="comments-center-tarbar-right">
-                                            <div className="tarbar-right-con tarbar-left" onClick={() => this.props.history.push('/comunity/comments-details-page')}>
+                                            <div className="tarbar-right-con tarbar-left" onClick={() => this.props.history.push(`/comunity/comments-details-page?id=${item.id}&userId=${item.userId}`)}>
                                                 <MyImage src={iconPic.info} className="tarbar-right-icon" />
-                                                <span>1000</span>
+                                                <span>{totalData}</span>
                                             </div>
                                             <div className="tarbar-right-con">
                                                 <MyImage src={iconPic.rod} className="tarbar-right-icon" />
-                                                <span>345</span>
+                                                <span>{item.zanNumber}</span>
                                             </div>
                                         </div>
 
@@ -140,10 +165,10 @@ class DetailsIndex extends Component<DetailsIndex, any>{
                             </div>
                         )}
                 </div>
-                <div className="dynamic-details-unfold" onClick={this.onComments}>
-                    <p>{commentsState === true ? '展开' : '收起'}{DynamicDetails.commentNumber}条评论</p>
+                {totalData > 2 && <div className="dynamic-details-unfold" onClick={this.onComments}>
+                    <p>{commentsState === true ? '展开' : '收起'}{totalData}条评论</p>
                     <MyImage src={iconPic.bottom} className="unfold-icon" />
-                </div>
+                </div>}
                 <div className="empty"></div>
             </div>
         )
@@ -165,7 +190,7 @@ class DetailsIndex extends Component<DetailsIndex, any>{
 
     render() {
         const { flage, focusflage, DynamicDetails, SearchBarState } = this.state
-        console.log('DynamicData', DynamicDetails)
+        //console.log('DynamicData', DynamicDetails)
         return (
             <div className="dynamic-details">
                 <div className="dynamic-details-con">
@@ -180,16 +205,16 @@ class DetailsIndex extends Component<DetailsIndex, any>{
                                 <MyImage className="center-top-left" src={'http://cdn.duitang.com/uploads/item/201410/21/20141021130151_ndsC4.jpeg'} />
                                 <div className="center-top-right">
                                     <div>
-                                        <h3>毒岛百合子</h3>
-                                        <p className="center-top-right-date">2019/10/24 23:00</p>
+                                        <h3>{DynamicDetails.nickName}</h3>
+                                        <p className="center-top-right-date">{DynamicDetails.createTime}</p>
                                     </div>
                                     {focusflage ? <p className="center-top-right-focus" onClick={this.onFocusf}> 关注 </p> : <p className="center-top-been-focused"> 已关注 </p>}
                                 </div>
                             </div>
-                            <p className={`dynamic-details-center-text ${flage === false && 'dynamic-details-con-text'}`}>健身教学：连续22天的腹肌训练，很多女生去健身房除了用跑步机，对其他器械动作一头雾水，也完全没有计划目的性的去健身房，其实女生也应看到马上到马上为了让的急啊时看见的机会呢啊毕竟看见刷卡机上说可拉动奥康没</p>
-                            <div className="dynamic-details-accordion">
+                            <p className={`dynamic-details-center-text ${flage === false && 'dynamic-details-con-text'}`}>{DynamicDetails.content}</p>
+                            {/* <div className="dynamic-details-accordion">
                                 <p className={`dynamic-details-accordion-rig ${flage || 'dynamic-details-flage'}`} onClick={this.onchange}>全部</p>
-                            </div>
+                            </div> */}
                             <div className="dynamic-details-con-img">
                                 {DynamicDetails.images ? DynamicDetails.images.split(',').map((item) => <MyImage className="details-image" src={item} />) : <MyImage className="details-image" src={`${DynamicDetails.video}?x-oss-process=video/snapshot,t_10000,m_fast,w_800`} />}
                                 {/* <MyImage className="detai'ls-image" src={'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577774306343&di=9513ed808d895914506fd67f1070774f&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170512%2Fceb4c51b34c54032a65e1fb23af7eeaa_th.jpg'} />
@@ -197,7 +222,7 @@ class DetailsIndex extends Component<DetailsIndex, any>{
                                 <MyImage className="details-image" src={'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577774306343&di=9513ed808d895914506fd67f1070774f&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170512%2Fceb4c51b34c54032a65e1fb23af7eeaa_th.jpg'} /> */}
                             </div>
                             <p className="dynamic-cente-footer-txt">
-                            <span>#{DynamicDetails.cityName}</span>
+                                <span>#{DynamicDetails.classifyName}</span>
                             </p>
 
                         </div>

@@ -1,6 +1,14 @@
 import { ajax } from '../ajax';
 import { ClassifyPageDataProps } from '../../redux/community-classify-page/reducer';
-import { AjaxGetDynamicProps, AjaxGetHeadProps, AjaxGetAwersProps, AjaxGetQuestionsProps, AjaxGetHeadlinesCommentProps, AjaxGetImageProps } from './CommunityProps'
+import {
+    AjaxGetDynamicProps, AjaxGetHeadProps,
+    AjaxGetAwersProps, AjaxGetQuestionsProps,
+    AjaxGetHeadlinesCommentProps,
+    AjaxGetImageProps,
+    AjaxGetIAnswerDetailsProps,
+    AjaxGetDynamicCommentProps,
+    AjaxGetDynamicCommentDetailsProps
+} from './CommunityProps'
 
 export const AjaxGetClassifyPageList = () =>
     ajax<ClassifyPageDataProps>({
@@ -23,6 +31,18 @@ export const AjaxGetDynamicDetailsPageList = (data: AjaxGetDynamicProps) =>//动
         method: 'GET',
         data
     });
+export const AjaxGetDynamicCommentPageList = (data: AjaxGetDynamicCommentProps) =>//动态评论回复列表
+    ajax<any>({
+        url: '/community/getCommunityCommentList',
+        method: 'GET',
+        data
+    });
+    export const AjaxGetDynamicCommentDetailsPageList = (data: AjaxGetDynamicCommentDetailsProps) =>//动态评论详情列表
+    ajax<any>({
+        url: '/community/getCommunityCommentInfo',
+        method: 'GET',
+        data
+    });
 export const AjaxGetHeadDetailsPageList = (data: AjaxGetHeadProps) =>//头条详情
     ajax<any>({
         url: '/community/getCommunityHeadlinesInfo',
@@ -35,11 +55,10 @@ export const AjaxGetHeadlinesCommentPageList = (data: AjaxGetHeadlinesCommentPro
         method: 'GET',
         data
     });
-export const AjaxGetAnswerPageList = (data: AjaxGetAwersProps) =>//回答
+export const AjaxGetAnswerPageList = () =>//回答
     ajax<any>({
-        url: '/community/getMyCommunityAnswer',
+        url: '/community/getCommunityQuestionsPageList',
         method: 'GET',
-        data
     });
 export const AjaxGetQuestionsPage = (data: AjaxGetQuestionsProps) =>//回答/提问
     ajax<any>({
@@ -53,5 +72,11 @@ export const AjaxGetImagePage = (data: AjaxGetImageProps) =>//提问图片上传
         method: 'POST',
         data
     });
+export const AjaxGetAnswerDetailsPage = (data: AjaxGetIAnswerDetailsProps) =>//回答详情
+    ajax<any>({
+        url: '/community/getQuestionsAnswerInfo',
+        method: 'GET',
+        data
+    })
 
 

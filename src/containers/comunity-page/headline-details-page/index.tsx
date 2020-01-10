@@ -49,7 +49,7 @@ class DetailsIndex extends Component<DetailsIndex, any>{
             userId: 26,
             zanNumber: 0
         }],
-        totalData: 1,
+        totalData: 0,
     }
 
     componentDidMount() {

@@ -6,7 +6,6 @@ export interface AjaxGetHeadProps {
     id: any
 }
 export interface AjaxGetAwersProps {
-    token: any
 }
 export interface AjaxGetQuestionsProps {
    // data: any,
@@ -17,8 +16,16 @@ export interface AjaxGetHeadlinesCommentProps {
      //title:any
  }
  export interface  AjaxGetImageProps {
-        
- }
 
+ }
+ export interface  AjaxGetIAnswerDetailsProps{
+   
+ }
+export interface AjaxGetDynamicCommentProps{
+
+}
+export interface AjaxGetDynamicCommentDetailsProps{
+    
+}
 
 

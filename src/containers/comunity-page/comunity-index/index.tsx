@@ -85,7 +85,7 @@ const RenderDynamic: FC<{}> = () => {
         };
         getDynamicData();
     }, [])
-    //console.log('动态Data', DynamicData)
+    console.log('动态Data', DynamicData)
     return (
         <div className="content-tabs-dynamic">
             {/* <div className="tabs-dynamic-top">
@@ -117,7 +117,7 @@ const RenderDynamic: FC<{}> = () => {
                                     </div>
                             }
                             <p className="dynamic-cente-footer-txt">
-                                <span>#女生腹肌</span>
+                                <span>#{item.cityName}</span>
                             </p>
                         </div>
                         <div className="dynamic-cente-footer">
@@ -127,7 +127,7 @@ const RenderDynamic: FC<{}> = () => {
                             </div>
                             <div className="cente-footer-g" onClick={() => push('/comunity/comments-details-page')}>
                                 <MyImage src={iconPic.info} className="cente-footer-icon" />
-                                <span>1000</span>
+                                <span>{item.zanNumber}</span>
                             </div>
                             <div className="cente-footer-g">
                                 <MyImage src={iconPic.give_link} className="cente-footer-icon" />
@@ -165,11 +165,11 @@ const RenderHeadlines: FC<{}> = () => {
                     <div className="Headlines-con">
                         <p className="Headlines-con-tit">{item.content}</p>
                         {
-                                item.images && item.images.split(',').length >= 0 ? <div className="dynamic-center-image-list">{item.images.split(',').map((value: any) => <MyImage src={value} className="image-lest" />)}</div> :
-                                    <div className="dynamic-center-image">
-                                        <MyImage className="center-image" src={`${item.video}?x-oss-process=video/snapshot,t_10000,m_fast,w_800`} />
-                                    </div>
-                            }
+                            item.images && item.images.split(',').length >= 0 ? <div className="dynamic-center-image-list">{item.images.split(',').map((value: any) => <MyImage src={value} className="image-lest" />)}</div> :
+                                <div className="dynamic-center-image">
+                                    <MyImage className="center-image" src={`${item.video}?x-oss-process=video/snapshot,t_10000,m_fast,w_800`} />
+                                </div>
+                        }
                         <p className="headlines-con-footer">
                             <span>{item.publisher}</span>
                             <span> {item.commentNumber}条评论 </span>
@@ -184,18 +184,18 @@ const RenderHeadlines: FC<{}> = () => {
 }
 //问答
 const RenderAnswer: FC<{}> = () => {
-    const [AnswerData, setAnswerData] = useState();
-    console.log(localStorage.getItem('token'))
-    const tokendata = localStorage.getItem('token')
+    const [AnswerListData, setAnswerListData] = useState();
+    //console.log(localStorage.getItem('token'))
+    //const tokendata = localStorage.getItem('token')
     useEffect(() => {
-        const getAnswerData = async () => {
-            const res = await AjaxGetAnswerPageList({ token: tokendata });
-            console.log('问答',res)
-            setAnswerData(res)
+        const getAnswerListData = async () => {
+            const resList = await AjaxGetAnswerPageList();
+            console.log('问答', resList)
+            setAnswerListData(resList.data.records)
         };
-        getAnswerData();
-    })
-    console.log('AnswerData1231234', AnswerData)
+        getAnswerListData();
+    }, [])
+    console.log('AnswerData1231234', AnswerListData)
     const { push } = useHistory()
     return (
         <div className="answer-content">
@@ -214,19 +214,17 @@ const RenderAnswer: FC<{}> = () => {
                     </div>
                 </div>
             </div>
-            {new Array(10).fill(1).map((item, key) =>
-                <div className="Headlines" key={key} onClick={() => push('/comunity/answer-details-page')}>
+            {AnswerListData && AnswerListData.map((item: any) =>
+                <div className="Headlines" key={item.id} onClick={() => push(`/mayquestion-page/mayquestion-details-page?id=${item.id}`)}>
                     <div className="Headlines-con" >
-                        <p className="Headlines-con-tit">健身教学：连续22天的腹肌训练，很多女生去健身房除了用跑步机，对其他器械动作一头雾水</p>
+                        <p className="Headlines-con-tit">{item.title}</p>
                         <div className="headlines-con-img">
-                            <MyImage className="headlines-image" src={'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577774306343&di=9513ed808d895914506fd67f1070774f&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170512%2Fceb4c51b34c54032a65e1fb23af7eeaa_th.jpg'} />
-                            <MyImage className="headlines-image" src={'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577785236487&di=ecae8c37c6ab058ae6e6439371e25d9b&imgtype=0&src=http%3A%2F%2Fpic.eastlady.cn%2Fuploads%2Ftp%2F201703%2F9999%2F3732714ab0.jpg'} />
-                            <MyImage className="headlines-image" src={'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577774306343&di=9513ed808d895914506fd67f1070774f&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170512%2Fceb4c51b34c54032a65e1fb23af7eeaa_th.jpg'} />
+                            {item.images.split(',').map((value: any) => <MyImage src={value} className="headlines-image" />)}
                         </div>
                         <p className="headlines-con-footer">
                             <span>狗鱼健康官方号</span>
-                            <span>  158条评论 </span>
-                            <span> 33分钟前</span>
+                            <span>  {item.answerNumber}条评论 </span>
+                            <span> {item.createTime}分钟前</span>
                         </p>
                     </div>
                 </div>
@@ -297,7 +295,7 @@ const TabExample: FC<TabExampleProps> = (props: TabExampleProps) => {
     return (
         <div className="comunity-content-tabs">
             <WhiteSpace />
-            <Tabs tabs={tabs} initialPage={0} animated={false} useOnPan={false}
+            <Tabs tabs={tabs} animated={false} useOnPan={false}
                 tabBarActiveTextColor='#262D2C'
                 onChange={(val) => {
                     setListState(val.title)

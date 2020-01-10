@@ -3,7 +3,7 @@ import './index.less';
 import { MyImage } from '../../../components/my-image';
 import { iconPic } from '../../../config/image';
 import { RouteComponentProps } from 'react-router';
-//import { AjaxGetDynamicDetailsPageList } from '../../../api/community-classify-page';
+import { AjaxGetAnswerDetailsPage } from '../../../api/community-classify-page';
 //import { Modal,List } from 'antd-mobile';
 //List, Button, WhiteSpace, WingBlank, Icon
 interface DetailsIndex extends RouteComponentProps {
@@ -36,17 +36,18 @@ class DetailsIndex extends Component<DetailsIndex, any>{
         }
     }
 
-    // componentDidMount() {
-    //     this.onHeadDetailsList()
-    // }
+    componentDidMount() {
+        this.AnswerDetailsList()
+    }
 
-    // onHeadDetailsList = async () => {
-    //     const idData = this.props.location.search.slice(1).split('=')
-    //     const res = await AjaxGetDynamicDetailsPageList({ id: idData[1] });
-    //     // console.log('detailsres', res);
-    //     this.setState({ HotDetailsData: res.data })
-    //     console.log('HotDetailsData1111', this.state.HotDetailsData)
-    // }
+    AnswerDetailsList = async () => {
+        const idData = this.props.location.search.slice(1).split('=')
+        console.log('id',idData)
+        const res = await AjaxGetAnswerDetailsPage({ id: idData[1] });
+        console.log('AnswerDetails123', res);
+        // this.setState({ HotDetailsData: res.data })
+        // console.log('HotDetailsData1111', this.state.HotDetailsData)
+    }
     onchange = () => {
         this.setState({
             flage: false,
@@ -177,7 +178,7 @@ class DetailsIndex extends Component<DetailsIndex, any>{
                     <MyImage src={iconPic.bottom} className="unfold-icon" />
                 </div>
                 <div className="empty"></div>
-                {this.renderLink()}
+                {/* {this.renderLink()} */}
             </div>
         )
 

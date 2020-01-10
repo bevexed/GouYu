@@ -30,7 +30,7 @@ const MayQuestionIndex: FC<MayQuestionIndexProps> = (props) => {
             <div className="mayquestion-answer">
                 <div className="mayquestion-answer-content">
                     {new Array(10).fill(1).map((item, key) =>
-                        <div className="Headlines" key={key} onClick={()=>push('/mayquestion-page/mayquestion-details-page')}>
+                        <div className="Headlines" key={key}>
                             <div className="Headlines-con">
                                 <p className="Headlines-con-tit">健身教学：连续22天的腹肌训练，很多女生去健身房除了用跑步机，对其他器械动作一头雾水</p>
                                 <div className="headlines-con-img">
