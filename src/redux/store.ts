@@ -17,7 +17,7 @@ import { shopCar } from "./shop-car/reducer";
 
 export interface ActionProps {
   type: string;
-  data: any;
+  data?: any;
 }
 
 export interface ReducersProps {

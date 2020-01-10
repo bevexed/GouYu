@@ -1,5 +1,13 @@
 import { ActionProps } from "../store";
-import { CANCEL_ONE_GOOD, CANCEL_SHOP, GET_SHOP_CART, SELECT_ONE_GOOD, SELECT_SHOP } from "../action-types";
+import {
+  CANCEL_ALL,
+  CANCEL_ONE_GOOD,
+  CANCEL_SHOP,
+  GET_SHOP_CART,
+  SELECT_ALL,
+  SELECT_ONE_GOOD,
+  SELECT_SHOP
+} from "../action-types";
 
 const init: any[] = [];
 export const shopCar = (state = init, action: ActionProps) => {
@@ -54,11 +62,22 @@ export const shopCar = (state = init, action: ActionProps) => {
         if (item.shoppingCartList.every((good: any) => !good.c)) {
           item.c = false;
         }
-
         return item;
       });
       return [...state];
 
+    case SELECT_ALL:
+      state.forEach(item => {
+        item.c = true;
+        item.shoppingCartList.forEach((good: any) => (good.c = true));
+      });
+      return [...state];
+    case CANCEL_ALL:
+      state.forEach(item => {
+        item.c = false;
+        item.shoppingCartList.forEach((good: any) => (good.c = false));
+      });
+      return [...state];
     default:
       return state;
   }
