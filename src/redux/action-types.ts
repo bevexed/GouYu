@@ -23,6 +23,9 @@ export const GET_SHOP_CART = "get_shop_cart";
 export const ADD = "add";
 export const DELETE = "delete";
 export const UPDATE = "update";
+export const SELECT_SHOP = 'select_shop';
+export const CANCEL_SHOP = 'cancel_shop';
+export const SELECT_ONE_GOOD = 'select_one_good'
 
 // WantBuy
 

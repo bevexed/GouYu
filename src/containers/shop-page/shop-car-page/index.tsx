@@ -1,8 +1,8 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import "./index.less";
 import { MyNavBar } from "../../../components/my-nav-bar";
 import MyWhiteBlank from "../../../components/my-white-blank";
-import ShopBarFootBar from "./shop-car-list/shop-car-foot-bar";
+import ShopBarFootBar, { ShopBarFootBar2 } from "./shop-car-list/shop-car-foot-bar";
 import { useDispatch, useSelector } from "react-redux";
 import { ajaxGetShopCart } from "../../../redux/shop-car/actions";
 import ShopCarItemHeader from "./shop-car-list/shop-car-item/shop-car-item-header";
@@ -12,16 +12,16 @@ import { WingBlank } from "antd-mobile";
 
 type Props = {};
 const ShopCarPage: FC<Props> = (props: Props) => {
+  const [edit, setEdit] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(ajaxGetShopCart);
   }, [dispatch]);
   const shopCar = useSelector<ReducersProps, any[]>(state => state.shopCar);
-  console.log(shopCar);
   return (
     <div className="shop-car-page">
       <MyNavBar
-        rightContent={<span className="shop-car-page-editor-btn">编辑</span>}
+        rightContent={<span className="shop-car-page-editor-btn" onClick={()=>setEdit(!edit)}>{edit?'完成':'编辑'}</span>}
       >
         购物车
       </MyNavBar>
@@ -30,11 +30,11 @@ const ShopCarPage: FC<Props> = (props: Props) => {
         {shopCar.map((item: any, key) => (
           <div key={key}>
             <ShopCarItemHeader id={item.id} storeName={item.storeName} />
-            <ShopCarItemList {...item}/>
+            <ShopCarItemList {...item} />
           </div>
         ))}
       </WingBlank>
-      <ShopBarFootBar />
+      {!edit ? <ShopBarFootBar /> : <ShopBarFootBar2 />}
     </div>
   );
 };

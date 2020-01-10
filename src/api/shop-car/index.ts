@@ -26,3 +26,9 @@ export const AjaxShoppingCartUpdateGoodsShoppingCartNumber = (data:ShoppingCartU
   url:'/shoppingCart/updateGoodsShoppingCartNumber',
   data
 })
+
+export const AjaxShoppingCartDelCartGoods = (data:{storeIds:string,goodsIds:string})=>ajax<any>({
+  url:'shoppingCart/delCartGoods',
+  method:'GET',
+  data
+})

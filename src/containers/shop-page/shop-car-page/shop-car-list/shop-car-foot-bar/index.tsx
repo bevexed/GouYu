@@ -30,3 +30,28 @@ const ShopBarFootBar: FC<Props> = (props: Props) => {
 };
 
 export default ShopBarFootBar;
+
+export const ShopBarFootBar2: FC<Props> = (props: Props) => {
+  return (
+    <>
+      <div className="_shop-car-foot-bar">
+        <div className="left">
+          <MyCheckBox onChange={ () => {
+          } }/>
+          <span className="label">全选</span>
+        </div>
+        <div
+          className="button"
+        >
+          移到收藏
+        </div>
+        <div
+          className="button2"
+        >
+          删除
+        </div>
+      </div>
+      <MyWhiteBlank height={ 112 }/>
+    </>
+  );
+};

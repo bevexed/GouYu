@@ -6,7 +6,7 @@ import IconImgNo from './image/btn_sellect_h_no@2x.png';
 
 type Props = {
   onClick?:(a:any)=>any;
-  onChange?: () => void;
+  onChange?: (a:any) => void;
   value?:boolean
 };
 const MyCheckBox: FC<Props> = (props: Props) => {
@@ -24,7 +24,7 @@ const MyCheckBox: FC<Props> = (props: Props) => {
         onTouchEnd={ () => {
           if (props.onChange) {
             setCheck(!check);
-            props.onChange()
+            props.onChange(!check)
           }
         } }
       />
