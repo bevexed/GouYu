@@ -8,7 +8,7 @@ import MyStepper from "../../../../../../components/my-stepper";
 import { WhiteSpace } from "antd-mobile";
 import { AjaxShoppingCartUpdateGoodsShoppingCartNumber } from "../../../../../../api/shop-car";
 import { useDispatch } from "react-redux";
-import { ajaxGetShopCart, selectOneGood } from "../../../../../../redux/shop-car/actions";
+import { ajaxGetShopCart, cancelOneGood, selectOneGood } from "../../../../../../redux/shop-car/actions";
 import { useHistory } from "react-router";
 
 type Props = {};
@@ -57,6 +57,7 @@ const ShopCarItemListItem: FC<any> = props => {
           if (a) {
             dispatch(selectOneGood(props.goodsId));
           } else {
+            dispatch(cancelOneGood(props.goodsId))
           }
         }}
       />

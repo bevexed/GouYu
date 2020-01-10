@@ -32,15 +32,12 @@ export const shopCar = (state = init, action: ActionProps) => {
     case SELECT_ONE_GOOD:
       state.map((item, key) => {
         item.shoppingCartList.forEach((good: any, index: number) => {
-          if (item.goodsId === action.data) {
+          if (good.goodsId === action.data) {
             good.c = true;
           }
         });
-        if (
-          item.shoppingCartList.every(
-            (good: any, index: number) => good.c === true
-          )
-        ) {
+        console.log(item);
+        if (item.shoppingCartList.some((good: any) => good.c)) {
           item.c = true;
         }
         return item;
@@ -50,11 +47,13 @@ export const shopCar = (state = init, action: ActionProps) => {
     case CANCEL_ONE_GOOD:
       state.map((item, key) => {
         item.shoppingCartList.forEach((good: any, index: number) => {
-          if (item.goodsId === action.data) {
-            good.c = true;
+          if (good.goodsId === action.data) {
+            good.c = false;
           }
         });
-        item.c = false;
+        if (item.shoppingCartList.every((good: any) => !good.c)) {
+          item.c = false;
+        }
 
         return item;
       });

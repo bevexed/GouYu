@@ -29,7 +29,7 @@ const ShopCarPage: FC<Props> = (props: Props) => {
       <WingBlank>
         {shopCar.map((item: any, key) => (
           <div key={key}>
-            <ShopCarItemHeader id={item.id} storeName={item.storeName} />
+            <ShopCarItemHeader id={item.id} storeName={item.storeName} {...item}/>
             <ShopCarItemList {...item} />
           </div>
         ))}
