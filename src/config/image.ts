@@ -48,4 +48,6 @@ export const iconPic = {
   bottom:require('../static/image/btn_more_bottom.png'),
   red_envelope:require('../static/image/ico_vip_red.png'),
   default_link:require('../static/image/ico_thumbsup_n.png'),
+  pen:require('../static/image/btn_answer_h@2x.png'),
+  play_v:require('../static/image/btn_play_v.png'),
 };

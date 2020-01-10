@@ -9,7 +9,7 @@ import { reqClassifyPageData } from '../../../redux/community-classify-page/acti
 import { useDispatch, useSelector, useStore } from 'react-redux';
 import { ReducersProps } from '../../../redux/store';
 import { ClassifyPageDataProps } from '../../../redux/community-classify-page/reducer';
-import { AjaxGetDynamicPageList, AjaxGetHeadlinesPageList } from '../../../api/community-classify-page';
+import { AjaxGetDynamicPageList, AjaxGetHeadlinesPageList, AjaxGetAnswerPageList } from '../../../api/community-classify-page';
 interface ComuntityIndexProps { }
 
 const tabs = [
@@ -28,30 +28,44 @@ const RenderHot: FC<{}> = () => {
     >(state => state.classifyPageData);
     const { push } = useHistory()
     const [Hotflage, setHotflage] = useState();
-    //const [Flage, setFlage] = useState(false)
+    // const [Flage, setFlage] = useState(true);
+    // const [activeFlage, setactiveFlage] = useState(false)
     console.log('hot', specialList.records)
+    // const gitvelink = (id: any) => {
+    //     //setHotflage(id)
+    //     console.log(1111111111)
+    //     console.log('id',id)
+    // }
+    console.log('id', Hotflage)
     return (
         <div className="content-tabs-hot">
+
             {
-                specialList.records && specialList.records.map((item: any) =>
-                    <div className="hot-content" key={item.id}>
-                        <MyImage className="hot-image"
-                            src={item.images ? item.images.split(',')[0] : `${item.video}?x-oss-process=video/snapshot,t_10000,m_fast,w_800`}
-                            onClick={() => push(`/comunity/hot-details-page?id=${item.id}`)}
-                        />
-                        <p className="hot-content-tit">{item.content}</p>
-                        <div className="hot-content-footer">
-                            <div className="hot-content-footer-left">
-                                <MyImage src={item.headImage} className="footer-left-bg" />
-                                <span className="footer-left-tit">{item.nickName}</span>
-                            </div>
-                            <div className="hot-content-footer-right" onClick={() => setHotflage(item.id)} >
-                                {Hotflage == item.id? < MyImage src={iconPic.active_love} className="footer-right-love" /> : <MyImage src={iconPic.default_link} className="footer-right-love" />}
-                                <span>{item.zanNumber}</span>
+                specialList.records && specialList.records.map((item: any) => {
+
+                    return (
+                        <div className="hot-content" key={item.id}>
+                            <MyImage className="hot-image"
+                                src={item.images ? item.images.split(',')[0] : `${item.video}?x-oss-process=video/snapshot,t_10000,m_fast,w_800`}
+                                onClick={() => push(`/comunity/hot-details-page?id=${item.id}`)}
+                            />
+                            {item.video && <MyImage src={iconPic.play_v} className="play-video" />}
+                            <p className="hot-content-tit">{item.content}</p>
+                            <div className="hot-content-footer">
+                                <div className="hot-content-footer-left">
+                                    <MyImage src={item.headImage} className="footer-left-bg" />
+                                    <span className="footer-left-tit">{item.nickName}</span>
+                                </div>
+                                <div className="hot-content-footer-right" onClick={() => setHotflage(item.id)} >
+                                    {Hotflage === item.id ? < MyImage src={iconPic.active_love} className="footer-right-love" /> : < MyImage src={iconPic.default_link} className="footer-right-love" />}
+
+                                    <span>{item.zanNumber}</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                )}
+                    )
+
+                })}
             <MyImage src={iconPic.camera} className="right-camera" />
         </div>
 
@@ -62,18 +76,19 @@ const RenderHot: FC<{}> = () => {
 const RenderDynamic: FC<{}> = () => {
     const { push } = useHistory()
     const [DynamicData, setDynamicData] = useState();
+
     useEffect(() => {
         const getDynamicData = async () => {
             const res = await AjaxGetDynamicPageList();
-            console.log(res);
+            //console.log('resDta', res);
             setDynamicData(res.data.records)
         };
         getDynamicData();
     }, [])
-    // console.log('动态Data', DynamicData)
+    console.log('动态Data', DynamicData)
     return (
         <div className="content-tabs-dynamic">
-            <div className="tabs-dynamic-top">
+            {/* <div className="tabs-dynamic-top">
                 <div className="dynamic-top">
                     <span>范局态度，下午好!</span>
                     <div className="dynamic-top-right">
@@ -82,39 +97,41 @@ const RenderDynamic: FC<{}> = () => {
                     </div>
                     <div className="top-triangle"></div>
                 </div>
-            </div>
+            </div> */}
             {
                 DynamicData && DynamicData.map((item: any) =>
-                    <div className="dynamic-center" key={item.id} onClick={() => push(`/comunity/dynamic-details-page?id=${item.id}`)}>
+                    <div className="dynamic-center" key={item.id} >
                         <div className="dynamic-center-top">
                             <MyImage className="center-top-left" src={item.headImage} />
                             <div className="center-top-right">
                                 <h3>{item.nickName}</h3>
-                                <p>2019/10/24 23:00</p>
+                                <p>{item.createTime}</p>
                             </div>
                         </div>
-                        <p className="dynamic-center-text">健身教学：阿圣诞节啊时打巴斯克接电话可撒了点看的巴萨的撒谎的卡上看见圣诞节狂欢</p>
-                        {
-                            item.images && item.images.split(',').length >= 0 ? <div className="dynamic-center-image-list">{item.images.split(',').slice(0, -1).map((value: any) => <MyImage src={value} className="image-lest" />)}</div> :
-                                <div className="dynamic-center-image">
-                                    <MyImage className="center-image" src={`${item.video}?x-oss-process=video/snapshot,t_10000,m_fast,w_800`} />
-                                </div>
-                        }
-                        <p className="dynamic-cente-footer-txt">
-                            <span>#女生腹肌</span>
-                        </p>
+                        <div onClick={() => push(`/comunity/dynamic-details-page?id=${item.id}`)}>
+                            <p className="dynamic-center-text">{item.content}</p>
+                            {
+                                item.images && item.images.split(',').length >= 0 ? <div className="dynamic-center-image-list">{item.images.split(',').map((value: any) => <MyImage src={value} className="image-lest" />)}</div> :
+                                    <div className="dynamic-center-image">
+                                        <MyImage className="center-image" src={`${item.video}?x-oss-process=video/snapshot,t_10000,m_fast,w_800`} />
+                                    </div>
+                            }
+                            <p className="dynamic-cente-footer-txt">
+                                <span>#{item.cityName}</span>
+                            </p>
+                        </div>
                         <div className="dynamic-cente-footer">
                             <div className="cente-footer-g">
                                 <MyImage src={iconPic.star} className="cente-footer-icon" />
                                 <span>999</span>
                             </div>
-                            <div className="cente-footer-g">
+                            <div className="cente-footer-g" onClick={() => push('/comunity/comments-details-page')}>
                                 <MyImage src={iconPic.info} className="cente-footer-icon" />
-                                <span>1000</span>
+                                <span>{item.zanNumber}</span>
                             </div>
                             <div className="cente-footer-g">
                                 <MyImage src={iconPic.give_link} className="cente-footer-icon" />
-                                <span>666</span>
+                                <span>{item.zanNumber}</span>
                             </div>
                             <div className="cente-footer-g">
                                 <MyImage src={iconPic.write} className="cente-footer-icon" />
@@ -147,11 +164,12 @@ const RenderHeadlines: FC<{}> = () => {
                 <div className="Headlines" key={item.id} onClick={() => push(`/comunity/headline-details-page?id=${item.id}`)}>
                     <div className="Headlines-con">
                         <p className="Headlines-con-tit">{item.content}</p>
-                        <div className="headlines-con-img">
-                            <MyImage className="headlines-image" src={'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577774306343&di=9513ed808d895914506fd67f1070774f&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170512%2Fceb4c51b34c54032a65e1fb23af7eeaa_th.jpg'} />
-                            <MyImage className="headlines-image" src={'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577785236487&di=ecae8c37c6ab058ae6e6439371e25d9b&imgtype=0&src=http%3A%2F%2Fpic.eastlady.cn%2Fuploads%2Ftp%2F201703%2F9999%2F3732714ab0.jpg'} />
-                            <MyImage className="headlines-image" src={'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577774306343&di=9513ed808d895914506fd67f1070774f&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170512%2Fceb4c51b34c54032a65e1fb23af7eeaa_th.jpg'} />
-                        </div>
+                        {
+                            item.images && item.images.split(',').length >= 0 ? <div className="dynamic-center-image-list">{item.images.split(',').map((value: any) => <MyImage src={value} className="image-lest" />)}</div> :
+                                <div className="dynamic-center-image">
+                                    <MyImage className="center-image" src={`${item.video}?x-oss-process=video/snapshot,t_10000,m_fast,w_800`} />
+                                </div>
+                        }
                         <p className="headlines-con-footer">
                             <span>{item.publisher}</span>
                             <span> {item.commentNumber}条评论 </span>
@@ -166,6 +184,18 @@ const RenderHeadlines: FC<{}> = () => {
 }
 //问答
 const RenderAnswer: FC<{}> = () => {
+    const [AnswerListData, setAnswerListData] = useState();
+    //console.log(localStorage.getItem('token'))
+    //const tokendata = localStorage.getItem('token')
+    useEffect(() => {
+        const getAnswerListData = async () => {
+            const resList = await AjaxGetAnswerPageList();
+            console.log('问答', resList)
+            setAnswerListData(resList.data.records)
+        };
+        getAnswerListData();
+    }, [])
+    console.log('AnswerData1231234', AnswerListData)
     const { push } = useHistory()
     return (
         <div className="answer-content">
@@ -184,19 +214,17 @@ const RenderAnswer: FC<{}> = () => {
                     </div>
                 </div>
             </div>
-            {new Array(10).fill(1).map((item, key) =>
-                <div className="Headlines" key={key} onClick={()=>push('/comunity/answer-details-page')}>
+            {AnswerListData && AnswerListData.map((item: any) =>
+                <div className="Headlines" key={item.id} onClick={() => push(`/mayquestion-page/mayquestion-details-page?id=${item.id}`)}>
                     <div className="Headlines-con" >
-                        <p className="Headlines-con-tit">健身教学：连续22天的腹肌训练，很多女生去健身房除了用跑步机，对其他器械动作一头雾水</p>
+                        <p className="Headlines-con-tit">{item.title}</p>
                         <div className="headlines-con-img">
-                            <MyImage className="headlines-image" src={'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577774306343&di=9513ed808d895914506fd67f1070774f&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170512%2Fceb4c51b34c54032a65e1fb23af7eeaa_th.jpg'} />
-                            <MyImage className="headlines-image" src={'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577785236487&di=ecae8c37c6ab058ae6e6439371e25d9b&imgtype=0&src=http%3A%2F%2Fpic.eastlady.cn%2Fuploads%2Ftp%2F201703%2F9999%2F3732714ab0.jpg'} />
-                            <MyImage className="headlines-image" src={'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577774306343&di=9513ed808d895914506fd67f1070774f&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170512%2Fceb4c51b34c54032a65e1fb23af7eeaa_th.jpg'} />
+                            {item.images.split(',').map((value: any) => <MyImage src={value} className="headlines-image" />)}
                         </div>
                         <p className="headlines-con-footer">
                             <span>狗鱼健康官方号</span>
-                            <span>  158条评论 </span>
-                            <span> 33分钟前</span>
+                            <span>  {item.answerNumber}条评论 </span>
+                            <span> {item.createTime}分钟前</span>
                         </p>
                     </div>
                 </div>
@@ -260,14 +288,14 @@ const RenderWithCity: FC<{}> = () => {
 }
 //tabs
 interface TabExampleProps {
-    set: (a: any) => void
+    set: (a: any) => void,
 }
 const TabExample: FC<TabExampleProps> = (props: TabExampleProps) => {
     const [listState, setListState] = useState();
     return (
         <div className="comunity-content-tabs">
             <WhiteSpace />
-            <Tabs tabs={tabs} initialPage={0} animated={false} useOnPan={false}
+            <Tabs tabs={tabs} animated={false} useOnPan={false}
                 tabBarActiveTextColor='#262D2C'
                 onChange={(val) => {
                     setListState(val.title)

@@ -104,28 +104,28 @@
                 display: none;
             }
         }
-        .dynamic-details-center-text:after{
-                content:"...";
-                position: absolute;
-                bottom: 0;
-                font-size:30px;
-                right:0!important;//可变
-                padding-right: 135px;//可变
-                background:  -webkit-linear-gradient(left, transparent, #fff 0%);
-                background: -o-linear-gradient(right, transparent, #fff 0%) ;
-                background: -moz-linear-gradient(right, transparent, #fff 0%);
-                background: linear-gradient(to right, transparent, #fff 0%);
-            }
+        // .dynamic-details-center-text:after{
+        //         content:"...";
+        //         position: absolute;
+        //         bottom: 0;
+        //         font-size:30px;
+        //         right:0!important;//可变
+        //         padding-right: 135px;//可变
+        //         background:  -webkit-linear-gradient(left, transparent, #fff 0%);
+        //         background: -o-linear-gradient(right, transparent, #fff 0%) ;
+        //         background: -moz-linear-gradient(right, transparent, #fff 0%);
+        //         background: linear-gradient(to right, transparent, #fff 0%);
+        //     }
         .dynamic-details-center-text{
             position: relative;
             width: 698px;
-            height: 138px;
+            //height: 138px;
               font-size:30px;
               font-weight:400;
               color:rgba(38,45,44,1);
               line-height:46px;
               margin: 22px 0 24px 0;
-              overflow: hidden;
+              ///overflow: hidden;
             }
             .dynamic-details-con-text{
                 width: 698px;
@@ -170,10 +170,12 @@
         }
         .hot-details-con-img{
             display: flex;
+            flex-wrap: wrap;
             .details-image{
               width:218px;
               height:218px;
               border-radius:16px;
+              margin: 7px 0 0 5px;
             }
           }
       }
