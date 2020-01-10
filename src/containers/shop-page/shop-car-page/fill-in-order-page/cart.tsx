@@ -14,7 +14,7 @@ import { WingBlank } from "antd-mobile";
 import MyWhiteBlank from "../../../../components/my-white-blank";
 import MyList from "../../../../components/my-list";
 import MyItem from "../../../../components/my-item";
-import FillPayNow from "./fill-pay-now";
+import FillPayNow from "./fill-pay-now/cart";
 import { BlackLabel } from "../../../../components/price";
 import { useHistory } from "react-router";
 import { MyBlueTag } from "../../../../components/my-tag";
@@ -28,8 +28,11 @@ import { updateBuyNow } from "../../../../redux/buy-now/actions";
 type Props = {};
 const FillInOrderPage: FC<Props> = (props: Props) => {
   const { push } = useHistory();
-  const dispatch = useDispatch();
-  const data = useSelector<ReducersProps, BuyNowProps>(state => state.buyNow);
+const dispatch = useDispatch()
+  const data = useSelector<ReducersProps, BuyNowProps>(state => state.buyNow); // 这里面单拿一个地址
+  const shopCartOrderData = useSelector<ReducersProps, any>(
+    state => state.shopCartOrderData
+  );
   const [list, setList] = useState<any>({});
   useEffect(() => {
     if (data.receiverAddressId !== "0") {
@@ -40,9 +43,9 @@ const FillInOrderPage: FC<Props> = (props: Props) => {
         const address = res?.data?.records.filter(
           (item: any) => item.isDefault === 1
         );
-        if (address.length > 0) {
-          dispatch(updateBuyNow({ ...data,...address[0], receiverAddressId: address[0].id }));
+        if (address?.length > 0) {
           setList(address[0]);
+          dispatch(updateBuyNow({ ...data,...address[0], receiverAddressId: address[0].id }));
         } else {
           push("/shop/shop-car/add-consignee-page");
         }
@@ -59,13 +62,7 @@ const FillInOrderPage: FC<Props> = (props: Props) => {
           phoneAfter={list.isDefault === 1 ? <MyBlueTag>默认</MyBlueTag> : ""}
           addressContent={
             <span>
-              {list.province +
-                "" +
-                list?.city +
-                "" +
-                list?.region +
-                "" +
-                list?.address}
+              {list?.province + list?.city + list?.region + list?.address}
             </span>
           }
           onClick={() => push("/shop/shop-car/select-consignee-page")}
@@ -93,7 +90,13 @@ const FillInOrderPage: FC<Props> = (props: Props) => {
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
 
       <WingBlank>
-        <OrderGoodItem showBorderBottom={false} data={data} />
+        {shopCartOrderData.goodsList?.map((item: any, key: number) => (
+          <div key={key}>
+            {item.shoppingCartList?.map((good: any, index: number) => (
+              <OrderGoodItem showBorderBottom={false} data={good} />
+            ))}
+          </div>
+        ))}
       </WingBlank>
 
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />

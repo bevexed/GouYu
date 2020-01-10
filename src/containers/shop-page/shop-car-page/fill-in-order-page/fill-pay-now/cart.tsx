@@ -13,7 +13,6 @@ import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
 import { ReducersProps } from "../../../../../redux/store";
 import { BuyNowProps } from "../../../../../redux/buy-now/reducer";
-import { AjaxOrderBuyNowOrdinaryGoods, AjaxOrderSubmissionOrdinaryGoods } from "../../../../../api/order";
 import { Toast } from "antd-mobile";
 import { AppAliPay, AppWxPay, isApp } from "../../../../../util/dsbridge";
 import MyList from "../../../../../components/my-list";
@@ -23,6 +22,7 @@ import MyCheckBox from "../../../../../components/my-check-box";
 import MyIcon from "../../../../../components/my-icon";
 import { iconPic } from "../../../../../config/image";
 import { MyBottomButton } from "../../../../../components/my-button";
+import { AjaxShoppingCartSubmissionShoppingCart } from "../../../../../api/shop-car";
 
 type Props = {};
 const FillPayNow: FC<Props> = (props: Props) => {
@@ -46,23 +46,15 @@ const FillPayNow: FC<Props> = (props: Props) => {
     buyQuantity,
     skuId,
     name,
-    idCard,
-    storeId
+    idCard
   };
 
   const SURE = () => {
-    const data = { goodsId, skuId, buyQuantity, storeId };
-    AjaxOrderBuyNowOrdinaryGoods(data).then(res => {
-      if (res.success) {
-        setOpen(true)
-      }
-    });
+    setOpen(true);
   };
 
   const UP = () => {
-    AjaxOrderSubmissionOrdinaryGoods({
-      ...data
-    }).then(res => {
+    AjaxShoppingCartSubmissionShoppingCart(receiverAddressId).then(res => {
       if (res.status === 0) {
         if (isApp()) {
           if (payType === "wx") {
