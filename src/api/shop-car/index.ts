@@ -15,20 +15,40 @@ export const AjaxShoppingCartGetShoppingCartList = (data: any) =>
   });
 
 export interface ShoppingCartUpdateGoodsShoppingCartNumberProps {
-  goodsId:string
-  skuId:string
-  storeId:string
-  number:number
+  goodsId: string;
+  skuId: string;
+  storeId: string;
+  number: number;
 }
 
-export const AjaxShoppingCartUpdateGoodsShoppingCartNumber = (data:ShoppingCartUpdateGoodsShoppingCartNumberProps)=>ajax<any>({
-  method:"GET",
-  url:'/shoppingCart/updateGoodsShoppingCartNumber',
-  data
-})
+export const AjaxShoppingCartUpdateGoodsShoppingCartNumber = (
+  data: ShoppingCartUpdateGoodsShoppingCartNumberProps
+) =>
+  ajax<any>({
+    method: "GET",
+    url: "/shoppingCart/updateGoodsShoppingCartNumber",
+    data
+  });
 
-export const AjaxShoppingCartDelCartGoods = (data:{storeIds:string,goodsIds:string})=>ajax<any>({
-  url:'shoppingCart/delCartGoods',
-  method:'GET',
-  data
-})
+export const AjaxShoppingCartDelCartGoods = (data: {
+  storeIds: string;
+  goodsIds: string;
+}) =>
+  ajax<any>({
+    url: "shoppingCart/delCartGoods",
+    method: "GET",
+    data
+  });
+
+export const AjaxShoppingCartConfirmShoppingCart = () =>
+  ajax<any>({
+    url: "shoppingCart/confirmShoppingCart",
+    method: "GET"
+  });
+
+export const AjaxShoppingCartSubmissionShoppingCart = (receiverAddressId:string,couponId?:string) =>
+  ajax<any>({
+    url: "shoppingCart/submissionShoppingCart",
+    method: "POST",
+    data:{receiverAddressId,couponId}
+  });

@@ -96,6 +96,7 @@ ajaxResponse({
         return Toast.fail("服务器错误");
       case 401:
         Toast.fail(error?.response?.data?.message);
+        alert('用户未登录')
         return Store.dispatch(clearUserInfo());
       default:
         return error;

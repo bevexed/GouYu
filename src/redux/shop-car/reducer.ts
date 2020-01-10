@@ -4,6 +4,7 @@ import {
   CANCEL_ONE_GOOD,
   CANCEL_SHOP,
   GET_SHOP_CART,
+  PUSH_SHOP_CART_ORDER,
   SELECT_ALL,
   SELECT_ONE_GOOD,
   SELECT_SHOP
@@ -77,6 +78,20 @@ export const shopCar = (state = init, action: ActionProps) => {
         item.shoppingCartList.forEach((good: any) => (good.c = false));
       });
       return [...state];
+    default:
+      return state;
+  }
+};
+
+const initShopCartOrderData: any = {};
+
+export const shopCartOrderData = (
+  state = initShopCartOrderData,
+  action: ActionProps
+) => {
+  switch (action.type) {
+    case PUSH_SHOP_CART_ORDER:
+      return action.data;
     default:
       return state;
   }

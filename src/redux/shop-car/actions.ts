@@ -3,6 +3,7 @@ import {
   CANCEL_ONE_GOOD,
   CANCEL_SHOP,
   GET_SHOP_CART,
+  PUSH_SHOP_CART_ORDER,
   SELECT_ALL,
   SELECT_ONE_GOOD,
   SELECT_SHOP
@@ -36,11 +37,16 @@ export const cancelOneGood = (goodsId: any) => ({
 });
 
 export const selectAll = () => ({
-  type: SELECT_ALL,
+  type: SELECT_ALL
 });
 
 export const cancelAll = () => ({
-  type: CANCEL_ALL,
+  type: CANCEL_ALL
+});
+
+export const pushShopCartOrder = (data: any) => ({
+  type: PUSH_SHOP_CART_ORDER,
+  data
 });
 
 export const ajaxGetShopCart = (dispatch: Dispatch) =>

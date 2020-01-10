@@ -49,6 +49,13 @@ export const ShopPage: RouteType[] = [
     exact: true,
   },
   {
+    path: '/shop/fill-in-order-page/cart',
+    component: lazy(() =>
+      import('../containers/shop-page/shop-car-page/fill-in-order-page/cart'),
+    ),
+    exact: true,
+  },
+  {
     path: '/shop/pay-success-page',
     component: lazy(() =>
       import('../containers/shop-page/shop-car-page/pay-success-page'),

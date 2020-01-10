@@ -6,8 +6,8 @@ import { Price } from "../../../../../components/price";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducersProps } from "../../../../../redux/store";
-import { ajaxGetShopCart, cancelAll, selectAll } from "../../../../../redux/shop-car/actions";
-import { AjaxShoppingCartDelCartGoods } from "../../../../../api/shop-car";
+import { cancelAll, pushShopCartOrder, selectAll } from "../../../../../redux/shop-car/actions";
+import { AjaxShoppingCartConfirmShoppingCart, AjaxShoppingCartDelCartGoods } from "../../../../../api/shop-car";
 import { Toast } from "antd-mobile";
 
 type Props = {};
@@ -19,6 +19,18 @@ const ShopBarFootBar: FC<Props> = (props: Props) => {
     shopCar.every(
       item => item.c && item.shoppingCartList.every((good: any) => good.c)
     );
+  const SURE = () => {
+    dispatch(selectAll());
+    if (shopCar.length === 0) return Toast.fail("购物车没有商品");
+    Toast.loading("订单确认中", 999999);
+    AjaxShoppingCartConfirmShoppingCart().then(res => {
+      Toast.hide();
+      if (res.status === 0) {
+        dispatch(pushShopCartOrder(res.data));
+        push("/shop/fill-in-order-page/cart");
+      }
+    });
+  };
   return (
     <>
       <div className="_shop-car-foot-bar">
@@ -37,10 +49,7 @@ const ShopBarFootBar: FC<Props> = (props: Props) => {
           <span className="all">商品总价：</span>
           <Price>￥100</Price>
         </div>
-        <div
-          className="button"
-          onTouchEnd={() => push("/shop/fill-in-order-page")}
-        >
+        <div className="button" onTouchEnd={SURE}>
           结算
         </div>
       </div>
@@ -52,6 +61,7 @@ const ShopBarFootBar: FC<Props> = (props: Props) => {
 export default ShopBarFootBar;
 
 export const ShopBarFootBar2: FC<Props> = (props: Props) => {
+  const { go } = useHistory();
   const dispatch = useDispatch();
   const shopCar = useSelector<ReducersProps, any[]>(state => state.shopCar);
   const isSelectAll = () =>
@@ -74,9 +84,9 @@ export const ShopBarFootBar2: FC<Props> = (props: Props) => {
     AjaxShoppingCartDelCartGoods({
       storeIds: storeIds.join(","),
       goodsIds: goodsIds.join(",")
-    }).then(res=>{
+    }).then(res => {
       if (res.status === 0) {
-        Toast.success('删除成功', 1.5, () => dispatch(ajaxGetShopCart));
+        Toast.success("删除成功", 1.5, () => go(0));
       }
     });
   };
