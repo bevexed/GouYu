@@ -46,7 +46,8 @@ const FillPayNow: FC<Props> = (props: Props) => {
     buyQuantity,
     skuId,
     name,
-    idCard
+    idCard,
+    storeId
   };
 
   const SURE = () => {
@@ -59,12 +60,6 @@ const FillPayNow: FC<Props> = (props: Props) => {
   };
 
   const UP = () => {
-    Object.entries(data).forEach(([key, value]) => {
-      if (!value) {
-        // @ts-ignore
-        delete data[key];
-      }
-    });
     AjaxOrderSubmissionOrdinaryGoods({
       ...data
     }).then(res => {

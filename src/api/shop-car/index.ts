@@ -43,12 +43,15 @@ export const AjaxShoppingCartDelCartGoods = (data: {
 export const AjaxShoppingCartConfirmShoppingCart = () =>
   ajax<any>({
     url: "shoppingCart/confirmShoppingCart",
-    method: "GET"
+    method: "POST"
   });
 
-export const AjaxShoppingCartSubmissionShoppingCart = (receiverAddressId:string,couponId?:string) =>
+export const AjaxShoppingCartSubmissionShoppingCart = (
+  receiverAddressId: string,
+  couponId?: string
+) =>
   ajax<any>({
     url: "shoppingCart/submissionShoppingCart",
     method: "POST",
-    data:{receiverAddressId,couponId}
+    data: { receiverAddressId, couponId }
   });

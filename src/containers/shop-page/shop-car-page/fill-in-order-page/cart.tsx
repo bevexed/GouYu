@@ -18,21 +18,21 @@ import FillPayNow from "./fill-pay-now/cart";
 import { BlackLabel } from "../../../../components/price";
 import { useHistory } from "react-router";
 import { MyBlueTag } from "../../../../components/my-tag";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ReducersProps } from "../../../../redux/store";
 import { BuyNowProps } from "../../../../redux/buy-now/reducer";
 import { AjaxUserAddressList } from "../../../../api/address";
 import OrderGoodItem from "../../components/order-good-item";
+import { updateBuyNow } from "../../../../redux/buy-now/actions";
 
 type Props = {};
 const FillInOrderPage: FC<Props> = (props: Props) => {
   const { push } = useHistory();
-
+const dispatch = useDispatch()
   const data = useSelector<ReducersProps, BuyNowProps>(state => state.buyNow); // 这里面单拿一个地址
   const shopCartOrderData = useSelector<ReducersProps, any>(
     state => state.shopCartOrderData
   );
-  console.log(shopCartOrderData);
   const [list, setList] = useState<any>({});
   useEffect(() => {
     if (data.receiverAddressId !== "0") {
@@ -43,9 +43,12 @@ const FillInOrderPage: FC<Props> = (props: Props) => {
         const address = res?.data?.records.filter(
           (item: any) => item.isDefault === 1
         );
-        address?.length > 0
-          ? setList(address[0])
-          : push("/shop/shop-car/add-consignee-page");
+        if (address?.length > 0) {
+          setList(address[0]);
+          dispatch(updateBuyNow({ ...data,...address[0], receiverAddressId: address[0].id }));
+        } else {
+          push("/shop/shop-car/add-consignee-page");
+        }
       }
     });
   }, [data, push]);
