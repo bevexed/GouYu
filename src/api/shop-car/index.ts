@@ -13,3 +13,16 @@ export const AjaxShoppingCartGetShoppingCartList = (data: any) =>
     data,
     method: "GET"
   });
+
+export interface ShoppingCartUpdateGoodsShoppingCartNumberProps {
+  goodsId:string
+  skuId:string
+  storeId:string
+  number:number
+}
+
+export const AjaxShoppingCartUpdateGoodsShoppingCartNumber = (data:ShoppingCartUpdateGoodsShoppingCartNumberProps)=>ajax<any>({
+  method:"GET",
+  url:'/shoppingCart/updateGoodsShoppingCartNumber',
+  data
+})
