@@ -66,7 +66,7 @@ const GoodPage: FC<Props> = (props: Props) => {
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
       <MyMore path={() => setOpen(true)} children={"选择规格和数量"} />
       <div className="_back">
-        <GrayLabel>·天无理由退货·闪电退货</GrayLabel>
+        <GrayLabel>·7天无理由退货·闪电退货</GrayLabel>
       </div>
 
       <Comment id={id} />
@@ -74,7 +74,9 @@ const GoodPage: FC<Props> = (props: Props) => {
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
 
       {/*//todo: shop接口*/}
-      {goodData.storeId !== 0 && <Shop />}
+      {/*{goodData.storeId !== 0 &&*/}
+      <Shop data={goodData}/>
+      {/*}*/}
 
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
       <MyCenterTitle>猜你喜欢</MyCenterTitle>
