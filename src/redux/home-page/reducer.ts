@@ -28,17 +28,7 @@ const initHonePageData = {
       type: 0,
     },
   ],
-  seckillActivityTimeSlotList: [
-    {
-      everydayEndTime: 1577581200000,
-      everydayStartTime: 1577577600000,
-      id: 1,
-      isUp: 1,
-      name: '8:00',
-      status: 2,
-      seckillActivityId: 0,
-    },
-  ],
+  seckillActivityTimeSlotList: [] as any,
   goodsList: [
     {
       createTime: 1577602033000,

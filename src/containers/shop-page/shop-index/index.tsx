@@ -47,7 +47,7 @@ const ShopIndex: FC<Props> = props => {
   const [seckillActivityTimeSlotId, setSeckillActivityTimeSlotId] = useState(0);
   const [seckillActivityId, setSeckillActivityId] = useState(0);
   useEffect(() => {
-    seckillActivityTimeSlotList[0].id &&
+    seckillActivityTimeSlotList.length &&
       ajax<any>({
         method: "GET",
         url: "/goods/getHomeSeckillGoodsList",
@@ -55,7 +55,7 @@ const ShopIndex: FC<Props> = props => {
           seckillActivityTimeSlotId: seckillActivityTimeSlotList[0].id
         }
       }).then(res => {
-        setRecords(res.data.records);
+        setRecords(res.data.records.filter((item:any) => item));
       });
   }, [seckillActivityTimeSlotId, seckillActivityTimeSlotList]);
 
@@ -85,13 +85,12 @@ const ShopIndex: FC<Props> = props => {
 
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
 
-      {seckillActivityTimeSlotList[0].id && (
+      {(seckillActivityTimeSlotList.length && records.length>0) && (
         <>
           <MyMore
             path={
               "/shop/second-kill-page/" +
-              (seckillActivityId ||
-                seckillActivityTimeSlotList[0].seckillActivityId)
+              seckillActivityTimeSlotList[0].seckillActivityId
             }
             children={"限时秒杀"}
           />
@@ -105,7 +104,7 @@ const ShopIndex: FC<Props> = props => {
             <>
               <RenderContent />
               <MyWhiteBlank backgroundColor={"#F8F9FA"} />
-              <GoodList goodList={records} />
+              {records.length && <GoodList goodList={records} />}
             </>
           </Seckill>
         </>
