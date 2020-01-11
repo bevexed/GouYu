@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import './index.less';
 import MyIcon from '../../../components/my-icon';
 import { iconPic } from '../../../config/image';
@@ -9,10 +9,23 @@ import QRcode from './QR-code';
 import { WhiteSpace } from 'antd-mobile';
 import MyTitle from '../../../components/my-title';
 import VipGoodList from "../../shop-page/hot-style-page/vip-good-list";
+import { ajax } from "../../../api/ajax";
 
 type Props = {};
 const VipGiftBagPage: FC<Props> = (props: Props) => {
   const { go } = useHistory();
+  const [list, setList] = useState<any>([]);
+  const soldOut = () => list.reduce((pre:any,cur:any)=>pre + cur.soldNumber,0);
+  useEffect(() => {
+    ajax<any>({
+      url: "goods/getVipGoodsPageList",
+      method: "GET",
+      data: {
+        current: 1,
+        size: 10000
+      }
+    }).then(res => setList(res.data.records));
+  },[go]);
   return (
     <div className="vip-gift-bag-page">
       <section className="topic">
@@ -45,9 +58,9 @@ const VipGiftBagPage: FC<Props> = (props: Props) => {
       <WhiteSpace size={ 'lg' }/>
       <div className='vip-gift-bag-page-title'>
         <MyTitle>网红商品VIP免费领</MyTitle>
-        <span>已有2346253人购买</span>
+        <span>已有{soldOut()}人购买</span>
       </div>
-      <VipGoodList vipGoodList={ [1, 2, 3, 4, 5] }/>
+      <VipGoodList vipGoodList={ list }/>
 
 
     </div>

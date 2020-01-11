@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import "./index.less";
-import { MyImage } from "../../../../components/my-image";
 import { WingBlank } from "antd-mobile";
 
 type Props = {};
@@ -30,8 +29,6 @@ const Shop: FC<any> = (props: any) => {
 
         <div dangerouslySetInnerHTML={{__html:data.goodsInfoImage}}>
         </div>
-
-        <MyImage src={data.goodsDescribe} className={'shop-img'}/>
 
         <article>
         </article>

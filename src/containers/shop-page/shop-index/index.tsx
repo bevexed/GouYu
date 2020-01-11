@@ -47,20 +47,17 @@ const ShopIndex: FC<Props> = props => {
   const [seckillActivityTimeSlotId, setSeckillActivityTimeSlotId] = useState(0);
   const [seckillActivityId, setSeckillActivityId] = useState(0);
   useEffect(() => {
-    ajax<any>({
-      method: "GET",
-      url: "/goods/getHomeSeckillGoodsList",
-      data: {
-        seckillActivityTimeSlotId:
-          seckillActivityTimeSlotId || seckillActivityTimeSlotList[0].id
-      }
-    }).then(res => {
-      setRecords(res.data.records);
-    });
-  }, [
-    seckillActivityTimeSlotId,
-    seckillActivityTimeSlotList,
-  ]);
+    seckillActivityTimeSlotList[0].id &&
+      ajax<any>({
+        method: "GET",
+        url: "/goods/getHomeSeckillGoodsList",
+        data: {
+          seckillActivityTimeSlotId: seckillActivityTimeSlotList[0].id
+        }
+      }).then(res => {
+        setRecords(res.data.records);
+      });
+  }, [seckillActivityTimeSlotId, seckillActivityTimeSlotList]);
 
   const { push } = useHistory();
   return (
@@ -88,23 +85,31 @@ const ShopIndex: FC<Props> = props => {
 
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
 
-      <MyMore
-        path={"/shop/second-kill-page/" + (seckillActivityId || seckillActivityTimeSlotList[0].seckillActivityId)}
-        children={"限时秒杀"}
-      />
-      <Seckill
-        tabs={seckillActivityTimeSlotList}
-        getChange={a => {
-          setSeckillActivityId(a.seckillActivityId);
-          setSeckillActivityTimeSlotId(a.id);
-        }}
-      >
+      {seckillActivityTimeSlotList[0].id && (
         <>
-          <RenderContent />
-          <MyWhiteBlank backgroundColor={"#F8F9FA"} />
-          <GoodList goodList={records} />
+          <MyMore
+            path={
+              "/shop/second-kill-page/" +
+              (seckillActivityId ||
+                seckillActivityTimeSlotList[0].seckillActivityId)
+            }
+            children={"限时秒杀"}
+          />
+          <Seckill
+            tabs={seckillActivityTimeSlotList}
+            getChange={a => {
+              setSeckillActivityId(a.seckillActivityId);
+              setSeckillActivityTimeSlotId(a.id);
+            }}
+          >
+            <>
+              <RenderContent />
+              <MyWhiteBlank backgroundColor={"#F8F9FA"} />
+              <GoodList goodList={records} />
+            </>
+          </Seckill>
         </>
-      </Seckill>
+      )}
 
       <MyMore
         path={"/shop/web-celebrity-goods-page"}
@@ -114,7 +119,7 @@ const ShopIndex: FC<Props> = props => {
 
       <MyCenterTitle>猜你喜欢</MyCenterTitle>
 
-      <GuessYouLikeList/>
+      <GuessYouLikeList />
 
       <FloatButton />
 

@@ -17,8 +17,8 @@ const LoginIndex: FC<LoginIndexProps> = () => {
   const { token } = useSelector<ReducersProps, UserInfoProps>(
     state => state.userInfo
   );
-  const [phone, setPhone] = useState("18640460506");
-  const [code, setCode] = useState("8888");
+  const [phone, setPhone] = useState("");
+  const [code, setCode] = useState("");
 
   return token ? (
     <Redirect to={"/shop-page"} />

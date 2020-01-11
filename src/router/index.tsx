@@ -12,6 +12,7 @@ import { QuestionPage } from './question-page';
 import { MayQuestionPage } from './mayquestion-page';
 import { RemindPage } from './remind-page';
 import { GoodPage } from "./good-page";
+import MyLoading from "../components/my-loading";
 
 export interface RouteType {
   path: string;
@@ -45,7 +46,7 @@ export const MapRouters: React.FC = () => {
   return (
     <HashRouter>
       <Switch>
-        <Suspense fallback={<div>加载中。。。</div>}>
+        <Suspense fallback={<MyLoading/>}>
           {AppRoutes.map((item, key) => (
             <Route {...item} key={key} />
           ))}
