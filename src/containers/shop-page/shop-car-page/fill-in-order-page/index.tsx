@@ -105,7 +105,7 @@ const FillInOrderPage: FC<Props> = (props: Props) => {
           right={<span style={{ color: "#21A3CD" }}>0张可用</span>}
           label={"优惠券"}
         />
-        <MyItem arrow right={"￥"+ (data.seckillPrice ||data.salePrice)} label={"商品合计"} />
+        <MyItem arrow right={"￥"+ (data.salePrice||data.seckillPrice )} label={"商品合计"} />
         <MyItem arrow right={"￥0.00"} label={"运费"} />
         <MyItem arrow right={"￥0.00"} label={"优惠券"} />
       </MyList>

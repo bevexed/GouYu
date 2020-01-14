@@ -25,7 +25,7 @@ const OrderGoodItem: FC<Props> = (props: Props) => {
         <div className="title">护肝养胃，活力十足，清苷朝鲜蓟</div>
         <div className="sub-title">{props.data.twoAttributeValue}</div>
         <footer>
-          <Price>￥{props.data.memberPrice||props.data.seckillPrice || props.data.salePrice}</Price>
+          <Price>￥{ props.data.salePrice||props.data.memberPrice||props.data.seckillPrice}</Price>
           <p className="num">×{props.data.buyQuantity || props.data.salePrice}</p>
         </footer>
       </aside>

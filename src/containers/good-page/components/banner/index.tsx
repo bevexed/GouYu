@@ -41,7 +41,8 @@ const GoodBanner: FC<Props> = (props: Props) => {
         </div>
         <div className="swiper-wrapper">
           <ReactVideo
-            light={''}
+            controls
+            light={props.goodsVideo+'?x-oss-process=video/snapshot,t_10000,m_fast,w_800'}
             url={props.goodsVideo}
             playing
             width={375}
