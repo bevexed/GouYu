@@ -42,7 +42,7 @@ const GoodPage: FC<Props> = (props: Props) => {
 
   return (
     <div className="_good-page">
-      <GoodBanner bannerList={goodData.goodsDescribe?.split(",")} />
+      <GoodBanner goodsVideo={goodData.goodsVideo} bannerList={goodData.goodsDescribe?.split(",")} />
 
       <WingBlank>
         <MyTitle>{goodData.goodsName}</MyTitle>
@@ -126,5 +126,6 @@ const data = {
   type: 0,
   vipDisparityPrice: 279,
   vipOneCommission: 10,
-  vipTwoCommission: 5
+  vipTwoCommission: 5,
+  goodsVideo:''
 };

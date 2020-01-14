@@ -104,7 +104,7 @@ const dispatch = useDispatch()
       <MyList>
         <MyItem
           arrow
-          right={<span style={{ color: "#21A3CD" }}>5张可用</span>}
+          right={<span style={{ color: "#21A3CD" }}>0张可用</span>}
           label={"优惠券"}
         />
         <MyItem arrow right={"￥297.00"} label={"商品合计"} />

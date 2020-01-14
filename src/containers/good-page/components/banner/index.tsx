@@ -5,16 +5,18 @@ import "swiper/css/swiper.min.css";
 import { iconPic } from "../../../../config/image";
 import { MyImage } from "../../../../components/my-image";
 import { useHistory } from "react-router";
+import ReactVideo from "react-player";
 
 type Props = {
   bannerList: string[];
+  goodsVideo:string
 };
 const GoodBanner: FC<Props> = (props: Props) => {
   const { go } = useHistory();
   const [activeIndex, setActiveIndex] = useState(0);
   useEffect(() => {
     const swiper = new Swiper(".swiper-container", {
-      autoplay: true, //可选选项，自动滑动,
+      autoplay: false, //可选选项，自动滑动,
       height: 750,
       on: {
         slideChangeTransitionEnd: function() {
@@ -35,9 +37,17 @@ const GoodBanner: FC<Props> = (props: Props) => {
           <MyImage src={iconPic.share_back_black} className="back" />
         </div>
         <div className="Pagination">
-          {activeIndex + 1}/{props.bannerList.length}
+          {activeIndex + 1}/{props.bannerList.length + 1}
         </div>
         <div className="swiper-wrapper">
+          <ReactVideo
+            light={''}
+            url={props.goodsVideo}
+            playing
+            width={375}
+            height={ 375 }
+            className="swiper-slide"
+          />
           {props.bannerList.map((val, index) => (
             <div className="swiper-slide" key={index}>
               <MyImage
