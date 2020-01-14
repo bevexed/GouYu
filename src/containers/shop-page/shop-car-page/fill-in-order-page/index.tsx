@@ -30,6 +30,7 @@ const FillInOrderPage: FC<Props> = (props: Props) => {
   const { push } = useHistory();
   const dispatch = useDispatch();
   const data = useSelector<ReducersProps, BuyNowProps>(state => state.buyNow);
+  console.log(data);
   const [list, setList] = useState<any>({});
   useEffect(() => {
     if (data.receiverAddressId !== "0") {
@@ -101,12 +102,12 @@ const FillInOrderPage: FC<Props> = (props: Props) => {
       <MyList>
         <MyItem
           arrow
-          right={<span style={{ color: "#21A3CD" }}>5张可用</span>}
+          right={<span style={{ color: "#21A3CD" }}>0张可用</span>}
           label={"优惠券"}
         />
-        <MyItem arrow right={"￥297.00"} label={"商品合计"} />
+        <MyItem arrow right={"￥"+ (data.seckillPrice ||data.salePrice)} label={"商品合计"} />
         <MyItem arrow right={"￥0.00"} label={"运费"} />
-        <MyItem arrow right={"￥297.00"} label={"优惠券"} />
+        <MyItem arrow right={"￥0.00"} label={"优惠券"} />
       </MyList>
 
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
@@ -117,7 +118,7 @@ const FillInOrderPage: FC<Props> = (props: Props) => {
 
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
 
-      <FillPayNow />
+      <FillPayNow all={ (data.seckillPrice ||data.salePrice)}/>
     </div>
   );
 };

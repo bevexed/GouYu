@@ -10,6 +10,7 @@ export interface BuyNowProps {
   name?: string;
   idCard?: string;
   storeId?: string;
+  [key:string]:any
 }
 
 export const initBuyNow: BuyNowProps = {
@@ -17,7 +18,7 @@ export const initBuyNow: BuyNowProps = {
   buyQuantity: "0",
   goodsId: "0",
   receiverAddressId: "0",
-  storeId: "0"
+  storeId: "0",
 };
 
 export const buyNow = (state = initBuyNow, action: ActionProps) => {

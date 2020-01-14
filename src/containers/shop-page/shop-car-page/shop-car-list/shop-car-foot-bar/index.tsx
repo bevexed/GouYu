@@ -19,6 +19,16 @@ const ShopBarFootBar: FC<Props> = (props: Props) => {
     shopCar.every(
       item => item.c && item.shoppingCartList.every((good: any) => good.c)
     );
+  const allPrice = () =>
+    shopCar.reduce(
+      (pre, cur) =>
+        pre +
+        cur.shoppingCartList.reduce(
+          (_pre: any, _cur: any) => _pre + _cur.memberPrice,
+          0
+        ),
+      0
+    );
   const SURE = () => {
     dispatch(selectAll());
     if (shopCar.length === 0) return Toast.fail("购物车没有商品");
@@ -47,7 +57,7 @@ const ShopBarFootBar: FC<Props> = (props: Props) => {
           />
           <span className="label">全选</span>
           <span className="all">商品总价：</span>
-          <Price>￥100</Price>
+          <Price>￥{allPrice()}</Price>
         </div>
         <div className="button" onTouchEnd={SURE}>
           结算
