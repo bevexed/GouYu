@@ -83,7 +83,7 @@ const GoodPage: FC<Props> = (props: Props) => {
 
       <GuessYouLikeList />
 
-      <GoodBottom/>
+      <GoodBottom blue={()=>setOpen(true)}/>
 
       {/*//todo: sku*/}
       <Specification open={open} id={id} close={() => setOpen(false)} />

@@ -85,7 +85,7 @@ const ShopIndex: FC<Props> = props => {
 
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
 
-      {(seckillActivityTimeSlotList.length && records.length>0) && (
+      {(seckillActivityTimeSlotList.length>0 && records.length>0) && (
         <>
           <MyMore
             path={

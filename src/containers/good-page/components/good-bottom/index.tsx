@@ -8,7 +8,7 @@ import { useHistory } from "react-router";
 
 type Props = {
 };
-const GoodBottom: FC<Props> = (props: Props) => {
+const GoodBottom: FC<any> = (props) => {
   const {push} = useHistory()
   return (
     <>
@@ -33,7 +33,7 @@ const GoodBottom: FC<Props> = (props: Props) => {
           <div>分享赚</div>
         </div>
 
-        <div className="buy-get">
+        <div className="buy-get" onClick={props.blue}>
           <div>￥20.99</div>
           <div>自买省</div>
         </div>
