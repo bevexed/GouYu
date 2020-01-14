@@ -83,7 +83,7 @@ const GoodPage: FC<Props> = (props: Props) => {
 
       <GuessYouLikeList />
 
-      <GoodBottom blue={()=>setOpen(true)}/>
+      <GoodBottom blue={()=>setOpen(true)} vipOneCommission={goodData.vipOneCommission} vipDisparityPrice={goodData.vipDisparityPrice}/>
 
       {/*//todo: sku*/}
       <Specification open={open} id={id} close={() => setOpen(false)} />

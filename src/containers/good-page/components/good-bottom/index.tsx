@@ -29,12 +29,12 @@ const GoodBottom: FC<any> = (props) => {
         </ul>
 
         <div className="share-get">
-           <div>￥1.99</div>
+           <div>￥{props.vipOneCommission}</div>
           <div>分享赚</div>
         </div>
 
         <div className="buy-get" onClick={props.blue}>
-          <div>￥20.99</div>
+          <div>￥{props.vipDisparityPrice}</div>
           <div>自买省</div>
         </div>
       </div>
