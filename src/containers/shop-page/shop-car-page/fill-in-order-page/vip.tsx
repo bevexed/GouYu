@@ -14,7 +14,7 @@ import { WingBlank } from "antd-mobile";
 import MyWhiteBlank from "../../../../components/my-white-blank";
 import MyList from "../../../../components/my-list";
 import MyItem from "../../../../components/my-item";
-import FillPayNow from "./fill-pay-now";
+import FillPayNow from "./fill-pay-now/vip";
 import { useHistory } from "react-router";
 import { MyBlueTag } from "../../../../components/my-tag";
 import { useDispatch, useSelector } from "react-redux";
@@ -71,6 +71,23 @@ const FillInOrderPage: FC<Props> = (props: Props) => {
           onClick={() => push("/shop/shop-car/select-consignee-page")}
           rightContent={<MyIcon src={iconPic.more} onTouchEnd={() => {}} />}
         />
+
+        {/*<ul className="inputs">*/}
+        {/*  <li>*/}
+        {/*    <BlackLabel>真实姓名</BlackLabel>*/}
+        {/*    <input*/}
+        {/*      type="text"*/}
+        {/*      placeholder={"因海关需要，请填写收货人真实姓名"}*/}
+        {/*    />*/}
+        {/*  </li>*/}
+        {/*  <li>*/}
+        {/*    <BlackLabel>身份证号</BlackLabel>*/}
+        {/*    <input*/}
+        {/*      type="text"*/}
+        {/*      placeholder={"因海关需要，请填写收货人身份证号"}*/}
+        {/*    />*/}
+        {/*  </li>*/}
+        {/*</ul>*/}
       </WingBlank>
 
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
@@ -87,7 +104,7 @@ const FillInOrderPage: FC<Props> = (props: Props) => {
           right={<span style={{ color: "#21A3CD" }}>0张可用</span>}
           label={"优惠券"}
         />
-        <MyItem arrow right={"￥"+ (data.salePrice||data.seckillPrice )} label={"商品合计"} />
+        <MyItem arrow right={"￥"+ (data.vipPrice )} label={"商品合计"} />
         <MyItem arrow right={"￥0.00"} label={"运费"} />
         <MyItem arrow right={"￥0.00"} label={"优惠券"} />
       </MyList>
@@ -100,7 +117,7 @@ const FillInOrderPage: FC<Props> = (props: Props) => {
 
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
 
-      <FillPayNow all={ (data.seckillPrice ||data.salePrice)}/>
+      <FillPayNow all={ (data.payAmount||data.seckillPrice ||data.salePrice || data.vipPrice)}/>
     </div>
   );
 };

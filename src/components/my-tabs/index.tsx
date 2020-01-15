@@ -47,7 +47,7 @@ export const LeftTabs: FC<LeftTabsProps> = (props: LeftTabsProps) => {
         {oneClassifyList.map((item, index) => (
           <div
             className={['tab', currentTab === index && 'active'].join(' ')}
-            onTouchStart={() => setCurrentTab(index)}
+            onClick={() => setCurrentTab(index)}
             key={index}
           >
             {item.oneName}

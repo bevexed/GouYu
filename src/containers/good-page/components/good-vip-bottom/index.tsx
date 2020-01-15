@@ -25,7 +25,7 @@ const GoodVipBottom: FC<any> = (props) => {
           </li>
         </ul>
 
-        <div className="share-get">
+        <div className="share-get" onClick={props.buyNow}>
           立即购买 成为VIP
         </div>
       </div>

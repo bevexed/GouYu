@@ -1,8 +1,8 @@
 import React, { FC, useEffect, useState } from "react";
 import "./index.less";
 import GoodBanner from "../components/banner";
-import { useParams } from "react-router";
-import { AjaxGetVipGoodsInfo } from "../../../api/goods";
+import { useHistory, useParams } from "react-router";
+import { AjaxGetVipGoodsInfo, AjaxOrderBuyNowVipGoods } from "../../../api/goods";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducersProps } from "../../../redux/store";
 import MyTitle, { MyCenterTitle } from "../../../components/my-title";
@@ -17,7 +17,7 @@ import GoodVipBottom from "../components/good-vip-bottom";
 
 type Props = typeof data;
 const GoodPage: FC<Props> = (props: Props) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { id } = useParams();
 
   const userId = useSelector<ReducersProps, string>(
@@ -30,16 +30,26 @@ const GoodPage: FC<Props> = (props: Props) => {
     const getData = async () => {
       const res = await AjaxGetVipGoodsInfo({ id, userId });
       setGoodData(res.data);
-      dispatch(updateBuyNow(res.data))
+      dispatch(updateBuyNow(res.data));
     };
     getData();
   }, [id]);
 
-  const [open, setOpen] = useState(false);
-
+  const { push } = useHistory();
+  const { id: vipGoodsId } = useParams();
+  const buyNow = async () => {
+    const res = await AjaxOrderBuyNowVipGoods({ vipGoodsId, buyQuantity: 1});
+    if (res.success) {
+      push("/shop/fill-in-order-page/vip");
+      dispatch(updateBuyNow(res.data));
+    }
+  };
   return (
     <div className="_good-page">
-      <GoodBanner goodsVideo={goodData.goodsVideo} bannerList={goodData.goodsDescribe?.split(",")} />
+      <GoodBanner
+        goodsVideo={goodData.goodsVideo}
+        bannerList={goodData.goodsDescribe?.split(",")}
+      />
 
       <WingBlank>
         <MyTitle>{goodData.goodsName}</MyTitle>
@@ -63,7 +73,7 @@ const GoodPage: FC<Props> = (props: Props) => {
 
       {/*//todo: shop接口*/}
       {/*{goodData.storeId !== 0 &&*/}
-      <Shop data={goodData}/>
+      <Shop data={goodData} />
       {/*}*/}
 
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
@@ -71,8 +81,11 @@ const GoodPage: FC<Props> = (props: Props) => {
 
       <GuessYouLikeList />
 
-      <GoodVipBottom blue={()=>setOpen(true)} vipOneCommission={goodData.vipOneCommission} vipDisparityPrice={goodData.vipDisparityPrice}/>
-
+      <GoodVipBottom
+        buyNow={buyNow}
+        vipOneCommission={goodData.vipOneCommission}
+        vipDisparityPrice={goodData.vipDisparityPrice}
+      />
     </div>
   );
 };
@@ -113,6 +126,6 @@ const data = {
   vipDisparityPrice: 279,
   vipOneCommission: 10,
   vipTwoCommission: 5,
-  goodsVideo:'',
-  vipPrice:''
+  goodsVideo: "",
+  vipPrice: ""
 };
