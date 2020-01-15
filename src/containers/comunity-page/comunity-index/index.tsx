@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, Props } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import './index.less';
 import { MyTabBar } from '../../../components/my-tab-bar';
 import { MyImage } from '../../../components/my-image';
@@ -6,10 +6,15 @@ import { iconPic } from '../../../config/image';
 import { Tabs, WhiteSpace } from 'antd-mobile';
 import { useHistory } from 'react-router';
 import { reqClassifyPageData } from '../../../redux/community-classify-page/actions';
-import { useDispatch, useSelector, useStore } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ReducersProps } from '../../../redux/store';
 import { ClassifyPageDataProps } from '../../../redux/community-classify-page/reducer';
-import { AjaxGetDynamicPageList, AjaxGetHeadlinesPageList, AjaxGetAnswerPageList } from '../../../api/community-classify-page';
+import {
+  AjaxGetAnswerPageList,
+  AjaxGetDynamicPageList,
+  AjaxGetHeadlinesPageList
+} from '../../../api/community-classify-page';
+
 interface ComuntityIndexProps { }
 
 const tabs = [
@@ -219,7 +224,7 @@ const RenderAnswer: FC<{}> = () => {
                     <div className="Headlines-con" >
                         <p className="Headlines-con-tit">{item.title}</p>
                         <div className="headlines-con-img">
-                            {item.images.split(',').map((value: any) => <MyImage src={value} className="headlines-image" key={value} />)}
+                            {item?.images?.split(',').map((value: any) => <MyImage src={value} className="headlines-image" key={value} />)}
                         </div>
                         <p className="headlines-con-footer">
                             <span>狗鱼健康官方号</span>
