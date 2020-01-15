@@ -297,7 +297,7 @@ class DetailsIndex extends Component<DetailsIndex, any>{
                                 </div>
                             </div>
                             {/* <p className={`dynamic-details-center-text ${flage === false && 'dynamic-details-con-text'}`}>健身教学：连续22天的腹肌训练，很多女生去健身房除了用跑步机，对其他器械动作一头雾水，也完全没有计划目的性的去健身房，其实女生也应看到马上到马上为了让的急啊时看见的机会呢啊毕竟看见刷卡机上说可拉动奥康没</p> */}
-                            <p className={`dynamic-details-center-text ${flage === false && 'dynamic-details-con-text'}`}>{HeadDetailsData.content.replace(/<.*?>/ig,"")}</p>
+                            <p className={`dynamic-details-center-text ${flage === false && 'dynamic-details-con-text'}`} dangerouslySetInnerHTML={{__html:HeadDetailsData.content}}></p>
                             {/* <div className="dynamic-details-accordion">
                                 <p className={`dynamic-details-accordion-rig ${flage || 'dynamic-details-flage'}`} onClick={this.onchange}>全部</p>
                             </div> */}
