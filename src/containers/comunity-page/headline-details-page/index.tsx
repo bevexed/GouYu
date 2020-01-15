@@ -196,7 +196,7 @@ class DetailsIndex extends Component<DetailsIndex, any>{
                                         {item.content}
                                     </p>
 
-                                    <div className="comments-center-footer" onClick={() => this.props.history.push('/comunity/comments-details-page')}>
+                                    <div className="comments-center-footer" onClick={() => this.props.history.push(`/comunity/headcomments-details-page?id=${item.id}&userId=${item.userId}`)}>
                                         <p className="comments-center-footer-name">
                                             <span className="footer-name-g">{item.nickName}</span>
                                             <i>等人</i>
