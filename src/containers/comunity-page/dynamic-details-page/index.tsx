@@ -67,9 +67,9 @@ class DetailsIndex extends Component<DetailsIndex, any>{
         console.log('dddd', this.state.DynamicDetails)
     }
     getDynamiclist = async () => {
-        const userInfo: any = localStorage.getItem('userInfo')
+        //const userInfo: any = localStorage.getItem('userInfo')
         const idData = this.props.location.search.slice(1).split('=')
-        const resData = await AjaxGetDynamicCommentPageList({ communityDynamicId: idData[1], userId: JSON.parse(userInfo).user.id });
+        const resData = await AjaxGetDynamicCommentPageList({ communityDynamicId: idData[1]});
         console.log('Dynamiclist', resData.data)
         //console.log('userInfo', JSON.parse(userInfo).user.id)
         this.setState({
