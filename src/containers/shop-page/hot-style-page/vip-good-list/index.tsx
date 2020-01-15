@@ -13,7 +13,7 @@ const VipGood: FC<any> = (props) => {
   const {push} = useHistory()
   const go = () => {
     window.scrollTo(0, 0);
-    // push("/good-page/" + props.id);
+    push("/good-vip-page/" + props.id);
   };
   return (
     <>

@@ -37,10 +37,10 @@ const GoodBanner: FC<Props> = (props: Props) => {
           <MyImage src={iconPic.share_back_black} className="back" />
         </div>
         <div className="Pagination">
-          {activeIndex + 1}/{props.bannerList.length + 1}
+          {activeIndex + 1}/{props.bannerList.length + (props.goodsVideo?1:0)}
         </div>
         <div className="swiper-wrapper">
-          <ReactVideo
+          {props.goodsVideo &&<ReactVideo
             controls
             light={props.goodsVideo+'?x-oss-process=video/snapshot,t_10000,m_fast,w_800'}
             url={props.goodsVideo}
@@ -49,6 +49,7 @@ const GoodBanner: FC<Props> = (props: Props) => {
             height={ 375 }
             className="swiper-slide"
           />
+          }
           {props.bannerList.map((val, index) => (
             <div className="swiper-slide" key={index}>
               <MyImage

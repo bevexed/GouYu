@@ -27,3 +27,10 @@ export const AjaxGetOrdinaryGoodsInfo = (data:AjaxGetOrdinaryGoodsInfoProps) =>
     method:'GET',
     data
   });
+
+export const AjaxGetVipGoodsInfo = (data:AjaxGetOrdinaryGoodsInfoProps) =>
+  ajax<any>({
+    url:'goods/getVipGoodsInfo',
+    method:'GET',
+    data
+  });

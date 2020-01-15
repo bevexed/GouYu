@@ -8,8 +8,8 @@ import { useHistory } from "react-router";
 
 type Props = {
 };
-const GoodBottom: FC<Props> = (props: Props) => {
-  const {push} = useHistory()
+const GoodVipBottom: FC<any> = (props) => {
+  const {push} = useHistory();
   return (
     <>
       <div className="_good-bottom">
@@ -18,10 +18,7 @@ const GoodBottom: FC<Props> = (props: Props) => {
             <MyIcon src={iconPic.cart_gray} />
             <GrayLabel >加购</GrayLabel>
           </li>
-          <li>
-            <MyIcon src={iconPic.like_gray} />
-            <GrayLabel>收藏</GrayLabel>
-          </li>
+
           <li>
             <MyIcon src={iconPic.service_gray} />
             <GrayLabel>客服</GrayLabel>
@@ -29,13 +26,7 @@ const GoodBottom: FC<Props> = (props: Props) => {
         </ul>
 
         <div className="share-get">
-           <div>￥1.99</div>
-          <div>分享赚</div>
-        </div>
-
-        <div className="buy-get">
-          <div>￥20.99</div>
-          <div>自买省</div>
+          立即购买 成为VIP
         </div>
       </div>
       <MyWhiteBlank height={112} />
@@ -43,4 +34,4 @@ const GoodBottom: FC<Props> = (props: Props) => {
   );
 };
 
-export default GoodBottom;
+export default GoodVipBottom;
