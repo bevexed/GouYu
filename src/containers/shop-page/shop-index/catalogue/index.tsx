@@ -17,7 +17,7 @@ const Item: FC<GridProps> = (dataItem: GridProps) => {
   const { push } = useHistory();
 
   return (
-    <div className="grid-item" onTouchStart={ () => push(dataItem.name ==='更多分类'? '/shop/catalogue-page':'/shop/catalogue-page/catalogue-detail-page/'+dataItem.id) }>
+    <div className="grid-item" onTouchStart={ () => push(dataItem.name ==='更多分类'? '/shop/catalogue-page':'shop/catalogue-page/catalogue-detail-page-type-'+dataItem.type+'/'+dataItem.id+'/'+dataItem.name) }>
       <img src={ dataItem.icon } alt=""/>
       <p>{ dataItem.name }</p>
     </div>

@@ -61,3 +61,10 @@ export const AjaxGoodsQueryGoodsList = (data:any) =>
     method: "GET",
     data
   });
+
+export const AjaxGoodsGetSpecialGoodsPageList = ({specialId}:any) =>
+  ajax<any>({
+    url:'goods/getSpecialGoodsPageList',
+    method:"GET",
+    data:{type:0,specialId,current:1,size:10000000000}
+  })

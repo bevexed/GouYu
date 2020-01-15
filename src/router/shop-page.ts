@@ -30,6 +30,13 @@ export const ShopPage: RouteType[] = [
     exact: true,
   },
   {
+    path: '/shop/catalogue-page/catalogue-detail-page-type-0/:sortId/:sortName',
+    component: lazy(() =>
+      import('../containers/shop-page/catalogue-page/catalogue-detail-page/type0'),
+    ),
+    exact: true,
+  },
+  {
     path: '/shop/web-celebrity-goods-page',
     component: lazy(() =>
       import('../containers/shop-page/web-celebrity-goods-page'),
