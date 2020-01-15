@@ -2,7 +2,6 @@ import React, { FC } from "react";
 import "./index.less";
 import MyCheckBox from "../../../../../../components/my-check-box";
 import { MyImage } from "../../../../../../components/my-image";
-import { MyBlueTag } from "../../../../../../components/my-tag";
 import { OriginPrice, Price } from "../../../../../../components/price";
 import MyStepper from "../../../../../../components/my-stepper";
 import { WhiteSpace } from "antd-mobile";
@@ -65,7 +64,7 @@ const ShopCarItemListItem: FC<any> = props => {
         <p className="title">{props.goodsName}</p>
         <p className="sub-title">{props.subTitle}</p>
         <div className="tags">
-          <MyBlueTag round={true}>限时秒</MyBlueTag>
+          {/*<MyBlueTag round={true}>限时秒</MyBlueTag>*/}
         </div>
         <footer>
           <Price>￥{props.memberPrice}</Price>
