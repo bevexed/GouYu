@@ -162,7 +162,7 @@ const RenderHeadlines: FC<{}> = () => {
             {headlinesData && headlinesData.map((item: any) =>
                 <div className="Headlines" key={item.id} onClick={() => push(`/comunity/headline-details-page?id=${item.id}`)}>
                     <div className="Headlines-con">
-                        <p className="Headlines-con-tit">{item.content.replace(/<.*?>/ig,"")}</p>
+                        <p className="Headlines-con-tit" dangerouslySetInnerHTML={{__html:item.content}}></p>
                         {
                             item.images && item.images.split(',').length >= 0 ? <div className="dynamic-center-image-list">{item.images.split(',').map((value: any) => <MyImage src={value} className="image-lest" key={value} />)}</div> :
                                 <div className="dynamic-center-image">
