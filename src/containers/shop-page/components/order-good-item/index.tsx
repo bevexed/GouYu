@@ -23,7 +23,7 @@ const OrderGoodItem: FC<Props> = (props: Props) => {
       <MyImage className="_order-good-item-img" src={ props?.data?.goodsImage} />
 
       <aside>
-        <div className="title">{props?.data?.goodsTitle} </div>
+        <div className="title">{props?.data?.goodsName} </div>
         <div className="sub-title">{props?.data?.twoAttributeValue}</div>
         <footer>
           <Price>￥{ props?.data?.memberPrice||props?.data?.seckillPrice || props?.data?.vipPrice}</Price>
