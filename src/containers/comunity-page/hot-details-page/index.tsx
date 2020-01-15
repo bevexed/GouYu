@@ -33,6 +33,7 @@ class DetailsIndex extends Component<DetailsIndex, any>{
             userId: '',
             zanNumber: '',
             video: '',
+            headImage:''
         },
         commentsData: [{
             content: "42341",
@@ -65,7 +66,7 @@ class DetailsIndex extends Component<DetailsIndex, any>{
         const userInfo: any = localStorage.getItem('userInfo')
         const idData = this.props.location.search.slice(1).split('=')
         const resData = await AjaxGetDynamicCommentPageList({ communityDynamicId: idData[1], userId: JSON.parse(userInfo).user.id });
-        console.log('Hotlist123', resData.data)
+        //console.log('Hotlist123', resData.data)
         //console.log('userInfo', JSON.parse(userInfo).user.id)
         this.setState({
             commentsData: resData.data.records,
@@ -162,7 +163,7 @@ class DetailsIndex extends Component<DetailsIndex, any>{
                     {
                         commentsData && commentsData.map((item, key) =>
                             <div className="comments-center-con" key={item.id}>
-                                <MyImage src={'http://cdn.duitang.com/uploads/item/201410/21/20141021130151_ndsC4.jpeg'} className="center-con-left-image" />
+                                <MyImage src={item.headImage} className="center-con-left-image" />
                                 <div className="center-top-right">
                                     <h3 className="center-top-right-tit">{HotDetailsData.nickName}</h3>
                                     <p className="top-right-date">
@@ -221,13 +222,13 @@ class DetailsIndex extends Component<DetailsIndex, any>{
                     <div className="dynamic-details-center-con">
                         <div className="dynamic-details-center">
                             <div className="dynamic-details-top">
-                                <MyImage className="center-top-left" src={'http://cdn.duitang.com/uploads/item/201410/21/20141021130151_ndsC4.jpeg'} />
+                                <MyImage className="center-top-left" src={HotDetailsData.headImage} />
                                 <div className="center-top-right">
                                     <div>
                                         <h3>{HotDetailsData.nickName}</h3>
                                         <p className="center-top-right-date">{HotDetailsData.createTime}</p>
                                     </div>
-                                    {focusflage ? <p className="center-top-right-focus" onClick={this.onFocusf}> 关注 </p> : <p className="center-top-been-focused"> 已关注 </p>}
+                                    {/* {focusflage ? <p className="center-top-right-focus" onClick={this.onFocusf}> 关注 </p> : <p className="center-top-been-focused"> 已关注 </p>} */}
                                 </div>
                             </div>
                             <p className={`dynamic-details-center-text ${flage === false && 'dynamic-details-con-text'}`}>{HotDetailsData.content}</p>

@@ -37,6 +37,7 @@ class DetailsIndex extends Component<DetailsIndex, any>{
             userId: '',
             zanNumber: '',
             video: '',
+            headImage:''
         },
         commentsData: [{
             content: "",
@@ -59,7 +60,8 @@ class DetailsIndex extends Component<DetailsIndex, any>{
 
     onDetailsList = async () => {
         const idData = this.props.location.search.slice(1).split('=')
-        const res = await AjaxGetDynamicDetailsPageList({ id: idData[1] });
+        const user: any = localStorage.getItem('userInfo')
+        const res = await AjaxGetDynamicDetailsPageList({ id: idData[1],userId: JSON.parse(user).user.id  });
         // console.log('detailsres', res);
         this.setState({ DynamicDetails: res.data })
         console.log('dddd', this.state.DynamicDetails)
@@ -202,13 +204,13 @@ class DetailsIndex extends Component<DetailsIndex, any>{
                     <div className="dynamic-details-center-con">
                         <div className="dynamic-details-center">
                             <div className="dynamic-details-top">
-                                <MyImage className="center-top-left" src={'http://cdn.duitang.com/uploads/item/201410/21/20141021130151_ndsC4.jpeg'} />
+                                <MyImage className="center-top-left" src={DynamicDetails.headImage} />
                                 <div className="center-top-right">
                                     <div>
                                         <h3>{DynamicDetails.nickName}</h3>
                                         <p className="center-top-right-date">{DynamicDetails.createTime}</p>
                                     </div>
-                                    {focusflage ? <p className="center-top-right-focus" onClick={this.onFocusf}> 关注 </p> : <p className="center-top-been-focused"> 已关注 </p>}
+                                    {/* {focusflage ? <p className="center-top-right-focus" onClick={this.onFocusf}> 关注 </p> : <p className="center-top-been-focused"> 已关注 </p>} */}
                                 </div>
                             </div>
                             <p className={`dynamic-details-center-text ${flage === false && 'dynamic-details-con-text'}`}>{DynamicDetails.content}</p>

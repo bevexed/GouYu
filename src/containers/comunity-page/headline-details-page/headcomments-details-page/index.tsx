@@ -58,7 +58,7 @@ class CommentsIndex extends Component<CommentsIndex>{
                                     'comments-center-top',
                                     detailsflage === key && 'active',
                                 ].join(' ')} key={item.id} onClick={() => this.setState({ detailsflage: key })}>
-                                    <MyImage src={'http://cdn.duitang.com/uploads/item/201410/21/20141021130151_ndsC4.jpeg'} className="center-top-left-image" />
+                                    <MyImage src={item.headImage} className="center-top-left-image" />
                                     <div className="comments-center-right">
                                         <div className="comments-center-top-left">
                                             <h3>{item.nickName}</h3>
