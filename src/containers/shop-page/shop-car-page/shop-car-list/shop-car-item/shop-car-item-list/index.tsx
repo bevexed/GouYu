@@ -62,8 +62,8 @@ const ShopCarItemListItem: FC<any> = props => {
       />
       <MyImage src={props.pic} className="_shop-car-item-list-item-img" />
       <section className={"dis"}>
-        <p className="title">护肝养胃，活力十足，清苷朝鲜蓟</p>
-        <p className="sub-title">蔓越莓</p>
+        <p className="title">{props.subTitle}</p>
+        <p className="sub-title">{props.specifications}</p>
         <div className="tags">
           <MyBlueTag round={true}>限时秒</MyBlueTag>
         </div>
