@@ -24,7 +24,7 @@ const OrderGoodItem: FC<Props> = (props: Props) => {
 
       <aside>
         <div className="title">{props?.data?.goodsName} </div>
-        <div className="sub-title">{props?.data?.twoAttributeValue || props.data.subTitle}</div>
+        <div className="sub-title">{props?.data?.twoAttributeValue || props?.data?.subTitle}</div>
         <footer>
           <Price>￥{ props?.data?.memberPrice||props?.data?.seckillPrice || props?.data?.vipPrice}</Price>
           <p className="num">×{props?.data?.number||props?.data?.soldNumber}</p>
