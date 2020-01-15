@@ -15,7 +15,6 @@ import MyWhiteBlank from "../../../../components/my-white-blank";
 import MyList from "../../../../components/my-list";
 import MyItem from "../../../../components/my-item";
 import FillPayNow from "./fill-pay-now/cart";
-import { BlackLabel } from "../../../../components/price";
 import { useHistory } from "react-router";
 import { MyBlueTag } from "../../../../components/my-tag";
 import { useDispatch, useSelector } from "react-redux";
@@ -28,7 +27,7 @@ import { updateBuyNow } from "../../../../redux/buy-now/actions";
 type Props = {};
 const FillInOrderPage: FC<Props> = (props: Props) => {
   const { push } = useHistory();
-const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const data = useSelector<ReducersProps, BuyNowProps>(state => state.buyNow); // 这里面单拿一个地址
   const shopCartOrderData = useSelector<ReducersProps, any>(
     state => state.shopCartOrderData
@@ -69,22 +68,22 @@ const dispatch = useDispatch()
           rightContent={<MyIcon src={iconPic.more} onTouchEnd={() => {}} />}
         />
 
-        <ul className="inputs">
-          <li>
-            <BlackLabel>真实姓名</BlackLabel>
-            <input
-              type="text"
-              placeholder={"因海关需要，请填写收货人真实姓名"}
-            />
-          </li>
-          <li>
-            <BlackLabel>身份证号</BlackLabel>
-            <input
-              type="text"
-              placeholder={"因海关需要，请填写收货人身份证号"}
-            />
-          </li>
-        </ul>
+        {/*<ul className="inputs">*/}
+        {/*  <li>*/}
+        {/*    <BlackLabel>真实姓名</BlackLabel>*/}
+        {/*    <input*/}
+        {/*      type="text"*/}
+        {/*      placeholder={"因海关需要，请填写收货人真实姓名"}*/}
+        {/*    />*/}
+        {/*  </li>*/}
+        {/*  <li>*/}
+        {/*    <BlackLabel>身份证号</BlackLabel>*/}
+        {/*    <input*/}
+        {/*      type="text"*/}
+        {/*      placeholder={"因海关需要，请填写收货人身份证号"}*/}
+        {/*    />*/}
+        {/*  </li>*/}
+        {/*</ul>*/}
       </WingBlank>
 
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
@@ -107,9 +106,9 @@ const dispatch = useDispatch()
           right={<span style={{ color: "#21A3CD" }}>0张可用</span>}
           label={"优惠券"}
         />
-        <MyItem arrow right={"￥297.00"} label={"商品合计"} />
-        <MyItem arrow right={"￥0.00"} label={"运费"} />
-        <MyItem arrow right={"￥297.00"} label={"优惠券"} />
+        <MyItem arrow right={"￥" + shopCartOrderData.payAmount } label={"商品合计"} />
+        <MyItem arrow right={"￥"+ shopCartOrderData.freight} label={"运费"} />
+        <MyItem arrow right={"￥"+ shopCartOrderData.couponDiscount} label={"优惠券"} />
       </MyList>
 
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
@@ -120,7 +119,7 @@ const dispatch = useDispatch()
 
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
 
-      <FillPayNow />
+      <FillPayNow all={ (shopCartOrderData.payAmount|| data.payAmount||data.seckillPrice ||data.salePrice || data.vipPrice)}/>
     </div>
   );
 };

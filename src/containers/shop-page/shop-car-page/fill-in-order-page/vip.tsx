@@ -23,14 +23,22 @@ import { BuyNowProps } from "../../../../redux/buy-now/reducer";
 import { AjaxUserAddressList } from "../../../../api/address";
 import OrderGoodItem from "../../components/order-good-item";
 import { updateBuyNow } from "../../../../redux/buy-now/actions";
+import { AjaxOrderBuyNowVipGoods } from "../../../../api/goods";
 
 type Props = {};
 const FillInOrderPage: FC<Props> = (props: Props) => {
   const { push } = useHistory();
   const dispatch = useDispatch();
   const data = useSelector<ReducersProps, BuyNowProps>(state => state.buyNow);
-  console.log(data);
   const [list, setList] = useState<any>({});
+  const [_data, set_data] = useState<any>({});
+  useEffect(()=>{
+    AjaxOrderBuyNowVipGoods({ vipGoodsId: data.goodsId, buyQuantity: 1 }).then(
+      res=> {
+        set_data(res.data)
+      }
+    )
+  },[''])
   useEffect(() => {
     if (data.receiverAddressId !== "0") {
       return setList(data);
@@ -41,7 +49,13 @@ const FillInOrderPage: FC<Props> = (props: Props) => {
           (item: any) => item.isDefault === 1
         );
         if (address.length > 0) {
-          dispatch(updateBuyNow({ ...data,...address[0], receiverAddressId: address[0].id }));
+          dispatch(
+            updateBuyNow({
+              ...data,
+              ...address[0],
+              receiverAddressId: address[0].id
+            })
+          );
           setList(address[0]);
         } else {
           push("/shop/shop-car/add-consignee-page");
@@ -104,9 +118,9 @@ const FillInOrderPage: FC<Props> = (props: Props) => {
           right={<span style={{ color: "#21A3CD" }}>0张可用</span>}
           label={"优惠券"}
         />
-        <MyItem arrow right={"￥"+ (data.vipPrice )} label={"商品合计"} />
-        <MyItem arrow right={"￥0.00"} label={"运费"} />
-        <MyItem arrow right={"￥0.00"} label={"优惠券"} />
+        <MyItem arrow right={"￥" + _data.payAmount } label={"商品合计"} />
+        <MyItem arrow right={"￥"+ _data.freight} label={"运费"} />
+        <MyItem arrow right={"￥"+ _data.couponDiscount} label={"优惠券"} />
       </MyList>
 
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
@@ -117,7 +131,11 @@ const FillInOrderPage: FC<Props> = (props: Props) => {
 
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
 
-      <FillPayNow all={ (data.payAmount||data.seckillPrice ||data.salePrice || data.vipPrice)}/>
+      <FillPayNow
+        all={
+          _data.payAmount
+        }
+      />
     </div>
   );
 };

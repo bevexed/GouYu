@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from "react";
 import "./index.less";
 import GoodBanner from "../components/banner";
 import { useHistory, useParams } from "react-router";
-import { AjaxGetVipGoodsInfo, AjaxOrderBuyNowVipGoods } from "../../../api/goods";
+import { AjaxGetVipGoodsInfo } from "../../../api/goods";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducersProps } from "../../../redux/store";
 import MyTitle, { MyCenterTitle } from "../../../components/my-title";
@@ -31,18 +31,15 @@ const GoodPage: FC<Props> = (props: Props) => {
       const res = await AjaxGetVipGoodsInfo({ id, userId });
       setGoodData(res.data);
       dispatch(updateBuyNow(res.data));
+      dispatch(updateBuyNow({goodsId:id}))
     };
     getData();
-  }, [id]);
+  }, ['']);
 
   const { push } = useHistory();
-  const { id: vipGoodsId } = useParams();
+
   const buyNow = async () => {
-    const res = await AjaxOrderBuyNowVipGoods({ vipGoodsId, buyQuantity: 1});
-    if (res.success) {
       push("/shop/fill-in-order-page/vip");
-      dispatch(updateBuyNow(res.data));
-    }
   };
   return (
     <div className="_good-page">

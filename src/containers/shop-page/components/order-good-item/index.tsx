@@ -23,11 +23,11 @@ const OrderGoodItem: FC<Props> = (props: Props) => {
       <MyImage className="_order-good-item-img" src={props.data.skuImage || props.data.pic || props.data.goodsImage} />
 
       <aside>
-        <div className="title">护肝养胃，活力十足，清苷朝鲜蓟</div>
+        <div className="title"> </div>
         <div className="sub-title">{props.data.twoAttributeValue}</div>
         <footer>
-          <Price>￥{ props.data.salePrice||props.data.memberPrice||props.data.seckillPrice || props.data.vipPrice}</Price>
-          <p className="num">×{props.data.buyQuantity || props.data.salePrice}</p>
+          <Price>￥{ props.data.memberPrice||props.data.seckillPrice || props.data.vipPrice}</Price>
+          <p className="num">×{props.data.number}</p>
         </footer>
       </aside>
     </div>

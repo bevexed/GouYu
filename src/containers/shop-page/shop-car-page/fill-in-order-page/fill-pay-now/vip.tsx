@@ -13,7 +13,6 @@ import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
 import { ReducersProps } from "../../../../../redux/store";
 import { BuyNowProps } from "../../../../../redux/buy-now/reducer";
-import { AjaxOrderSubmissionOrdinaryGoods } from "../../../../../api/order";
 import { Toast } from "antd-mobile";
 import { AppAliPay, AppWxPay, isApp } from "../../../../../util/dsbridge";
 import MyList from "../../../../../components/my-list";
@@ -26,10 +25,9 @@ import { MyBottomButton } from "../../../../../components/my-button";
 import { AjaxOrderSubmissionVipGoods } from "../../../../../api/goods";
 
 type Props = {};
-const FillPayNow: FC<any> = (props) => {
+const FillPayNow: FC<any> = props => {
   let [payType, setPayType] = useState<string>("zfb");
   const [open, setOpen] = useState(false);
-  console.log(payType);
   const {
     couponId,
     receiverAddressId,
@@ -51,18 +49,16 @@ const FillPayNow: FC<any> = (props) => {
     idCard,
     storeId
   };
-
+  console.log(id);
   const SURE = () => {
-    AjaxOrderSubmissionVipGoods({vipGoodsId:id,buyQuantity,receiverAddressId}).then(res => {
-      if (res.success) {
-        setOpen(true)
-      }
-    });
+    setOpen(true);
   };
 
   const UP = () => {
-    AjaxOrderSubmissionOrdinaryGoods({
-      ...data
+    AjaxOrderSubmissionVipGoods({
+      vipGoodsId: goodsId,
+      buyQuantity: 1,
+      receiverAddressId
     }).then(res => {
       if (res.status === 0) {
         if (isApp()) {

@@ -23,14 +23,23 @@ import { BuyNowProps } from "../../../../redux/buy-now/reducer";
 import { AjaxUserAddressList } from "../../../../api/address";
 import OrderGoodItem from "../../components/order-good-item";
 import { updateBuyNow } from "../../../../redux/buy-now/actions";
+import { AjaxOrderBuyNowOrdinaryGoods } from "../../../../api/order";
 
 type Props = {};
 const FillInOrderPage: FC<Props> = (props: Props) => {
   const { push } = useHistory();
   const dispatch = useDispatch();
   const data = useSelector<ReducersProps, BuyNowProps>(state => state.buyNow);
+  const [_data, set_data] = useState<any>('');
   console.log(data);
   const [list, setList] = useState<any>({});
+  const { goodsId, skuId, buyQuantity, storeId } = data
+  useEffect(()=>{
+    const data = { goodsId, skuId, buyQuantity, storeId };
+    AjaxOrderBuyNowOrdinaryGoods(data).then(res => {
+      set_data(res.data)
+    })
+  },[''])
   useEffect(() => {
     if (data.receiverAddressId !== "0") {
       return setList(data);
@@ -87,9 +96,9 @@ const FillInOrderPage: FC<Props> = (props: Props) => {
           right={<span style={{ color: "#21A3CD" }}>0张可用</span>}
           label={"优惠券"}
         />
-        <MyItem arrow right={"￥"+ (data.salePrice||data.seckillPrice )} label={"商品合计"} />
-        <MyItem arrow right={"￥0.00"} label={"运费"} />
-        <MyItem arrow right={"￥0.00"} label={"优惠券"} />
+        <MyItem arrow right={"￥"+ (_data.payAmount )} label={"商品合计"} />
+        <MyItem arrow right={"￥"+ _data.freight} label={"运费"} />
+        <MyItem arrow right={"￥"+ _data.couponDiscount} label={"优惠券"} />
       </MyList>
 
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
@@ -100,7 +109,7 @@ const FillInOrderPage: FC<Props> = (props: Props) => {
 
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
 
-      <FillPayNow all={ (data.seckillPrice ||data.salePrice)}/>
+      <FillPayNow all={ _data.payAmount}/>
     </div>
   );
 };

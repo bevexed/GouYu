@@ -25,7 +25,7 @@ import { MyBottomButton } from "../../../../../components/my-button";
 import { AjaxShoppingCartSubmissionShoppingCart } from "../../../../../api/shop-car";
 
 type Props = {};
-const FillPayNow: FC<Props> = (props: Props) => {
+const FillPayNow: FC<any> = (props) => {
   let [payType, setPayType] = useState<string>("zfb");
   const [open, setOpen] = useState(false);
   console.log(payType);
@@ -75,7 +75,7 @@ const FillPayNow: FC<Props> = (props: Props) => {
     <>
       <div className="_pay-now">
         <section className="left">
-          应付金额： <Price>￥297.00</Price>
+          应付金额： <Price>￥{props.all}</Price>
         </section>
 
         <aside className="_pay-now-btn" onTouchEnd={SURE}>

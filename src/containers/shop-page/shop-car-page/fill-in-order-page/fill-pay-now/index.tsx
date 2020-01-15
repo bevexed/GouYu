@@ -13,7 +13,7 @@ import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
 import { ReducersProps } from "../../../../../redux/store";
 import { BuyNowProps } from "../../../../../redux/buy-now/reducer";
-import { AjaxOrderBuyNowOrdinaryGoods, AjaxOrderSubmissionOrdinaryGoods } from "../../../../../api/order";
+import { AjaxOrderSubmissionOrdinaryGoods } from "../../../../../api/order";
 import { Toast } from "antd-mobile";
 import { AppAliPay, AppWxPay, isApp } from "../../../../../util/dsbridge";
 import MyList from "../../../../../components/my-list";
@@ -51,12 +51,9 @@ const FillPayNow: FC<any> = (props) => {
   };
 
   const SURE = () => {
-    const data = { goodsId, skuId, buyQuantity, storeId };
-    AjaxOrderBuyNowOrdinaryGoods(data).then(res => {
-      if (res.success) {
+
         setOpen(true)
-      }
-    });
+
   };
 
   const UP = () => {
