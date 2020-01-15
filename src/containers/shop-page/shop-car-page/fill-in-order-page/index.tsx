@@ -85,7 +85,7 @@ const FillInOrderPage: FC<Props> = (props: Props) => {
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
 
       <WingBlank>
-        <OrderGoodItem showBorderBottom={false} data={data} />
+        <OrderGoodItem showBorderBottom={false} data={_data.goodsInfoVo} />
       </WingBlank>
 
       <MyWhiteBlank backgroundColor={"#F8F9FA"} />
