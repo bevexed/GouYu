@@ -287,13 +287,13 @@ class DetailsIndex extends Component<DetailsIndex, any>{
                     <div className="dynamic-details-center-con">
                         <div className="dynamic-details-center">
                             <div className="dynamic-details-top">
-                                <MyImage className="center-top-left" src={HeadDetailsData.images} />
+                                {/* <MyImage className="center-top-left" src={HeadDetailsData.images} /> */}
                                 <div className="center-top-right">
                                     <div>
-                                        <h3>毒岛百合子</h3>
+                                        <h3>{HeadDetailsData.publisher}</h3>
                                         <p className="center-top-right-date">{HeadDetailsData.createTime}</p>
                                     </div>
-                                    {focusflage ? <p className="center-top-right-focus" onClick={this.onFocusf}> 关注 </p> : <p className="center-top-been-focused"> 已关注 </p>}
+                                    {/* {focusflage ? <p className="center-top-right-focus" onClick={this.onFocusf}> 关注 </p> : <p className="center-top-been-focused"> 已关注 </p>} */}
                                 </div>
                             </div>
                             {/* <p className={`dynamic-details-center-text ${flage === false && 'dynamic-details-con-text'}`}>健身教学：连续22天的腹肌训练，很多女生去健身房除了用跑步机，对其他器械动作一头雾水，也完全没有计划目的性的去健身房，其实女生也应看到马上到马上为了让的急啊时看见的机会呢啊毕竟看见刷卡机上说可拉动奥康没</p> */}
@@ -307,14 +307,14 @@ class DetailsIndex extends Component<DetailsIndex, any>{
                                 <MyImage className="details-image" src={'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577785236487&di=ecae8c37c6ab058ae6e6439371e25d9b&imgtype=0&src=http%3A%2F%2Fpic.eastlady.cn%2Fuploads%2Ftp%2F201703%2F9999%2F3732714ab0.jpg'} />
                                 <MyImage className="details-image" src={'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577774306343&di=9513ed808d895914506fd67f1070774f&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170512%2Fceb4c51b34c54032a65e1fb23af7eeaa_th.jpg'} />
                             </div> */}
-                            {
+                            {/* {
                                 HeadDetailsData.images && HeadDetailsData.images.split(',').length >= 0 ? <div className="dynamic-center-image-list">{HeadDetailsData.images.split(',').map((value: any) => <MyImage src={value} className="image-lest" />)}</div> :
                                     <div className="dynamic-center-image">
                                         <MyImage className="center-image" src={`${HeadDetailsData.video}?x-oss-process=video/snapshot,t_10000,m_fast,w_800`} />
                                     </div>
-                            }
+                            } */}
                             <p className="dynamic-cente-footer-txt">
-                                <span>#{HeadDetailsData.publisher}</span>
+                                {/* <span>#</span> */}
                             </p>
 
                         </div>
