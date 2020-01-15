@@ -25,7 +25,7 @@ export const AjaxShoppingCartUpdateGoodsShoppingCartNumber = (
   data: ShoppingCartUpdateGoodsShoppingCartNumberProps
 ) =>
   ajax<any>({
-    method: "GET",
+    method: "POST",
     url: "/shoppingCart/updateGoodsShoppingCartNumber",
     data
   });
