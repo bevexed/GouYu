@@ -20,7 +20,7 @@ const OrderGoodItem: FC<Props> = (props: Props) => {
       className="_order-good-item"
       style={{ borderWidth: props.showBorderBottom ? "2px" : 0 }}
     >
-      <MyImage className="_order-good-item-img" src={ props?.data?.goodsImage} />
+      <MyImage className="_order-good-item-img" src={ props?.data?.goodsImage || props?.data?.pic} />
 
       <aside>
         <div className="title">{props?.data?.goodsName} </div>

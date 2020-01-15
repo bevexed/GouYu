@@ -7,7 +7,7 @@ type Props = {
 const QRcode: FC<Props> = (props: Props) => {
   return (
     <div className="_qr-code">
-      <p className="_qr-code-p">专属个人二维码</p>
+      {/*<p className="_qr-code-p">专属个人二维码</p>*/}
       {/*<MyImage*/}
       {/*  className='_qr-code-img'/>*/}
 

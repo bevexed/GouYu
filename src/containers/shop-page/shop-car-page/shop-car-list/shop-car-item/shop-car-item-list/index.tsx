@@ -62,8 +62,8 @@ const ShopCarItemListItem: FC<any> = props => {
       />
       <MyImage src={props.pic} className="_shop-car-item-list-item-img" />
       <section className={"dis"}>
-        <p className="title">{props.subTitle}</p>
-        <p className="sub-title">{props.specifications}</p>
+        <p className="title">{props.goodsName}</p>
+        <p className="sub-title">{props.subTitle}</p>
         <div className="tags">
           <MyBlueTag round={true}>限时秒</MyBlueTag>
         </div>
