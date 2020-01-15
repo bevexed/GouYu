@@ -3,6 +3,7 @@ import './index.less';
 import MyTag from '../../../../../components/my-tag';
 import { iconPic } from '../../../../../config/image';
 import MyWhiteBlank from "../../../../../components/my-white-blank";
+import { useHistory } from "react-router";
 
 type GoodItemProps = {
   [key:string]:any
@@ -13,9 +14,14 @@ type GoodListProps = {
 };
 
 export const GoodItem: FC<GoodItemProps> = (props: GoodItemProps) => {
+  const {push} = useHistory()
+  const go = () => {
+    window.scrollTo(0, 0);
+    push("/good-page/" + props.id);
+  };
   return (
     <>
-      <div className="good-item">
+      <div className="good-item" onClick={go}>
         <img className="good-img" src={ props.goodsImage } alt=""/>
         <section className="right">
           <div className="title">{ props.goodsName }</div>
@@ -31,7 +37,6 @@ export const GoodItem: FC<GoodItemProps> = (props: GoodItemProps) => {
             <span className="del">￥{props.salePrice}</span>
             <img src={ iconPic.vip } alt=""/> <span className="vip">￥{props.memberPrice}</span>
             <div className="sold-out">已售{props.soldNumber}件</div>
-
           </footer>
         </section>
       </div>
