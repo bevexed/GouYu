@@ -58,6 +58,6 @@ export const AjaxOrderSubmissionVipGoods = (data: BuyNowVipGoodProps) =>
 export const AjaxGoodsQueryGoodsList = (data:any) =>
   ajax<any>({
     url: "goods/queryGoodsList",
-    method: "POST",
+    method: "GET",
     data
   });

@@ -34,7 +34,8 @@ const ThreeClassify = [
     sort: "排序",
     isDisplay: "是否显示(0:否 1:是)",
     isHot: "是否热门(0:否 1:是)",
-    twoName: ""
+    twoName: "",
+    icon:''
   }
 ];
 

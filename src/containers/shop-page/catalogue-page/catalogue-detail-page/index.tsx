@@ -10,16 +10,17 @@ type Props = {};
 const CataloguePage: FC<Props> = (props: Props) => {
   const { sortName } = useParams();
   const [listState, setListState] = useState('list');
+  const [goodList, setGoodList] = useState<any[]>([]);
   useEffect(()=>{
     AjaxGoodsQueryGoodsList({
       classifyId:sortName
     }).then(res=>{
-      console.log(res);
+      setGoodList(res.data.records)
     })
-  })
+  },[''])
   return (
     <div className={ 'catalogue-page' }>
-      <MyNavBar>{ sortName }</MyNavBar>
+      <MyNavBar>{ goodList[0]?.classifyName || '暂无产品' }</MyNavBar>
       {/*<GoodStateBar*/}
       {/*  getListState={ listState => {*/}
       {/*    setListState(listState);*/}
@@ -27,7 +28,7 @@ const CataloguePage: FC<Props> = (props: Props) => {
       {/*/>*/}
       <WhiteSpace/>
         <GoodList
-          goodList={[]}
+          goodList={goodList}
         />
     </div>
   );

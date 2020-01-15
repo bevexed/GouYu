@@ -21,14 +21,14 @@ export const GoodItem: FC<GoodItemProps> = (props: GoodItemProps) => {
           <div className="title">{ props.goodsName }</div>
 
           <div className="price">
-            <MyTag>VIP省 ￥{props.vipDisparityPrice}</MyTag>
-            <MyTag>分享赚 ￥{props.goldVipOneCommission}</MyTag>
+            {props.vipDisparityPrice &&<MyTag>VIP省 ￥{props.vipDisparityPrice}</MyTag>}
+            {props.goldVipOneCommission&&<MyTag>分享赚 ￥{props.goldVipOneCommission}</MyTag>}
             <div className="ori">¥{props.marketPrice}</div>
           </div>
 
 
           <footer>
-            <span className="del">￥{props.memberPrice}</span>
+            <span className="del">￥{props.salePrice}</span>
             <img src={ iconPic.vip } alt=""/> <span className="vip">￥{props.memberPrice}</span>
             <div className="sold-out">已售{props.soldNumber}件</div>
 

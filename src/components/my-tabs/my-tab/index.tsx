@@ -6,7 +6,7 @@ import { ThreeClassifyProps } from "../../../redux/goods/reducer";
 
 export type ContentItem = {
   twoName:string,
-  ThreeClassify:ThreeClassifyProps
+  ThreeClassify:ThreeClassifyProps,
 };
 
 export const ContentItem: FC<ContentItem> = (props: ContentItem) => {
@@ -18,13 +18,13 @@ export const ContentItem: FC<ContentItem> = (props: ContentItem) => {
       <div className="catalogue-list">
         { props.ThreeClassify.map((item, key) => (
           <div className="catalogue-item"
-               onClick={ () => push('/shop/catalogue-page/catalogue-detail-page/营养保健') }
+               onClick={ () => push('/shop/catalogue-page/catalogue-detail-page/'+item.id) }
                key={ key }>
             <img
-              src="http://img.alicdn.com/bao/uploaded/i1/2627785630/O1CN01LYCCKv1rSaQ6eGS1B_!!2627785630.jpg_400x400Q50s50.jpg_.webp"
+              src={item.icon}
               alt=""
             />
-            <div className="label">{props.twoName}</div>
+            <div className="label">{item.twoName}</div>
           </div>
         )) }
       </div>
