@@ -60,8 +60,8 @@ class DetailsIndex extends Component<DetailsIndex, any>{
 
     onDetailsList = async () => {
         const idData = this.props.location.search.slice(1).split('=')
-        const user: any = localStorage.getItem('userInfo')
-        const res = await AjaxGetDynamicDetailsPageList({ id: idData[1],userId: JSON.parse(user).user.id  });
+        //const user: any = localStorage.getItem('userInfo')
+        const res = await AjaxGetDynamicDetailsPageList({ id: idData[1]});
         // console.log('detailsres', res);
         this.setState({ DynamicDetails: res.data })
         console.log('dddd', this.state.DynamicDetails)
