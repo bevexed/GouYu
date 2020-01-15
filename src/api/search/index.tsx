@@ -10,7 +10,7 @@ export const AjaxQueryGoodsList = (data: AjaxQueryGoodsListProps) =>
   ajax<any>({
     url: "/goods/queryGoodsList",
     method: "GET",
-    data
+    data:{...data,size:100000,current:1}
   });
 
 export const AjaxHistorySearchDel = () =>

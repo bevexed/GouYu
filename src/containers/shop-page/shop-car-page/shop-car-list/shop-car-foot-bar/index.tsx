@@ -83,9 +83,9 @@ export const ShopBarFootBar2: FC<Props> = (props: Props) => {
       goodsIds: any[] = [];
     shopCar.forEach(item => {
       if (item.c) {
-        storeIds.push(item.id);
         item.shoppingCartList.forEach((good: any) => {
           if (good.c) {
+            storeIds.push(item.id);
             goodsIds.push(good.goodsId);
           }
         });

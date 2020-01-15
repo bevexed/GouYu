@@ -164,9 +164,9 @@ const Specification: FC<Props> = (props: Props) => {
           <div className="right">
             <Price>￥{currentSelect.salePrice}</Price>
             <GrayLabel>库存{currentSelect.skuStock}</GrayLabel>
-            <MyTitle>清苷朝鲜蓟枳椇子植物饮料</MyTitle>
+            <MyTitle>{currentSelect.goodsName}</MyTitle>
             <GrayLabel ellipsis={true}>
-              护肝养胃，活力十足，清苷朝鲜蓟枳椇…
+              {currentSelect.goodsTitle}
             </GrayLabel>
           </div>
         </header>

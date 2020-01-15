@@ -17,10 +17,10 @@ type Props = {
 const OrderShopItem: FC<Props> = (props: Props) => {
   return (
     <div className="_order-shop-item">
-      <MyImage
-        className="shop-img"
-        src="https://g-search2.alicdn.com/img/bao/uploaded/i4/i3/383301414/O1CN01fjl5Go1MJecL2pDEe_!!0-item_pic.jpg_250x250.jpg_.webp"
-      />
+      {/*<MyImage*/}
+      {/*  className="shop-img"*/}
+      {/*  src="https://g-search2.alicdn.com/img/bao/uploaded/i4/i3/383301414/O1CN01fjl5Go1MJecL2pDEe_!!0-item_pic.jpg_250x250.jpg_.webp"*/}
+      {/*/>*/}
       <div className="shop-name">{props.storeName}</div>
       <MyImage src={ iconPic.more } onTouchEnd={ () => {
       } } className="more"/>
