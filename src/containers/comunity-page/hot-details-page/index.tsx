@@ -36,16 +36,16 @@ class DetailsIndex extends Component<DetailsIndex, any>{
             headImage:''
         },
         commentsData: [{
-            content: "42341",
-            createTime: 1576226254000,
+            content: "",
+            createTime:'',
             headImage: "",
-            headlinesId: 2,
-            id: 2,
-            isZan: 0,
+            headlinesId: '',
+            id: '',
+            isZan: '',
             nextNodes: [],
-            nickName: "gj_qAsr",
-            userId: 26,
-            zanNumber: 0
+            nickName: "",
+            userId: '',
+            zanNumber:''
         }],
         totalData: 0,
     }
