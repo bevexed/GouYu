@@ -1,4 +1,9 @@
-const { override, fixBabelImports, addLessLoader,addPostcssPlugins,ad } = require("customize-cra");
+const { override, fixBabelImports, addLessLoader,addPostcssPlugins } = require("customize-cra");
+
+const rewiredMap = () => config => {
+  config.devtool = config.mode === 'development' ? 'cheap-module-source-map' : false;
+  return config;
+};
 
 module.exports = override(
   fixBabelImports('import', {
@@ -23,4 +28,5 @@ module.exports = override(
       require('autoprefixer')(),
     ),
   ]),
+  rewiredMap()
 );

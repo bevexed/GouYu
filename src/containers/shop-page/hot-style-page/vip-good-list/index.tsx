@@ -4,15 +4,21 @@ import { WingBlank } from 'antd-mobile';
 import MyWhiteBlank from '../../../../components/my-white-blank';
 import { MyBuyButton } from '../../../../components/my-button';
 import { Price } from "../../../../components/price";
+import { useHistory } from "react-router";
 
 interface VipGoodProps {
 }
 
 const VipGood: FC<any> = (props) => {
+  const {push} = useHistory()
+  const go = () => {
+    window.scrollTo(0, 0);
+    // push("/good-page/" + props.id);
+  };
   return (
     <>
       <WingBlank>
-        <div className="_vip-good">
+        <div className="_vip-good" onClick={go}>
           <img
             className="good-img"
             src={props.goodsImage}
