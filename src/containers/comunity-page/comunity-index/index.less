@@ -539,7 +539,7 @@
       background:rgba(255,255,255,1);
     }
     .Headlines-con{
-      margin:24px 22px 0 30px;
+      margin:24px 22px 0 0;
       padding: 19px 0 24px 0;
       //height:438px;
       box-sizing: border-box;
@@ -549,7 +549,7 @@
         font-weight:400;
         color:rgba(38,45,44,1);
         line-height:48px;
-        margin-bottom: 24px;
+        margin:0 0 0 30px;
         display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 2;
@@ -557,11 +557,14 @@
       }
       .headlines-con-img{
         display: flex;
-        justify-content: space-between;
+        //justify-content: space-between;
+        flex-wrap: wrap;
+        margin-left: 12px;
         .headlines-image{
           width:218px;
           height:218px;
           border-radius:16px;
+          margin:24px 0 0 18px;
         }
       }
       .headlines-con-footer{
@@ -570,7 +573,7 @@
         font-weight:400;
         color:rgba(116,121,120,1);
         line-height:34px;
-        margin-top: 24px;
+        margin: 24px 0 0 30px;
       }
 
     }
