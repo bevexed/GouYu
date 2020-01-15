@@ -5,7 +5,7 @@ import { iconPic } from '../../../config/image';
 import { SearchTabBar } from '../search-tab-bar';
 import { useHistory } from 'react-router';
 import { isApp, AppGetBack } from '../../../util/dsbridge';
-import { AjaxGetMyCommunityPageList,AjaxGetCommunityAnswerPageList } from '../../../api/community-classify-page'
+import { AjaxGetMyCommunityPageList, AjaxGetCommunityAnswerPageList } from '../../../api/community-classify-page'
 interface MayQuestionIndexProps { }
 //提问
 const RenderQuestions: FC<{}> = () => {
@@ -14,8 +14,8 @@ const RenderQuestions: FC<{}> = () => {
     useEffect(() => {
         const getQuestionsList = async () => {
             const res = await AjaxGetMyCommunityPageList({ token: usetoken });
-            //console.log('resDta', res);
-            setQuestionsData(res)
+            console.log('resDta', res);
+            setQuestionsData(res.data.records)
         };
         getQuestionsList();
     }, [])
@@ -23,12 +23,12 @@ const RenderQuestions: FC<{}> = () => {
     return (
         <div className="mayquestion-ask">
             {
-                new Array(10).fill(1).map((item, key) =>
-                    <div className="mayquestion-ask-con" key={key}>
-                        <p>健身教学：连续22天的腹肌训练，很多女生去健身房除了用跑步机，对其他器械动作一头雾水。</p>
+                QuestionsData && QuestionsData.map((item: any) =>
+                    <div className="mayquestion-ask-con" key={item.id}>
+                        <p>{item.title}</p>
                         <div className="mayquestion-ask-con-right">
                             <span>20回答</span>
-                            <span>33分钟前</span>
+                            <span className="ask-con-right-date">{item.createTime}分钟前</span>
                         </div>
                     </div>
                 )}
@@ -77,7 +77,7 @@ const RenderAnswer: FC<{}> = () => {
 }
 const MayQuestionIndex: FC<MayQuestionIndexProps> = (props) => {
 
-  
+
 
     const [SearchBarState, setSearchBarState] = useState(0);
     const { go } = useHistory();

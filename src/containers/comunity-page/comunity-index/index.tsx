@@ -30,13 +30,12 @@ const RenderHot: FC<{}> = () => {
     const [Hotflage, setHotflage] = useState();
     // const [Flage, setFlage] = useState(true);
     // const [activeFlage, setactiveFlage] = useState(false)
-    console.log('hot', specialList.records)
+    //console.log('hot', specialList.records)
     // const gitvelink = (id: any) => {
     //     //setHotflage(id)
     //     console.log(1111111111)
     //     console.log('id',id)
     // }
-    console.log('id', Hotflage)
     return (
         <div className="content-tabs-hot">
 
@@ -85,7 +84,7 @@ const RenderDynamic: FC<{}> = () => {
         };
         getDynamicData();
     }, [])
-    console.log('动态Data', DynamicData)
+   // console.log('动态Data', DynamicData)
     return (
         <div className="content-tabs-dynamic">
             {/* <div className="tabs-dynamic-top">
@@ -151,9 +150,8 @@ const RenderHeadlines: FC<{}> = () => {
     const { push } = useHistory()
     useEffect(() => {
         const getheadData = async () => {
-            console.log(1)
             const res = await AjaxGetHeadlinesPageList();
-            console.log(res);
+            //console.log(res);
             setheadlinesData(res.data.records)
         };
         getheadData();
@@ -164,7 +162,7 @@ const RenderHeadlines: FC<{}> = () => {
             {headlinesData && headlinesData.map((item: any) =>
                 <div className="Headlines" key={item.id} onClick={() => push(`/comunity/headline-details-page?id=${item.id}`)}>
                     <div className="Headlines-con">
-                        <p className="Headlines-con-tit">{item.content}</p>
+                        <p className="Headlines-con-tit">{item.content.replace(/<.*?>/ig,"")}</p>
                         {
                             item.images && item.images.split(',').length >= 0 ? <div className="dynamic-center-image-list">{item.images.split(',').map((value: any) => <MyImage src={value} className="image-lest" key={value} />)}</div> :
                                 <div className="dynamic-center-image">
@@ -188,16 +186,16 @@ const RenderAnswer: FC<{}> = () => {
     const [AnswerListData, setAnswerListData] = useState();
     const tokendata: any = localStorage.getItem('userInfo')
     const useinfo = JSON.parse(tokendata).user
-    console.log('useinfo', useinfo)
+    //console.log('useinfo', useinfo)
     useEffect(() => {
         const getAnswerListData = async () => {
             const resList = await AjaxGetAnswerPageList();
-            console.log('问答', resList)
+            //console.log('问答', resList)
             setAnswerListData(resList.data.records)
         };
         getAnswerListData();
     }, [])
-    console.log('AnswerData1231234', AnswerListData)
+    //console.log('AnswerData1231234', AnswerListData)
     const { push } = useHistory()
     return (
         <div className="answer-content">
