@@ -132,7 +132,7 @@ class DetailsIndex extends Component<DetailsIndex, any>{
                     {
                         commentsData && commentsData.map((item, key) =>
                             <div className="comments-center-con" key={item.id}>
-                                <MyImage src={'http://cdn.duitang.com/uploads/item/201410/21/20141021130151_ndsC4.jpeg'} className="center-con-left-image" />
+                                <MyImage src={item.headImage} className="center-con-left-image" />
                                 <div className="center-top-right">
                                     <h3 className="center-top-right-tit">{DynamicDetails.nickName}</h3>
                                     <p className="top-right-date">
