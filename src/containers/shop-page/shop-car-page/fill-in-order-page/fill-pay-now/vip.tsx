@@ -94,7 +94,7 @@ const FillPayNow: FC<any> = props => {
           <div className={"_wrap"}>
             <MyCenterTitle>
               <Price>
-                <span style={{ color: "#000" }}>付款</span> 29:59
+                <span style={{ color: "#000" }}>付款</span>
               </Price>
             </MyCenterTitle>
             <MyList renderHeader={<MyTitle>支付方式</MyTitle>}>
