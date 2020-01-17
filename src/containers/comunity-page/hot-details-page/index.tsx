@@ -60,7 +60,7 @@ class DetailsIndex extends Component<DetailsIndex, any>{
         const res = await AjaxGetDynamicDetailsPageList({ id: idData[1] });
         // console.log('detailsres', res);
         this.setState({ HotDetailsData: res.data })
-        console.log('HotDetailsData1111', this.state.HotDetailsData)
+        //console.log('HotDetailsData1111', this.state.HotDetailsData)
     }
     getHotlist = async () => {
         //const userInfo: any = localStorage.getItem('userInfo')

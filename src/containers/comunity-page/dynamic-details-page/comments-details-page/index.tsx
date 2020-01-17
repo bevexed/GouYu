@@ -4,7 +4,7 @@ import { MyImage } from '../../../../components/my-image';
 import { iconPic } from '../../../../config/image';
 import { RouteComponentProps } from 'react-router';
 import { AjaxGetDynamicCommentDetailsPageList } from '../../../../api/community-classify-page';
-import qs from 'querystring'
+//import qs from 'querystring'
 interface CommentsIndex extends RouteComponentProps {
     val: null,
     tabs: null,
@@ -36,7 +36,7 @@ class CommentsIndex extends Component<CommentsIndex>{
         const sid = Data[0].split('=')[1]
         const userid = Data[1].split('=')[1]
         const res = await AjaxGetDynamicCommentDetailsPageList({ id: sid, userId: userid });
-        console.log('CommentDetails6666', res.data);
+        //console.log('CommentDetails6666', res.data);
         this.setState({
             CommentDetailsData: res.data.records
         })
@@ -44,7 +44,7 @@ class CommentsIndex extends Component<CommentsIndex>{
 
     render() {
         const { detailsflage, CommentDetailsData } = this.state
-        console.log('CommentDetailsData12312312',CommentDetailsData)
+        //console.log('CommentDetailsData12312312',CommentDetailsData)
         return (
             <div className="comments-details-container">
                 <div className="comments-details-container-con">

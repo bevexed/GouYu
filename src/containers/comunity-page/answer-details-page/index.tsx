@@ -42,9 +42,9 @@ class DetailsIndex extends Component<DetailsIndex, any>{
 
     AnswerDetailsList = async () => {
         const idData = this.props.location.search.slice(1).split('=')
-        console.log('id',idData)
+       // console.log('id',idData)
         const res = await AjaxGetAnswerDetailsPage({ id: idData[1] });
-        console.log('AnswerDetails123', res);
+        //console.log('AnswerDetails123', res);
         // this.setState({ HotDetailsData: res.data })
         // console.log('HotDetailsData1111', this.state.HotDetailsData)
     }

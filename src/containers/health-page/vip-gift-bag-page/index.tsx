@@ -57,7 +57,7 @@ const VipGiftBagPage: FC<Props> = (props: Props) => {
             white={true}
             onTouchEnd={() => go(-1)}
           />
-          <span className="title">299VIP礼包</span>
+          <span className="title">398VIP礼包</span>
           <MyIcon src={iconPic.share} white={true} onTouchEnd={() => {}} />
         </header>
 

@@ -65,13 +65,13 @@ class DetailsIndex extends Component<DetailsIndex, any>{
         const res = await AjaxGetHeadDetailsPageList({ id: idData[1] });
         //console.log('detailsres', res);
         this.setState({ HeadDetailsData: res.data })
-        console.log('HeadDetailsData', this.state.HeadDetailsData)
+        //console.log('HeadDetailsData', this.state.HeadDetailsData)
     }
     getDatalist = async () => {
         //const userInfo: any = localStorage.getItem('userInfo')
         const idData = this.props.location.search.slice(1).split('=')
         const resData = await AjaxGetHeadlinesCommentPageList({ headlinesId: idData[1]});
-        console.log('resData', resData.data)
+        //console.log('resData', resData.data)
         //console.log('userInfo', JSON.parse(userInfo).user.id)
         this.setState({
             commentsData: resData.data.records,

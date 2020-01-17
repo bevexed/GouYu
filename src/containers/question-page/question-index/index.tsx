@@ -3,7 +3,7 @@ import './index.less';
 import { RouteComponentProps } from 'react-router';
 import { MyImage } from '../../../components/my-image';
 import { iconPic } from '../../../config/image';
-import { TextareaItem, ImagePicker, Button } from 'antd-mobile';
+import { TextareaItem, ImagePicker} from 'antd-mobile';
 import { AjaxGetQuestionsPage, AjaxGetImagePage } from '../../../api/community-classify-page/'
 import { isApp, AppGetBack } from '../../../util/dsbridge';
 import Axios from 'axios';

@@ -33,14 +33,6 @@ const RenderHot: FC<{}> = () => {
     >(state => state.classifyPageData);
     const { push } = useHistory()
     const [Hotflage, setHotflage] = useState();
-    // const [Flage, setFlage] = useState(true);
-    // const [activeFlage, setactiveFlage] = useState(false)
-    //console.log('hot', specialList.records)
-    // const gitvelink = (id: any) => {
-    //     //setHotflage(id)
-    //     console.log(1111111111)
-    //     console.log('id',id)
-    // }
     return (
         <div className="content-tabs-hot">
 
@@ -80,7 +72,9 @@ const RenderHot: FC<{}> = () => {
 const RenderDynamic: FC<{}> = () => {
     const { push } = useHistory()
     const [DynamicData, setDynamicData] = useState();
-
+    // const userInfo: any = localStorage.getItem('userInfo')
+    // console.log('userInfo11',userInfo)
+    // console.log('userInfo22', JSON.parse(userInfo).user.id)
     useEffect(() => {
         const getDynamicData = async () => {
             const res = await AjaxGetDynamicPageList();
@@ -156,12 +150,11 @@ const RenderHeadlines: FC<{}> = () => {
     useEffect(() => {
         const getheadData = async () => {
             const res = await AjaxGetHeadlinesPageList();
-            //console.log(res);
             setheadlinesData(res.data.records)
         };
         getheadData();
     }, [])
-    console.log('headlinesData', headlinesData)
+    //console.log('headlinesData', headlinesData)
     return (
         <div className="Headlines-content">
             {headlinesData && headlinesData.map((item: any) =>
