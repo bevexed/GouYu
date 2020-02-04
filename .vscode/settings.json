@@ -1,3 +1,14 @@
+// {
+//     "prettier.requireConfig": true
+// }
 {
-    "prettier.requireConfig": true
+    "name": "My Server",
+    "host": "115.29.204.199",
+    "password": "HZlysy@#$0509",
+    "protocol": "sftp",
+    "port": 22,
+    "username": "root",
+    "remotePath": "/usr/local/app/dist",
+    "context": "/Users/wangxiang/Desktop/wx/GouYu/build",
+    "uploadOnSave": true
 }

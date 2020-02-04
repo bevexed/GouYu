@@ -37,8 +37,8 @@ const RenderHot: FC<{}> = () => {
         <div className="content-tabs-hot">
 
             {
-                specialList.records && specialList.records.map((item: any) => {
-
+                specialList.records.length >1? specialList.records.map((item: any) => {
+                            console.log('1',specialList)
                     return (
                         <div className="hot-content" key={item.id}>
                             <MyImage className="hot-image"
@@ -61,7 +61,7 @@ const RenderHot: FC<{}> = () => {
                         </div>
                     )
 
-                })}
+                }):null}
             <MyImage src={iconPic.camera} className="right-camera" />
         </div>
 

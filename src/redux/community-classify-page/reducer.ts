@@ -6,18 +6,18 @@ const initClassifyPageData = {
 		"pages": "共几页",
 		"records": [
 			{
-				"cityName": "城市名称",
-				"communityClassifyId": "社区动态分类",
-				"content": "内容",
-				"createTime": "创建时间",
-				"id": "动态id",
-				"isPass": "是否审核通过(0:否 1:是)",
-				"isZan": "当前用户是否点赞(0:否 1:是)",
-				"nickName": "用户昵称",
-				"userId": "用户id",
-				"video": "视频地址",
-				"headImage": "用户头像",
-				"zanNumber": "点赞数"
+				"cityName": "",
+				"communityClassifyId": "",
+				"content": "",
+				"createTime": "",
+				"id": "",
+				"isPass": "",
+				"isZan": "",
+				"nickName": "",
+				"userId": "",
+				"video": "",
+				"headImage": "",
+				"zanNumber": ""
 			}
 		],
 		"searchCount": "分页信息",
