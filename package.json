@@ -42,7 +42,7 @@
     "react-scripts": "3.3.0",
     "redux-thunk": "^2.3.0",
     "reset-css": "^5.0.1",
-    "swiper": "^5.2.1",
+    "swiper": "^6.5.1",
     "typescript": "~3.7.2"
   },
   "scripts": {
